@@ -3,6 +3,7 @@
     display: flex;
     align-items: center;
     margin: 100px auto;
+    padding: 20px;
     img {
         max-width: 200px;
         height: auto;
@@ -11,5 +12,20 @@
     p {
         font-size: 1.1em;
         text-align: justify;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .bio {
+        flex-direction: column;
+        img {
+            margin: 0;
+        }
+    }
+}
+@media screen and (max-width: 500px) {
+    .bio {
+       font-size: 0.8em;
+       margin-top: 50px;
     }
 }

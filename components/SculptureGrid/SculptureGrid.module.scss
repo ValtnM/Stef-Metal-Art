@@ -1,16 +1,17 @@
 .grid {
-    max-width: 1600px;
+    max-width: 1500px;
     margin: 50px auto;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     .block {
-        width: 500px;
-        height: 500px;
+        width: 400px;
+        height: 400px;
         position: relative;
+        margin: 10px;
 
         img {
-            width: 95%;
+            width: 100%;
             height: auto;
             position: absolute;
         }
@@ -21,6 +22,16 @@
         }
     }
     
+}
+
+
+@media screen and (max-width: 500px) {
+    .grid {
+        .block {
+            width: 300px;
+            height: 300px;
+        }
+    }
 }
 
 

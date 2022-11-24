@@ -14,7 +14,10 @@ export default function Foot() {
       </a>
       <ul className={styles.footerNav}>
         <a href="#">
-          <li>Mentions Légales</li>
+          <li>Peintures</li>
+        </a>
+        <a href="#">
+          <li>Liens</li>
         </a>
         <a href="#">
           <li>Contact</li>
