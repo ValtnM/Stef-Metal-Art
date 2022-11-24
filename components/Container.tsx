@@ -1,5 +1,6 @@
 import React from 'react'
 import Navbar from './Navbar/Navbar'
+import Foot from './Foot/Foot'
 // import Image from 'next/image'
 // import texture from '../public/assets/texture.jpg';
 type ContainerProps = {
@@ -22,6 +23,7 @@ export default function Container(props: ContainerProps) {
       /> */}
         <Navbar />
         {props.children}
+        <Foot />
     </>
   )
 }
