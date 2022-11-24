@@ -1,0 +1,15 @@
+.bio {
+    max-width: 1000px;
+    display: flex;
+    align-items: center;
+    margin: 100px auto;
+    img {
+        max-width: 200px;
+        height: auto;
+        margin-right: 50px;
+    }
+    p {
+        font-size: 1.1em;
+        text-align: justify;
+    }
+}
