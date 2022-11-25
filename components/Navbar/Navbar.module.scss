@@ -7,12 +7,6 @@
   justify-content: center;
   align-items: flex-end;
   padding: 0;
-  a {
-    width: 25%;
-    margin-bottom: 30px;
-    font-size: 1.2em;
-    font-weight: 600;
-  }
 }
 .engrenages {
   width: 25%;
@@ -20,20 +14,26 @@
   padding: 50px;
 }
 .logo {
-  width: 50%;
+  width: 100%;
   height: auto;
   margin: auto;
 }
+.contactLink {
+  width: 25%;
+  margin-bottom: 30px;
+  font-size: 1.2em;
+  font-weight: 600;
+}
 
 @media screen and (max-width: 900px) {
-  .navbar {
-    a {
+  .contactLink {
+    
       font-size: 1em;
-    }
+    
   }
 }
 @media screen and (max-width: 600px) {
-  .navbar a {
+  .contactLink {
     font-size: 0.8em;
     margin: auto;
   }

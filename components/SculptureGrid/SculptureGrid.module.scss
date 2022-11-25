@@ -1,6 +1,6 @@
 .grid {
     max-width: 1500px;
-    margin: 50px auto;
+    margin: 50px auto 30px auto;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -9,6 +9,7 @@
         height: 400px;
         position: relative;
         margin: 10px;
+        animation: imageApparition 500ms ease-in-out backwards;
 
         img {
             width: 100%;
@@ -22,6 +23,28 @@
         }
     }
     
+}
+
+.sculpturesLink {
+    text-align: center;
+    a {
+        // border: 1px black solid;
+        // display: inline;
+        // max-width: 1000px;
+        // margin: auto;
+        padding: 10px;
+        font-size: 1.3em;
+        font-family: Arial, Helvetica, sans-serif;
+        text-transform: uppercase;
+        background: rgb(65, 65, 65);
+        color: white;
+        border-radius: 5px;
+        
+        &:hover {
+            background: rgb(235, 235, 235);
+            color: black;
+        }
+    }
 }
 
 
@@ -43,3 +66,15 @@
         opacity: 1;
     }
 }
+
+
+@keyframes imageApparition {
+    0% {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+  }

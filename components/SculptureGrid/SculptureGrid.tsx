@@ -1,31 +1,23 @@
 import React, { useEffect, useState } from "react";
+import Link from "next/link";
 import styles from "./SculptureGrid.module.scss";
-import Image, { StaticImageData } from "next/image";
 import { v4 as uuidv4 } from "uuid";
-import Peinture1 from "../../public/assets/sculpture/velo.jpg";
-import Peinture2 from "../../public/assets/sculpture/couche-de-soleil.png";
-import Peinture3 from "../../public/assets/sculpture/foret.jpg";
-import Peinture4 from "../../public/assets/sculpture/mer.jpg";
-import Peinture5 from "../../public/assets/sculpture/papillon.jpg";
-import Peinture6 from "../../public/assets/sculpture/peinture.jpg";
-import GarsLouis from "../../public/assets/sculpture/gars-louis-apercu.jpg";
-import LePatrouilleur from "../../public/assets/sculpture/le-patrouilleur-apercu.jpg";
-import RouleMaPoule from "../../public/assets/sculpture/roule-ma-poule-apercu.jpg";
+
 
 export default function SculptureGrid() {
-  const [sculptureList, setSculptureList] = useState([
-    GarsLouis,
-    LePatrouilleur,
-    RouleMaPoule,
+  const [sculptureSelected, setSculptureSelected] = useState([
+    "couche-de-soleil.png",
+    "foret.jpg",
+    "gars-louis-apercu.jpg",
+    "le-patrouilleur-apercu.jpg",
+    "mer.jpg",
+    "papillon.jpg",
   ]);
 
-  const [sculptureSelected, setSculptureSelected] = useState([
-    Peinture1,
-    Peinture2,
-    Peinture3,
-    Peinture4,
-    Peinture5,
-    Peinture6,
+  const [sculptureList, setSculptureList] = useState([   
+    "roule-ma-poule-apercu.jpg",
+    "velo.jpg",
+    "peinture.jpg",
   ]);
 
   let blocks: NodeListOf<Element>;
@@ -60,13 +52,13 @@ export default function SculptureGrid() {
   const addNewImage = (index: number) => {
     blocks[index].insertAdjacentHTML(
       "beforeend",
-      `<Image src=${sculptureList[0].src} alt="peinture 3" />`
+      `<img src="/assets/sculpture/${sculptureList[0]}" alt="Sculpture" />`
     );
   };
 
   const changeSculpture = (randomNumber: number) => {
-    let newSculptureList: StaticImageData[];
-    let newSculptureSelected: StaticImageData[];
+    let newSculptureList: string[];
+    let newSculptureSelected: string[];
     setSculptureList((sculptureList) => {
       newSculptureList = sculptureList;
       newSculptureList.push(sculptureSelected[randomNumber]);
@@ -85,12 +77,18 @@ export default function SculptureGrid() {
   };
 
   return (
-    <div className={styles.grid}>
-      {sculptureSelected.map((element) => (
-        <div key={uuidv4()} className={styles.block}>
-          <Image src={element} alt="velo" />
-        </div>
-      ))}
-    </div>
+    <>
+      <div className={styles.grid}>
+        {sculptureSelected.map((element, index) => (
+          <div key={uuidv4()} style={{animationDelay: `${index * 100}ms`}} className={styles.block}>
+            {/* <Image quality="10"  src={element} alt="velo" /> */}
+            <img src={`/assets/sculpture/${element}`} alt="Sculpture" />
+          </div>
+        ))}
+      </div>      
+      <div className={styles.sculpturesLink}>
+        <Link href="/sculptures">Voir plus de sculptures</Link>
+      </div>
+    </>
   );
 }
