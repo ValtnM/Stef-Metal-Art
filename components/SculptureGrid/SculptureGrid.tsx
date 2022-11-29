@@ -3,28 +3,26 @@ import Link from "next/link";
 import styles from "./SculptureGrid.module.scss";
 import { v4 as uuidv4 } from "uuid";
 
+type Sculpture = {
+  id: number;
+  name: string;
+  description: string;
+  thumb: string;
+  photos: string;
+};
 
-export default function SculptureGrid() {
-  const [sculptureSelected, setSculptureSelected] = useState([
-    "couche-de-soleil.png",
-    "foret.jpg",
-    "gars-louis-apercu.jpg",
-    "le-patrouilleur-apercu.jpg",
-    "mer.jpg",
-    "papillon.jpg",
-  ]);
+type SculptureGridProps = {
+  sculptures: Sculpture[];
+};
 
-  const [sculptureList, setSculptureList] = useState([   
-    "roule-ma-poule-apercu.jpg",
-    "velo.jpg",
-    "peinture.jpg",
-  ]);
+export default function SculptureGrid(props: SculptureGridProps) {
+  const [sculpturesArray, setSculpturesArray] = useState(props.sculptures);
 
   let blocks: NodeListOf<Element>;
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      let randomNumber = Math.floor(Math.random() * sculptureSelected.length);
+      let randomNumber = Math.floor(Math.random() * 6);
 
       if (process.browser) {
         blocks = document.querySelectorAll(
@@ -32,8 +30,11 @@ export default function SculptureGrid() {
         ) as NodeListOf<Element>;
       }
 
-      addNewImage(randomNumber);
-      changeSculpture(randomNumber);
+      setSculpturesArray((sculpturesArray) => {
+        let newArray = sculpturesArray;
+        addNewImage(randomNumber, newArray);
+        return changeSculpture(randomNumber, newArray);
+      });
 
       setTimeout(() => {
         deleteOldImage(blocks[randomNumber].children[0] as HTMLImageElement);
@@ -49,43 +50,35 @@ export default function SculptureGrid() {
     image.remove();
   };
 
-  const addNewImage = (index: number) => {
+  const addNewImage = (index: number, array: Sculpture[]) => {
     blocks[index].insertAdjacentHTML(
       "beforeend",
-      `<img src="/assets/sculpture/${sculptureList[0]}" alt="Sculpture" />`
+      `<img src="/assets/sculpture/${array[6].thumb}" alt="Sculpture" />`
     );
   };
 
-  const changeSculpture = (randomNumber: number) => {
-    let newSculptureList: string[];
-    let newSculptureSelected: string[];
-    setSculptureList((sculptureList) => {
-      newSculptureList = sculptureList;
-      newSculptureList.push(sculptureSelected[randomNumber]);
-      return newSculptureList;
-    });
-    setSculptureSelected((sculptureSelected) => {
-      newSculptureSelected = sculptureSelected;
-      newSculptureSelected.splice(randomNumber, 1, sculptureList[0]);
-      return newSculptureSelected;
-    });
-    setSculptureList((sculptureList) => {
-      newSculptureList = sculptureList;
-      newSculptureList.splice(0, 1);
-      return newSculptureList;
-    });
+  const changeSculpture = (randomNumber: number, array: Sculpture[]) => {
+    const oldItem = array[randomNumber];
+    const newItem = array[6];
+    array.splice(randomNumber, 1, newItem);
+    array.splice(6, 1);
+    array.push(oldItem);
+    return array;
   };
 
   return (
     <>
       <div className={styles.grid}>
-        {sculptureSelected.map((element, index) => (
-          <div key={uuidv4()} style={{animationDelay: `${index * 100}ms`}} className={styles.block}>
-            {/* <Image quality="10"  src={element} alt="velo" /> */}
-            <img src={`/assets/sculpture/${element}`} alt="Sculpture" />
+        {sculpturesArray.slice(0, 6).map((element, index) => (
+          <div
+            key={uuidv4()}
+            style={{ animationDelay: `${index * 100}ms` }}
+            className={styles.block}
+          >
+            <img src={`/assets/sculpture/${element.thumb}`} alt="Sculpture" />
           </div>
         ))}
-      </div>      
+      </div>
       <div className={styles.sculpturesLink}>
         <Link href="/sculptures">Voir plus de sculptures</Link>
       </div>
