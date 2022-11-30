@@ -1,20 +1,21 @@
-import { useState } from "react";
 import Head from "next/head";
 import { v4 as uuidv4 } from "uuid";
 import styles from "../../styles/Sculptures.module.scss";
+import { GetStaticProps } from "next";
 
-export default function Sculptures() {
-  const [sculptureList, setSculptureList] = useState([
-    "couche-de-soleil.png",
-    "foret.jpg",
-    "gars-louis-apercu.jpg",
-    "le-patrouilleur-apercu.jpg",
-    "mer.jpg",
-    "papillon.jpg",
-    "peinture.jpg",
-    "roule-ma-poule-apercu.jpg",
-    "velo.jpg",
-  ]);
+type Sculpture = {
+  id: number;
+  name: string;
+  description: string;
+  thumb: string;
+  photos: string;
+};
+
+type SculpturesProps = {
+  sculpturesArray: Sculpture[];
+}
+
+export default function Sculptures(props: SculpturesProps) {  
 
   return (
     <>
@@ -29,13 +30,13 @@ export default function Sculptures() {
       <div className={styles.sculptures}>
         <h1>Sculptures</h1>
         <div className={styles.grid}>
-          {sculptureList.map((element, index) => (
+          {props.sculpturesArray.map((element, index) => (
             <div
               key={uuidv4()}
               style={{ animationDelay: `${index * 100}ms` }}
               className={styles.block}
             >
-              <img src={`/assets/sculpture/${element}`} alt="" />
+              <img src={`/assets/sculpture/${element.thumb}`} alt="" />
             </div>
           ))}
         </div>
@@ -43,3 +44,15 @@ export default function Sculptures() {
     </>
   );
 }
+
+export const getStaticProps: GetStaticProps = async () => {
+  const data = await fetch("http://localhost:3000/api/sculpturesapi");
+  const sculpturesObject = await data.json();
+  const sculpturesArray = await sculpturesObject.sculptures;
+
+  return {
+    props: {
+      sculpturesArray,
+    },
+  };
+};

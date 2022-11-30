@@ -1,8 +1,7 @@
 import React from "react";
 import Head from "next/head";
+import Link from "next/link";
 import styles from "./Foot.module.scss";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faCopyright } from "@fortawesome/free-regular-svg-icons";
 import { FaRegCopyright } from "react-icons/fa";
 
 export default function Foot() {
@@ -21,9 +20,9 @@ export default function Foot() {
           <img src="/assets/engrenages-small.png" alt="Engrenages" />
         </a>
         <ul className={styles.footerNav}>
-          <a href="#">
+          <Link href="/peintures">
             <li>Peintures</li>
-          </a>
+          </Link>
           <a href="#">
             <li>Liens</li>
           </a>
@@ -32,10 +31,6 @@ export default function Foot() {
           </a>
         </ul>
         <div className={styles.copyright}>
-          {/* <FontAwesomeIcon
-          className="copyright-icon"
-          icon={faCopyright}
-        ></FontAwesomeIcon> */}
           <FaRegCopyright className="copyright-icon" />
           <p>2022 Stef Metal Art, Tous droits réservés.</p>
         </div>

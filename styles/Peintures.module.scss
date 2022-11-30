@@ -1,0 +1,50 @@
+.peintures {
+    margin-top: 100px;
+    h1 {
+        font-family: "Indie Flower", Arial, Helvetica, sans-serif;
+        font-size: 4em;
+        text-align: center;
+        text-transform: uppercase;
+    }
+}
+
+.grid {
+    max-width: 1500px;
+    margin: 50px auto 30px auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    .block {
+        width: 400px;
+        height: 400px;
+        position: relative;
+        margin: 10px;
+        animation: imageApparition 500ms ease-in-out backwards;
+
+        img {
+            width: 100%;
+            height: auto;
+        }       
+        
+    }
+    
+}
+@media screen and (max-width: 500px) {
+    .grid {
+        .block {
+            width: 300px;
+            height: 300px;
+        }
+    }
+}
+
+@keyframes imageApparition {
+    0% {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
