@@ -12,9 +12,11 @@
     display: flex;
     justify-content: center;
     padding-inline-start: 0;
+    font-family: "Indie Flower", Arial, Helvetica, sans-serif;
     li {
         color: black;
-        font-weight: 500;
+        font-weight: 600;
+        font-size: 1.2em;
         &:hover {
             color: rgb(97, 97, 97);
         }
@@ -44,6 +46,6 @@
     }
 }
 .copyright-icon {
-    font-size: 1em;
+    font-size: 0.9em;
     color: black;
 }

@@ -9,3 +9,11 @@ export default function App({ Component, pageProps }: AppProps) {
     </Container>
   );
 }
+
+
+
+// Syne Mono
+// indie flower
+// Permanent marker
+// covered by your grace
+// zen dots
