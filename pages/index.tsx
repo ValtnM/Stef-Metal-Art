@@ -7,7 +7,7 @@ type Sculpture = {
   name: string;
   description: string;
   thumb: string;
-  photos: string;
+  photos: string[];
 };
 
 type IndexProps = {
@@ -25,8 +25,8 @@ export default function Home(props: IndexProps) {
 
 export const getStaticProps: GetStaticProps = async () => {
   const data = await fetch("http://localhost:3000/api/sculpturesapi");
-  const sculpturesObject = await data.json();
-  const sculpturesArray = await sculpturesObject.sculptures;
+  const sculpturesArray = await data.json();
+  // const sculpturesArray = await sculpturesObject.sculptures;
 
   return {
     props: {

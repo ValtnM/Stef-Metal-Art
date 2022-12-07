@@ -8,7 +8,7 @@ type Sculpture = {
   name: string;
   description: string;
   thumb: string;
-  photos: string;
+  photos: string[];
 };
 
 type SculptureGridProps = {
@@ -53,7 +53,7 @@ export default function SculptureGrid(props: SculptureGridProps) {
   const addNewImage = (index: number, array: Sculpture[]) => {
     blocks[index].insertAdjacentHTML(
       "beforeend",
-      `<img src="/assets/sculpture/${array[6].thumb}" alt="Sculpture" />`
+      `<img src="/assets/sculptures/${array[6].thumb}" alt="Sculpture" />`
     );
   };
 
@@ -75,7 +75,7 @@ export default function SculptureGrid(props: SculptureGridProps) {
             style={{ animationDelay: `${index * 100}ms` }}
             className={styles.block}
           >
-            <img src={`/assets/sculpture/${element.thumb}`} alt="Sculpture" />
+            <img src={`/assets/sculptures/${element.thumb}`} alt="Sculpture" />
           </div>
         ))}
       </div>

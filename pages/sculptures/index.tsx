@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from "next/link";
 import { v4 as uuidv4 } from "uuid";
 import styles from "../../styles/Sculptures.module.scss";
 import { GetStaticProps } from "next";
@@ -8,7 +9,7 @@ type Sculpture = {
   name: string;
   description: string;
   thumb: string;
-  photos: string;
+  photos: string[];
 };
 
 type SculpturesProps = {
@@ -31,13 +32,14 @@ export default function Sculptures(props: SculpturesProps) {
         <h1>Sculptures</h1>
         <div className={styles.grid}>
           {props.sculpturesArray.map((element, index) => (
-            <div
+            <Link
+              href={`/sculptures/${element.id}`}
               key={uuidv4()}
               style={{ animationDelay: `${index * 100}ms` }}
               className={styles.block}
             >
-              <img src={`/assets/sculpture/${element.thumb}`} alt="" />
-            </div>
+              <img src={`/assets/sculptures/${element.thumb}`} alt="" />
+            </Link>
           ))}
         </div>
       </div>
@@ -47,8 +49,8 @@ export default function Sculptures(props: SculpturesProps) {
 
 export const getStaticProps: GetStaticProps = async () => {
   const data = await fetch("http://localhost:3000/api/sculpturesapi");
-  const sculpturesObject = await data.json();
-  const sculpturesArray = await sculpturesObject.sculptures;
+  const sculpturesArray = await data.json();
+  // const sculpturesArray = await sculpturesObject.sculptures;
 
   return {
     props: {

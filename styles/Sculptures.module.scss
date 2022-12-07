@@ -29,6 +29,33 @@
     }
     
 }
+
+.sculpture {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 30px;
+    background: rgb(237, 237, 237);
+    h1 {
+        font-family: "Indie Flower", Arial, Helvetica, sans-serif;
+        font-size: 4em;
+        text-align: center;
+        margin: 10px 0 20px 0;
+    }
+}
+
+.sculptureDetails {
+    display: flex;
+
+    img {
+        margin-right: 20px;
+    }
+    p {
+        font-size: 1.2em;
+        text-align: justify;
+    }
+}
+
+
 @media screen and (max-width: 500px) {
     .grid {
         .block {

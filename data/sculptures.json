@@ -1,75 +1,78 @@
-{
-    "sculptures": [
-        {
-            "id": 1,
-            "name": "Le patrouilleur",
-            "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio numquam perspiciatis amet repellendus, earum necessitatibus sit omnis fugiat nobis doloribus voluptatibus. Facere, repudiandae ipsam. Aliquam quia reiciendis, labore iste consequuntur nemo cupiditate beatae quae delectus eum, at placeat laboriosam repellat eius? Assumenda corrupti sit optio a exercitationem tempore voluptatibus blanditiis id inventore impedit ipsum aut magni non odio ab nam asperiores, ducimus odit qui rerum tenetur, porro neque cupiditate minima? Possimus nulla aut laudantium deleniti sunt magnam laborum? Molestiae provident iste labore in laudantium, corporis eius neque debitis, amet ea id assumenda. Commodi iusto perferendis quos odit nobis dolorum, molestiae delectus numquam blanditiis, inventore officiis, dolores consequuntur aliquid earum ducimus reprehenderit assumenda ad! Dolores delectus voluptas sequi debitis, mollitia reprehenderit nesciunt amet ipsam repellendus aut. Nulla fuga iusto voluptatum magnam hic numquam officiis dolorem temporibus consequatur, illo a deleniti voluptates harum eligendi nesciunt est ipsam soluta esse cum natus repellat.",
-            "thumb": "le-patrouilleur-vignette.jpg",
-            "photos": ["le-patrouilleur1.jpg", "le-patrouilleur2.jpg", "le-patrouilleur3.jpg"]
-        },
-        {
-            "id": 2,
-            "name": "Gars Louis",
-            "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio numquam perspiciatis amet repellendus, earum necessitatibus sit omnis fugiat nobis doloribus voluptatibus. Facere, repudiandae ipsam. Aliquam quia reiciendis, labore iste consequuntur nemo cupiditate beatae quae delectus eum, at placeat laboriosam repellat eius? Assumenda corrupti sit optio a exercitationem tempore voluptatibus blanditiis id inventore impedit ipsum aut magni non odio ab nam asperiores, ducimus odit qui rerum tenetur, porro neque cupiditate minima? Possimus nulla aut laudantium deleniti sunt magnam laborum? Molestiae provident iste labore in laudantium, corporis eius neque debitis, amet ea id assumenda. Commodi iusto perferendis quos odit nobis dolorum, molestiae delectus numquam blanditiis, inventore officiis, dolores consequuntur aliquid earum ducimus reprehenderit assumenda ad! Dolores delectus voluptas sequi debitis, mollitia reprehenderit nesciunt amet ipsam repellendus aut. Nulla fuga iusto voluptatum magnam hic numquam officiis dolorem temporibus consequatur, illo a deleniti voluptates harum eligendi nesciunt est ipsam soluta esse cum natus repellat.",
-            "thumb": "gars-louis-vignette.jpg",
-            "photos": ["gars-louis1.jpg", "gars-louis2.jpg", "gars-louis3.jpg"]
-        },
-        {
-            "id": 3,
-            "name": "Roule ma poule",
-            "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio numquam perspiciatis amet repellendus, earum necessitatibus sit omnis fugiat nobis doloribus voluptatibus. Facere, repudiandae ipsam. Aliquam quia reiciendis, labore iste consequuntur nemo cupiditate beatae quae delectus eum, at placeat laboriosam repellat eius? Assumenda corrupti sit optio a exercitationem tempore voluptatibus blanditiis id inventore impedit ipsum aut magni non odio ab nam asperiores, ducimus odit qui rerum tenetur, porro neque cupiditate minima? Possimus nulla aut laudantium deleniti sunt magnam laborum? Molestiae provident iste labore in laudantium, corporis eius neque debitis, amet ea id assumenda. Commodi iusto perferendis quos odit nobis dolorum, molestiae delectus numquam blanditiis, inventore officiis, dolores consequuntur aliquid earum ducimus reprehenderit assumenda ad! Dolores delectus voluptas sequi debitis, mollitia reprehenderit nesciunt amet ipsam repellendus aut. Nulla fuga iusto voluptatum magnam hic numquam officiis dolorem temporibus consequatur, illo a deleniti voluptates harum eligendi nesciunt est ipsam soluta esse cum natus repellat.",
-            "thumb": "roule-ma-poule-vignette.jpg",
-            "photos": ["roule-ma-poule1.jpg", "roule-ma-poule2.jpg", "roule-ma-poule3.jpg"]
-        },
-        {
-            "id": 4,
-            "name": "sculpture 1",
-            "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio numquam perspiciatis amet repellendus, earum necessitatibus sit omnis fugiat nobis doloribus voluptatibus. Facere, repudiandae ipsam. Aliquam quia reiciendis, labore iste consequuntur nemo cupiditate beatae quae delectus eum, at placeat laboriosam repellat eius? Assumenda corrupti sit optio a exercitationem tempore voluptatibus blanditiis id inventore impedit ipsum aut magni non odio ab nam asperiores, ducimus odit qui rerum tenetur, porro neque cupiditate minima? Possimus nulla aut laudantium deleniti sunt magnam laborum? Molestiae provident iste labore in laudantium, corporis eius neque debitis, amet ea id assumenda. Commodi iusto perferendis quos odit nobis dolorum, molestiae delectus numquam blanditiis, inventore officiis, dolores consequuntur aliquid earum ducimus reprehenderit assumenda ad! Dolores delectus voluptas sequi debitis, mollitia reprehenderit nesciunt amet ipsam repellendus aut. Nulla fuga iusto voluptatum magnam hic numquam officiis dolorem temporibus consequatur, illo a deleniti voluptates harum eligendi nesciunt est ipsam soluta esse cum natus repellat.",
-            "thumb": "sculpture1-vignette.jpg",
-            "photos": ["sculpture1.jpg", "le-patrouilleur2.jpg", "le-patrouilleur3.jpg"]
-        },
-        {
-            "id": 5,
-            "name": "sculpture 2",
-            "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio numquam perspiciatis amet repellendus, earum necessitatibus sit omnis fugiat nobis doloribus voluptatibus. Facere, repudiandae ipsam. Aliquam quia reiciendis, labore iste consequuntur nemo cupiditate beatae quae delectus eum, at placeat laboriosam repellat eius? Assumenda corrupti sit optio a exercitationem tempore voluptatibus blanditiis id inventore impedit ipsum aut magni non odio ab nam asperiores, ducimus odit qui rerum tenetur, porro neque cupiditate minima? Possimus nulla aut laudantium deleniti sunt magnam laborum? Molestiae provident iste labore in laudantium, corporis eius neque debitis, amet ea id assumenda. Commodi iusto perferendis quos odit nobis dolorum, molestiae delectus numquam blanditiis, inventore officiis, dolores consequuntur aliquid earum ducimus reprehenderit assumenda ad! Dolores delectus voluptas sequi debitis, mollitia reprehenderit nesciunt amet ipsam repellendus aut. Nulla fuga iusto voluptatum magnam hic numquam officiis dolorem temporibus consequatur, illo a deleniti voluptates harum eligendi nesciunt est ipsam soluta esse cum natus repellat.",
-            "thumb": "sculpture2-vignette.jpg",
-            "photos": ["sculpture2.jpg", "le-patrouilleur2.jpg", "le-patrouilleur3.jpg"]
-        },
-        {
-            "id": 6,
-            "name": "sculpture 3",
-            "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio numquam perspiciatis amet repellendus, earum necessitatibus sit omnis fugiat nobis doloribus voluptatibus. Facere, repudiandae ipsam. Aliquam quia reiciendis, labore iste consequuntur nemo cupiditate beatae quae delectus eum, at placeat laboriosam repellat eius? Assumenda corrupti sit optio a exercitationem tempore voluptatibus blanditiis id inventore impedit ipsum aut magni non odio ab nam asperiores, ducimus odit qui rerum tenetur, porro neque cupiditate minima? Possimus nulla aut laudantium deleniti sunt magnam laborum? Molestiae provident iste labore in laudantium, corporis eius neque debitis, amet ea id assumenda. Commodi iusto perferendis quos odit nobis dolorum, molestiae delectus numquam blanditiis, inventore officiis, dolores consequuntur aliquid earum ducimus reprehenderit assumenda ad! Dolores delectus voluptas sequi debitis, mollitia reprehenderit nesciunt amet ipsam repellendus aut. Nulla fuga iusto voluptatum magnam hic numquam officiis dolorem temporibus consequatur, illo a deleniti voluptates harum eligendi nesciunt est ipsam soluta esse cum natus repellat.",
-            "thumb": "sculpture3-vignette.jpg",
-            "photos": ["sculpture3.jpg", "le-patrouilleur2.jpg", "le-patrouilleur3.jpg"]
-        },
-        {
-            "id": 7,
-            "name": "sculpture 4",
-            "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio numquam perspiciatis amet repellendus, earum necessitatibus sit omnis fugiat nobis doloribus voluptatibus. Facere, repudiandae ipsam. Aliquam quia reiciendis, labore iste consequuntur nemo cupiditate beatae quae delectus eum, at placeat laboriosam repellat eius? Assumenda corrupti sit optio a exercitationem tempore voluptatibus blanditiis id inventore impedit ipsum aut magni non odio ab nam asperiores, ducimus odit qui rerum tenetur, porro neque cupiditate minima? Possimus nulla aut laudantium deleniti sunt magnam laborum? Molestiae provident iste labore in laudantium, corporis eius neque debitis, amet ea id assumenda. Commodi iusto perferendis quos odit nobis dolorum, molestiae delectus numquam blanditiis, inventore officiis, dolores consequuntur aliquid earum ducimus reprehenderit assumenda ad! Dolores delectus voluptas sequi debitis, mollitia reprehenderit nesciunt amet ipsam repellendus aut. Nulla fuga iusto voluptatum magnam hic numquam officiis dolorem temporibus consequatur, illo a deleniti voluptates harum eligendi nesciunt est ipsam soluta esse cum natus repellat.",
-            "thumb": "sculpture4-vignette.jpg",
-            "photos": ["sculpture4.jpg", "le-patrouilleur2.jpg", "le-patrouilleur3.jpg"]
-        },
-        {
-            "id": 8,
-            "name": "sculpture 5",
-            "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio numquam perspiciatis amet repellendus, earum necessitatibus sit omnis fugiat nobis doloribus voluptatibus. Facere, repudiandae ipsam. Aliquam quia reiciendis, labore iste consequuntur nemo cupiditate beatae quae delectus eum, at placeat laboriosam repellat eius? Assumenda corrupti sit optio a exercitationem tempore voluptatibus blanditiis id inventore impedit ipsum aut magni non odio ab nam asperiores, ducimus odit qui rerum tenetur, porro neque cupiditate minima? Possimus nulla aut laudantium deleniti sunt magnam laborum? Molestiae provident iste labore in laudantium, corporis eius neque debitis, amet ea id assumenda. Commodi iusto perferendis quos odit nobis dolorum, molestiae delectus numquam blanditiis, inventore officiis, dolores consequuntur aliquid earum ducimus reprehenderit assumenda ad! Dolores delectus voluptas sequi debitis, mollitia reprehenderit nesciunt amet ipsam repellendus aut. Nulla fuga iusto voluptatum magnam hic numquam officiis dolorem temporibus consequatur, illo a deleniti voluptates harum eligendi nesciunt est ipsam soluta esse cum natus repellat.",
-            "thumb": "sculpture5-vignette.jpg",
-            "photos": ["sculpture5.jpg", "le-patrouilleur2.jpg", "le-patrouilleur3.jpg"]
-        },
-        {
-            "id": 9,
-            "name": "sculpture 6",
-            "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio numquam perspiciatis amet repellendus, earum necessitatibus sit omnis fugiat nobis doloribus voluptatibus. Facere, repudiandae ipsam. Aliquam quia reiciendis, labore iste consequuntur nemo cupiditate beatae quae delectus eum, at placeat laboriosam repellat eius? Assumenda corrupti sit optio a exercitationem tempore voluptatibus blanditiis id inventore impedit ipsum aut magni non odio ab nam asperiores, ducimus odit qui rerum tenetur, porro neque cupiditate minima? Possimus nulla aut laudantium deleniti sunt magnam laborum? Molestiae provident iste labore in laudantium, corporis eius neque debitis, amet ea id assumenda. Commodi iusto perferendis quos odit nobis dolorum, molestiae delectus numquam blanditiis, inventore officiis, dolores consequuntur aliquid earum ducimus reprehenderit assumenda ad! Dolores delectus voluptas sequi debitis, mollitia reprehenderit nesciunt amet ipsam repellendus aut. Nulla fuga iusto voluptatum magnam hic numquam officiis dolorem temporibus consequatur, illo a deleniti voluptates harum eligendi nesciunt est ipsam soluta esse cum natus repellat.",
-            "thumb": "sculpture6-vignette.jpg",
-            "photos": ["le-patrouilleur1.jpg", "le-patrouilleur2.jpg", "le-patrouilleur3.jpg"]
-        },
-        {
-            "id": 10,
-            "name": "sculpture 7",
-            "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio numquam perspiciatis amet repellendus, earum necessitatibus sit omnis fugiat nobis doloribus voluptatibus. Facere, repudiandae ipsam. Aliquam quia reiciendis, labore iste consequuntur nemo cupiditate beatae quae delectus eum, at placeat laboriosam repellat eius? Assumenda corrupti sit optio a exercitationem tempore voluptatibus blanditiis id inventore impedit ipsum aut magni non odio ab nam asperiores, ducimus odit qui rerum tenetur, porro neque cupiditate minima? Possimus nulla aut laudantium deleniti sunt magnam laborum? Molestiae provident iste labore in laudantium, corporis eius neque debitis, amet ea id assumenda. Commodi iusto perferendis quos odit nobis dolorum, molestiae delectus numquam blanditiis, inventore officiis, dolores consequuntur aliquid earum ducimus reprehenderit assumenda ad! Dolores delectus voluptas sequi debitis, mollitia reprehenderit nesciunt amet ipsam repellendus aut. Nulla fuga iusto voluptatum magnam hic numquam officiis dolorem temporibus consequatur, illo a deleniti voluptates harum eligendi nesciunt est ipsam soluta esse cum natus repellat.",
-            "thumb": "sculpture7-vignette.jpg",
-            "photos": ["sculpture7.jpg", "le-patrouilleur2.jpg", "le-patrouilleur3.jpg"]
-        }
+[
+  {
+    "id": 1,
+    "name": "Le patrouilleur",
+    "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio numquam perspiciatis amet repellendus, earum necessitatibus sit omnis fugiat nobis doloribus voluptatibus. Facere, repudiandae ipsam. Aliquam quia reiciendis, labore iste consequuntur nemo cupiditate beatae quae delectus eum, at placeat laboriosam repellat eius? Assumenda corrupti sit optio a exercitationem tempore voluptatibus blanditiis id inventore impedit ipsum aut magni non odio ab nam asperiores, ducimus odit qui rerum tenetur, porro neque cupiditate minima? Possimus nulla aut laudantium deleniti sunt magnam laborum? Molestiae provident iste labore in laudantium, corporis eius neque debitis, amet ea id assumenda. Commodi iusto perferendis quos odit nobis dolorum, molestiae delectus numquam blanditiis, inventore officiis, dolores consequuntur aliquid earum ducimus reprehenderit assumenda ad! Dolores delectus voluptas sequi debitis, mollitia reprehenderit nesciunt amet ipsam repellendus aut. Nulla fuga iusto voluptatum magnam hic numquam officiis dolorem temporibus consequatur, illo a deleniti voluptates harum eligendi nesciunt est ipsam soluta esse cum natus repellat.",
+    "thumb": "le-patrouilleur-vignette.jpg",
+    "photos": [
+      "le-patrouilleur1.jpg"      
     ]
-}
-
+  },
+  {
+    "id": 2,
+    "name": "Gars Louis",
+    "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio numquam perspiciatis amet repellendus, earum necessitatibus sit omnis fugiat nobis doloribus voluptatibus. Facere, repudiandae ipsam. Aliquam quia reiciendis, labore iste consequuntur nemo cupiditate beatae quae delectus eum, at placeat laboriosam repellat eius? Assumenda corrupti sit optio a exercitationem tempore voluptatibus blanditiis id inventore impedit ipsum aut magni non odio ab nam asperiores, ducimus odit qui rerum tenetur, porro neque cupiditate minima? Possimus nulla aut laudantium deleniti sunt magnam laborum? Molestiae provident iste labore in laudantium, corporis eius neque debitis, amet ea id assumenda. Commodi iusto perferendis quos odit nobis dolorum, molestiae delectus numquam blanditiis, inventore officiis, dolores consequuntur aliquid earum ducimus reprehenderit assumenda ad! Dolores delectus voluptas sequi debitis, mollitia reprehenderit nesciunt amet ipsam repellendus aut. Nulla fuga iusto voluptatum magnam hic numquam officiis dolorem temporibus consequatur, illo a deleniti voluptates harum eligendi nesciunt est ipsam soluta esse cum natus repellat.",
+    "thumb": "gars-louis-vignette.jpg",
+    "photos": ["gars-louis1.jpg", "gars-louis2.jpg"]
+  },
+  {
+    "id": 3,
+    "name": "Roule ma poule",
+    "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio numquam perspiciatis amet repellendus, earum necessitatibus sit omnis fugiat nobis doloribus voluptatibus. Facere, repudiandae ipsam. Aliquam quia reiciendis, labore iste consequuntur nemo cupiditate beatae quae delectus eum, at placeat laboriosam repellat eius? Assumenda corrupti sit optio a exercitationem tempore voluptatibus blanditiis id inventore impedit ipsum aut magni non odio ab nam asperiores, ducimus odit qui rerum tenetur, porro neque cupiditate minima? Possimus nulla aut laudantium deleniti sunt magnam laborum? Molestiae provident iste labore in laudantium, corporis eius neque debitis, amet ea id assumenda. Commodi iusto perferendis quos odit nobis dolorum, molestiae delectus numquam blanditiis, inventore officiis, dolores consequuntur aliquid earum ducimus reprehenderit assumenda ad! Dolores delectus voluptas sequi debitis, mollitia reprehenderit nesciunt amet ipsam repellendus aut. Nulla fuga iusto voluptatum magnam hic numquam officiis dolorem temporibus consequatur, illo a deleniti voluptates harum eligendi nesciunt est ipsam soluta esse cum natus repellat.",
+    "thumb": "roule-ma-poule-vignette.jpg",
+    "photos": [
+      "roule-ma-poule1.jpg"
+    ]
+  },
+  {
+    "id": 4,
+    "name": "sculpture 1",
+    "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio numquam perspiciatis amet repellendus, earum necessitatibus sit omnis fugiat nobis doloribus voluptatibus. Facere, repudiandae ipsam. Aliquam quia reiciendis, labore iste consequuntur nemo cupiditate beatae quae delectus eum, at placeat laboriosam repellat eius? Assumenda corrupti sit optio a exercitationem tempore voluptatibus blanditiis id inventore impedit ipsum aut magni non odio ab nam asperiores, ducimus odit qui rerum tenetur, porro neque cupiditate minima? Possimus nulla aut laudantium deleniti sunt magnam laborum? Molestiae provident iste labore in laudantium, corporis eius neque debitis, amet ea id assumenda. Commodi iusto perferendis quos odit nobis dolorum, molestiae delectus numquam blanditiis, inventore officiis, dolores consequuntur aliquid earum ducimus reprehenderit assumenda ad! Dolores delectus voluptas sequi debitis, mollitia reprehenderit nesciunt amet ipsam repellendus aut. Nulla fuga iusto voluptatum magnam hic numquam officiis dolorem temporibus consequatur, illo a deleniti voluptates harum eligendi nesciunt est ipsam soluta esse cum natus repellat.",
+    "thumb": "sculpture1-vignette.jpg",
+    "photos": ["sculpture1.jpg"]
+  },
+  {
+    "id": 5,
+    "name": "sculpture 2",
+    "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio numquam perspiciatis amet repellendus, earum necessitatibus sit omnis fugiat nobis doloribus voluptatibus. Facere, repudiandae ipsam. Aliquam quia reiciendis, labore iste consequuntur nemo cupiditate beatae quae delectus eum, at placeat laboriosam repellat eius? Assumenda corrupti sit optio a exercitationem tempore voluptatibus blanditiis id inventore impedit ipsum aut magni non odio ab nam asperiores, ducimus odit qui rerum tenetur, porro neque cupiditate minima? Possimus nulla aut laudantium deleniti sunt magnam laborum? Molestiae provident iste labore in laudantium, corporis eius neque debitis, amet ea id assumenda. Commodi iusto perferendis quos odit nobis dolorum, molestiae delectus numquam blanditiis, inventore officiis, dolores consequuntur aliquid earum ducimus reprehenderit assumenda ad! Dolores delectus voluptas sequi debitis, mollitia reprehenderit nesciunt amet ipsam repellendus aut. Nulla fuga iusto voluptatum magnam hic numquam officiis dolorem temporibus consequatur, illo a deleniti voluptates harum eligendi nesciunt est ipsam soluta esse cum natus repellat.",
+    "thumb": "sculpture2-vignette.jpg",
+    "photos": ["sculpture2.jpg"]
+  },
+  {
+    "id": 6,
+    "name": "sculpture 3",
+    "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio numquam perspiciatis amet repellendus, earum necessitatibus sit omnis fugiat nobis doloribus voluptatibus. Facere, repudiandae ipsam. Aliquam quia reiciendis, labore iste consequuntur nemo cupiditate beatae quae delectus eum, at placeat laboriosam repellat eius? Assumenda corrupti sit optio a exercitationem tempore voluptatibus blanditiis id inventore impedit ipsum aut magni non odio ab nam asperiores, ducimus odit qui rerum tenetur, porro neque cupiditate minima? Possimus nulla aut laudantium deleniti sunt magnam laborum? Molestiae provident iste labore in laudantium, corporis eius neque debitis, amet ea id assumenda. Commodi iusto perferendis quos odit nobis dolorum, molestiae delectus numquam blanditiis, inventore officiis, dolores consequuntur aliquid earum ducimus reprehenderit assumenda ad! Dolores delectus voluptas sequi debitis, mollitia reprehenderit nesciunt amet ipsam repellendus aut. Nulla fuga iusto voluptatum magnam hic numquam officiis dolorem temporibus consequatur, illo a deleniti voluptates harum eligendi nesciunt est ipsam soluta esse cum natus repellat.",
+    "thumb": "sculpture3-vignette.jpg",
+    "photos": ["sculpture3.jpg"]
+  },
+  {
+    "id": 7,
+    "name": "sculpture 4",
+    "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio numquam perspiciatis amet repellendus, earum necessitatibus sit omnis fugiat nobis doloribus voluptatibus. Facere, repudiandae ipsam. Aliquam quia reiciendis, labore iste consequuntur nemo cupiditate beatae quae delectus eum, at placeat laboriosam repellat eius? Assumenda corrupti sit optio a exercitationem tempore voluptatibus blanditiis id inventore impedit ipsum aut magni non odio ab nam asperiores, ducimus odit qui rerum tenetur, porro neque cupiditate minima? Possimus nulla aut laudantium deleniti sunt magnam laborum? Molestiae provident iste labore in laudantium, corporis eius neque debitis, amet ea id assumenda. Commodi iusto perferendis quos odit nobis dolorum, molestiae delectus numquam blanditiis, inventore officiis, dolores consequuntur aliquid earum ducimus reprehenderit assumenda ad! Dolores delectus voluptas sequi debitis, mollitia reprehenderit nesciunt amet ipsam repellendus aut. Nulla fuga iusto voluptatum magnam hic numquam officiis dolorem temporibus consequatur, illo a deleniti voluptates harum eligendi nesciunt est ipsam soluta esse cum natus repellat.",
+    "thumb": "sculpture4-vignette.jpg",
+    "photos": ["sculpture4.jpg"]
+  },
+  {
+    "id": 8,
+    "name": "sculpture 5",
+    "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio numquam perspiciatis amet repellendus, earum necessitatibus sit omnis fugiat nobis doloribus voluptatibus. Facere, repudiandae ipsam. Aliquam quia reiciendis, labore iste consequuntur nemo cupiditate beatae quae delectus eum, at placeat laboriosam repellat eius? Assumenda corrupti sit optio a exercitationem tempore voluptatibus blanditiis id inventore impedit ipsum aut magni non odio ab nam asperiores, ducimus odit qui rerum tenetur, porro neque cupiditate minima? Possimus nulla aut laudantium deleniti sunt magnam laborum? Molestiae provident iste labore in laudantium, corporis eius neque debitis, amet ea id assumenda. Commodi iusto perferendis quos odit nobis dolorum, molestiae delectus numquam blanditiis, inventore officiis, dolores consequuntur aliquid earum ducimus reprehenderit assumenda ad! Dolores delectus voluptas sequi debitis, mollitia reprehenderit nesciunt amet ipsam repellendus aut. Nulla fuga iusto voluptatum magnam hic numquam officiis dolorem temporibus consequatur, illo a deleniti voluptates harum eligendi nesciunt est ipsam soluta esse cum natus repellat.",
+    "thumb": "sculpture5-vignette.jpg",
+    "photos": ["sculpture5.jpg"]
+  },
+  {
+    "id": 9,
+    "name": "sculpture 6",
+    "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio numquam perspiciatis amet repellendus, earum necessitatibus sit omnis fugiat nobis doloribus voluptatibus. Facere, repudiandae ipsam. Aliquam quia reiciendis, labore iste consequuntur nemo cupiditate beatae quae delectus eum, at placeat laboriosam repellat eius? Assumenda corrupti sit optio a exercitationem tempore voluptatibus blanditiis id inventore impedit ipsum aut magni non odio ab nam asperiores, ducimus odit qui rerum tenetur, porro neque cupiditate minima? Possimus nulla aut laudantium deleniti sunt magnam laborum? Molestiae provident iste labore in laudantium, corporis eius neque debitis, amet ea id assumenda. Commodi iusto perferendis quos odit nobis dolorum, molestiae delectus numquam blanditiis, inventore officiis, dolores consequuntur aliquid earum ducimus reprehenderit assumenda ad! Dolores delectus voluptas sequi debitis, mollitia reprehenderit nesciunt amet ipsam repellendus aut. Nulla fuga iusto voluptatum magnam hic numquam officiis dolorem temporibus consequatur, illo a deleniti voluptates harum eligendi nesciunt est ipsam soluta esse cum natus repellat.",
+    "thumb": "sculpture6-vignette.jpg",
+    "photos": [
+      "sculpture6.jpg"
+    ]
+  },
+  {
+    "id": 10,
+    "name": "sculpture 7",
+    "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio numquam perspiciatis amet repellendus, earum necessitatibus sit omnis fugiat nobis doloribus voluptatibus. Facere, repudiandae ipsam. Aliquam quia reiciendis, labore iste consequuntur nemo cupiditate beatae quae delectus eum, at placeat laboriosam repellat eius? Assumenda corrupti sit optio a exercitationem tempore voluptatibus blanditiis id inventore impedit ipsum aut magni non odio ab nam asperiores, ducimus odit qui rerum tenetur, porro neque cupiditate minima? Possimus nulla aut laudantium deleniti sunt magnam laborum? Molestiae provident iste labore in laudantium, corporis eius neque debitis, amet ea id assumenda. Commodi iusto perferendis quos odit nobis dolorum, molestiae delectus numquam blanditiis, inventore officiis, dolores consequuntur aliquid earum ducimus reprehenderit assumenda ad! Dolores delectus voluptas sequi debitis, mollitia reprehenderit nesciunt amet ipsam repellendus aut. Nulla fuga iusto voluptatum magnam hic numquam officiis dolorem temporibus consequatur, illo a deleniti voluptates harum eligendi nesciunt est ipsam soluta esse cum natus repellat.",
+    "thumb": "sculpture7-vignette.jpg",
+    "photos": ["sculpture7.jpg"]
+  }
+]
