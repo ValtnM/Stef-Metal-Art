@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import Image from "next/image";
 import styles from "../../styles/Sculptures.module.scss";
-import Slider from '../../components/Slider/Slider';
+import Slider from "../../components/Slider/Slider";
 
 type Sculpture = {
   id: number;
@@ -19,20 +20,20 @@ export default function Sculpture(props: { sculpture: Sculpture }) {
 
   // useEffect(() => {
   //   console.log(router);
-  //   if(router.isReady) {      
+  //   if(router.isReady) {
   //     getSculptureInfos();
   //   }
   // }, []);
-  
+
   useEffect(() => {
-    if(router.isReady) {      
+    if (router.isReady) {
       getSculptureInfos();
     }
-  },[router.isReady])
+  }, [router.isReady]);
 
   const getSculptureInfos = () => {
     console.log(sculptureId);
-    
+
     fetch(`http://localhost:3000/api/sculptures/${sculptureId}`)
       .then((res) => res.json())
       .then((data) => {
@@ -47,9 +48,13 @@ export default function Sculpture(props: { sculpture: Sculpture }) {
         <div className={styles.sculpture}>
           <h1>{sculptureInfos.name}</h1>
           <div className={styles.sculptureDetails}>
-            <img
+            <Image
               src={`/assets/sculptures/${sculptureInfos.thumb}`}
               alt="sculpture"
+              width={400}
+              height={400}
+              placeholder="blur"
+              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN88B8AAsUB4ZtvXtIAAAAASUVORK5CYII="
             />
             <p>{sculptureInfos.description}</p>
           </div>

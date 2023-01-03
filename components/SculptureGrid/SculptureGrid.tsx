@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import styles from "./SculptureGrid.module.scss";
-import { v4 as uuidv4 } from "uuid";
 
 type Sculpture = {
   id: number;
@@ -16,13 +15,24 @@ type SculptureGridProps = {
 };
 
 export default function SculptureGrid(props: SculptureGridProps) {
-  const [sculpturesArray, setSculpturesArray] = useState(props.sculptures);
+  const [sculpturesArray, setSculpturesArray] = useState([
+    [props.sculptures[0]],
+    [props.sculptures[1]],
+    [props.sculptures[2]],
+    [props.sculptures[3]],
+    [props.sculptures[4]],
+    [props.sculptures[5]],
+    [props.sculptures[6]],
+    [props.sculptures[7]],
+    [props.sculptures[8]],
+  ]);
+  const [previousRandomNumber, setPreviousRandomNumber] = useState(900);
 
   let blocks: NodeListOf<Element>;
-
+  let sculptureThumb: NodeListOf<Element>;
   useEffect(() => {
     const intervalId = setInterval(() => {
-      let randomNumber = Math.floor(Math.random() * 6);
+      sculptureThumb = document.querySelectorAll(`.${styles.sculptureThumb}`);
 
       if (process.browser) {
         blocks = document.querySelectorAll(
@@ -31,14 +41,9 @@ export default function SculptureGrid(props: SculptureGridProps) {
       }
 
       setSculpturesArray((sculpturesArray) => {
-        let newArray = sculpturesArray;
-        addNewImage(randomNumber, newArray);
-        return changeSculpture(randomNumber, newArray);
+        let newArray = [...sculpturesArray];
+        return changeSculpture(getRandomNumber(), newArray);
       });
-
-      setTimeout(() => {
-        deleteOldImage(blocks[randomNumber].children[0] as HTMLImageElement);
-      }, 1000);
     }, 5000);
 
     return () => {
@@ -46,24 +51,32 @@ export default function SculptureGrid(props: SculptureGridProps) {
     };
   }, []);
 
-  const deleteOldImage = (image: HTMLImageElement) => {
-    image.remove();
+  const getRandomNumber = () => {
+    let randomNumber = Math.floor(Math.random() * 6);
+    setPreviousRandomNumber((previousRandomNumber) => {
+      while (randomNumber === previousRandomNumber) {
+        randomNumber = Math.floor(Math.random() * 6);
+      }
+      return previousRandomNumber;
+    });
+    return randomNumber;
   };
 
-  const addNewImage = (index: number, array: Sculpture[]) => {
-    blocks[index].insertAdjacentHTML(
-      "beforeend",
-      `<img src="/assets/sculptures/${array[6].thumb}" alt="Sculpture" />`
-    );
-  };
+  const changeSculpture = (randomNumber: number, array: Sculpture[][]) => {
+    let newArray = [...array];
 
-  const changeSculpture = (randomNumber: number, array: Sculpture[]) => {
-    const oldItem = array[randomNumber];
-    const newItem = array[6];
-    array.splice(randomNumber, 1, newItem);
-    array.splice(6, 1);
-    array.push(oldItem);
-    return array;
+    setPreviousRandomNumber((previousRandomNumber) => {
+      if (previousRandomNumber !== 900) {
+        newArray[previousRandomNumber].splice(0, 1);
+      }
+      return randomNumber;
+    });
+
+    newArray.push([...newArray[randomNumber]]);
+    newArray[randomNumber].push(...newArray[6]);
+    newArray.splice(6, 1);
+
+    return newArray;
   };
 
   return (
@@ -71,11 +84,22 @@ export default function SculptureGrid(props: SculptureGridProps) {
       <div className={styles.grid}>
         {sculpturesArray.slice(0, 6).map((element, index) => (
           <div
-            key={uuidv4()}
+            key={index}
             style={{ animationDelay: `${index * 100}ms` }}
             className={styles.block}
           >
-            <img src={`/assets/sculptures/${element.thumb}`} alt="Sculpture" />
+            {element.map((sculpture, index) => (
+              <Link
+                className={styles.sculptureThumb}
+                key={index}
+                href={`/sculptures/${sculpture.id}`}
+              >
+                <img
+                  src={`/assets/sculptures/${sculpture.thumb}`}
+                  alt="Sculpture"
+                />
+              </Link>
+            ))}
           </div>
         ))}
       </div>
