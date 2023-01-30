@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from "next/link";
 import { v4 as uuidv4 } from "uuid";
 import styles from "../../styles/Peintures.module.scss";
 import { GetStaticProps } from "next";
@@ -31,13 +32,14 @@ export default function Peintures(props: PeinturesProps) {
         <h1>Peintures</h1>
         <div className={styles.grid}>
           {props.peinturesArray.map((element, index) => (
-            <div
+            <Link
+            href={`/peintures/${element.id}`}
               key={uuidv4()}
               style={{ animationDelay: `${index * 100}ms` }}
               className={styles.block}
             >
               <img src={`/assets/peintures/${element.thumb}`} alt="" />
-            </div>
+            </Link>
           ))}
         </div>
       </div>

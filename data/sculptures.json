@@ -26,53 +26,37 @@
   },
   {
     "id": 4,
-    "name": "sculpture 1",
+    "name": "Contre la montre",
     "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio numquam perspiciatis amet repellendus, earum necessitatibus sit omnis fugiat nobis doloribus voluptatibus. Facere, repudiandae ipsam. Aliquam quia reiciendis, labore iste consequuntur nemo cupiditate beatae quae delectus eum, at placeat laboriosam repellat eius? Assumenda corrupti sit optio a exercitationem tempore voluptatibus blanditiis id inventore impedit ipsum aut magni non odio ab nam asperiores, ducimus odit qui rerum tenetur, porro neque cupiditate minima? Possimus nulla aut laudantium deleniti sunt magnam laborum? Molestiae provident iste labore in laudantium, corporis eius neque debitis, amet ea id assumenda. Commodi iusto perferendis quos odit nobis dolorum, molestiae delectus numquam blanditiis, inventore officiis, dolores consequuntur aliquid earum ducimus reprehenderit assumenda ad! Dolores delectus voluptas sequi debitis, mollitia reprehenderit nesciunt amet ipsam repellendus aut. Nulla fuga iusto voluptatum magnam hic numquam officiis dolorem temporibus consequatur, illo a deleniti voluptates harum eligendi nesciunt est ipsam soluta esse cum natus repellat.",
-    "thumb": "sculpture1-vignette.jpg",
-    "photos": ["sculpture1.jpg"]
+    "thumb": "contre-la-montre-vignette.jpg",
+    "photos": ["contre-la-montre1.jpg"]
   },
   {
     "id": 5,
-    "name": "sculpture 2",
+    "name": "Fer du jet",
     "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio numquam perspiciatis amet repellendus, earum necessitatibus sit omnis fugiat nobis doloribus voluptatibus. Facere, repudiandae ipsam. Aliquam quia reiciendis, labore iste consequuntur nemo cupiditate beatae quae delectus eum, at placeat laboriosam repellat eius? Assumenda corrupti sit optio a exercitationem tempore voluptatibus blanditiis id inventore impedit ipsum aut magni non odio ab nam asperiores, ducimus odit qui rerum tenetur, porro neque cupiditate minima? Possimus nulla aut laudantium deleniti sunt magnam laborum? Molestiae provident iste labore in laudantium, corporis eius neque debitis, amet ea id assumenda. Commodi iusto perferendis quos odit nobis dolorum, molestiae delectus numquam blanditiis, inventore officiis, dolores consequuntur aliquid earum ducimus reprehenderit assumenda ad! Dolores delectus voluptas sequi debitis, mollitia reprehenderit nesciunt amet ipsam repellendus aut. Nulla fuga iusto voluptatum magnam hic numquam officiis dolorem temporibus consequatur, illo a deleniti voluptates harum eligendi nesciunt est ipsam soluta esse cum natus repellat.",
-    "thumb": "sculpture2-vignette.jpg",
-    "photos": ["sculpture2.jpg"]
+    "thumb": "fer-du-jet-vignette.jpg",
+    "photos": ["fer-du-jet1.jpg"]
   },
   {
     "id": 6,
-    "name": "sculpture 3",
+    "name": "Le dictographe",
     "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio numquam perspiciatis amet repellendus, earum necessitatibus sit omnis fugiat nobis doloribus voluptatibus. Facere, repudiandae ipsam. Aliquam quia reiciendis, labore iste consequuntur nemo cupiditate beatae quae delectus eum, at placeat laboriosam repellat eius? Assumenda corrupti sit optio a exercitationem tempore voluptatibus blanditiis id inventore impedit ipsum aut magni non odio ab nam asperiores, ducimus odit qui rerum tenetur, porro neque cupiditate minima? Possimus nulla aut laudantium deleniti sunt magnam laborum? Molestiae provident iste labore in laudantium, corporis eius neque debitis, amet ea id assumenda. Commodi iusto perferendis quos odit nobis dolorum, molestiae delectus numquam blanditiis, inventore officiis, dolores consequuntur aliquid earum ducimus reprehenderit assumenda ad! Dolores delectus voluptas sequi debitis, mollitia reprehenderit nesciunt amet ipsam repellendus aut. Nulla fuga iusto voluptatum magnam hic numquam officiis dolorem temporibus consequatur, illo a deleniti voluptates harum eligendi nesciunt est ipsam soluta esse cum natus repellat.",
-    "thumb": "sculpture3-vignette.jpg",
-    "photos": ["sculpture3.jpg"]
+    "thumb": "le-dictographe-vignette.jpg",
+    "photos": ["le-dictographe1.jpg", "le-dictographe2.jpg"]
   },
   {
     "id": 7,
-    "name": "sculpture 4",
+    "name": "Roulez jeunesse",
     "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio numquam perspiciatis amet repellendus, earum necessitatibus sit omnis fugiat nobis doloribus voluptatibus. Facere, repudiandae ipsam. Aliquam quia reiciendis, labore iste consequuntur nemo cupiditate beatae quae delectus eum, at placeat laboriosam repellat eius? Assumenda corrupti sit optio a exercitationem tempore voluptatibus blanditiis id inventore impedit ipsum aut magni non odio ab nam asperiores, ducimus odit qui rerum tenetur, porro neque cupiditate minima? Possimus nulla aut laudantium deleniti sunt magnam laborum? Molestiae provident iste labore in laudantium, corporis eius neque debitis, amet ea id assumenda. Commodi iusto perferendis quos odit nobis dolorum, molestiae delectus numquam blanditiis, inventore officiis, dolores consequuntur aliquid earum ducimus reprehenderit assumenda ad! Dolores delectus voluptas sequi debitis, mollitia reprehenderit nesciunt amet ipsam repellendus aut. Nulla fuga iusto voluptatum magnam hic numquam officiis dolorem temporibus consequatur, illo a deleniti voluptates harum eligendi nesciunt est ipsam soluta esse cum natus repellat.",
-    "thumb": "sculpture4-vignette.jpg",
-    "photos": ["sculpture4.jpg"]
+    "thumb": "roulez-jeunesse-vignette.jpg",
+    "photos": ["roulez-jeunesse1.jpg"]
   },
   {
     "id": 8,
-    "name": "sculpture 5",
+    "name": "Tricycle rider",
     "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio numquam perspiciatis amet repellendus, earum necessitatibus sit omnis fugiat nobis doloribus voluptatibus. Facere, repudiandae ipsam. Aliquam quia reiciendis, labore iste consequuntur nemo cupiditate beatae quae delectus eum, at placeat laboriosam repellat eius? Assumenda corrupti sit optio a exercitationem tempore voluptatibus blanditiis id inventore impedit ipsum aut magni non odio ab nam asperiores, ducimus odit qui rerum tenetur, porro neque cupiditate minima? Possimus nulla aut laudantium deleniti sunt magnam laborum? Molestiae provident iste labore in laudantium, corporis eius neque debitis, amet ea id assumenda. Commodi iusto perferendis quos odit nobis dolorum, molestiae delectus numquam blanditiis, inventore officiis, dolores consequuntur aliquid earum ducimus reprehenderit assumenda ad! Dolores delectus voluptas sequi debitis, mollitia reprehenderit nesciunt amet ipsam repellendus aut. Nulla fuga iusto voluptatum magnam hic numquam officiis dolorem temporibus consequatur, illo a deleniti voluptates harum eligendi nesciunt est ipsam soluta esse cum natus repellat.",
-    "thumb": "sculpture5-vignette.jpg",
-    "photos": ["sculpture5.jpg"]
-  },
-  {
-    "id": 9,
-    "name": "sculpture 6",
-    "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio numquam perspiciatis amet repellendus, earum necessitatibus sit omnis fugiat nobis doloribus voluptatibus. Facere, repudiandae ipsam. Aliquam quia reiciendis, labore iste consequuntur nemo cupiditate beatae quae delectus eum, at placeat laboriosam repellat eius? Assumenda corrupti sit optio a exercitationem tempore voluptatibus blanditiis id inventore impedit ipsum aut magni non odio ab nam asperiores, ducimus odit qui rerum tenetur, porro neque cupiditate minima? Possimus nulla aut laudantium deleniti sunt magnam laborum? Molestiae provident iste labore in laudantium, corporis eius neque debitis, amet ea id assumenda. Commodi iusto perferendis quos odit nobis dolorum, molestiae delectus numquam blanditiis, inventore officiis, dolores consequuntur aliquid earum ducimus reprehenderit assumenda ad! Dolores delectus voluptas sequi debitis, mollitia reprehenderit nesciunt amet ipsam repellendus aut. Nulla fuga iusto voluptatum magnam hic numquam officiis dolorem temporibus consequatur, illo a deleniti voluptates harum eligendi nesciunt est ipsam soluta esse cum natus repellat.",
-    "thumb": "sculpture6-vignette.jpg",
-    "photos": [
-      "sculpture6.jpg"
-    ]
-  },
-  {
-    "id": 10,
-    "name": "sculpture 7",
-    "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio numquam perspiciatis amet repellendus, earum necessitatibus sit omnis fugiat nobis doloribus voluptatibus. Facere, repudiandae ipsam. Aliquam quia reiciendis, labore iste consequuntur nemo cupiditate beatae quae delectus eum, at placeat laboriosam repellat eius? Assumenda corrupti sit optio a exercitationem tempore voluptatibus blanditiis id inventore impedit ipsum aut magni non odio ab nam asperiores, ducimus odit qui rerum tenetur, porro neque cupiditate minima? Possimus nulla aut laudantium deleniti sunt magnam laborum? Molestiae provident iste labore in laudantium, corporis eius neque debitis, amet ea id assumenda. Commodi iusto perferendis quos odit nobis dolorum, molestiae delectus numquam blanditiis, inventore officiis, dolores consequuntur aliquid earum ducimus reprehenderit assumenda ad! Dolores delectus voluptas sequi debitis, mollitia reprehenderit nesciunt amet ipsam repellendus aut. Nulla fuga iusto voluptatum magnam hic numquam officiis dolorem temporibus consequatur, illo a deleniti voluptates harum eligendi nesciunt est ipsam soluta esse cum natus repellat.",
-    "thumb": "sculpture7-vignette.jpg",
-    "photos": ["sculpture7.jpg"]
+    "thumb": "tricycle-rider-vignette.jpg",
+    "photos": ["tricycle-rider1.jpg", "tricycle-rider2.jpg"]
   }
 ]

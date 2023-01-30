@@ -30,11 +30,17 @@
     
 }
 
-.sculpture {
+.sculptureContainer {
+    min-height: 100vh;
     max-width: 1200px;
     margin: 50px auto;
+}
+
+.sculpture {
     padding: 30px;
     background: rgb(237, 237, 237);
+    animation: imageApparition 500ms ease-in-out backwards;
+
     h1 {
         font-family: "Indie Flower", Arial, Helvetica, sans-serif;
         font-size: 4em;

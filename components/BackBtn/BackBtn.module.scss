@@ -1,0 +1,18 @@
+.backBtn {
+    display: inline-flex;
+    align-items: center;
+    // border: 1px black solid;
+    // background: grey;
+    // color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+
+    &:hover {
+        color: grey;
+    }
+
+    .icon {
+        font-size: 1.5em;
+        margin-right: 10px;
+    }
+}

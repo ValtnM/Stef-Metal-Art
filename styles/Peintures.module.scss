@@ -1,11 +1,13 @@
+// @import './animations.css';
+
 .peintures {
-    margin-top: 100px;
     h1 {
         font-family: "Indie Flower", Arial, Helvetica, sans-serif;
         font-size: 4em;
         text-align: center;
         text-transform: uppercase;
     }
+    margin-top: 100px;
 }
 
 .grid {
@@ -19,7 +21,7 @@
         height: 400px;
         position: relative;
         margin: 10px;
-        animation: imageApparition 500ms ease-in-out backwards;
+        animation: peintureApparition 500ms ease-in-out backwards;
 
         img {
             width: 100%;
@@ -28,6 +30,37 @@
         
     }
     
+}
+
+
+.peintureContainer {
+    max-width: 1000px;
+    min-height: 100vh;
+    margin: 50px auto;
+}
+
+
+
+.peinture {
+    padding: 10px;
+    text-align: center;
+    background: rgb(237, 237, 237);
+    animation: peintureApparition 500ms ease-in-out backwards;
+
+
+
+    h1 {
+        font-family: "Indie Flower", Arial, Helvetica, sans-serif;
+        font-size: 3em;
+        text-align: center;
+        text-transform: uppercase;
+    }
+
+    p {
+        max-width: 800px;
+        text-align: justify;
+        margin: 30px auto;
+    }
 }
 @media screen and (max-width: 500px) {
     .grid {
@@ -38,7 +71,9 @@
     }
 }
 
-@keyframes imageApparition {
+
+
+@keyframes peintureApparition {
     0% {
         transform: translateY(-50px);
         opacity: 0;

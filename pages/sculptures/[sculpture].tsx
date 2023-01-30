@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import styles from "../../styles/Sculptures.module.scss";
 import Slider from "../../components/Slider/Slider";
+import BackBtn from "../../components/BackBtn/BackBtn";
 
 type Sculpture = {
   id: number;
@@ -17,13 +18,6 @@ export default function Sculpture(props: { sculpture: Sculpture }) {
 
   const router = useRouter();
   const sculptureId = router.query.sculpture;
-
-  // useEffect(() => {
-  //   console.log(router);
-  //   if(router.isReady) {
-  //     getSculptureInfos();
-  //   }
-  // }, []);
 
   useEffect(() => {
     if (router.isReady) {
@@ -43,7 +37,9 @@ export default function Sculpture(props: { sculpture: Sculpture }) {
   };
 
   return (
-    <>
+    <div className={styles.sculptureContainer}>
+      <BackBtn typeOfArt='sculpture' />
+
       {sculptureInfos && (
         <div className={styles.sculpture}>
           <h1>{sculptureInfos.name}</h1>
@@ -61,6 +57,6 @@ export default function Sculpture(props: { sculpture: Sculpture }) {
           <Slider dataSlider={sculptureInfos.photos} />
         </div>
       )}
-    </>
+    </div>
   );
 }

@@ -24,7 +24,6 @@ export default function SculptureGrid(props: SculptureGridProps) {
     [props.sculptures[5]],
     [props.sculptures[6]],
     [props.sculptures[7]],
-    [props.sculptures[8]],
   ]);
   const [previousRandomNumber, setPreviousRandomNumber] = useState(900);
 
