@@ -1,3 +1,37 @@
+.zoom {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.6);
+    .zoomImg {
+        width: 80%;
+        height: 80%;
+        position: absolute;
+        top: 50%;
+        right: 50%;
+        transform: translate(50%, -50%);
+        img {
+            
+            object-fit: contain;
+
+        }    
+    }
+    .icon {
+        position: absolute;
+        top: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 3em;
+        color: white;
+        cursor: pointer;
+
+        &:hover {
+            color: lightgrey;
+        }
+    }
+}
 .sculptures {
     margin-top: 100px;
     h1 {
@@ -19,7 +53,7 @@
         height: 400px;
         position: relative;
         margin: 10px;
-        animation: imageApparition 500ms ease-in-out backwards;
+        animation: sculptureTopApparition 500ms ease-in-out backwards;
 
         img {
             width: 100%;
@@ -39,7 +73,7 @@
 .sculpture {
     padding: 30px;
     background: rgb(237, 237, 237);
-    animation: imageApparition 500ms ease-in-out backwards;
+    animation: sculptureBottomApparition 500ms ease-in-out backwards;
 
     h1 {
         font-family: "Indie Flower", Arial, Helvetica, sans-serif;
@@ -71,9 +105,19 @@
     }
 }
 
-@keyframes imageApparition {
+@keyframes sculptureTopApparition {
     0% {
         transform: translateY(-50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+@keyframes sculptureBottomApparition {
+    0% {
+        transform: translateY(50px);
         opacity: 0;
     }
     100% {

@@ -21,7 +21,7 @@
         height: 400px;
         position: relative;
         margin: 10px;
-        animation: peintureApparition 500ms ease-in-out backwards;
+        animation: peintureTopApparition 500ms ease-in-out backwards;
 
         img {
             width: 100%;
@@ -45,7 +45,7 @@
     padding: 10px;
     text-align: center;
     background: rgb(237, 237, 237);
-    animation: peintureApparition 500ms ease-in-out backwards;
+    animation: peintureBottomApparition 500ms ease-in-out backwards;
 
 
 
@@ -73,9 +73,19 @@
 
 
 
-@keyframes peintureApparition {
+@keyframes peintureTopApparition {
     0% {
         transform: translateY(-50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+@keyframes peintureBottomApparition {
+    0% {
+        transform: translateY(50px);
         opacity: 0;
     }
     100% {

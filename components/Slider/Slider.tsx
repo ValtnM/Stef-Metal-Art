@@ -6,6 +6,8 @@ import { FaArrowAltCircleLeft } from "react-icons/fa";
 import { FaArrowAltCircleRight } from "react-icons/fa";
 
 type SliderProps = {
+  setZoomedImage: React.Dispatch<React.SetStateAction<string>>;
+  setZoomMode: React.Dispatch<React.SetStateAction<boolean>>;
   dataSlider: string[];
 };
 
@@ -39,6 +41,11 @@ export default function Slider(props: SliderProps) {
     setSlideAnim({ index: index });
   };
 
+  const zoomImage = (image: string) => {
+    props.setZoomMode(true);
+    props.setZoomedImage(image)
+  }
+
   return (
     <div className={styles.containerSlider}>
       {props.dataSlider.length > 0 &&
@@ -53,10 +60,10 @@ export default function Slider(props: SliderProps) {
               }
             >
               <Image
+                onClick={() => zoomImage(photo)}
                 src={`/assets/sculptures/${photo}`}
                 alt="Photo sculpture"
-                layout="fill"
-                objectFit="cover"
+                fill
               />
             </div>
           );

@@ -4,6 +4,7 @@ import Image from "next/image";
 import styles from "../../styles/Sculptures.module.scss";
 import Slider from "../../components/Slider/Slider";
 import BackBtn from "../../components/BackBtn/BackBtn";
+import {IoMdCloseCircle} from 'react-icons/io'
 
 type Sculpture = {
   id: number;
@@ -15,6 +16,8 @@ type Sculpture = {
 
 export default function Sculpture(props: { sculpture: Sculpture }) {
   const [sculptureInfos, setSculptureInfos] = useState<Sculpture>();
+  const [zoomMode, setZoomMode] = useState(false)
+  const [zoomedImage, setZoomedImage] = useState("")
 
   const router = useRouter();
   const sculptureId = router.query.sculpture;
@@ -54,9 +57,19 @@ export default function Sculpture(props: { sculpture: Sculpture }) {
             />
             <p>{sculptureInfos.description}</p>
           </div>
-          <Slider dataSlider={sculptureInfos.photos} />
+          <Slider setZoomedImage={setZoomedImage} setZoomMode={setZoomMode} dataSlider={sculptureInfos.photos} />
         </div>
       )}
+      {
+        zoomMode &&
+      <div className={styles.zoom}>
+          <IoMdCloseCircle onClick={() => setZoomMode(false)} className={styles.icon} />
+          <div className={styles.zoomImg}>
+            <Image fill src={`/assets/sculptures/${zoomedImage}`} alt="" />
+          </div>
+      </div>
+
+      }
     </div>
   );
 }
