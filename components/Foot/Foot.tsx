@@ -26,9 +26,9 @@ export default function Foot() {
           <a href="#">
             <li>Liens</li>
           </a>
-          <a href="#">
+          <Link href="/contact">
             <li>Contact</li>
-          </a>
+          </Link>
         </ul>
         <div className={styles.copyright}>
           <FaRegCopyright className="copyright-icon" />
