@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "Musée du moteur",
+        "image": "moteur.jpg",
+        "link": "https://www.museedumoteur.fr/"
+    },
+    {
+        "id": 2,
+        "name": "Mazé-Milon",
+        "image": "maze.jpg",
+        "link": "https://www.maze-milon.fr/"
+    },
+    {
+        "id": 3,
+        "name": "Région Pays de la Loire",
+        "image": "logo-pays-de-la-loire.png",
+        "link": "https://www.paysdelaloire.fr/"
+    },
+    {
+        "id": 4,
+        "name": "Département du Maine-et-Loire",
+        "image": "logo-anjou.png",
+        "link": "https://www.maine-et-loire.fr/"
+    }
+]

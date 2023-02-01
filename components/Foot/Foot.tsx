@@ -23,16 +23,16 @@ export default function Foot() {
           <Link href="/peintures">
             <li>Peintures</li>
           </Link>
-          <a href="#">
+          <Link href="/liens">
             <li>Liens</li>
-          </a>
+          </Link>
           <Link href="/contact">
             <li>Contact</li>
           </Link>
         </ul>
         <div className={styles.copyright}>
           <FaRegCopyright className="copyright-icon" />
-          <p>2022 Stef Metal Art, Tous droits réservés.</p>
+          <p>2023 Stef Metal Art, Tous droits réservés.</p>
         </div>
       </footer>
     </>
