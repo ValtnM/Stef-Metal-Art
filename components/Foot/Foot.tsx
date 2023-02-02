@@ -16,9 +16,9 @@ export default function Foot() {
         />
       </Head>
       <footer className={styles.footer}>
-        <a href="#">
+        <Link href="/admin">
           <img src="/assets/engrenages-small.png" alt="Engrenages" />
-        </a>
+        </Link>
         <ul className={styles.footerNav}>
           <Link href="/peintures">
             <li>Peintures</li>

@@ -6,7 +6,7 @@
   border-radius: 10px;
   box-shadow: 6px 6px 8px 0px rgba(100, 100, 100, 0.61);
   background: rgb(237, 237, 237);
-  animation: sculptureBottomApparition 500ms ease-in-out backwards;
+  animation: contactBottomApparition 500ms ease-in-out backwards;
   
   h2 {
     font-size: 3em;
@@ -65,7 +65,7 @@
   }
 }
 
-@keyframes sculptureBottomApparition {
+@keyframes contactBottomApparition {
     0% {
         transform: translateY(50px);
         opacity: 0;
