@@ -1,0 +1,57 @@
+.connectionForm {
+  max-width: 400px;
+  margin: auto;
+  padding: 20px 50px;
+  border: 1px black solid;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  box-shadow: 6px 6px 8px 0px rgba(100, 100, 100, 0.61);
+  background: rgb(237, 237, 237);
+  animation: adminBottomApparition 500ms ease-in-out backwards;
+  h2 {
+    text-align: center;
+    font-family: "Indie Flower", Arial, Helvetica, sans-serif;
+    font-size: 3em;
+    margin: 20px 0;
+  }
+
+  label {
+    font-size: 1.1em;
+  }
+
+  input {
+    font-size: 1.1em;
+    padding: 5px;
+    margin: 5px 0 10px 0;
+  }
+
+  button {
+    margin: 30px auto;
+    padding: 5px;
+    font-size: 1em;
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    background: rgb(65, 65, 65);
+    color: white;
+    border-radius: 5px;
+    transition: transform 200ms ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+      background: rgb(51, 51, 51);
+      transform: scale(1.05);
+    }
+  }
+}
+
+@keyframes adminBottomApparition {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

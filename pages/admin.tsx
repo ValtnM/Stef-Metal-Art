@@ -1,17 +1,20 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styles from '../styles/Admin.module.scss'
+import ConnectionForm from '../components/ConnectionForm/ConnectionForm'
+import NewPostForm from '../components/NewPostForm/NewPostForm'
 
 export default function admin() {
+
+    const [admin, setAdmin] = useState(true)
+
   return (
     <div className={styles.admin}>
-        <form action="">
-        <h2>Connexion</h2>
-            <label htmlFor="user">Utilisateur</label>
-            <input type="text" id='user' />
-            <label htmlFor="password">Mot de passe</label>
-            <input type="password" id='password' />
-            <button>Se connecter</button>
-        </form>
+        {
+            admin ?
+            <NewPostForm />
+        :
+            <ConnectionForm />
+            }
     </div>
   )
 }
