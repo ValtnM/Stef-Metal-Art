@@ -15,7 +15,7 @@ type LinksProps = {
   linksArray: Link[];
 };
 
-export default function liens(props: LinksProps) {
+export default function Liens(props: LinksProps) {
   return (
     <div className={styles.liensContainer}>
       <h2>Liens</h2>

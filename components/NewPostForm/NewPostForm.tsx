@@ -6,7 +6,7 @@ export default function NewPostForm() {
 
   return (
     <form className={styles.newPostForm} action="">
-      <h2>Ajouter une oeuvre</h2>
+      {/* <h2>Ajouter une oeuvre</h2> */}
       <div>
         <h3>Type</h3>
         <div className={styles.type}>

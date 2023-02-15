@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../styles/Contact.module.scss";
 
-export default function contact() {
+export default function Contact() {
   return (
     <div className={styles.contact}>
       <h2>Me contacter</h2>

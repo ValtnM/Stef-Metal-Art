@@ -4,6 +4,7 @@ import styles from "./Slider.module.scss";
 import { v4 as uuidv4 } from "uuid";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
 import { FaArrowAltCircleRight } from "react-icons/fa";
+import { BsTrash } from "react-icons/bs";
 
 type SliderProps = {
   setZoomedImage: React.Dispatch<React.SetStateAction<string>>;
@@ -12,9 +13,11 @@ type SliderProps = {
 };
 
 export default function Slider(props: SliderProps) {
+  const [adminMode, setAdminMode] = useState(false)
   const [slideAnim, setSlideAnim] = useState({
     index: 1,
   });
+
 
   // Faire défilé les photos vers la gauche
   const nextSlide = () => {
@@ -65,6 +68,13 @@ export default function Slider(props: SliderProps) {
                 alt="Photo sculpture"
                 fill
               />
+              {
+                adminMode &&
+                <div className={styles.iconContainer}>
+
+              <BsTrash className={styles.icon} />
+              </div>
+              }
             </div>
           );
         })}

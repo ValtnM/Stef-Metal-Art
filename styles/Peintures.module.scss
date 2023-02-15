@@ -1,95 +1,279 @@
-// @import './animations.css';
-
 .peintures {
-    h1 {
-        font-family: "Indie Flower", Arial, Helvetica, sans-serif;
-        font-size: 4em;
-        text-align: center;
-        text-transform: uppercase;
-    }
-    margin-top: 100px;
+  h1 {
+    font-family: "Indie Flower", Arial, Helvetica, sans-serif;
+    font-size: 4em;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  margin-top: 100px;
 }
 
 .grid {
-    max-width: 1500px;
-    margin: 50px auto 30px auto;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    .block {
-        width: 400px;
-        height: 400px;
-        position: relative;
-        margin: 10px;
-        animation: peintureTopApparition 500ms ease-in-out backwards;
+  max-width: 1500px;
+  margin: 50px auto 30px auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  .block {
+    width: 400px;
+    height: 400px;
+    position: relative;
+    margin: 10px;
+    animation: peintureTopApparition 500ms ease-in-out backwards;
 
-        img {
-            width: 100%;
-            height: auto;
-        }       
-        
+    img {
+      width: 100%;
+      height: auto;
     }
-    
+  }
 }
-
 
 .peintureContainer {
-    max-width: 1000px;
-    min-height: 100vh;
-    margin: 50px auto;
+  max-width: 1000px;
+  min-height: 100vh;
+  margin: 50px auto;
+  .iconContainer {
+    width: 30px;
+    height: 30px;
+    background: rgb(69, 69, 255);
+    padding: 5px;
+    margin-left: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    &:hover {
+      background: rgba(115, 78, 97, 1);
+    }
+    .icon {
+      width: 100%;
+      height: 100%;
+      color: white;
+    }
+  }
 }
-
-
 
 .peinture {
-    padding: 10px;
+  position: relative;
+  padding: 10px;
+  text-align: center;
+  background: rgb(237, 237, 237);
+  animation: peintureBottomApparition 500ms ease-in-out backwards;
+  .name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  h1 {
+    font-family: "Indie Flower", Arial, Helvetica, sans-serif;
+    font-size: 3.5em;
     text-align: center;
-    background: rgb(237, 237, 237);
-    animation: peintureBottomApparition 500ms ease-in-out backwards;
+    margin: 30px 0 0 0;
+  }
 
+  p {
+    max-width: 800px;
+    text-align: justify;
+    margin: 30px auto;
+  }
+}
 
+.peintureThumb {
+    width: 100%;
+  position: relative;
+  margin-right: 20px;
+  .iconContainer {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.2em;
+  }
+}
 
-    h1 {
-        font-family: "Indie Flower", Arial, Helvetica, sans-serif;
-        font-size: 3em;
-        text-align: center;
-        text-transform: uppercase;
+.peintureDescription {
+  position: relative;
+  .iconContainer {
+    position: absolute;
+    top: -15px;
+    right: 10px;
+  }
+}
+
+.deleteElement {
+  display: inline-flex;
+  align-items: center;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px;
+  color: white;
+  background: rgb(255, 88, 88);
+  border-radius: 10px;
+  cursor: pointer;
+  &:hover {
+    background: rgba(115, 78, 97, 1);
+  }
+  .icon {
+    margin-right: 5px;
+  }
+}
+
+.deleteConfirmationContainer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 100;
+}
+
+.deleteConfirmationBlock {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 8px -3px #595959;
+}
+
+.deleteConfirmationTxt {
+  font-size: 1.3em;
+  margin-bottom: 20px;
+}
+
+.deleteConfirmationBtn {
+  display: flex;
+  justify-content: space-around;
+  button {
+    width: 100px;
+    color: white;
+    background: rgb(69, 69, 255);
+
+    font-size: 1em;
+    font-weight: 600;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    &:nth-child(1) {
+      background: red;
     }
-
-    p {
-        max-width: 800px;
-        text-align: justify;
-        margin: 30px auto;
+    &:hover {
+      background: rgba(115, 78, 97, 1);
     }
+  }
+}
+
+.editBlock {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+  text-align: center;
+  overflow: hidden;
+  transform: scaleY(0);
+  transition: all 300ms ease-in-out;
+  background: white;
+  border: 5px rgb(96, 96, 250) solid;
+  border-radius: 10px;
+  box-shadow: 5px 5px 8px -3px #595959;
+  button {
+    width: 40%;
+    margin: 5px;
+    padding: 3px 5px;
+    border: 1px black solid;
+    border-radius: 5px;
+    background: rgb(255, 88, 88);
+    color: white;
+    cursor: pointer;
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
+    &:nth-child(1) {
+      background: rgb(69, 69, 255);
+    }
+    &:hover {
+      background: rgba(115, 78, 97, 1);
+    }
+  }
+  input {
+    padding: 5px;
+    border-radius: 5px;
+  }
+}
+
+.editName {
+  height: 0;
+  transform-origin: top;
+  margin-bottom: 20px;
+  input {
+    max-width: 200px;
+    margin: 5px auto;
+  }
+  &.showForm {
+    height: 100px;
+  }
+}
+
+.editThumb {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: scaleY(0) translateX(-50%);
+  height: 0;
+  margin: auto;
+  transform-origin: top;
+  &.showForm {
+    height: 100px;
+    transform: scaleY(1) translateX(-50%);
+  }
+}
+
+.editDescription {
+  position: relative;
+  transform-origin: top;
+  width: 100%;
+  height: 0;
+  margin: auto;
+  z-index: 1;
+  textarea {
+    width: 100%;
+    height: 100%;
+  }
+  &.showForm {
+    height: 300px;
+  }
+}
+
+.showForm {
+  transform: scaleY(1);
 }
 @media screen and (max-width: 500px) {
-    .grid {
-        .block {
-            width: 300px;
-            height: 300px;
-        }
+  .grid {
+    .block {
+      width: 300px;
+      height: 300px;
     }
+  }
 }
-
-
 
 @keyframes peintureTopApparition {
-    0% {
-        transform: translateY(-50px);
-        opacity: 0;
-    }
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 @keyframes peintureBottomApparition {
-    0% {
-        transform: translateY(50px);
-        opacity: 0;
-    }
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }

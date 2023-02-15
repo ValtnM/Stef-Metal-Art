@@ -1,127 +1,370 @@
 .zoom {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0,0,0,0.6);
-    .zoomImg {
-        width: 80%;
-        height: 80%;
-        position: absolute;
-        top: 50%;
-        right: 50%;
-        transform: translate(50%, -50%);
-        img {
-            
-            object-fit: contain;
-
-        }    
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 100;
+  .zoomImg {
+    width: 80%;
+    height: 80%;
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+    img {
+      object-fit: contain;
     }
-    .icon {
-        position: absolute;
-        top: 30px;
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: 3em;
-        color: white;
-        cursor: pointer;
+  }
+  .icon {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 3em;
+    color: white;
+    cursor: pointer;
 
-        &:hover {
-            color: lightgrey;
-        }
+    &:hover {
+      color: lightgrey;
     }
+  }
 }
 .sculptures {
-    margin-top: 100px;
-    h1 {
-        font-family: "Indie Flower", Arial, Helvetica, sans-serif;
-        font-size: 4em;
-        text-align: center;
-        text-transform: uppercase;
-    }
+  margin-top: 100px;
+  h1 {
+    font-family: "Indie Flower", Arial, Helvetica, sans-serif;
+    font-size: 4em;
+    text-align: center;
+    text-transform: uppercase;
+  }
 }
 
 .grid {
-    max-width: 1500px;
-    margin: 50px auto 30px auto;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    .block {
-        width: 400px;
-        height: 400px;
-        position: relative;
-        margin: 10px;
-        animation: sculptureTopApparition 500ms ease-in-out backwards;
+  max-width: 1500px;
+  margin: 50px auto 30px auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  .block {
+    width: 400px;
+    height: 400px;
+    position: relative;
+    margin: 10px;
+    animation: sculptureTopApparition 500ms ease-in-out backwards;
 
-        img {
-            width: 100%;
-            height: auto;
-        }       
-        
+    img {
+      width: 100%;
+      height: auto;
     }
-    
+  }
 }
 
 .sculptureContainer {
-    min-height: 100vh;
-    max-width: 1200px;
-    margin: 50px auto;
+  min-height: 100vh;
+  max-width: 1200px;
+  margin: 50px auto;
+  .iconContainer {
+    width: 30px;
+    height: 30px;
+    background: rgb(69, 69, 255);
+    padding: 5px;
+    margin-left: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    &:hover {
+      background: rgba(115, 78, 97, 1);
+    }
+    .icon {
+      width: 100%;
+      height: 100%;
+      color: white;
+    }
+  }
 }
 
 .sculpture {
-    padding: 30px;
-    background: rgb(237, 237, 237);
-    animation: sculptureBottomApparition 500ms ease-in-out backwards;
-
-    h1 {
-        font-family: "Indie Flower", Arial, Helvetica, sans-serif;
-        font-size: 4em;
-        text-align: center;
-        margin: 10px 0 20px 0;
-    }
+  position: relative;
+  padding: 30px;
+  background: rgb(237, 237, 237);
+  text-align: center;
+  animation: sculptureBottomApparition 500ms ease-in-out backwards;
+  .name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  h1 {
+    font-family: "Indie Flower", Arial, Helvetica, sans-serif;
+    font-size: 4em;
+    text-align: center;
+    margin: 10px 0 0 0;
+  }
 }
 
 .sculptureDetails {
-    display: flex;
-
-    img {
-        margin-right: 20px;
-    }
-    p {
-        font-size: 1.2em;
-        text-align: justify;
-    }
+  display: flex;
+  margin-top: 20px;
+  p {
+    font-size: 1.2em;
+    text-align: justify;
+  }
 }
 
+.sculptureThumb {
+  position: relative;
+  margin-right: 20px;
+  .iconContainer {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 1.2em;
+  }
+}
+
+.sculptureDescription {
+  position: relative;
+  .iconContainer {
+    position: absolute;
+    top: -15px;
+    right: 10px;
+  }
+}
+
+.deleteElement {
+  border: 1px red solid;
+  display: inline-flex;
+  align-items: center;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px;
+  color: white;
+  background: rgb(255, 88, 88);
+  border-radius: 10px;
+  cursor: pointer;
+  &:hover {
+    background: rgba(115, 78, 97, 1);
+  }
+  .icon {
+    margin-right: 5px;
+  }
+}
+
+.deleteConfirmationContainer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 100;
+}
+
+.deleteConfirmationBlock {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 8px -3px #595959;
+}
+
+.deleteConfirmationTxt {
+  font-size: 1.3em;
+  margin-bottom: 20px;
+}
+
+.deleteConfirmationBtn {
+  display: flex;
+  justify-content: space-around;
+  button {
+    width: 100px;
+    color: white;
+    background: rgb(69, 69, 255);
+
+    font-size: 1em;
+    font-weight: 600;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    &:nth-child(1) {
+      background: red;
+    }
+    &:hover {
+      background: rgba(115, 78, 97, 1);
+    }
+  }
+}
+
+.editBlock {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+  text-align: center;
+  overflow: hidden;
+  transform: scaleY(0);
+  transition: all 300ms ease-in-out;
+  background: white;
+  border: 5px rgb(96, 96, 250) solid;
+  border-radius: 10px;
+  box-shadow: 5px 5px 8px -3px #595959;
+  button {
+    width: 40%;
+    margin: 5px;
+    padding: 3px 5px;
+    border: 1px black solid;
+    border-radius: 5px;
+    background: rgb(255, 88, 88);
+    color: white;
+    cursor: pointer;
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
+    &:nth-child(1) {
+      background: rgb(69, 69, 255);
+    }
+    &:hover {
+      background: rgba(115, 78, 97, 1);
+    }
+  }
+  input {
+    padding: 5px;
+    border-radius: 5px;
+  }
+}
+
+.editName {
+  height: 0;
+  transform-origin: top;
+  input {
+    max-width: 200px;
+    margin: 5px auto;
+  }
+  &.showForm {
+    height: 100px;
+  }
+}
+
+.editThumb {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  margin: auto;
+  transform-origin: top;
+}
+
+.editDescription {
+  position: relative;
+  transform-origin: top;
+  width: 100%;
+  height: 0;
+  margin: auto;
+  z-index: 1;
+  textarea {
+    width: 100%;
+    height: 100%;
+  }
+  &.showForm {
+    height: 300px;
+  }
+}
+
+.addPhotoContainer {
+  display: flex;
+  flex-direction: column;
+  .iconContainer {
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    width: auto;
+    margin: 20px auto;
+    color: white;
+    .icon {
+      width: auto;
+      margin-right: 5px;
+    }
+  }
+}
+
+.addPhotoForm {
+  height: 0;
+  width: 300px;
+  margin: auto;
+  transform-origin: top;
+  &.showForm {
+    height: 100px;
+  }
+}
+
+.showForm {
+  transform: scaleY(1);
+}
+
+.adminCtrl {
+  margin: 30px 0;
+  .adminBtn {
+    display: flex;
+    justify-content: center;
+    button {
+      width: 150px;
+      margin: 10px;
+      padding: 10px;
+      font-size: 1.2em;
+      background: rgba(136, 136, 136, 1);
+      color: white;
+      cursor: pointer;
+
+      &:hover {
+        background: rgba(115, 78, 97, 1);
+      }
+    }
+    .active {
+      background: #000;
+    }
+  }
+}
 
 @media screen and (max-width: 500px) {
-    .grid {
-        .block {
-            width: 300px;
-            height: 300px;
-        }
+  .grid {
+    .block {
+      width: 300px;
+      height: 300px;
     }
+  }
 }
 
 @keyframes sculptureTopApparition {
-    0% {
-        transform: translateY(-50px);
-        opacity: 0;
-    }
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
+  0% {
+    display: none;
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  100% {
+    display: block;
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 @keyframes sculptureBottomApparition {
-    0% {
-        transform: translateY(50px);
-        opacity: 0;
-    }
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes editNameApparition {
+  0% {
+    transform: scaleY(0);
+  }
+  100% {
+    transform: scaleY(1);
+  }
 }
