@@ -13,7 +13,7 @@ type SliderProps = {
 };
 
 export default function Slider(props: SliderProps) {
-  const [adminMode, setAdminMode] = useState(false)
+  const [adminMode, setAdminMode] = useState(true)
   const [slideAnim, setSlideAnim] = useState({
     index: 1,
   });
