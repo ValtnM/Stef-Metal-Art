@@ -4,7 +4,13 @@ const app = express();
 const hostname = 'localhost';
 const port = 8080;
 
-const oeuvreRoutes = require('./routes/oeuvre.ts')
+const mongoose = require('mongoose');
+mongoose.set('strictQuery', false);
+mongoose.connect('mongodb://localhost:27017/stef_metal_art')
+.then(() => console.log("Connexion à MongoDB réussie !"))
+.catch(() => console.log("Échec de la connexion à MongoDB !"))
+
+const oeuvreRoutes = require('./routes/oeuvre.js')
 
 // Middlewares permettant l'analyse du corps de la requête
 app.use(express.json());
