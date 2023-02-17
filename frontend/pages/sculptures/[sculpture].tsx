@@ -11,10 +11,10 @@ import { MdAddCircleOutline } from "react-icons/md";
 import { BsTrash } from "react-icons/bs";
 
 type Sculpture = {
-  id: number;
+  _id: string;
   name: string;
   description: string;
-  thumb: string;
+  thumbnail: string;
   photos: string[];
 };
 
@@ -43,9 +43,11 @@ export default function Sculpture(props: { sculpture: Sculpture }) {
   const getSculptureInfos = () => {
     console.log(sculptureId);
 
-    fetch(`http://localhost:3000/api/sculptures/${sculptureId}`)
+    fetch(`http://localhost:8080/api/oeuvres/sculptures/${sculptureId}`)
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
+        
         setSculptureInfos(data);
       })
       .catch((err) => console.log(err));
@@ -112,7 +114,7 @@ export default function Sculpture(props: { sculpture: Sculpture }) {
           <div className={styles.sculptureDetails}>
             <div className={styles.sculptureThumb}>
               <Image
-                src={`/assets/sculptures/${sculptureInfos.thumb}`}
+                src={`/assets/sculptures/${sculptureInfos.thumbnail}`}
                 alt="sculpture"
                 width={400}
                 height={400}
@@ -181,11 +183,14 @@ export default function Sculpture(props: { sculpture: Sculpture }) {
             <div className={styles.editContainer}>
             </div>
           } */}
-          <Slider
+          {
+            sculptureInfos.photos &&
+            <Slider
             setZoomedImage={setZoomedImage}
             setZoomMode={setZoomMode}
             dataSlider={sculptureInfos.photos}
-          />
+            />
+          }
           {adminMode && (
             <div className={styles.addPhotoContainer}>
               <div onClick={() => setAddPhoto(true)} className={styles.iconContainer}>

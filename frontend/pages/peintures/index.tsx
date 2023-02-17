@@ -5,11 +5,13 @@ import styles from "../../styles/Peintures.module.scss";
 import { GetStaticProps } from "next";
 
 type Peinture = {
-  id: number;
+  _id: string;
   name: string;
   description: string;
-  thumb: string;
-  photos: string;
+  thumbnail: string;
+  photo: string;
+  instagram: boolean,
+  like: number
 };
 
 type PeinturesProps = {
@@ -33,12 +35,12 @@ export default function Peintures(props: PeinturesProps) {
         <div className={styles.grid}>
           {props.peinturesArray.map((element, index) => (
             <Link
-            href={`/peintures/${element.id}`}
+            href={`/peintures/${element._id}`}
               key={uuidv4()}
               style={{ animationDelay: `${index * 100}ms` }}
               className={styles.block}
             >
-              <img src={`/assets/peintures/${element.thumb}`} alt="" />
+              <img src={`/assets/peintures/${element.thumbnail}`} alt="" />
             </Link>
           ))}
         </div>
@@ -48,7 +50,7 @@ export default function Peintures(props: PeinturesProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const data = await fetch("http://localhost:3000/api/peinturesapi");
+  const data = await fetch("http://localhost:8080/api/oeuvres/peintures");
   const peinturesArray = await data.json();
   // const peinturesArray = await peinturesObject.peintures;
 

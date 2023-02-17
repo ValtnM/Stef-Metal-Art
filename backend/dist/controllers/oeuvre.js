@@ -1,15 +1,29 @@
-const Sculpture = require('../models/Sculpture.js');
-console.log('ok');
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const mongoose = require("mongoose");
+const Sculpture = require("../models/Sculpture.js");
+const Peinture = require("../models/Peinture.js");
 exports.getAllSculpture = (req, res, next) => {
     Sculpture.find()
-        .then(sculptures => res.status(200).json(sculptures))
-        .catch(err => res.status(400).json({ err }));
+        .then((sculptures) => res.status(200).json(sculptures))
+        .catch((err) => res.status(400).json({ err }));
 };
-exports.addSculpture = (req, res, next) => {
-    const sculptureObject = req.body;
-    console.log(sculptureObject);
-    const sculpture = new Sculpture(Object.assign(Object.assign({}, sculptureObject), { instagram: false, like: 0 }));
-    sculpture.save()
-        .then(() => res.status(201).json({ message: 'sculpture ajoutée !' }))
-        .catch(() => res.status(400).json({ erreur: "erreur" }));
+exports.getAllPeinture = (req, res, next) => {
+    Peinture.find()
+        .then((peintures) => res.status(200).json(peintures))
+        .catch((err) => res.status(400).json({ err }));
+};
+exports.getOneSculpture = (req, res, next) => {
+    Sculpture.findOne({ _id: mongoose.Types.ObjectId(req.params.id) })
+        .then((sculpture) => {
+        res.status(200).json(sculpture);
+    })
+        .catch(() => res.status(404).json({ erreur: "Sculpture introuvable !" }));
+};
+exports.getOnePeinture = (req, res, next) => {
+    Peinture.findOne({ _id: mongoose.Types.ObjectId(req.params.id) })
+        .then((peinture) => {
+        res.status(200).json(peinture);
+    })
+        .catch(() => res.status(404).json({ erreur: "Peinture introuvable !" }));
 };

@@ -34,7 +34,7 @@ export default function Peinture() {
   }, [router.isReady]);
 
   const getPeintureInfos = () => {
-    fetch(`http://localhost:3000/api/peintures/${peintureId}`)
+    fetch(`http://localhost:8080/api/oeuvres/peintures/${peintureId}`)
       .then((res) => res.json())
       .then((data) => {
         setPeintureInfos(data);
