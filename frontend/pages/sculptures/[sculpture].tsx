@@ -11,11 +11,15 @@ import { MdAddCircleOutline } from "react-icons/md";
 import { BsTrash } from "react-icons/bs";
 
 type Sculpture = {
-  _id: string;
+  _id: Object;
   name: string;
   description: string;
   thumbnail: string;
-  photos: string[];
+  photos: Array<string>;
+  instagram: boolean;
+  like: number;
+  create_date: Date;
+  update_date: Date;
 };
 
 export default function Sculpture(props: { sculpture: Sculpture }) {
@@ -23,7 +27,7 @@ export default function Sculpture(props: { sculpture: Sculpture }) {
   const [zoomMode, setZoomMode] = useState(false);
   const [zoomedImage, setZoomedImage] = useState("");
 
-  const [adminMode, setAdminMode] = useState(true);
+  const [adminMode, setAdminMode] = useState(false);
   const [editName, setEditName] = useState(false);
   const [editThumb, setEditThumb] = useState(false);
   const [editDescription, setEditDescription] = useState(false);
@@ -47,44 +51,47 @@ export default function Sculpture(props: { sculpture: Sculpture }) {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        
+
         setSculptureInfos(data);
       })
       .catch((err) => console.log(err));
   };
 
-  const closeEditName = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    e.preventDefault();
-    setEditName(false);
-  };
+  // const closeEditName = (
+  //   e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  // ) => {
+  //   e.preventDefault();
+  //   setEditName(false);
+  // };
 
   return (
     <div className={styles.sculptureContainer}>
-      {
-        sculptureInfos && deleteMode &&
-      <div className={styles.deleteConfirmationContainer}>
-        <div className={styles.deleteConfirmationBlock}>
-          <div className={styles.deleteConfirmationTxt}>Confirmer la suppression de "{sculptureInfos.name}" ?</div>
-          <div className={styles.deleteConfirmationBtn}>
-            <button>Confirmer</button>
-            <button onClick={() => setDeleteMode(false)}>Annuler</button>
+      {sculptureInfos && deleteMode && (
+        <div className={styles.deleteConfirmationContainer}>
+          <div className={styles.deleteConfirmationBlock}>
+            <div className={styles.deleteConfirmationTxt}>
+              Confirmer la suppression de "{sculptureInfos.name}" ?
+            </div>
+            <div className={styles.deleteConfirmationBtn}>
+              <button>Confirmer</button>
+              <button onClick={() => setDeleteMode(false)}>Annuler</button>
+            </div>
           </div>
         </div>
-      </div>
-      }
+      )}
       <BackBtn typeOfArt="sculpture" />
 
       {sculptureInfos && (
         <div className={styles.sculpture}>
-          {
-            adminMode &&
-            <div onClick={() => setDeleteMode(true)} className={styles.deleteElement}>
+          {adminMode && (
+            <div
+              onClick={() => setDeleteMode(true)}
+              className={styles.deleteElement}
+            >
               <BsTrash className={styles.icon} />
               <div>Supprimer</div>
             </div>
-          }
+          )}
           <div className={styles.name}>
             <h1>{sculptureInfos.name}</h1>
             {adminMode && (
@@ -114,7 +121,10 @@ export default function Sculpture(props: { sculpture: Sculpture }) {
           <div className={styles.sculptureDetails}>
             <div className={styles.sculptureThumb}>
               <Image
-                src={`/assets/sculptures/${sculptureInfos.thumbnail}`}
+                loader={() =>
+                  `${process.env.NEXT_PUBLIC_IMAGES_SRC + sculptureInfos.thumbnail}`
+                }
+                src={`${process.env.NEXT_PUBLIC_IMAGES_SRC + sculptureInfos.thumbnail}`}
                 alt="sculpture"
                 width={400}
                 height={400}
@@ -193,7 +203,10 @@ export default function Sculpture(props: { sculpture: Sculpture }) {
           }
           {adminMode && (
             <div className={styles.addPhotoContainer}>
-              <div onClick={() => setAddPhoto(true)} className={styles.iconContainer}>
+              <div
+                onClick={() => setAddPhoto(true)}
+                className={styles.iconContainer}
+              >
                 <MdAddCircleOutline className={styles.icon} />
                 <div>Ajouter une photo</div>
               </div>
@@ -214,7 +227,7 @@ export default function Sculpture(props: { sculpture: Sculpture }) {
           )}
         </div>
       )}
-      
+
       {zoomMode && (
         <div className={styles.zoom}>
           <IoMdCloseCircle

@@ -40,7 +40,7 @@ export default function Peintures(props: PeinturesProps) {
               style={{ animationDelay: `${index * 100}ms` }}
               className={styles.block}
             >
-              <img src={`/assets/peintures/${element.thumbnail}`} alt="" />
+              <img src={process.env.NEXT_PUBLIC_IMAGES_SRC + element.thumbnail} alt={`Peinture ${element.name}`} />
             </Link>
           ))}
         </div>

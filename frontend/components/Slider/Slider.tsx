@@ -13,7 +13,7 @@ type SliderProps = {
 };
 
 export default function Slider(props: SliderProps) {
-  const [adminMode, setAdminMode] = useState(true)
+  const [adminMode, setAdminMode] = useState(false)
   const [slideAnim, setSlideAnim] = useState({
     index: 1,
   });
@@ -64,7 +64,10 @@ export default function Slider(props: SliderProps) {
             >
               <Image
                 onClick={() => zoomImage(photo)}
-                src={`/assets/sculptures/${photo}`}
+                loader={() =>
+                  `${process.env.NEXT_PUBLIC_IMAGES_SRC + photo}`
+                }
+                src={`${process.env.NEXT_PUBLIC_IMAGES_SRC + photo}`}
                 alt="Photo sculpture"
                 fill
               />

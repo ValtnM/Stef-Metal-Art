@@ -17,7 +17,8 @@
   }
 
   label,
-  h3 {
+  h3,
+  legend {
     font-size: 1.2em;
     margin: 0;
     font-weight: 400;
@@ -65,6 +66,46 @@
     display: flex;
     flex-direction: column;
   }
+
+  .instagramRadio {
+    display: flex;
+    align-items: center;
+    input {
+      cursor: pointer;
+      margin: 0 5px 0 15px;
+    }
+    label {
+      cursor: pointer;
+      font-size: 1em;
+    }
+  }
+}
+.notificationContainer {
+  width: 100%;
+  background: #f0ffd8;
+  border-radius: 5px;
+  text-align: center;
+  height: 0;
+  transition: all 200ms ease-in-out;
+  transform-origin: top ;
+  transform: scaleY(0);
+  overflow: hidden;
+  // opacity: 0;
+  
+  &.visible {
+    height: 50px;
+    transform: scaleY(1);
+    // padding: 10px;
+    // opacity: 1;
+  }
+
+  .notificationTxt {
+    // margin: auto;
+    color: white;
+    font-size: 1.1em;
+    line-height: 50px;
+  }
+  // text-align: ;
 }
 
 @keyframes adminBottomApparition {

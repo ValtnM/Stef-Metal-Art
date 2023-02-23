@@ -3,11 +3,11 @@ import Link from "next/link";
 import { v4 as uuidv4 } from "uuid";
 import styles from "../../styles/Sculptures.module.scss";
 import { GetStaticProps } from "next";
-import { useEffect, useState } from "react";
 import Sculpture from "./[sculpture]";
 
 type Sculpture = {
   _id: string;
+  type: string;
   name: string;
   description: string;
   thumbnail: string;
@@ -45,7 +45,7 @@ export default function Sculptures(props: SculpturesProps) {
             style={{ animationDelay: `${index * 100}ms` }}
             className={styles.block}
             >
-              <img src={`/assets/sculptures/${element.thumbnail}`} alt="" />
+              <img src={process.env.NEXT_PUBLIC_IMAGES_SRC + element.thumbnail} alt={`Sculpture ${element.name}`} />
             </Link>
           ))}
         </div>

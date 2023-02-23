@@ -1,29 +1,117 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose = require("mongoose");
-const Sculpture = require("../models/Sculpture.js");
-const Peinture = require("../models/Peinture.js");
-exports.getAllSculpture = (req, res, next) => {
-    Sculpture.find()
-        .then((sculptures) => res.status(200).json(sculptures))
+const fs = require("fs");
+const { Sculptures } = require("../models/Oeuvre.js");
+const { Peintures } = require("../models/Oeuvre.js");
+const formatType = (param) => {
+    let type = param.split("");
+    type.pop();
+    return type.join('');
+};
+exports.getOeuvreByType = (req, res) => {
+    const type = formatType(req.params.type);
+    Sculptures.find({ type: type })
+        .then((oeuvres) => res.status(200).json(oeuvres))
         .catch((err) => res.status(400).json({ err }));
 };
-exports.getAllPeinture = (req, res, next) => {
-    Peinture.find()
-        .then((peintures) => res.status(200).json(peintures))
-        .catch((err) => res.status(400).json({ err }));
-};
-exports.getOneSculpture = (req, res, next) => {
-    Sculpture.findOne({ _id: mongoose.Types.ObjectId(req.params.id) })
+exports.getSculptureById = (req, res) => {
+    Sculptures.findById(mongoose.Types.ObjectId(req.params.id))
         .then((sculpture) => {
         res.status(200).json(sculpture);
     })
         .catch(() => res.status(404).json({ erreur: "Sculpture introuvable !" }));
 };
-exports.getOnePeinture = (req, res, next) => {
-    Peinture.findOne({ _id: mongoose.Types.ObjectId(req.params.id) })
+exports.getPeintureById = (req, res) => {
+    Peintures.findById(mongoose.Types.ObjectId(req.params.id))
         .then((peinture) => {
         res.status(200).json(peinture);
     })
         .catch(() => res.status(404).json({ erreur: "Peinture introuvable !" }));
+};
+exports.addNewPost = (req, res) => {
+    const thumbnail = req.files.thumbnail;
+    const photosArray = req.files.photos;
+    const deleteThumbnail = () => {
+        if (thumbnail) {
+            fs.unlink(`dist/images/${thumbnail[0].filename}`, (err) => {
+                if (err) {
+                    console.log(err);
+                }
+                else {
+                    console.log("Thumbnail deleted !");
+                }
+            });
+        }
+    };
+    const deletePhotos = () => {
+        if (photosArray) {
+            for (let i = 0; i < photosArray.length; i++)
+                fs.unlink(`dist/images/${photosArray[i].filename}`, (err) => {
+                    if (err) {
+                        console.log(err);
+                    }
+                    else {
+                        console.log("Photo deleted !");
+                    }
+                });
+        }
+    };
+    if (!thumbnail) {
+        deletePhotos();
+        res.status(400).json({ erreur: "Aucune vignette n'a été selectionnée" });
+    }
+    else if (!photosArray) {
+        deleteThumbnail();
+        res.status(400).json({ erreur: "Aucune photo n'a été selectionnée" });
+    }
+    else if (!req.body.name) {
+        deleteThumbnail();
+        deletePhotos();
+        res.status(400).json({ erreur: "Aucun nom n'a été saisi" });
+    }
+    else if (!req.body.type) {
+        deleteThumbnail();
+        deletePhotos();
+        res.status(400).json({ erreur: "Aucun type n'a été indiqué" });
+    }
+    else {
+        const type = req.body.type;
+        let Model;
+        if (type === "sculpture") {
+            Model = () => {
+                return Sculptures;
+            };
+        }
+        else if (type === "peinture") {
+            Model = () => {
+                return Peintures;
+            };
+        }
+        let photoNamesArray = [];
+        for (let i = 0; i < photosArray.length; i++) {
+            photoNamesArray.push(photosArray[i].filename);
+        }
+        Model().create({
+            _id: mongoose.Types.ObjectId(),
+            type: type,
+            name: req.body.name,
+            description: req.body.description,
+            thumbnail: thumbnail[0].filename,
+            photos: photoNamesArray,
+            instagram: req.body.instagram,
+            like: 0,
+            create_date: Date.now(),
+            update_date: Date.now(),
+        }, (err) => {
+            if (err) {
+                deleteThumbnail();
+                deletePhotos();
+                res.status(400).json(err);
+            }
+            else {
+                res.status(200).json({ message: "L'œuvre a été ajoutée" });
+            }
+        });
+    }
 };

@@ -8,6 +8,8 @@ const peintureSchema = new mongoose.Schema({
     photo: {type: String, required: true},
     instagram: {type: Boolean, required: true},
     like: {type: Number, required: true},
+    create_date: {type: Date, required: true},
+    update_date: {type: Date, required: true},
 })
 
 module.exports = mongoose.model('peintures', peintureSchema)

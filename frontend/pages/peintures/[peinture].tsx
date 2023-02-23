@@ -7,16 +7,20 @@ import { FaEdit } from "react-icons/fa";
 import { BsTrash } from "react-icons/bs";
 
 type Peinture = {
-  id: number;
+  _id: Object;
   name: string;
   description: string;
-  thumb: string;
-  photo: string;
+  thumbnail: string;
+  photos: Array<string>;
+  instagram: boolean;
+  like: number;
+  create_date: Date;
+  update_date: Date;
 };
 
 export default function Peinture() {
   const [peintureInfos, setPeintureInfos] = useState<Peinture>();
-  const [adminMode, setAdminMode] = useState(true);
+  const [adminMode, setAdminMode] = useState(false);
   const [editName, setEditName] = useState(false);
   const [editThumb, setEditThumb] = useState(false);
   const [editDescription, setEditDescription] = useState(false);
@@ -95,9 +99,12 @@ export default function Peinture() {
               </div>
             </div>
           )}
+          {
+
+          peintureInfos.photos &&
           <div className={styles.peintureThumb}>
             <Image
-              src={`/assets/peintures/${peintureInfos.photo}`}
+              src={`/assets/peintures/${peintureInfos.photos[0]}`}
               alt="peinture"
               width={1000}
               height={400}
@@ -130,6 +137,7 @@ export default function Peinture() {
               </div>
             )}
           </div>
+      }
           <div className={styles.peintureDescription}>
               <p>{peintureInfos.description}</p>
               {adminMode && (
