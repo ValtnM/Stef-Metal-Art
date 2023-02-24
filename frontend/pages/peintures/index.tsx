@@ -50,9 +50,8 @@ export default function Peintures(props: PeinturesProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const data = await fetch("http://localhost:8080/api/oeuvres/peintures");
+  const data = await fetch("http://localhost:8080/api/oeuvres/peinture");
   const peinturesArray = await data.json();
-  // const peinturesArray = await peinturesObject.peintures;
 
   return {
     props: {

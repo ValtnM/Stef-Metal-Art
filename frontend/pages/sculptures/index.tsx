@@ -56,7 +56,7 @@ export default function Sculptures(props: SculpturesProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const data = await fetch("http://localhost:8080/api/oeuvres/sculptures");
+  const data = await fetch("http://localhost:8080/api/oeuvres/sculpture");
   const sculpturesArray = await data.json();
 
   return {

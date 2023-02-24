@@ -8,15 +8,17 @@ const { Peintures } = require("../models/Oeuvre.js");
 interface MulterRequest extends Request {
   files: any;
 }
-const formatType = (param) => {
-  let type = param.split("");
-  type.pop();
-  return type.join('');
+
+const selectModel = (type: string) => {
+  if(type === "sculpture") {
+    return Sculptures;
+  } else if (type === "peinture") {
+    return Peintures;
+  }
 }
 
 exports.getOeuvreByType = (req: Request, res: Response) => {
-  const type = formatType(req.params.type)  
-  Sculptures.find({ type: type })
+  selectModel(req.params.type).find({ type: req.params.type })
     .then((oeuvres) => res.status(200).json(oeuvres))
     .catch((err) => res.status(400).json({ err }));
 };
@@ -83,28 +85,16 @@ if (!thumbnail) {
     res.status(400).json({ erreur: "Aucun type n'a été indiqué" });
   } else {
 
-    const type = req.body.type
-    let Model: Function;
-  
-    if (type === "sculpture") {
-      Model = () => {
-        return Sculptures;
-      };
-    } else if (type === "peinture") {
-      Model = () => {
-        return Peintures;
-      };
-    }
-
+    
     let photoNamesArray: String[] = [];
     for (let i = 0; i < photosArray.length; i++) {
       photoNamesArray.push(photosArray[i].filename);
     }
 
-    Model().create(
+    selectModel(req.body.type).create(
       {
         _id: mongoose.Types.ObjectId(),
-        type: type,
+        type: req.body.type,
         name: req.body.name,
         description: req.body.description,
         thumbnail: thumbnail[0].filename,
