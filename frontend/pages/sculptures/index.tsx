@@ -4,6 +4,8 @@ import { v4 as uuidv4 } from "uuid";
 import styles from "../../styles/Sculptures.module.scss";
 import { GetStaticProps } from "next";
 import Sculpture from "./[sculpture]";
+import DeleteNotificationMsg from "../../components/DeleteNotificationMsg/DeleteNotificationMsg";
+import { useEffect, useState } from "react";
 
 type Sculpture = {
   _id: string;
@@ -21,7 +23,19 @@ type SculpturesProps = {
 }
 
 export default function Sculptures(props: SculpturesProps) {  
+  const [deleteNotificationMsg, setDeleteNotificationMsg] = useState<string>()
 
+  const getMsgFromLocaleStorage = () => {
+    const msg = window.localStorage.getItem('delete-notification');
+    if(msg) {
+      setDeleteNotificationMsg(msg)
+    }
+    window.localStorage.removeItem('delete-notification')
+  }
+
+  useEffect(() => {
+    getMsgFromLocaleStorage();
+  }, [])
 
   return (
     <>
@@ -36,12 +50,17 @@ export default function Sculptures(props: SculpturesProps) {
       <div className={styles.sculptures}>
         <h1>Sculptures</h1>
         {
+          deleteNotificationMsg &&
+          <DeleteNotificationMsg deleteNotificationMsg={deleteNotificationMsg} setDeleteNotificationMsg={setDeleteNotificationMsg} />
+
+        }
+        {
           props.sculpturesArray &&
         <div className={styles.grid}>
           {props.sculpturesArray.map((element, index) => (
             <Link
             href={`/sculptures/${element._id}`}
-            key={uuidv4()}
+            key={index}
             style={{ animationDelay: `${index * 100}ms` }}
             className={styles.block}
             >

@@ -9,4 +9,5 @@ router.get('/:type', oeuvreCtrl.getOeuvreByType);
 router.get('/sculptures/:id', oeuvreCtrl.getSculptureById);
 router.get('/peintures/:id', oeuvreCtrl.getPeintureById);
 router.post('/', multer.fields([{ name: "thumbnail", maxCount: 1 }, { name: "photos", maxCount: 10 }]), oeuvreCtrl.addNewPost);
+router.delete('/:type/:id', oeuvreCtrl.deleteOeuvreById);
 module.exports = router;

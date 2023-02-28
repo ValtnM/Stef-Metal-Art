@@ -1,5 +1,8 @@
 .peintures {
+  text-align: center;
   h1 {
+    display: inline-block;
+    margin: 20px 0;
     font-family: "Indie Flower", Arial, Helvetica, sans-serif;
     font-size: 4em;
     text-align: center;
@@ -10,7 +13,7 @@
 
 .grid {
   max-width: 1500px;
-  margin: 50px auto 30px auto;
+  margin: 20px auto 30px auto;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;

@@ -32,18 +32,20 @@
   }
 }
 .sculptures {
-  margin-top: 100px;
+  max-width: 1500px;
+  margin: 100px auto;
+  text-align: center;
   h1 {
+    display: inline-block;
     font-family: "Indie Flower", Arial, Helvetica, sans-serif;
     font-size: 4em;
-    text-align: center;
     text-transform: uppercase;
+    margin: 20px 0;
   }
 }
 
 .grid {
-  max-width: 1500px;
-  margin: 50px auto 30px auto;
+  margin: 20px auto 30px auto;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -52,7 +54,7 @@
     height: 400px;
     position: relative;
     margin: 10px;
-    animation: sculptureTopApparition 500ms ease-in-out backwards;
+    animation: sculptureTopApparition 500ms ease-in-out both;
 
     img {
       width: 100%;

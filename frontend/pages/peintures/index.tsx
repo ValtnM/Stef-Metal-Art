@@ -3,15 +3,18 @@ import Link from "next/link";
 import { v4 as uuidv4 } from "uuid";
 import styles from "../../styles/Peintures.module.scss";
 import { GetStaticProps } from "next";
+import { useState, useEffect } from "react";
+import DeleteNotificationMsg from "../../components/DeleteNotificationMsg/DeleteNotificationMsg";
 
 type Peinture = {
   _id: string;
+  type: string;
   name: string;
   description: string;
   thumbnail: string;
-  photo: string;
-  instagram: boolean,
-  like: number
+  photos: string[];
+  instagram: boolean;
+  like: number;
 };
 
 type PeinturesProps = {
@@ -19,6 +22,21 @@ type PeinturesProps = {
 }
 
 export default function Peintures(props: PeinturesProps) {  
+
+  const [deleteNotificationMsg, setDeleteNotificationMsg] = useState<string>()
+
+
+  const getMsgFromLocaleStorage = () => {
+    const msg = window.localStorage.getItem('delete-notification');
+    if(msg) {
+      setDeleteNotificationMsg(msg)
+    }
+    window.localStorage.removeItem('delete-notification')
+  }
+
+  useEffect(() => {
+    getMsgFromLocaleStorage();
+  }, [])
 
   return (
     <>
@@ -32,11 +50,16 @@ export default function Peintures(props: PeinturesProps) {
       </Head>
       <div className={styles.peintures}>
         <h1>Peintures</h1>
+        {
+          deleteNotificationMsg &&
+          <DeleteNotificationMsg deleteNotificationMsg={deleteNotificationMsg} setDeleteNotificationMsg={setDeleteNotificationMsg} />
+
+        }
         <div className={styles.grid}>
           {props.peinturesArray.map((element, index) => (
             <Link
             href={`/peintures/${element._id}`}
-              key={uuidv4()}
+              key={index}
               style={{ animationDelay: `${index * 100}ms` }}
               className={styles.block}
             >

@@ -27,7 +27,7 @@ export default function Sculpture(props: { sculpture: Sculpture }) {
   const [zoomMode, setZoomMode] = useState(false);
   const [zoomedImage, setZoomedImage] = useState("");
 
-  const [adminMode, setAdminMode] = useState(false);
+  const [adminMode, setAdminMode] = useState(true);
   const [editName, setEditName] = useState(false);
   const [editThumb, setEditThumb] = useState(false);
   const [editDescription, setEditDescription] = useState(false);
@@ -57,12 +57,26 @@ export default function Sculpture(props: { sculpture: Sculpture }) {
       .catch((err) => console.log(err));
   };
 
-  // const closeEditName = (
-  //   e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  // ) => {
-  //   e.preventDefault();
-  //   setEditName(false);
-  // };
+  const deleteSculpture = () => {
+    fetch(`http://localhost:8080/api/oeuvres/sculpture/${sculptureId}`, {
+      method: "DELETE",
+    })
+      .then(() => {
+        if (sculptureInfos) {
+          window.localStorage.setItem(
+            "delete-notification",
+            `"${sculptureInfos.name}" a bien été supprimé`
+          );
+        } else {
+          window.localStorage.setItem(
+            "delete-notification",
+            `La sculpture a bien été supprimée`
+          );
+        }
+        router.push("/sculptures");
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <div className={styles.sculptureContainer}>
@@ -73,7 +87,7 @@ export default function Sculpture(props: { sculpture: Sculpture }) {
               Confirmer la suppression de "{sculptureInfos.name}" ?
             </div>
             <div className={styles.deleteConfirmationBtn}>
-              <button>Confirmer</button>
+              <button onClick={() => deleteSculpture()}>Confirmer</button>
               <button onClick={() => setDeleteMode(false)}>Annuler</button>
             </div>
           </div>
@@ -122,9 +136,14 @@ export default function Sculpture(props: { sculpture: Sculpture }) {
             <div className={styles.sculptureThumb}>
               <Image
                 loader={() =>
-                  `${process.env.NEXT_PUBLIC_IMAGES_SRC + sculptureInfos.thumbnail}`
+                  `${
+                    process.env.NEXT_PUBLIC_IMAGES_SRC +
+                    sculptureInfos.thumbnail
+                  }`
                 }
-                src={`${process.env.NEXT_PUBLIC_IMAGES_SRC + sculptureInfos.thumbnail}`}
+                src={`${
+                  process.env.NEXT_PUBLIC_IMAGES_SRC + sculptureInfos.thumbnail
+                }`}
                 alt="sculpture"
                 width={400}
                 height={400}
@@ -193,14 +212,13 @@ export default function Sculpture(props: { sculpture: Sculpture }) {
             <div className={styles.editContainer}>
             </div>
           } */}
-          {
-            sculptureInfos.photos &&
+          {sculptureInfos.photos && (
             <Slider
-            setZoomedImage={setZoomedImage}
-            setZoomMode={setZoomMode}
-            dataSlider={sculptureInfos.photos}
+              setZoomedImage={setZoomedImage}
+              setZoomMode={setZoomMode}
+              dataSlider={sculptureInfos.photos}
             />
-          }
+          )}
           {adminMode && (
             <div className={styles.addPhotoContainer}>
               <div

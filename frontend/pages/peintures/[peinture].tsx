@@ -20,7 +20,7 @@ type Peinture = {
 
 export default function Peinture() {
   const [peintureInfos, setPeintureInfos] = useState<Peinture>();
-  const [adminMode, setAdminMode] = useState(false);
+  const [adminMode, setAdminMode] = useState(true);
   const [editName, setEditName] = useState(false);
   const [editThumb, setEditThumb] = useState(false);
   const [editDescription, setEditDescription] = useState(false);
@@ -30,7 +30,6 @@ export default function Peinture() {
   const peintureId = router.query.peinture;
 
   useEffect(() => {
-    console.log(peintureId);
 
     if (router.isReady) {
       getPeintureInfos();
@@ -41,7 +40,29 @@ export default function Peinture() {
     fetch(`http://localhost:8080/api/oeuvres/peintures/${peintureId}`)
       .then((res) => res.json())
       .then((data) => {
+       
         setPeintureInfos(data);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const deletePeinture = () => {
+    fetch(`http://localhost:8080/api/oeuvres/peinture/${peintureId}`, {
+      method: "DELETE",
+    })
+      .then(() => {
+        if (peintureInfos) {
+          window.localStorage.setItem(
+            "delete-notification",
+            `"${peintureInfos.name}" a bien été supprimé`
+          );
+        } else {
+          window.localStorage.setItem(
+            "delete-notification",
+            `La peinture a bien été supprimée`
+          );
+        }
+        router.push("/peintures");
       })
       .catch((err) => console.log(err));
   };
@@ -55,7 +76,7 @@ export default function Peinture() {
               Confirmer la suppression de "{peintureInfos.name}" ?
             </div>
             <div className={styles.deleteConfirmationBtn}>
-              <button>Confirmer</button>
+              <button onClick={() => deletePeinture()}>Confirmer</button>
               <button onClick={() => setDeleteMode(false)}>Annuler</button>
             </div>
           </div>
@@ -104,7 +125,10 @@ export default function Peinture() {
           peintureInfos.photos &&
           <div className={styles.peintureThumb}>
             <Image
-              src={`/assets/peintures/${peintureInfos.photos[0]}`}
+              loader={() =>
+                `${process.env.NEXT_PUBLIC_IMAGES_SRC + peintureInfos.photos[0]}`
+              }
+              src={`${process.env.NEXT_PUBLIC_IMAGES_SRC + peintureInfos.photos[0]}`}
               alt="peinture"
               width={1000}
               height={400}

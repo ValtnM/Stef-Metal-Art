@@ -1,0 +1,44 @@
+.DeleteNotificationMsg {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  max-width: 1000px;
+  height: 70px;
+  margin: auto;
+  text-align: center;
+  color: white;
+  background: linear-gradient(
+    36deg,
+    rgba(2, 92, 14, 1) 0%,
+    rgba(62, 159, 0, 1) 63%
+  );
+  transition: transform 500ms, height 300ms 400ms;
+  animation: componentAppearance 300ms ease-in-out 500ms both;
+  p {
+    font-size: 1.2em;
+  }
+  .closeBtn {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    font-size: 1.2em;
+    cursor: pointer;
+    &:hover {
+      color: rgb(209, 209, 209);
+    }
+  }
+  &.deleteInProgress {
+    transform: translateX(-100vw);
+    height: 0;
+  }
+}
+
+@keyframes componentAppearance {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
