@@ -16,7 +16,6 @@ export default function DeleteNotificationMsg(props: {deleteNotificationMsg: str
   return (
     <div className={deleteInProgress ? `${styles.DeleteNotificationMsg} ${styles.deleteInProgress}` : `${styles.DeleteNotificationMsg}`}>
       <p>{props.deleteNotificationMsg}</p>
-      {/* <AiOutlineClose onClick={() => props.setDeleteNotificationMsg("")} className={styles.closeBtn} /> */}
       <AiOutlineClose onClick={() => deleteComponent()} className={styles.closeBtn} />
     </div>
   )

@@ -17,14 +17,14 @@ type LinksProps = {
 
 export default function Liens(props: LinksProps) {
   return (
-    <div className={styles.liensContainer}>
+    <div className={styles.linksContainer}>
       <h2>Liens</h2>
-      <div className={styles.liens}>
+      <div className={styles.links}>
         {props.linksArray.map((element, index) => (
-          <a href={element.link} className={styles.lien} target="blank" style={{ animationDelay: `${index * 100}ms` }}>
+          <a href={element.link} className={styles.link} target="blank" style={{ animationDelay: `${index * 100}ms` }}>
             <h3>{element.name}</h3>
             <hr />
-            <div className={styles.lienImg}>
+            <div className={styles.linkImg}>
               <Image fill src={`/assets/liens/${element.image}`} alt="" />
             </div>
             <div className={styles.filter}></div>

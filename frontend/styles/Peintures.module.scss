@@ -1,4 +1,4 @@
-.peintures {
+.paintings {
   text-align: center;
   h1 {
     display: inline-block;
@@ -22,7 +22,7 @@
     height: 400px;
     position: relative;
     margin: 10px;
-    animation: peintureTopApparition 500ms ease-in-out backwards;
+    animation: paintingTopAppearance 500ms ease-in-out backwards;
 
     img {
       width: 100%;
@@ -31,7 +31,7 @@
   }
 }
 
-.peintureContainer {
+.paintingContainer {
   max-width: 1000px;
   min-height: 100vh;
   margin: 50px auto;
@@ -54,12 +54,12 @@
   }
 }
 
-.peinture {
+.painting {
   position: relative;
   padding: 10px;
   text-align: center;
   background: rgb(237, 237, 237);
-  animation: peintureBottomApparition 500ms ease-in-out backwards;
+  animation: paintingBottomAppearance 500ms ease-in-out backwards;
   .name {
     display: flex;
     align-items: center;
@@ -79,7 +79,7 @@
   }
 }
 
-.peintureThumb {
+.paintingThumb {
     width: 100%;
   position: relative;
   margin-right: 20px;
@@ -92,7 +92,7 @@
   }
 }
 
-.peintureDescription {
+.paintingDescription {
   position: relative;
   .iconContainer {
     position: absolute;
@@ -260,7 +260,7 @@
   }
 }
 
-@keyframes peintureTopApparition {
+@keyframes paintingTopAppearance {
   0% {
     transform: translateY(-50px);
     opacity: 0;
@@ -270,7 +270,7 @@
     opacity: 1;
   }
 }
-@keyframes peintureBottomApparition {
+@keyframes paintingBottomAppearance {
   0% {
     transform: translateY(50px);
     opacity: 0;

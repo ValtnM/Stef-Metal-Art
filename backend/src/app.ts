@@ -13,7 +13,7 @@ mongoose
   .catch(() => console.log("Échec de la connexion à MongoDB !"));
 
 
-const oeuvreRoutes = require("./routes/oeuvre.js");
+const workRoutes = require("./routes/work.js");
 
 // Middlewares permettant l'analyse du corps de la requête
 app.use(express.json());
@@ -34,7 +34,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/api/oeuvres", oeuvreRoutes);
+app.use("/api/works", workRoutes);
 
 // Gestion des requêtes vers la route '/images'
 app.use('/api/images', express.static(path.join(__dirname, 'images')));

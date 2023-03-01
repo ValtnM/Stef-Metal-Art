@@ -54,7 +54,7 @@
     height: 400px;
     position: relative;
     margin: 10px;
-    animation: sculptureTopApparition 500ms ease-in-out both;
+    animation: sculptureTopAppearance 500ms ease-in-out both;
 
     img {
       width: 100%;
@@ -91,7 +91,7 @@
   padding: 30px;
   background: rgb(237, 237, 237);
   text-align: center;
-  animation: sculptureBottomApparition 500ms ease-in-out backwards;
+  animation: sculptureBottomAppearance 500ms ease-in-out backwards;
   .name {
     display: flex;
     align-items: center;
@@ -339,7 +339,7 @@
   }
 }
 
-@keyframes sculptureTopApparition {
+@keyframes sculptureTopAppearance {
   0% {
     display: none;
     transform: translateY(-50px);
@@ -351,7 +351,7 @@
     opacity: 1;
   }
 }
-@keyframes sculptureBottomApparition {
+@keyframes sculptureBottomAppearance {
   0% {
     transform: translateY(50px);
     opacity: 0;
@@ -362,7 +362,7 @@
   }
 }
 
-@keyframes editNameApparition {
+@keyframes editNameAppearance {
   0% {
     transform: scaleY(0);
   }

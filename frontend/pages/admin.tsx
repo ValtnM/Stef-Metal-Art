@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import styles from '../styles/Admin.module.scss'
 import ConnectionForm from '../components/ConnectionForm/ConnectionForm'
-import NewPostForm from '../components/NewPostForm/NewPostForm'
+import NewPostForm from '../components/NewPostForm/NewWorkForm'
 
 export default function Admin() {
 

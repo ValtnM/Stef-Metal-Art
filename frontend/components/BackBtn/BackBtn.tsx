@@ -5,9 +5,9 @@ import { FaArrowAltCircleLeft } from "react-icons/fa";
 
 export default function BackBtn(props: { typeOfArt: String }) {
   return (
-    <Link href={props.typeOfArt === "peinture" ? "/peintures" : "/sculptures"} className={styles.backBtn}>
+    <Link href={props.typeOfArt === "painting" ? "/peintures" : "/sculptures"} className={styles.backBtn}>
       <FaArrowAltCircleLeft className={styles.icon} />
-      {props.typeOfArt === "peinture"
+      {props.typeOfArt === "painting"
         ? "Retourner aux peintures"
         : "Retourner aux sculptures"}
     </Link>

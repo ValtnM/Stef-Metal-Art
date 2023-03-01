@@ -1,4 +1,4 @@
-.liensContainer {
+.linksContainer {
     min-height: 80vh;
     max-width: 800px;
     margin: 100px auto;
@@ -9,14 +9,14 @@
         font-size: 3em;
     }
 
-    .liens {
+    .links {
         width: 100%;
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
     }
 
-    .lien {
+    .link {
         position: relative;
         width: 30%;
         display: flex;
@@ -27,7 +27,7 @@
         border: 3px lightgrey solid;
         transition: transform 200ms ease-in-out;
         cursor: pointer;
-        animation: linkTopApparition 500ms ease-in-out backwards;
+        animation: linkTopAppearance 500ms ease-in-out backwards;
 
          &:hover {
             transform: scale(1.05);
@@ -48,7 +48,7 @@
             margin: 20px auto;
         }
         
-        .lienImg {
+        .linkImg {
             position: relative;
             height: 150px;
 
@@ -71,7 +71,7 @@
     }
 }
 
-@keyframes linkTopApparition {
+@keyframes linkTopAppearance {
     0% {
         transform: translateY(-50px);
         opacity: 0;

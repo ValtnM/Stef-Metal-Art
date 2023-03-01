@@ -6,7 +6,7 @@ import BackBtn from "../../components/BackBtn/BackBtn";
 import { FaEdit } from "react-icons/fa";
 import { BsTrash } from "react-icons/bs";
 
-type Peinture = {
+type Painting = {
   _id: Object;
   name: string;
   description: string;
@@ -19,7 +19,7 @@ type Peinture = {
 };
 
 export default function Peinture() {
-  const [peintureInfos, setPeintureInfos] = useState<Peinture>();
+  const [paintingInfos, setPaintingInfos] = useState<Painting>();
   const [adminMode, setAdminMode] = useState(true);
   const [editName, setEditName] = useState(false);
   const [editThumb, setEditThumb] = useState(false);
@@ -27,34 +27,34 @@ export default function Peinture() {
   const [deleteMode, setDeleteMode] = useState(false);
 
   const router = useRouter();
-  const peintureId = router.query.peinture;
+  const paintingId = router.query.peinture;
 
   useEffect(() => {
 
     if (router.isReady) {
-      getPeintureInfos();
+      getPaintingInfos();
     }
   }, [router.isReady]);
 
-  const getPeintureInfos = () => {
-    fetch(`http://localhost:8080/api/oeuvres/peintures/${peintureId}`)
+  const getPaintingInfos = () => {
+    fetch(`http://localhost:8080/api/works/paintings/${paintingId}`)
       .then((res) => res.json())
       .then((data) => {
        
-        setPeintureInfos(data);
+        setPaintingInfos(data);
       })
       .catch((err) => console.log(err));
   };
 
-  const deletePeinture = () => {
-    fetch(`http://localhost:8080/api/oeuvres/peinture/${peintureId}`, {
+  const deletePainting = () => {
+    fetch(`http://localhost:8080/api/works/painting/${paintingId}`, {
       method: "DELETE",
     })
       .then(() => {
-        if (peintureInfos) {
+        if (paintingInfos) {
           window.localStorage.setItem(
             "delete-notification",
-            `"${peintureInfos.name}" a bien été supprimé`
+            `"${paintingInfos.name}" a bien été supprimé`
           );
         } else {
           window.localStorage.setItem(
@@ -68,23 +68,23 @@ export default function Peinture() {
   };
 
   return (
-    <div className={styles.peintureContainer}>
-      {peintureInfos && deleteMode && (
+    <div className={styles.paintingContainer}>
+      {paintingInfos && deleteMode && (
         <div className={styles.deleteConfirmationContainer}>
           <div className={styles.deleteConfirmationBlock}>
             <div className={styles.deleteConfirmationTxt}>
-              Confirmer la suppression de "{peintureInfos.name}" ?
+              Confirmer la suppression de "{paintingInfos.name}" ?
             </div>
             <div className={styles.deleteConfirmationBtn}>
-              <button onClick={() => deletePeinture()}>Confirmer</button>
+              <button onClick={() => deletePainting()}>Confirmer</button>
               <button onClick={() => setDeleteMode(false)}>Annuler</button>
             </div>
           </div>
         </div>
       )}
-      <BackBtn typeOfArt="peinture" />
-      {peintureInfos && (
-        <div className={styles.peinture}>
+      <BackBtn typeOfArt="painting" />
+      {paintingInfos && (
+        <div className={styles.painting}>
           {adminMode && (
             <div
               onClick={() => setDeleteMode(true)}
@@ -95,7 +95,7 @@ export default function Peinture() {
             </div>
           )}
           <div className={styles.name}>
-            <h1>{peintureInfos.name}</h1>
+            <h1>{paintingInfos.name}</h1>
             {adminMode && (
               <div className={styles.iconContainer}>
                 <FaEdit
@@ -113,7 +113,7 @@ export default function Peinture() {
                   : `${styles.editName} ${styles.editBlock}`
               }
             >
-              <input type="text" id="name" value={peintureInfos.name} />
+              <input type="text" id="name" value={paintingInfos.name} />
               <div className={styles.editNameBtn}>
                 <button>Modifier</button>
                 <button onClick={() => setEditName(false)}>Annuler</button>
@@ -122,13 +122,13 @@ export default function Peinture() {
           )}
           {
 
-          peintureInfos.photos &&
-          <div className={styles.peintureThumb}>
+          paintingInfos.photos &&
+          <div className={styles.paintingThumb}>
             <Image
               loader={() =>
-                `${process.env.NEXT_PUBLIC_IMAGES_SRC + peintureInfos.photos[0]}`
+                `${process.env.NEXT_PUBLIC_IMAGES_SRC + paintingInfos.photos[0]}`
               }
-              src={`${process.env.NEXT_PUBLIC_IMAGES_SRC + peintureInfos.photos[0]}`}
+              src={`${process.env.NEXT_PUBLIC_IMAGES_SRC + paintingInfos.photos[0]}`}
               alt="peinture"
               width={1000}
               height={400}
@@ -162,8 +162,8 @@ export default function Peinture() {
             )}
           </div>
       }
-          <div className={styles.peintureDescription}>
-              <p>{peintureInfos.description}</p>
+          <div className={styles.paintingDescription}>
+              <p>{paintingInfos.description}</p>
               {adminMode && (
                 <div>
                   <div

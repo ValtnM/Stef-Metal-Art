@@ -6,7 +6,7 @@ import { GetStaticProps } from "next";
 import { useState, useEffect } from "react";
 import DeleteNotificationMsg from "../../components/DeleteNotificationMsg/DeleteNotificationMsg";
 
-type Peinture = {
+type Painting = {
   _id: string;
   type: string;
   name: string;
@@ -17,11 +17,11 @@ type Peinture = {
   like: number;
 };
 
-type PeinturesProps = {
-  peinturesArray: Peinture[];
+type PaintingsProps = {
+  paintingsArray: Painting[];
 }
 
-export default function Peintures(props: PeinturesProps) {  
+export default function Peintures(props: PaintingsProps) {  
 
   const [deleteNotificationMsg, setDeleteNotificationMsg] = useState<string>()
 
@@ -48,7 +48,7 @@ export default function Peintures(props: PeinturesProps) {
           rel="stylesheet"
         />
       </Head>
-      <div className={styles.peintures}>
+      <div className={styles.paintings}>
         <h1>Peintures</h1>
         {
           deleteNotificationMsg &&
@@ -56,7 +56,7 @@ export default function Peintures(props: PeinturesProps) {
 
         }
         <div className={styles.grid}>
-          {props.peinturesArray.map((element, index) => (
+          {props.paintingsArray.map((element, index) => (
             <Link
             href={`/peintures/${element._id}`}
               key={index}
@@ -73,12 +73,12 @@ export default function Peintures(props: PeinturesProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const data = await fetch("http://localhost:8080/api/oeuvres/peinture");
-  const peinturesArray = await data.json();
+  const data = await fetch("http://localhost:8080/api/works/painting");
+  const paintingsArray = await data.json();
 
   return {
     props: {
-      peinturesArray,
+      paintingsArray,
     },
   };
 };

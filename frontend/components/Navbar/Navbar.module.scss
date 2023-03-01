@@ -1,6 +1,7 @@
 .navbar {
   position: relative;
-  max-width: 1200px;
+  max-width: 1000px;
+  max-height: 200px;
   margin: auto;
   text-align: center;
   display: flex;
@@ -12,18 +13,37 @@
   width: 25%;
   height: auto;
   padding: 50px;
+  .engrenagesImg {
+    width: 100%;
+    height: auto;
+  }
 }
 .logo {
-  width: 100%;
+  width: 50%;
   height: auto;
   margin: auto;
+  .logoImg {
+    width: 100%;
+  }
 }
-.contactLink {
+.link{
   width: 25%;
-  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  // margin-bottom: 30px;
   font-family: 'Indie Flower';
   font-size: 1.5em;
   font-weight: 600;
+  // .contactLink {
+  //   // width: 45%;
+  //   // &:first-child {
+  //   //   margin-right: 20px;
+  //   // }
+  // }
+  hr {
+    // height: 5px;
+    margin: 10px;
+  }
 }
 
 @media screen and (max-width: 900px) {

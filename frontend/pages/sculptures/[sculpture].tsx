@@ -4,7 +4,7 @@ import Image from "next/image";
 import styles from "../../styles/Sculptures.module.scss";
 import Slider from "../../components/Slider/Slider";
 import BackBtn from "../../components/BackBtn/BackBtn";
-import NewPostForm from "../../components/NewPostForm/NewPostForm";
+import NewPostForm from "../../components/NewPostForm/NewWorkForm";
 import { IoMdCloseCircle } from "react-icons/io";
 import { FaEdit } from "react-icons/fa";
 import { MdAddCircleOutline } from "react-icons/md";
@@ -47,7 +47,7 @@ export default function Sculpture(props: { sculpture: Sculpture }) {
   const getSculptureInfos = () => {
     console.log(sculptureId);
 
-    fetch(`http://localhost:8080/api/oeuvres/sculptures/${sculptureId}`)
+    fetch(`http://localhost:8080/api/works/sculptures/${sculptureId}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -58,7 +58,7 @@ export default function Sculpture(props: { sculpture: Sculpture }) {
   };
 
   const deleteSculpture = () => {
-    fetch(`http://localhost:8080/api/oeuvres/sculpture/${sculptureId}`, {
+    fetch(`http://localhost:8080/api/works/sculpture/${sculptureId}`, {
       method: "DELETE",
     })
       .then(() => {
