@@ -31,37 +31,7 @@
     }
   }
 }
-.sculptures {
-  max-width: 1500px;
-  margin: 100px auto;
-  text-align: center;
-  h1 {
-    display: inline-block;
-    font-family: "Indie Flower", Arial, Helvetica, sans-serif;
-    font-size: 4em;
-    text-transform: uppercase;
-    margin: 20px 0;
-  }
-}
 
-.grid {
-  margin: 20px auto 30px auto;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  .block {
-    width: 400px;
-    height: 400px;
-    position: relative;
-    margin: 10px;
-    animation: sculptureTopAppearance 500ms ease-in-out both;
-
-    img {
-      width: 100%;
-      height: auto;
-    }
-  }
-}
 
 .sculptureContainer {
   min-height: 100vh;
@@ -330,27 +300,6 @@
   }
 }
 
-@media screen and (max-width: 500px) {
-  .grid {
-    .block {
-      width: 300px;
-      height: 300px;
-    }
-  }
-}
-
-@keyframes sculptureTopAppearance {
-  0% {
-    display: none;
-    transform: translateY(-50px);
-    opacity: 0;
-  }
-  100% {
-    display: block;
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
 @keyframes sculptureBottomAppearance {
   0% {
     transform: translateY(50px);

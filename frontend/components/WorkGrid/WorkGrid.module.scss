@@ -1,0 +1,41 @@
+.works {
+    max-width: 1500px;
+  margin: 50px auto 200px;
+  text-align: center;
+    h1 {
+        display: inline-block;
+        margin: 20px 0;
+        font-family: "Indie Flower", Arial, Helvetica, sans-serif;
+        font-size: 4em;
+        text-align: center;
+        text-transform: uppercase;
+      }
+
+}
+
+.worksGrid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.workElement {
+    width: 300px;
+    height: 300px;
+    margin: 10px;
+    animation: worksTopAppearance 500ms ease-in-out both;
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+@keyframes worksTopAppearance {
+    0% {
+      transform: translateY(-50px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }

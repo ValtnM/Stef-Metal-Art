@@ -1,13 +1,9 @@
 import Head from "next/head";
-import Link from "next/link";
-import { v4 as uuidv4 } from "uuid";
 import styles from "../../styles/Sculptures.module.scss";
 import { GetStaticProps } from "next";
-import Sculpture from "./[sculpture]";
-import DeleteNotificationMsg from "../../components/DeleteNotificationMsg/DeleteNotificationMsg";
-import { useEffect, useState } from "react";
+import WorkGrid from "../../components/WorkGrid/WorkGrid";
 
-type Sculpture = {
+type Work = {
   _id: string;
   type: string;
   name: string;
@@ -18,25 +14,11 @@ type Sculpture = {
   like: number;
 };
 
-type SculpturesProps = {
-  sculpturesArray: Sculpture[];
-}
+type WorksProps = {
+  sculpturesArray: Work[];
+};
 
-export default function Sculptures(props: SculpturesProps) {  
-  const [deleteNotificationMsg, setDeleteNotificationMsg] = useState<string>()
-
-  const getMsgFromLocaleStorage = () => {
-    const msg = window.localStorage.getItem('delete-notification');
-    if(msg) {
-      setDeleteNotificationMsg(msg)
-    }
-    window.localStorage.removeItem('delete-notification')
-  }
-
-  useEffect(() => {
-    getMsgFromLocaleStorage();
-  }, [])
-
+export default function Sculptures(props: WorksProps) {
   return (
     <>
       <Head>
@@ -48,35 +30,17 @@ export default function Sculptures(props: SculpturesProps) {
         />
       </Head>
       <div className={styles.sculptures}>
-        <h1>Sculptures</h1>
-        {
-          deleteNotificationMsg &&
-          <DeleteNotificationMsg deleteNotificationMsg={deleteNotificationMsg} setDeleteNotificationMsg={setDeleteNotificationMsg} />
-
-        }
-        {
-          props.sculpturesArray &&
-        <div className={styles.grid}>
-          {props.sculpturesArray.map((element, index) => (
-            <Link
-            href={`/sculptures/${element._id}`}
-            key={index}
-            style={{ animationDelay: `${index * 100}ms` }}
-            className={styles.block}
-            >
-              <img src={process.env.NEXT_PUBLIC_IMAGES_SRC + element.thumbnail} alt={`Sculpture ${element.name}`} />
-            </Link>
-          ))}
-        </div>
-        }
+        <WorkGrid worksArray={props.sculpturesArray} title="Sculptures" />
       </div>
     </>
   );
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const data = await fetch("http://localhost:8080/api/works/sculpture");
-  const sculpturesArray = await data.json();
+  const sculptureData = await fetch(
+    "http://localhost:8080/api/works/sculpture"
+  );
+  const sculpturesArray = await sculptureData.json();
 
   return {
     props: {
