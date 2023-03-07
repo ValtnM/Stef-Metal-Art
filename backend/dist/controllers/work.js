@@ -20,8 +20,10 @@ const getThumbnailName = (thumbnailFile) => {
 // Récupération d'un tableau avec le nom des photos
 const getPhotosNamesArray = (photosFilesArray) => {
     let photosNamesArray = [];
-    for (let i = 0; i < photosFilesArray.length; i++) {
-        photosNamesArray.push(photosFilesArray[i].filename);
+    if (photosFilesArray) {
+        for (let i = 0; i < photosFilesArray.length; i++) {
+            photosNamesArray.push(photosFilesArray[i].filename);
+        }
     }
     return photosNamesArray;
 };
@@ -61,10 +63,8 @@ exports.getWorkByType = (req, res) => {
             res.status(404).json({ err });
         }
         else {
-            console.log(works);
             res.status(200).json(works);
         }
-        ;
     });
 };
 // Récupération d'une sculpture par ID
@@ -76,7 +76,6 @@ exports.getSculptureById = (req, res) => {
         else {
             res.status(200).json(sculpture);
         }
-        ;
     });
 };
 // Récupération d'une peinture par ID
@@ -147,7 +146,7 @@ exports.deleteWorkById = (req, res) => {
         else {
             const thumbnail = work.thumbnail;
             const photosArray = work.photos;
-            selectModel(type).deleteOne({ _id: workId }, err => {
+            selectModel(type).deleteOne({ _id: workId }, (err) => {
                 if (err) {
                     res.status(400).json({ erreur: "La suppression a échouée !" });
                 }
@@ -161,4 +160,71 @@ exports.deleteWorkById = (req, res) => {
             });
         }
     });
+};
+// Modification d'une sculpture
+exports.updateWorkById = (req, res) => {
+    const workId = mongoose.Types.ObjectId(req.params.id);
+    // console.log(req.body);
+    const typeOfWork = req.body.typeOfWork;
+    if (typeOfWork) {
+        console.log(selectModel(typeOfWork));
+        selectModel(typeOfWork).findById(workId, (err, work) => {
+            console.log('ola');
+            if (err) {
+                res.status(400).json({ erreur: "Sculpture introuvable" });
+            }
+            else {
+                console.log("HELLO");
+                if (req.body.typeOfData === "thumbnail") {
+                    const oldThumbnailFilename = work.thumbnail;
+                    selectModel(typeOfWork).updateOne({ _id: workId }, { thumbnail: getThumbnailName(req.files.thumbnail) }, (err) => {
+                        if (err) {
+                            res.status(400).json({ erreur: "La vignette n'as pas pu être modifiée" });
+                        }
+                        else {
+                            deleteThumbnail(oldThumbnailFilename);
+                            res.status(200).json({ message: "La vignette a bien été modifiée" });
+                        }
+                    });
+                }
+                else if (req.body.typeOfData === "name" || req.body.typeOfData === "description") {
+                    console.log("NAME");
+                    selectModel(typeOfWork).updateOne({ _id: workId }, { name: req.body.name, description: req.body.description }, (err) => {
+                        if (err) {
+                            res.status(400).json({ erreur: "La modification a échouée" });
+                        }
+                        else {
+                            res.status(200).json({ message: "L'œuvre a bien été modifiée" });
+                        }
+                    });
+                }
+                else if (req.body.typeOfData === "photos") {
+                    const oldPhotos = work.photos;
+                    const newPhotos = getPhotosNamesArray(req.files.photos);
+                    if (typeOfWork === "sculpture") {
+                        let newArrayOfPhotos = oldPhotos.concat(newPhotos);
+                        selectModel(typeOfWork).updateOne({ _id: workId }, { photos: newArrayOfPhotos }, (err) => {
+                            if (err) {
+                                res.status(400).json({ erreur: "L'ajoût de photos a échoué" });
+                            }
+                            else {
+                                res.status(200).json({ message: "La/les photo(s) a/ont bien été ajoutée(s)" });
+                            }
+                        });
+                    }
+                    else if (typeOfWork === "painting") {
+                        deletePhotos(oldPhotos);
+                        selectModel(typeOfWork).updateOne({ _id: workId }, { photos: newPhotos }, (err) => {
+                            if (err) {
+                                res.status(400).json({ erreur: "L'ajoût de photos a échoué" });
+                            }
+                            else {
+                                res.status(200).json({ message: "La/les photo(s) a/ont bien été ajoutée(s)" });
+                            }
+                        });
+                    }
+                }
+            }
+        });
+    }
 };

@@ -45,6 +45,8 @@ export default function Slider(props: SliderProps) {
   };
 
   const zoomImage = (image: string) => {
+    console.log(image);
+    
     props.setZoomMode(true);
     props.setZoomedImage(image)
   }

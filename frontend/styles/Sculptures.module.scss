@@ -25,6 +25,7 @@
     font-size: 3em;
     color: white;
     cursor: pointer;
+    z-index: 101;
 
     &:hover {
       color: lightgrey;
@@ -77,7 +78,7 @@
 
 .sculptureDetails {
   display: flex;
-  margin-top: 20px;
+  // margin-top: 20px;
   p {
     font-size: 1.2em;
     text-align: justify;
@@ -97,6 +98,7 @@
 
 .sculptureDescription {
   position: relative;
+  width: 100%;
   .iconContainer {
     position: absolute;
     top: -15px;
