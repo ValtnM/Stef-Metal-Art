@@ -1,41 +1,92 @@
 .works {
-    max-width: 1500px;
+  max-width: 1500px;
   margin: 50px auto 200px;
   text-align: center;
-    h1 {
-        display: inline-block;
-        margin: 20px 0;
-        font-family: "Indie Flower", Arial, Helvetica, sans-serif;
-        font-size: 4em;
-        text-align: center;
-        text-transform: uppercase;
-      }
-
+  h1 {
+    display: inline-block;
+    margin: 20px 0;
+    font-family: "Indie Flower", Arial, Helvetica, sans-serif;
+    font-size: 4em;
+    text-align: center;
+    text-transform: uppercase;
+  }
 }
 
 .worksGrid {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.workContainer {
+  position: relative;
+  margin: 10px;
 }
 .workElement {
-    width: 300px;
-    height: 300px;
-    margin: 10px;
-    animation: worksTopAppearance 500ms ease-in-out both;
-    img {
-        width: 100%;
-        height: auto;
+  display: block;
+  // position: relative;
+  width: 300px;
+  height: 300px;
+  animation: worksTopAppearance 500ms ease-in-out both;
+  img {
+    width: 100%;
+    height: auto;
+  }
+  
+}
+.editBlock {
+  .iconContainer {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    background: rgb(69, 69, 255);
+    padding: 5px;
+    margin-left: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    &:hover {
+      background: rgba(115, 78, 97, 1);
     }
+    .icon {
+      width: 100%;
+      height: 100%;
+      color: white;
+    }
+  }
+  .editFormContainer {
+    height: 0px;
+    overflow: hidden;
+    max-width: 90%;
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: all 0.3s;
+    &.active {
+      height: 100px;
+    }
+  }
+  .editForm {
+    background: rgba(255,255,255,0.7);
+    padding: 10px 20px;
+  }
+  .editBtn {
+    margin-top: 5px;
+    button {
+      margin: 5px;
+    }
+  }
 }
 
 @keyframes worksTopAppearance {
-    0% {
-      transform: translateY(-50px);
-      opacity: 0;
-    }
-    100% {
-      transform: translateY(0);
-      opacity: 1;
-    }
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
   }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

@@ -5,18 +5,22 @@ import { v4 as uuidv4 } from "uuid";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
 import { FaArrowAltCircleRight } from "react-icons/fa";
 import { BsTrash } from "react-icons/bs";
+import { FaEdit } from "react-icons/fa";
 
 type SliderProps = {
+  handleEditForms: Function;
   setZoomedImage: React.Dispatch<React.SetStateAction<string>>;
   setZoomMode: React.Dispatch<React.SetStateAction<boolean>>;
   dataSlider: string[];
 };
 
 export default function Slider(props: SliderProps) {
-  const [adminMode, setAdminMode] = useState(false)
+  const [adminMode, setAdminMode] = useState(true)
   const [slideAnim, setSlideAnim] = useState({
     index: 1,
   });
+
+  const [addPhoto, setAddPhoto] = useState(true)
 
 
   // Faire défilé les photos vers la gauche
@@ -44,7 +48,7 @@ export default function Slider(props: SliderProps) {
     setSlideAnim({ index: index });
   };
 
-  const zoomImage = (image: string) => {
+  const zoomPhoto = (image: string) => {
     console.log(image);
     
     props.setZoomMode(true);
@@ -65,7 +69,7 @@ export default function Slider(props: SliderProps) {
               }
             >
               <Image
-                onClick={() => zoomImage(photo)}
+                onClick={() => zoomPhoto(photo)}
                 loader={() =>
                   `${process.env.NEXT_PUBLIC_IMAGES_SRC + photo}`
                 }
@@ -75,9 +79,15 @@ export default function Slider(props: SliderProps) {
               />
               {
                 adminMode &&
-                <div className={styles.iconContainer}>
+                <div className={styles.iconsContainer}>
+                  <div onClick={() => props.handleEditForms('photos')} className={styles.iconBlock}>
+                    
+                  <FaEdit className={styles.icon} />
+                  </div>
+                  <div className={styles.iconBlock}>
+                  <BsTrash className={styles.icon} />
 
-              <BsTrash className={styles.icon} />
+                  </div>
               </div>
               }
             </div>
@@ -109,6 +119,7 @@ export default function Slider(props: SliderProps) {
           );
         })}
       </div>
+     
     </div>
   );
 }

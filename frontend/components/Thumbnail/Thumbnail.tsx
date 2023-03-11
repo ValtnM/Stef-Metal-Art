@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React, { useEffect } from "react";
-import styles from "./Thumb.module.scss";
+import styles from "./Thumbnail.module.scss";
 import { v4 as uuidv4 } from "uuid";
 
 type Sculpture = {
@@ -17,7 +17,7 @@ interface IndexSculptures {
   // [index: number]: Sculpture[];
   // [index: number]: Sculpture[];
   // [index: number]: Sculpture[];
-//   [index: number]: Sculpture[];
+  //   [index: number]: Sculpture[];
 }
 
 // type ThumbProps = {
@@ -32,9 +32,9 @@ interface IndexSculptures {
 //     num: number;
 // }
 
-export default function Thumb(props: {
-//   num: number;
-//   randomNumber: number;
+export default function Thumbnail(props: {
+  //   num: number;
+  //   randomNumber: number;
   sculptures: Sculpture[];
 }) {
   useEffect(() => {
@@ -43,21 +43,19 @@ export default function Thumb(props: {
 
     // }
   }, []);
-  return (    
+  return (
     <div
       // style={{ animationDelay: `${props.num * 100}ms` }}
       className={styles.block}
     >
       {props.sculptures.map((element, index) => (
-        <div
-        //   href={`/sculptures/${element.id}`}
-        >
+        <div>
           <Link key={uuidv4()} href={`/sculptures/${element.id}`}>
+            <div >
             <img src={`/assets/sculptures/${element.thumb}`} alt="Sculpture" />
+
+            </div>
           </Link>
-          {/* <Link href={`/sculptures/${element.id}`}>
-            <img src={`/assets/sculptures/${element.thumb}`} alt="Sculpture" />
-          </Link> */}
         </div>
       ))}
     </div>

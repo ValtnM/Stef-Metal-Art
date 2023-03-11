@@ -59,7 +59,6 @@ const deletePhotos = (photosArray) => {
 exports.getWorkByType = (req, res) => {
     selectModel(req.params.type).find({ type: req.params.type }, (err, works) => {
         if (err) {
-            // console.log(err);
             res.status(404).json({ err });
         }
         else {
@@ -151,8 +150,6 @@ exports.deleteWorkById = (req, res) => {
                     res.status(400).json({ erreur: "La suppression a échouée !" });
                 }
                 else {
-                    console.log(thumbnail);
-                    console.log(photosArray);
                     deleteThumbnail(thumbnail);
                     deletePhotos(photosArray);
                     res.status(200).json({ message: `${work.name} a bien été supprimé !` });
@@ -164,17 +161,13 @@ exports.deleteWorkById = (req, res) => {
 // Modification d'une sculpture
 exports.updateWorkById = (req, res) => {
     const workId = mongoose.Types.ObjectId(req.params.id);
-    // console.log(req.body);
     const typeOfWork = req.body.typeOfWork;
     if (typeOfWork) {
-        console.log(selectModel(typeOfWork));
         selectModel(typeOfWork).findById(workId, (err, work) => {
-            console.log('ola');
             if (err) {
                 res.status(400).json({ erreur: "Sculpture introuvable" });
             }
             else {
-                console.log("HELLO");
                 if (req.body.typeOfData === "thumbnail") {
                     const oldThumbnailFilename = work.thumbnail;
                     selectModel(typeOfWork).updateOne({ _id: workId }, { thumbnail: getThumbnailName(req.files.thumbnail) }, (err) => {
@@ -188,7 +181,9 @@ exports.updateWorkById = (req, res) => {
                     });
                 }
                 else if (req.body.typeOfData === "name" || req.body.typeOfData === "description") {
-                    console.log("NAME");
+                    console.log(typeOfWork);
+                    console.log(workId);
+                    console.log(req.body.name);
                     selectModel(typeOfWork).updateOne({ _id: workId }, { name: req.body.name, description: req.body.description }, (err) => {
                         if (err) {
                             res.status(400).json({ erreur: "La modification a échouée" });
