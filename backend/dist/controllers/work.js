@@ -66,27 +66,19 @@ exports.getWorkByType = (req, res) => {
         }
     });
 };
-// Récupération d'une sculpture par ID
-exports.getSculptureById = (req, res) => {
-    Sculptures.findById(mongoose.Types.ObjectId(req.params.id), (err, sculpture) => {
-        if (err) {
-            res.status(404).json({ erreur: "Sculpture introuvable !" });
-        }
-        else {
-            res.status(200).json(sculpture);
-        }
-    });
-};
-// Récupération d'une peinture par ID
-exports.getPaintingById = (req, res) => {
-    Paintings.findById(mongoose.Types.ObjectId(req.params.id), (err, painting) => {
-        if (err) {
-            res.status(404).json({ erreur: "Peinture introuvable !" });
-        }
-        else {
-            res.status(200).json(painting);
-        }
-    });
+// Récupération d'une œuvre par ID
+exports.getWorkById = (req, res) => {
+    const typeOfWork = req.params.type;
+    if (typeOfWork) {
+        selectModel(typeOfWork).findById(mongoose.Types.ObjectId(req.params.id), (err, work) => {
+            if (err) {
+                res.status(404).json({ erreur: "Œuvre introuvable !" });
+            }
+            else {
+                res.status(200).json(work);
+            }
+        });
+    }
 };
 // Ajoût d'une nouvelle œuvre
 exports.addNewWork = (req, res) => {
@@ -238,7 +230,7 @@ exports.deletePhotoByName = (req, res) => {
             res.status(400).json(err);
         }
         else {
-            selectModel(typeOfWork).updateOne({ _id: workId }, { photos: deletePhoto(work.photos, photoName) }, err => {
+            selectModel(typeOfWork).updateOne({ _id: workId }, { photos: deletePhoto(work.photos, photoName) }, (err) => {
                 if (err) {
                     res.status(400).json({ erreur: "Échec lors de la suppression de la photo" });
                 }

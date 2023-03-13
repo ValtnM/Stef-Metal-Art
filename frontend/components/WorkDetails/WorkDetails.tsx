@@ -78,7 +78,7 @@ export default function WorkDetails({ typeOfWork }: WorkDetailsProps) {
   const getWorkInfos = () => {
     console.log(typeOfWork);
 
-    fetch(`http://localhost:8080/api/works/${typeOfWork}s/${workId}`)
+    fetch(`http://localhost:8080/api/works/${typeOfWork}/${workId}`)
       .then((res) => res.json())
       .then((data) => {
         setWorkInfos(data);
