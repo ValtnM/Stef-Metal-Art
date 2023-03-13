@@ -11,4 +11,5 @@ router.get('/paintings/:id', workCtrl.getPaintingById);
 router.post('/', multer.fields([{ name: "thumbnail", maxCount: 1 }, { name: "photos", maxCount: 10 }]), workCtrl.addNewWork);
 router.delete('/:type/:id', workCtrl.deleteWorkById);
 router.put('/:id', multer.fields([{ name: "thumbnail", maxCount: 1 }, { name: "photos", maxCount: 10 }]), workCtrl.updateWorkById);
+router.put('/:id/:photoName', workCtrl.deletePhotoByName);
 module.exports = router;

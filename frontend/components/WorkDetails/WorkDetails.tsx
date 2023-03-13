@@ -258,6 +258,29 @@ export default function WorkDetails({ typeOfWork }: WorkDetailsProps) {
     }
   };
 
+  const deletePhoto = (photoName: string) => {
+    if (photoName && workId) {
+      fetch(`http://localhost:8080/api/works/${workId}/${photoName}`, {
+        method: "PUT",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ typeOfWork: typeOfWork }),
+      })
+        .then((res) => {
+          console.log(res);
+          getWorkInfos();
+        })
+        .catch((err) => console.log(err));
+      // let newPhotosArray = workInfos.photos;
+      // const index = workInfos.photos.indexOf(photoName);
+      // newPhotosArray.splice(index, 1)
+      // modifyWorkInfo('photos', newPhotoArray);
+      // updateWork('photos');
+    }
+  };
+
   return (
     <div className={styles.workContainer}>
       {workInfos && deleteMode && (
@@ -333,7 +356,7 @@ export default function WorkDetails({ typeOfWork }: WorkDetailsProps) {
 
                   <div className={editPhoto ? `${styles.editPhoto} ${styles.editContainer} ${styles.visibleForm}` : `${styles.editPhoto} ${styles.editContainer}`}>
                     <div className={styles.editBlock}>
-                      <h2>Changer de photo</h2>
+                      {typeOfWork === "sculpture" ? <h2>Ajouter une photo</h2> : <h2>Changer de photo</h2>}
                       <input onChange={(e) => handleNewPhoto(e.target)} type="file" ref={photosInputRef} />
                       <div>
                         <button onClick={() => updateWork("photos")}>Modifier</button>
@@ -348,11 +371,11 @@ export default function WorkDetails({ typeOfWork }: WorkDetailsProps) {
 
           {workInfos.photos && workInfos.photos.length > 1 && (
             <div className={styles.sliderBlock}>
-              <Slider handleEditForms={handleEditForms} setZoomedImage={setZoomedImage} setZoomMode={setZoomMode} dataSlider={workInfos.photos} />
+              <Slider deletePhoto={deletePhoto} handleEditForms={handleEditForms} setZoomedImage={setZoomedImage} setZoomMode={setZoomMode} dataSlider={workInfos.photos} />
               {adminMode && (
                 <div className={addPhoto ? `${styles.editPhoto} ${styles.editContainer} ${styles.visibleForm}` : `${styles.editPhoto} ${styles.editContainer}`}>
                   <div className={styles.editBlock}>
-                    <h2>Ajouter une photo</h2>
+                    {typeOfWork === "sculpture" ? <h2>Ajouter une photo</h2> : <h2>Changer de photo</h2>}
                     <input onChange={(e) => handleNewPhoto(e.target)} type="file" ref={photosInputRef} />
                     <div>
                       <button onClick={() => updateWork("photos")}>Ajouter</button>

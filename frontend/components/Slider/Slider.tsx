@@ -8,6 +8,7 @@ import { BsTrash } from "react-icons/bs";
 import { FaEdit } from "react-icons/fa";
 
 type SliderProps = {
+  deletePhoto: Function;
   handleEditForms: Function;
   setZoomedImage: React.Dispatch<React.SetStateAction<string>>;
   setZoomMode: React.Dispatch<React.SetStateAction<boolean>>;
@@ -34,8 +35,6 @@ export default function Slider(props: SliderProps) {
 
   // Faire défilé les photos vers la droite
   const prevSlide = () => {
-    console.log("OK");
-
     if (slideAnim.index !== 1) {
       setSlideAnim({ index: slideAnim.index - 1 });
     } else if (slideAnim.index === 1) {
@@ -49,10 +48,30 @@ export default function Slider(props: SliderProps) {
   };
 
   const zoomPhoto = (image: string) => {
-    console.log(image);
-    
     props.setZoomMode(true);
     props.setZoomedImage(image)
+  }
+
+  const handleDeleteBtn = (photoName: string) => {
+    props.deletePhoto(photoName)
+    if(checkPhotosArray(props.dataSlider, photoName)) {
+      if(slideAnim.index !== 1) {
+        prevSlide();
+      } else {
+        nextSlide();
+      }
+    }
+  }
+
+  const checkPhotosArray = (photosArray: string[], deletedPhoto: string) => {
+    for(let i = 0; i < photosArray.length; i++) {
+      if(photosArray[i] === deletedPhoto) {
+        console.log("The photo was not deleted");
+        return false;        
+      } else {
+        return true;
+      }
+    }
   }
 
   return (
@@ -85,7 +104,7 @@ export default function Slider(props: SliderProps) {
                   <FaEdit className={styles.icon} />
                   </div>
                   <div className={styles.iconBlock}>
-                  <BsTrash className={styles.icon} />
+                  <BsTrash onClick={() => handleDeleteBtn(photo)} className={styles.icon} />
 
                   </div>
               </div>

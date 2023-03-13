@@ -165,7 +165,7 @@ exports.updateWorkById = (req, res) => {
     if (typeOfWork) {
         selectModel(typeOfWork).findById(workId, (err, work) => {
             if (err) {
-                res.status(400).json({ erreur: "Sculpture introuvable" });
+                res.status(400).json({ erreur: "Œuvre introuvable" });
             }
             else {
                 if (req.body.typeOfData === "thumbnail") {
@@ -222,4 +222,38 @@ exports.updateWorkById = (req, res) => {
             }
         });
     }
+};
+exports.deletePhotoByName = (req, res) => {
+    const workId = mongoose.Types.ObjectId(req.params.id);
+    const photoName = req.params.photoName;
+    const typeOfWork = req.body.typeOfWork;
+    const deletePhoto = (oldPhotosArray, photoName) => {
+        const index = oldPhotosArray.indexOf(photoName);
+        let newPhotosArray = oldPhotosArray;
+        newPhotosArray.splice(index, 1);
+        return newPhotosArray;
+    };
+    selectModel(typeOfWork).findById(workId, (err, work) => {
+        if (err) {
+            res.status(400).json(err);
+        }
+        else {
+            selectModel(typeOfWork).updateOne({ _id: workId }, { photos: deletePhoto(work.photos, photoName) }, err => {
+                if (err) {
+                    res.status(400).json({ erreur: "Échec lors de la suppression de la photo" });
+                }
+                else {
+                    fs.unlink(`dist/images/${photoName}`, (err) => {
+                        if (err) {
+                            console.log(err);
+                        }
+                        else {
+                            console.log("Photo deleted !");
+                        }
+                    });
+                    res.status(200).json({ message: "La photo a bien été supprimée" });
+                }
+            });
+        }
+    });
 };
