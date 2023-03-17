@@ -1,6 +1,8 @@
 import SculptureGrid from "../components/SculptureGrid/SculptureGrid";
+import HomeGrid from "../components/HomeGrid/HomeGrid";
 import Bio from "../components/Bio/Bio";
 import { GetStaticProps } from "next";
+import {useState, useEffect} from 'react'
 
 type Sculpture = {
   id: number;
@@ -14,11 +16,29 @@ type IndexProps = {
   sculpturesArray: Sculpture[];
 };
 
+type Work = {
+  _id: Object;
+  name: string;
+  description: string;
+  thumbnail: string;
+  photos: Array<string>;
+  instagram: boolean;
+  like: number;
+  create_date: Date;
+  update_date: Date;
+};
+
 export default function Home(props: IndexProps) {
+
+  
+
   return (
     <div>
-      <SculptureGrid sculptures={props.sculpturesArray} />
-      <Bio />
+      {/* <SculptureGrid sculptures={props.sculpturesArray} /> */}
+      
+        <HomeGrid />
+      {/* <SculptureGrid sculptures={props.sculpturesArray} /> */}
+      {/* <Bio /> */}
     </div>
   );
 }

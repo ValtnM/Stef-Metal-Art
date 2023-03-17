@@ -15,16 +15,7 @@ type SculptureGridProps = {
 };
 
 export default function SculptureGrid(props: SculptureGridProps) {
-  const [sculpturesArray, setSculpturesArray] = useState([
-    [props.sculptures[0]],
-    [props.sculptures[1]],
-    [props.sculptures[2]],
-    [props.sculptures[3]],
-    [props.sculptures[4]],
-    [props.sculptures[5]],
-    [props.sculptures[6]],
-    [props.sculptures[7]],
-  ]);
+  const [sculpturesArray, setSculpturesArray] = useState([[props.sculptures[0]], [props.sculptures[1]], [props.sculptures[2]], [props.sculptures[3]], [props.sculptures[4]], [props.sculptures[5]], [props.sculptures[6]], [props.sculptures[7]]]);
   const [previousRandomNumber, setPreviousRandomNumber] = useState(900);
 
   let blocks: NodeListOf<Element>;
@@ -34,9 +25,7 @@ export default function SculptureGrid(props: SculptureGridProps) {
       sculptureThumb = document.querySelectorAll(`.${styles.sculptureThumb}`);
 
       if (process.browser) {
-        blocks = document.querySelectorAll(
-          `.${styles.block}`
-        ) as NodeListOf<Element>;
+        blocks = document.querySelectorAll(`.${styles.block}`) as NodeListOf<Element>;
       }
 
       setSculpturesArray((sculpturesArray) => {
@@ -82,21 +71,10 @@ export default function SculptureGrid(props: SculptureGridProps) {
     <>
       <div className={styles.grid}>
         {sculpturesArray.slice(0, 6).map((element, index) => (
-          <div
-            key={index}
-            style={{ animationDelay: `${index * 100}ms` }}
-            className={styles.block}
-          >
+          <div key={index} style={{ animationDelay: `${index * 100}ms` }} className={styles.block}>
             {element.map((sculpture, index) => (
-              <Link
-                className={styles.sculptureThumb}
-                key={index}
-                href={`/sculptures/${sculpture.id}`}
-              >
-                <img
-                  src={`/assets/sculptures/${sculpture.thumb}`}
-                  alt="Sculpture"
-                />
+              <Link className={styles.sculptureThumb} key={index} href={`/sculptures/${sculpture.id}`}>
+                <img src={`/assets/sculptures/${sculpture.thumb}`} alt="Sculpture" />
               </Link>
             ))}
           </div>

@@ -62,6 +62,86 @@ const deletePhotos = (photosArray) => {
   }
 };
 
+
+
+exports.getRandomWork = (req: MulterRequest, res: Response) => {
+  const nbOfSculptures = req.params.nbOfSculptures;
+  
+  
+  const formatListOfIds = (listOfOldWorks) => {
+    let oldWorksArray = listOfOldWorks.split("&")
+    let formatWorksIdArray = [];
+    oldWorksArray.forEach(workId => {
+      formatWorksIdArray.push(mongoose.Types.ObjectId(workId))
+    });
+    return formatWorksIdArray;
+  }
+  const oldWorks = formatListOfIds(req.params.oldWorks);
+  
+
+  selectModel('sculpture').find({_id: {$nin: oldWorks}}).count({}, (err, count) => {
+    const randomNumber = Math.floor(Math.random() * count)
+    console.log(randomNumber);
+    
+    
+    selectModel('sculpture').find({_id: {$nin: oldWorks}}).limit(1).skip(randomNumber).exec((err, sculpture) => {
+      if(err) {
+
+        console.log(err);
+      } else {
+        
+        res.status(200).json(sculpture)
+      }
+      
+    })
+  })  
+  
+  
+}
+
+
+exports.getRandomWorks = (req: MulterRequest, res: Response) => {
+  const nbOfWork = req.params.nbOfWork;
+  
+  
+selectModel('sculpture').find({}).limit(nbOfWork).exec((err, sculptures) => {
+  // const randomNumber = Math.floor(Math.random() * count)
+  // selectModel('sculpture').findOne({_id: {$nin: oldSculptures}}).skip(randomNumber).exec((err, sculpture) => {
+    if(err) {
+      res.status(400).json({erreur: 'Sculptures not found'})
+    } else {
+      
+      res.status(200).json(sculptures)
+    }
+  // })
+})
+  
+  // selectModel('sculpture').find({_id: {$nin: oldSculptures}}).limit(nbOfSculptures).exec((err, sculptures) => {
+  //   if(err) {
+  //     res.status(400).json({erreur: 'Sculptures not found'})
+  //   } else {
+  //     console.log(sculptures);
+      
+  //     res.status(200).json(sculptures)
+  //   }
+  // })
+  // else {
+  //   selectModel('sculpture').find({}).limit(nbOfSculptures).exec((err, sculptures) => {
+  //     if(err) {
+  //       res.status(400).json({erreur: 'Sculptures not found'})
+  //     } else {
+  //       console.log(sculptures);
+        
+  //       res.status(200).json(sculptures)
+  //     }
+      
+  //   })
+  // }
+  
+  
+  
+}
+
 // Récupération des œuvres par type
 exports.getWorkByType = (req: Request, res: Response) => {
   selectModel(req.params.type).find({ type: req.params.type }, (err, works) => {
