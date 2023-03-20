@@ -38,7 +38,7 @@ export default function Home(props: IndexProps) {
       
         <HomeGrid />
       {/* <SculptureGrid sculptures={props.sculpturesArray} /> */}
-      {/* <Bio /> */}
+      <Bio />
     </div>
   );
 }

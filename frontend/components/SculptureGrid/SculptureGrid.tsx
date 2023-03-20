@@ -21,6 +21,10 @@ export default function SculptureGrid(props: SculptureGridProps) {
   let blocks: NodeListOf<Element>;
   let sculptureThumb: NodeListOf<Element>;
   useEffect(() => {
+    console.log(sculpturesArray);
+    
+  }, [sculpturesArray])
+  useEffect(() => {
     const intervalId = setInterval(() => {
       sculptureThumb = document.querySelectorAll(`.${styles.sculptureThumb}`);
 

@@ -9,8 +9,17 @@
         height: 300px;
         position: relative;
         margin: 10px;
-        // opacity: 0;
-        // animation: imageApparition 500ms ease-in-out backwards;
+        opacity: 0;
+        animation: imageApparition 500ms ease-in-out both;
+
+        // .sculptureThumb img {
+        //     // animation: switch 1s ease-in-out both;
+        //     // transform: scale(1.5);
+        //     opacity: 1;
+        //     border: 2px red solid;
+        //     z-index: 10000;
+        // }
+        
 
         
         img {
@@ -20,7 +29,6 @@
         }
         
         a img {
-            // animation: switch 1s ease-in-out both;
             opacity: 1;
         }
     }

@@ -56,7 +56,8 @@ const deletePhotos = (photosArray) => {
     }
 };
 exports.getRandomWork = (req, res) => {
-    const nbOfSculptures = req.params.nbOfSculptures;
+    const nbOfSculptures = req.params.nbOfWork;
+    // console.log(nbOfSculptures);
     const formatListOfIds = (listOfOldWorks) => {
         let oldWorksArray = listOfOldWorks.split("&");
         let formatWorksIdArray = [];
@@ -68,10 +69,15 @@ exports.getRandomWork = (req, res) => {
     const oldWorks = formatListOfIds(req.params.oldWorks);
     selectModel('sculpture').find({ _id: { $nin: oldWorks } }).count({}, (err, count) => {
         const randomNumber = Math.floor(Math.random() * count);
-        console.log(randomNumber);
+        console.log(count);
+        if (count === 0) {
+            selectModel('');
+        }
         selectModel('sculpture').find({ _id: { $nin: oldWorks } }).limit(1).skip(randomNumber).exec((err, sculpture) => {
             if (err) {
                 console.log(err);
+                // } else if(sculpture.length === 0) {
+                //   console.log("ERREUR");        
             }
             else {
                 res.status(200).json(sculpture);

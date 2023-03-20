@@ -17,33 +17,20 @@ type Work = {
 };
 
 export default function HomeGrid() {
+  const [nbOfSculpturesToDisplay, setNbOfSculpturesToDisplay] = useState(6);
   const [sculpturesArray, setSculpturesArray] = useState<Array<Array<Work>>>([]);
   const [previousRandomNumber, setPreviousRandomNumber] = useState(900);
 
   useEffect(() => {
-
-    getRandomSculptures(6);
+    getRandomSculptures(nbOfSculpturesToDisplay);
     const intervalId = setInterval(() => {
-      const randomNumber = getRandomNumber(6);
-      setSculpturesArray((sculpturesArray) => {
-        let newArray = [...sculpturesArray];
-        getNewRandomSculpture(newArray, randomNumber);
-        deleteOldSculpture(randomNumber, newArray);
-      });
+      const randomNumber = getRandomNumber(nbOfSculpturesToDisplay);
+      getNewRandomSculpture(randomNumber);
     }, 5000);
     return () => {
       clearInterval(intervalId);
     };
   }, []);
-
-  const deleteOldSculpture = (randomNumber: number, sculpturesArray: Work[][]) => {
-    setPreviousRandomNumber((previousRandomNumber) => {
-      if (previousRandomNumber !== 900) {
-        sculpturesArray[previousRandomNumber].splice(0, 1);
-      }
-      return randomNumber;
-    });
-  };
 
   const getRandomSculptures = (nb: number) => {
     fetch(`http://localhost:8080/api/works/random/${nb}`, {
@@ -56,23 +43,59 @@ export default function HomeGrid() {
           newSculpturesArray.push([data[i]]);
         }
         setSculpturesArray(newSculpturesArray);
+        window.localStorage.setItem("sculptures", JSON.stringify(newSculpturesArray));
       })
       .catch((err) => console.log(err));
   };
 
-  const getNewRandomSculpture = (sculpturesArray: Work[][], randomNumber: number) => {
-    const listOfIds = formatListOfIds(sculpturesArray);
+  const getNewRandomSculpture = async (randomNumber: number) => {
+    const listOfIds = formatListOfIds(getSculpturesFromLocalStorage());
 
     fetch(`http://localhost:8080/api/works/random/1/${listOfIds}`, {
       method: "GET",
     })
       .then((res) => res.json())
       .then((data) => {
-        // let newArray = sculpturesArray;
-        sculpturesArray[randomNumber].push(data[0]);
-        setSculpturesArray(sculpturesArray);
+        setSculpturesArray((sculpturesArray) => {
+          console.log(sculpturesArray);
+          
+          if (data.length === 0) {
+            return sculpturesArray;
+          } else {
+            let newArray = sculpturesArray;
+            newArray[randomNumber].push(data[0]);
+
+            deleteOldSculpture(randomNumber, newArray);
+            updateLocalStorageSculpturesArray(newArray, randomNumber);
+
+            return deleteOldSculpture(randomNumber, newArray);
+          }
+        });
       })
-      .catch((err) => console.log(err));
+      .catch((err: Work[][]) => err);
+  };
+
+  const getSculpturesFromLocalStorage = () => {
+    let sculptures = window.localStorage.getItem("sculptures");
+    if (sculptures) {
+      JSON.parse(sculptures);
+      setSculpturesArray(JSON.parse(sculptures));
+      return JSON.parse(sculptures);
+    }
+  };
+
+  const updateLocalStorageSculpturesArray = (newArray: Work[][], randomNumber: number) => {
+    window.localStorage.setItem("sculptures", JSON.stringify(newArray));
+  };
+
+  const deleteOldSculpture = (randomNumber: number, sculpturesArray: Work[][]) => {
+    setPreviousRandomNumber((previousRandomNumber) => {
+      if (previousRandomNumber !== 900) {
+        sculpturesArray[previousRandomNumber].splice(0, 1);
+      }
+      return randomNumber;
+    });
+    return sculpturesArray;
   };
 
   const getRandomNumber = (nb: number) => {
@@ -88,6 +111,7 @@ export default function HomeGrid() {
 
   const formatListOfIds = (oldSculpturesArray: Work[][]) => {
     let listOfIds: string[] = [];
+
     for (let i = 0; i < oldSculpturesArray.length; i++) {
       oldSculpturesArray[i].forEach((sculpture) => {
         listOfIds.push(`${sculpture._id}`);
@@ -100,46 +124,20 @@ export default function HomeGrid() {
 
   return (
     <>
-      {/* {
-        sculpturesArray?.map(element => (
-          <h2>{element[0].name}</h2>
-        ))
-      }
-      {
-        newSculpture &&
-        <h2>{newSculpture.name}</h2>
-      } */}
       {sculpturesArray && (
         <div className={styles.grid}>
-          {sculpturesArray.slice(0, 6).map((element, index) => (
+          {sculpturesArray.map((element, index) => (
             <div key={index} style={{ animationDelay: `${index * 100}ms` }} className={styles.block}>
               {element.map((sculpture, index) => (
-                <Link className={styles.sculptureThumb} key={uuidv4()} href={`/sculptures/${sculpture._id}`}>
-                  {/* <img src={`/assets/images/${sculpture.thumbnail}`} alt="Vignette de sculpture" /> */}
-                  <Image loader={() => `${process.env.NEXT_PUBLIC_IMAGES_SRC + sculpture.thumbnail}`} src={`${process.env.NEXT_PUBLIC_IMAGES_SRC + sculpture.thumbnail}`} alt="peinture" width={300} height={300} style={{ objectFit: "contain" }} placeholder="blur" blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN88B8AAsUB4ZtvXtIAAAAASUVORK5CYII=" />
-                  {/* <img src={`${process.env.NEXT_PUBLIC_IMAGES_SRC}${sculpture.thumbnail}`} alt="Vignette de sculpture" /> */}
-                  {/* <h2>{sculpture.name}</h2> */}
+                <Link className={styles.sculptureThumb} key={index} href={`/sculptures/${sculpture._id}`}>
+                  <img src={`/assets/images/${sculpture.thumbnail}`} alt="Vignette de sculpture" />
+                  {/* <Image className={styles.gridImg} loader={() => `${process.env.NEXT_PUBLIC_IMAGES_SRC + sculpture.thumbnail}`} src={`${process.env.NEXT_PUBLIC_IMAGES_SRC + sculpture.thumbnail}`} alt="peinture" width={300} height={300} style={{ objectFit: "contain" }} placeholder="blur" blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN88B8AAsUB4ZtvXtIAAAAASUVORK5CYII=" /> */}
                 </Link>
               ))}
             </div>
           ))}
         </div>
-     )}
+      )}
     </>
   );
 }
-
-// const url = 'http://localhost:8080/api/works';
-// const array = ['image1', 'image2','image3'];
-
-// const formatImageList = (array) => {
-//    let imageListStringify = "";
-//   let newArray = [];
-//   for(let i = 0; i < array.length; i++) {
-//     newArray.push(`/${array[i]}`)
-//   }
-//   newArray.join()
-//   return newArray.join('');
-// }
-
-// console.log(url+formatImageList(array))
