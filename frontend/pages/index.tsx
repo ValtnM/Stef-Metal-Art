@@ -1,8 +1,5 @@
-import SculptureGrid from "../components/SculptureGrid/SculptureGrid";
 import HomeGrid from "../components/HomeGrid/HomeGrid";
 import Bio from "../components/Bio/Bio";
-import { GetStaticProps } from "next";
-import {useState, useEffect} from 'react'
 
 type Sculpture = {
   id: number;
@@ -29,28 +26,10 @@ type Work = {
 };
 
 export default function Home(props: IndexProps) {
-
-  
-
   return (
     <div>
-      {/* <SculptureGrid sculptures={props.sculpturesArray} /> */}
-      
-        <HomeGrid />
-      {/* <SculptureGrid sculptures={props.sculpturesArray} /> */}
+      <HomeGrid />
       <Bio />
     </div>
   );
 }
-
-export const getStaticProps: GetStaticProps = async () => {
-  const data = await fetch("http://localhost:3000/api/sculpturesapi");
-  const sculpturesArray = await data.json();
-  // const sculpturesArray = await sculpturesObject.sculptures;
-
-  return {
-    props: {
-      sculpturesArray,
-    },
-  };
-};

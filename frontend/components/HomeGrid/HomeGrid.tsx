@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./HomeGrid.module.scss";
-import { v4 as uuidv4 } from "uuid";
 
 type Work = {
   _id: Object;
@@ -57,8 +56,6 @@ export default function HomeGrid() {
       .then((res) => res.json())
       .then((data) => {
         setSculpturesArray((sculpturesArray) => {
-          console.log(sculpturesArray);
-          
           if (data.length === 0) {
             return sculpturesArray;
           } else {
@@ -66,9 +63,10 @@ export default function HomeGrid() {
             newArray[randomNumber].push(data[0]);
 
             deleteOldSculpture(randomNumber, newArray);
-            updateLocalStorageSculpturesArray(newArray, randomNumber);
-
-            return deleteOldSculpture(randomNumber, newArray);
+            setTimeout(() => {
+              updateLocalStorageSculpturesArray(newArray, randomNumber);
+            }, 500);
+            return newArray;
           }
         });
       })
@@ -89,13 +87,14 @@ export default function HomeGrid() {
   };
 
   const deleteOldSculpture = (randomNumber: number, sculpturesArray: Work[][]) => {
+    let newArray = sculpturesArray;
+
     setPreviousRandomNumber((previousRandomNumber) => {
       if (previousRandomNumber !== 900) {
-        sculpturesArray[previousRandomNumber].splice(0, 1);
+        newArray[previousRandomNumber].splice(0, 1);
       }
       return randomNumber;
     });
-    return sculpturesArray;
   };
 
   const getRandomNumber = (nb: number) => {
@@ -130,8 +129,7 @@ export default function HomeGrid() {
             <div key={index} style={{ animationDelay: `${index * 100}ms` }} className={styles.block}>
               {element.map((sculpture, index) => (
                 <Link className={styles.sculptureThumb} key={index} href={`/sculptures/${sculpture._id}`}>
-                  <img src={`/assets/images/${sculpture.thumbnail}`} alt="Vignette de sculpture" />
-                  {/* <Image className={styles.gridImg} loader={() => `${process.env.NEXT_PUBLIC_IMAGES_SRC + sculpture.thumbnail}`} src={`${process.env.NEXT_PUBLIC_IMAGES_SRC + sculpture.thumbnail}`} alt="peinture" width={300} height={300} style={{ objectFit: "contain" }} placeholder="blur" blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN88B8AAsUB4ZtvXtIAAAAASUVORK5CYII=" /> */}
+                  <Image className={styles.gridImg} loader={() => `${process.env.NEXT_PUBLIC_IMAGES_SRC + sculpture.thumbnail}`} src={`${process.env.NEXT_PUBLIC_IMAGES_SRC + sculpture.thumbnail}`} alt="peinture" width={300} height={300} style={{ objectFit: "contain" }} placeholder="blur" blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN88B8AAsUB4ZtvXtIAAAAASUVORK5CYII=" />
                 </Link>
               ))}
             </div>
