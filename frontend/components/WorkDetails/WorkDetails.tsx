@@ -32,7 +32,7 @@ export default function WorkDetails({ typeOfWork }: WorkDetailsProps) {
   const [zoomMode, setZoomMode] = useState(false);
   const [zoomedImage, setZoomedImage] = useState("");
 
-  const [adminMode, setAdminMode] = useState(true);
+  const [adminMode, setAdminMode] = useState(false);
   const [editThumbnail, setEditThumbnail] = useState(false);
   const [editName, setEditName] = useState(false);
   const [editPhoto, setEditPhoto] = useState(false);

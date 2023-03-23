@@ -65,6 +65,31 @@
   }
 }
 
+.notificationMessage {
+  text-align: center;
+  line-height: 50px;
+  margin-top: 20px;
+  color: white;
+
+  &.fail {
+    background: linear-gradient(35deg, rgba(89,0,0,1) 0%, rgba(235,13,13,1) 80%);
+  }
+  &.success {
+    background: linear-gradient(36deg, rgba(2,92,14,1) 0%, rgba(62,159,0,1) 63%);
+  }
+}
+
+.loader {
+  content: "";
+  width: 50px;
+  height: 50px;
+  margin: 20px auto 0;
+  border: 5px grey solid;
+  border-top: 5px white solid;
+  border-radius: 50%;
+  animation: loadingSpinner 500ms infinite ease-in;
+}
+
 @keyframes contactBottomAppearance {
     0% {
         transform: translateY(50px);
@@ -74,4 +99,14 @@
         transform: translateY(0);
         opacity: 1;
     }
+}
+
+
+@keyframes loadingSpinner {
+  0% {
+     transform: rotate(0);
+  }
+  100% {
+     transform: rotate(360deg);
+  }
 }

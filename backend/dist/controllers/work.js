@@ -70,9 +70,9 @@ exports.getRandomWork = (req, res) => {
         .find({ _id: { $nin: oldWorks } })
         .count({}, (err, count) => {
         const randomNumber = Math.floor(Math.random() * count);
-        if (count === 0) {
-            selectModel("");
-        }
+        // if (count === 0) {
+        //   selectModel("");
+        // }
         selectModel("sculpture")
             .find({ _id: { $nin: oldWorks } })
             .limit(1)
