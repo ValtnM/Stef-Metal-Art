@@ -1,5 +1,6 @@
-import React, { useEffect, useState, FormEvent } from "react";
+import React, { useEffect, useState, useRef, FormEvent } from "react";
 import styles from "../styles/Contact.module.scss";
+import ReCAPTCHA from "react-google-recaptcha";
 
 export default function Contact() {
   const [firstname, setFirstname] = useState("");
@@ -11,6 +12,8 @@ export default function Contact() {
   const [notificationMessage, setNotificationMessage] = useState("");
   const [successfulSending, setSuccessfulSending] = useState(false);
 
+  const captchaRef = useRef<ReCAPTCHA>(null);
+
   const sendEmail = (e: FormEvent) => {
     const emailContent = {
       firstname,
@@ -19,6 +22,8 @@ export default function Contact() {
       subject,
       message,
     };
+
+    const token = captchaRef.current?.getValue();
 
     e.preventDefault();
     setSendedMessage(false);
@@ -30,7 +35,7 @@ export default function Contact() {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(emailContent),
+      body: JSON.stringify({ ...emailContent, token }),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -38,6 +43,7 @@ export default function Contact() {
           setSuccessfulSending(true);
           setNotificationMessage(data.message);
           clearForm();
+          captchaRef.current?.reset();
         }
         if (data.error) {
           setSuccessfulSending(false);
@@ -76,6 +82,7 @@ export default function Contact() {
         <input onChange={(e) => setSubject(e.target.value)} type="subject" id="subject" value={subject} />
         <label htmlFor="message">Message</label>
         <textarea onChange={(e) => setMessage(e.target.value)} rows={10} id="message" value={message} />
+        <ReCAPTCHA className={styles.recaptcha} sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!} ref={captchaRef} />
         <button>Envoyer</button>
         {notificationMessage && <div className={successfulSending ? `${styles.notificationMessage} ${styles.success}` : `${styles.notificationMessage} ${styles.fail}`}>{notificationMessage}</div>}
         {!sendedMessage && <div className={sendedMessage ? styles.loader : `${styles.loader} ${styles.visible}`}></div>}
