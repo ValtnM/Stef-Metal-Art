@@ -50,9 +50,11 @@ export default function WorkDetails({ typeOfWork }: WorkDetailsProps) {
   const router = useRouter();
 
   useEffect(() => {
-    if (router.isReady) {
-      console.log(typeOfWork);
+    checkIsAdmin();
+  }, []);
 
+  useEffect(() => {
+    if (router.isReady) {
       if (typeOfWork) {
         setWorkId(getWorkId(typeOfWork));
       }
@@ -60,12 +62,27 @@ export default function WorkDetails({ typeOfWork }: WorkDetailsProps) {
   }, [router.isReady]);
 
   useEffect(() => {
-    console.log(workId);
-
     if (workId) {
       getWorkInfos();
     }
   }, [workId]);
+
+  const checkIsAdmin = () => {
+    const token = window.sessionStorage.getItem("token");
+    fetch(`http://localhost:8080/api/admin/${token}`, {
+      method: "GET",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.isAdmin) {
+          setAdminMode(true);
+        } else {
+          setAdminMode(false);
+        }
+      })
+      .catch((err) => console.log(err));
+  };
 
   const getWorkId = (typeOfWork: string) => {
     if (typeOfWork === "painting") {
@@ -93,12 +110,18 @@ export default function WorkDetails({ typeOfWork }: WorkDetailsProps) {
       .then(() => {
         if (workInfos) {
           window.localStorage.setItem("delete-notification", `"${workInfos.name}" a bien été supprimé`);
-        } else {
-          window.localStorage.setItem("delete-notification", `La peinture a bien été supprimée`);
         }
-        router.push("/peintures");
+        redirectToParentComponent(typeOfWork);
       })
       .catch((err) => console.log(err));
+  };
+
+  const redirectToParentComponent = (typeOfWork: string) => {
+    if (typeOfWork === "sculpture") {
+      router.push("/sculptures");
+    } else if (typeOfWork === "painting") {
+      router.push("/peintures");
+    }
   };
 
   // Modification d'une information sur la sculpture'

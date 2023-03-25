@@ -45,6 +45,19 @@
   }
 }
 
+.showingPasswordInput {
+  input {
+    margin-right: 5px;
+  }
+}
+
+.notificationMessage {
+  background: linear-gradient(35deg, rgba(89,0,0,1) 0%, rgba(235,13,13,1) 80%);
+  color: white;
+  text-align: center;
+  padding: 5px;
+}
+
 @keyframes adminBottomApparition {
   0% {
     transform: translateY(50px);

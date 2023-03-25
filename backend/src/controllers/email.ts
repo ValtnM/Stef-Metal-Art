@@ -19,7 +19,7 @@ exports.sendEmail = (req: Request, res: Response) => {
       .post(`https://www.google.com/recaptcha/api/siteverify?secret=${secret}&response=${token}`)
       .then((response) => {
         if (!response.data.success) {
-          res.status(400).json({ error: "Veuillez cocher la case 'je ne suis pas un robot'" });
+          res.status(400).json({ error: 'Veuillez cocher la case "je ne suis pas un robot"' });
           return;
         } else {
           sendingMail(mailInfos);

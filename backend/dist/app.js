@@ -11,6 +11,7 @@ mongoose
     .catch(() => console.log("Échec de la connexion à MongoDB !"));
 const workRoutes = require("./routes/work.js");
 const emailRoutes = require('./routes/email.js');
+const adminRoutes = require("./routes/admin.js");
 // Middlewares permettant l'analyse du corps de la requête
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -24,6 +25,7 @@ app.use((req, res, next) => {
 });
 app.use("/api/works", workRoutes);
 app.use("/api/email", emailRoutes);
+app.use("/api/admin", adminRoutes);
 // Gestion des requêtes vers la route '/images'
 app.use('/api/images', express.static(path.join(__dirname, 'images')));
 // Ecoute et lie l'application au port 3000

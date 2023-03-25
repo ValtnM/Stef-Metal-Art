@@ -32,7 +32,7 @@ export default function Contact() {
     fetch("http://localhost:8080/api/email", {
       method: "POST",
       headers: {
-        Accept: "application/json",
+        "Accept": "application/json",
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ ...emailContent, token }),
