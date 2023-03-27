@@ -5,7 +5,6 @@ const router = express.Router();
 const multer = require('../middleware/multer.js');
 const auth = require('../middleware/auth.js');
 const workCtrl = require('../controllers/work.js');
-// router.get('/sculptures', oeuvreCtrl.getAllSculptures);
 router.get('/random/:nbOfWork', workCtrl.getRandomWorks);
 router.get('/random/:nbOfWork/:oldWorks', workCtrl.getRandomWork);
 router.get('/:type', workCtrl.getWorkByType);

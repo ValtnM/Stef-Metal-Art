@@ -12,8 +12,8 @@ export default function Admin() {
   }, []);
 
   const checkIsAdmin = () => {
-    const token = window.sessionStorage.getItem("token");
-    fetch(`http://localhost:8080/api/admin/${token}`, {
+    const stockedToken = window.sessionStorage.getItem("token");
+    fetch(`http://localhost:8080/api/admin/${stockedToken}`, {
       method: "GET",
     })
       .then((res) => res.json())

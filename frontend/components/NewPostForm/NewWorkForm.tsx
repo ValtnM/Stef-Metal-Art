@@ -31,25 +31,16 @@ export default function NewPostForm() {
   };
 
   const sendData = (e: React.MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
-    e.preventDefault();
-    let formData = new FormData();
-    if (thumbnail) {
-      formData.append("thumbnail", thumbnail);
-    }
-
-    formData.append("name", name);
-    formData.append("description", description);
-    formData.append("type", type);
-    formData.append("instagram", instagram.toString());
-    if (photos) {
-      for (let i = 0; i < photos.length; i++) {
-        formData.append(`photos`, photos[i]);
-      }
-    }
+    e.preventDefault();  
+    
+    const token = getTokenFromSessionStorage();
 
     fetch(`http://localhost:8080/api/works`, {
       method: "POST",
-      body: formData,
+      headers: {
+        "authorization": `Bearer ${token}`
+      },
+      body: createFormData(),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -64,6 +55,24 @@ export default function NewPostForm() {
       })
       .catch((err) => console.log(err));
   };
+
+  const createFormData = () => {
+    let formData = new FormData();
+    if (thumbnail) {
+      formData.append("thumbnail", thumbnail);
+    }
+
+    formData.append("name", name);
+    formData.append("description", description);
+    formData.append("type", type);
+    formData.append("instagram", instagram.toString());
+    if (photos) {
+      for (let i = 0; i < photos.length; i++) {
+        formData.append(`photos`, photos[i]);
+      }
+    }
+    return formData;
+  }
 
   const clearForm = () => {
     setType("");
@@ -82,6 +91,10 @@ export default function NewPostForm() {
       input.current.value = null;
     }
   };
+
+  const getTokenFromSessionStorage = () => {
+    return window.sessionStorage.getItem('token');
+  }
 
   return (
     <form className={styles.newPostForm}>

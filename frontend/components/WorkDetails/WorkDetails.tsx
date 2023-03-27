@@ -28,6 +28,7 @@ type WorkDetailsProps = {
 export default function WorkDetails({ typeOfWork }: WorkDetailsProps) {
   const [workId, setWorkId] = useState<String>();
   const [workInfos, setWorkInfos] = useState<Work>();
+  const [token, setToken] = useState("");
 
   const [zoomMode, setZoomMode] = useState(false);
   const [zoomedImage, setZoomedImage] = useState("");
@@ -68,8 +69,8 @@ export default function WorkDetails({ typeOfWork }: WorkDetailsProps) {
   }, [workId]);
 
   const checkIsAdmin = () => {
-    const token = window.sessionStorage.getItem("token");
-    fetch(`http://localhost:8080/api/admin/${token}`, {
+    const newToken = getTokenFromSessionStorage();
+    fetch(`http://localhost:8080/api/admin/${newToken}`, {
       method: "GET",
     })
       .then((res) => res.json())
@@ -84,6 +85,14 @@ export default function WorkDetails({ typeOfWork }: WorkDetailsProps) {
       .catch((err) => console.log(err));
   };
 
+  const getTokenFromSessionStorage = () => {
+    const stockedToken = window.sessionStorage.getItem("token");
+    if (stockedToken) {
+      setToken(stockedToken);
+    }
+    return stockedToken;
+  };
+
   const getWorkId = (typeOfWork: string) => {
     if (typeOfWork === "painting") {
       return router.query.peinture as string;
@@ -93,8 +102,6 @@ export default function WorkDetails({ typeOfWork }: WorkDetailsProps) {
   };
 
   const getWorkInfos = () => {
-    console.log(typeOfWork);
-
     fetch(`http://localhost:8080/api/works/${typeOfWork}/${workId}`)
       .then((res) => res.json())
       .then((data) => {
@@ -106,6 +113,9 @@ export default function WorkDetails({ typeOfWork }: WorkDetailsProps) {
   const deleteWork = () => {
     fetch(`http://localhost:8080/api/works/${typeOfWork}/${workId}`, {
       method: "DELETE",
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
     })
       .then(() => {
         if (workInfos) {
@@ -136,15 +146,15 @@ export default function WorkDetails({ typeOfWork }: WorkDetailsProps) {
 
   // Envoi de la requête pour modifier la vignette
   const updateWork = async (typeOfData: string) => {
-    // const workId =  getWorkId(typeOfWork);
     if (workId) {
       fetch(`http://localhost:8080/api/works/${workId}`, {
         method: "PUT",
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
         body: createFormData(typeOfData),
       })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
+        .then(() => {
           closeEditor(typeOfData);
         })
         .catch((err) => console.log(err));
@@ -288,11 +298,11 @@ export default function WorkDetails({ typeOfWork }: WorkDetailsProps) {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ typeOfWork: typeOfWork }),
       })
         .then((res) => {
-          console.log(res);
           getWorkInfos();
         })
         .catch((err) => console.log(err));
