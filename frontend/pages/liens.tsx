@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "../styles/Liens.module.scss";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,6 +17,7 @@ type LinksProps = {
 };
 
 export default function Liens(props: LinksProps) {
+
   return (
     <div className={styles.linksContainer}>
       <h2>Liens</h2>
@@ -38,7 +39,7 @@ export default function Liens(props: LinksProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const data = await fetch("http://localhost:3000/api/liensapi");
+  const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/link`);
   const linksArray = await data.json();
 
   return {
