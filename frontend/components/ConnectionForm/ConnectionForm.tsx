@@ -10,7 +10,7 @@ export default function ConnectionForm(props: {setAdmin: Function}) {
 
   const sendConnectionData = (e: FormEvent) => {
     e.preventDefault();
-    fetch('http://localhost:8080/api/admin', {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin`, {
       method: "POST",
       headers: {
         "Accept": "application/json",
@@ -35,11 +35,6 @@ export default function ConnectionForm(props: {setAdmin: Function}) {
     window.sessionStorage.setItem('token', token);
   }
 
-  const handleShowingPasswordInput = (value: boolean) => {
-
-      console.log(value);
-    
-  }
 
   return (
     <form onSubmit={(e) => sendConnectionData(e)} className={styles.connectionForm}>

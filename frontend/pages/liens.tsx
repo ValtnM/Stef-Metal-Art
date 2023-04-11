@@ -3,6 +3,7 @@ import styles from "../styles/Liens.module.scss";
 import Image from "next/image";
 import Link from "next/link";
 import { GetStaticProps } from "next";
+import NewLinkForm from "../components/NewLinkForm/NewLinkForm";
 
 type Link = {
   id: number;
@@ -31,6 +32,7 @@ export default function Liens(props: LinksProps) {
           </a>
         ))}
       </div>
+      <NewLinkForm />
     </div>
   );
 }

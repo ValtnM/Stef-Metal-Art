@@ -15,5 +15,6 @@ router.put('/:id', auth, multer.fields([{name: "thumbnail", maxCount: 1},{name: 
 router.put('/:id/:photoName', auth, workCtrl.deletePhotoByName)
 
 
+
 module.exports =  router;
 export {};

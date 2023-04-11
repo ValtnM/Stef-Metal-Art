@@ -1,8 +1,15 @@
 const express = require("express");
 const app = express();
 const path = require('path');
+const http = require('http');
+const https = require('https');
+const fs = require('fs');
 const hostname = "localhost";
 const port = 8080;
+const options = {
+    key: fs.readFileSync("key.pem"),
+    cert: fs.readFileSync("cert.pem")
+};
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
 mongoose
@@ -20,7 +27,7 @@ app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content, Accept, Content-Type, Authorization");
     res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, PATCH, OPTIONS");
-    res.setHeader("Cross-Origin-Resource-Policy", "same-site");
+    res.setHeader("Cross-Origin-Resource-Policy", ["same-site", "cross-origin"]);
     next();
 });
 app.use("/api/works", workRoutes);
@@ -29,4 +36,10 @@ app.use("/api/admin", adminRoutes);
 // Gestion des requêtes vers la route '/images'
 app.use('/api/images', express.static(path.join(__dirname, 'images')));
 // Ecoute et lie l'application au port 3000
+// https.createServer(options, (req, res) => {
+//   res.writeHead(200);
+//   res.end('home page\n');
+// }).listen(port, hostname)
+// http.createServer(app).listen(8080);
+// https.createServer(options, app).listen(8080);
 app.listen(port, hostname);

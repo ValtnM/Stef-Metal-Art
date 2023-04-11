@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "ssl": "npx local-ssl-proxy --key key.pem --cert cert.pem --source 3001 --target 3000"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.1",

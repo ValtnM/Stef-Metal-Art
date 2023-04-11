@@ -29,7 +29,7 @@ export default function Contact() {
     setSendedMessage(false);
     setNotificationMessage("");
 
-    fetch("http://localhost:8080/api/email", {
+    fetch("https://localhost:8080/api/email", {
       method: "POST",
       headers: {
         "Accept": "application/json",

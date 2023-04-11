@@ -32,7 +32,7 @@ export default function HomeGrid() {
   }, []);
 
   const getRandomSculptures = (nb: number) => {
-    fetch(`http://localhost:8080/api/works/random/${nb}`, {
+    fetch(`https://localhost:8080/api/works/random/${nb}`, {
       method: "GET",
     })
       .then((res) => res.json())
@@ -50,7 +50,7 @@ export default function HomeGrid() {
   const getNewRandomSculpture = async (randomNumber: number) => {
     const listOfIds = formatListOfIds(getSculpturesFromLocalStorage());
 
-    fetch(`http://localhost:8080/api/works/random/1/${listOfIds}`, {
+    fetch(`https://localhost:8080/api/works/random/1/${listOfIds}`, {
       method: "GET",
     })
       .then((res) => res.json())
