@@ -7,8 +7,10 @@ export default function NewLinkForm(props: {getAllLinks: Function}) {
   const [name, setName] = useState("")
   const [thumbnail, setThumbnail] = useState<File>()
   const [link, setLink] = useState("")
+  const [notificationMessage, setNotificationMessage] = useState<string>()
+  const [success, setSuccess] = useState(false);
 
-  const thumbnailInputRef = useRef()
+  const thumbnailInputRef = useRef<any>()
 
   const sendData = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
@@ -20,8 +22,15 @@ export default function NewLinkForm(props: {getAllLinks: Function}) {
     .then(res => res.json())
     .then(data => {
       console.log(data)
-      props.getAllLinks()
-      clearForm();
+      if(data.error) {
+        setNotificationMessage(data.error)
+        setSuccess(false)
+      } else if (data.message) {
+        props.getAllLinks()
+        clearForm();
+        setNotificationMessage(data.message)
+        setSuccess(true)
+      }
     })
     .catch(err => console.log(err))
   }
@@ -76,6 +85,12 @@ export default function NewLinkForm(props: {getAllLinks: Function}) {
           <button onClick={(e) => sendData(e)}>Ajouter</button>
           <button>Annuler</button>
         </div>
+        {
+          notificationMessage &&
+          <div className={success ? `${styles.notificationMessage} ${styles.success}` : `${styles.notificationMessage}`}>
+            {notificationMessage}
+          </div>
+        }
       </form>
     </div>
   );

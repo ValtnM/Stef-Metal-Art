@@ -90,22 +90,17 @@
   transform-origin: top ;
   transform: scaleY(0);
   overflow: hidden;
-  // opacity: 0;
   
   &.visible {
     height: 50px;
     transform: scaleY(1);
-    // padding: 10px;
-    // opacity: 1;
   }
 
   .notificationTxt {
-    // margin: auto;
     color: white;
     font-size: 1.1em;
     line-height: 50px;
   }
-  // text-align: ;
 }
 
 @keyframes adminBottomApparition {
