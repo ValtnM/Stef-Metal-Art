@@ -2,7 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = require('express');
 const router = express.Router();
+const multer = require('../middleware/multer.js');
 const linkCtrl = require('../controllers/link.js');
 router.get('/', linkCtrl.getAllLinks);
-// router.post('/', linkCtrl.addLink);
+router.post('/', multer.single('thumbnail'), linkCtrl.addLink);
 module.exports = router;

@@ -32,7 +32,7 @@ export default function HomeGrid() {
   }, []);
 
   const getRandomSculptures = (nb: number) => {
-    fetch(`https://localhost:8080/api/works/random/${nb}`, {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/works/random/${nb}`, {
       method: "GET",
     })
       .then((res) => res.json())
@@ -50,7 +50,7 @@ export default function HomeGrid() {
   const getNewRandomSculpture = async (randomNumber: number) => {
     const listOfIds = formatListOfIds(getSculpturesFromLocalStorage());
 
-    fetch(`https://localhost:8080/api/works/random/1/${listOfIds}`, {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/works/random/1/${listOfIds}`, {
       method: "GET",
     })
       .then((res) => res.json())
@@ -129,7 +129,7 @@ export default function HomeGrid() {
             <div key={index} style={{ animationDelay: `${index * 100}ms` }} className={styles.block}>
               {element.map((sculpture, index) => (
                 <Link className={styles.sculptureThumb} key={index} href={`/sculptures/${sculpture._id}`}>
-                  <Image className={styles.gridImg} loader={() => `${process.env.NEXT_PUBLIC_IMAGES_SRC + sculpture.thumbnail}`} src={`${process.env.NEXT_PUBLIC_IMAGES_SRC + sculpture.thumbnail}`} alt="peinture" width={300} height={300} style={{ objectFit: "contain" }} placeholder="blur" blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN88B8AAsUB4ZtvXtIAAAAASUVORK5CYII=" />
+                  <Image className={styles.gridImg} loader={() => `${process.env.NEXT_PUBLIC_IMAGES_SRC}/${sculpture.thumbnail}`} src={`${process.env.NEXT_PUBLIC_IMAGES_SRC}/${ sculpture.thumbnail}`} alt="peinture" width={300} height={300} style={{ objectFit: "contain" }} placeholder="blur" blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN88B8AAsUB4ZtvXtIAAAAASUVORK5CYII=" />
                 </Link>
               ))}
             </div>
