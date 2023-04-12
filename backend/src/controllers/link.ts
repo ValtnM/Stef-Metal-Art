@@ -66,3 +66,29 @@ exports.addLink = (req: MulterRequest, res: Response) => {
     );
   }
 };
+
+exports.deleteLinkById = (req: Request, res: Response) => {
+  const linkId = mongoose.Types.ObjectId(req.params.linkId);
+
+  Link.findById(linkId, (err, link) => {
+    if (err) {
+      console.log(err);
+    } else {
+      const thumbnail = link.thumbnail;
+      Link.deleteOne({ _id: link._id }, (err) => {
+        if (err) {
+          console.log(err);
+        } else {
+          fs.unlink(`dist/images/${thumbnail}`, (err) => {
+            if (err) {
+              console.log(err);
+            } else {
+              console.log(`${thumbnail} was deleted`);
+            }
+          });
+          res.status(200).json({ message: "La lien a bien été supprimé" });
+        }
+      });
+    }
+  });
+};

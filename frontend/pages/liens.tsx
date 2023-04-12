@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { GetStaticProps } from "next";
 import NewLinkForm from "../components/NewLinkForm/NewLinkForm";
+import { BsTrash } from "react-icons/bs";
 
 type Link = {
   _id: Object;
@@ -29,12 +30,26 @@ export default function Liens(props: LinksProps) {
     .catch(err => console.log(err))
   }
 
+  const deleteLink = (e: React.MouseEvent<SVGElement, MouseEvent>, linkId: Object) => {
+    e.preventDefault();
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/link/${linkId}`, {
+      method: "DELETE"
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+      getAllLinks();      
+    })
+    .catch(err => console.log(err))
+  }
+
   return (
     <div className={styles.linksContainer}>
       <h2>Liens</h2>
       <div className={styles.links}>
         {links.map((element, index) => (
           <a href={element.link} className={styles.link} target="blank" style={{ animationDelay: `${index * 100}ms` }}>
+            <BsTrash onClick={(e) => deleteLink(e, element._id)} className={styles.icon} />
             <h3>{element.name}</h3>
             <hr />
             <div className={styles.linkImg}>

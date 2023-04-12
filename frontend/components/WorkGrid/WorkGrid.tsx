@@ -5,7 +5,6 @@ import { GetStaticProps } from "next";
 import DeleteNotificationMsg from "../../components/DeleteNotificationMsg/DeleteNotificationMsg";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { FaEdit } from "react-icons/fa";
 
 type Work = {
   _id: string;

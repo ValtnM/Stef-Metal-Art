@@ -7,6 +7,7 @@ const linkCtrl = require('../controllers/link.js')
 
 router.get('/', linkCtrl.getAllLinks);
 router.post('/', multer.single('thumbnail'), linkCtrl.addLink);
+router.delete('/:linkId', linkCtrl.deleteLinkById);
 
 
 

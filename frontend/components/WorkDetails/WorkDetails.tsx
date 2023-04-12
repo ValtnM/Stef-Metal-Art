@@ -306,11 +306,7 @@ export default function WorkDetails({ typeOfWork }: WorkDetailsProps) {
           getWorkInfos();
         })
         .catch((err) => console.log(err));
-      // let newPhotosArray = workInfos.photos;
-      // const index = workInfos.photos.indexOf(photoName);
-      // newPhotosArray.splice(index, 1)
-      // modifyWorkInfo('photos', newPhotoArray);
-      // updateWork('photos');
+      
     }
   };
 
