@@ -19,7 +19,39 @@ type LinksProps = {
 
 export default function Liens(props: LinksProps) {
 
+  const [adminMode, setAdminMode] = useState(false)
+  const [token, setToken] = useState("")
+  
   const [links, setLinks] = useState(props.linksArray)
+
+  useEffect(() => {
+    checkIsAdmin();
+  }, [])
+
+    const checkIsAdmin = () => {
+    const newToken = getTokenFromSessionStorage();
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin/${newToken}`, {
+      method: "GET",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.isAdmin) {
+          setAdminMode(true);
+        } else {
+          setAdminMode(false);
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const getTokenFromSessionStorage = () => {
+    const stockedToken = window.sessionStorage.getItem("token");
+    if (stockedToken) {
+      setToken(stockedToken);
+    }
+    return stockedToken;
+  };
 
   const getAllLinks = () => {
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/link`, {
@@ -43,13 +75,17 @@ export default function Liens(props: LinksProps) {
     .catch(err => console.log(err))
   }
 
+
   return (
     <div className={styles.linksContainer}>
       <h2>Liens</h2>
       <div className={styles.links}>
         {links.map((element, index) => (
           <a href={element.link} className={styles.link} target="blank" style={{ animationDelay: `${index * 100}ms` }}>
-            <BsTrash onClick={(e) => deleteLink(e, element._id)} className={styles.icon} />
+            {
+              adminMode &&
+              <BsTrash onClick={(e) => deleteLink(e, element._id)} className={styles.icon} />
+            }
             <h3>{element.name}</h3>
             <hr />
             <div className={styles.linkImg}>
@@ -59,7 +95,10 @@ export default function Liens(props: LinksProps) {
           </a>
         ))}
       </div>
-      <NewLinkForm getAllLinks={getAllLinks} />
+      {
+        adminMode &&
+        <NewLinkForm getAllLinks={getAllLinks} />
+      }
     </div>
   );
 }
