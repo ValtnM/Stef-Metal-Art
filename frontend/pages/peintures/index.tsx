@@ -25,10 +25,7 @@ export default function Peintures(props: WorksProps) {
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap"
-          rel="stylesheet"
-        />
+        <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet" />
       </Head>
       <div className={styles.paintings}>
         <WorkGrid worksArray={props.paintingsArray} title="Peintures" />
@@ -38,12 +35,10 @@ export default function Peintures(props: WorksProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const sculptureData = await fetch(
-    "http://localhost:8080/api/works/sculpture"
-  );
+  const sculptureData = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/works/sculpture`);
   const sculpturesArray = await sculptureData.json();
 
-  const paintingData = await fetch("http://localhost:8080/api/works/painting");
+  const paintingData = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/works/painting`);
   const paintingsArray = await paintingData.json();
 
   return {

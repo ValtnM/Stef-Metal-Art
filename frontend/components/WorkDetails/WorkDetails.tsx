@@ -23,11 +23,12 @@ type Work = {
 
 type WorkDetailsProps = {
   typeOfWork: string;
+  workDetails: Work;
 };
 
-export default function WorkDetails({ typeOfWork }: WorkDetailsProps) {
+export default function WorkDetails({typeOfWork, workDetails}: WorkDetailsProps) {
   const [workId, setWorkId] = useState<String>();
-  const [workInfos, setWorkInfos] = useState<Work>();
+  const [workInfos, setWorkInfos] = useState<Work>(workDetails);
   const [token, setToken] = useState("");
 
   const [zoomMode, setZoomMode] = useState(false);
@@ -62,15 +63,15 @@ export default function WorkDetails({ typeOfWork }: WorkDetailsProps) {
     }
   }, [router.isReady]);
 
-  useEffect(() => {
-    if (workId) {
-      getWorkInfos();
-    }
-  }, [workId]);
+  // useEffect(() => {
+  //   if (workId) {
+  //     getWorkInfos();
+  //   }
+  // }, [workId]);
 
   const checkIsAdmin = () => {
     const newToken = getTokenFromSessionStorage();
-    fetch(`http://localhost:8080/api/admin/${newToken}`, {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin/${newToken}`, {
       method: "GET",
     })
       .then((res) => res.json())
@@ -376,7 +377,7 @@ export default function WorkDetails({ typeOfWork }: WorkDetailsProps) {
           {/* // Photo de la peinture // */}
           {workInfos.photos && workInfos.photos.length === 1 && (
             <div className={styles.workPhoto}>
-              <Image onClick={() => zoomPhoto(workInfos.photos[0])} loader={() => `${process.env.NEXT_PUBLIC_IMAGES_SRC + workInfos.photos[0]}`} src={`${process.env.NEXT_PUBLIC_IMAGES_SRC + workInfos.photos[0]}`} alt="peinture" width={1000} height={400} style={{ objectFit: "contain" }} placeholder="blur" blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN88B8AAsUB4ZtvXtIAAAAASUVORK5CYII=" />
+              <Image onClick={() => zoomPhoto(workInfos.photos[0])} loader={() => `${process.env.NEXT_PUBLIC_IMAGES_SRC}/${workInfos.photos[0]}`} src={`${process.env.NEXT_PUBLIC_IMAGES_SRC}/${workInfos.photos[0]}`} alt="peinture" width={1000} height={400} style={{ objectFit: "contain" }} placeholder="blur" blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN88B8AAsUB4ZtvXtIAAAAASUVORK5CYII=" />
               {adminMode && (
                 <div>
                   <div onClick={() => handleEditForms("photo")} className={styles.iconContainer}>
@@ -400,7 +401,7 @@ export default function WorkDetails({ typeOfWork }: WorkDetailsProps) {
 
           {workInfos.photos && workInfos.photos.length > 1 && (
             <div className={styles.sliderBlock}>
-              <Slider deletePhoto={deletePhoto} handleEditForms={handleEditForms} setZoomedImage={setZoomedImage} setZoomMode={setZoomMode} dataSlider={workInfos.photos} />
+              <Slider adminMode={adminMode} deletePhoto={deletePhoto} handleEditForms={handleEditForms} setZoomedImage={setZoomedImage} setZoomMode={setZoomMode} dataSlider={workInfos.photos} />
               {adminMode && (
                 <div className={addPhoto ? `${styles.editPhoto} ${styles.editContainer} ${styles.visibleForm}` : `${styles.editPhoto} ${styles.editContainer}`}>
                   <div className={styles.editBlock}>
@@ -457,7 +458,7 @@ export default function WorkDetails({ typeOfWork }: WorkDetailsProps) {
         <div className={styles.zoom}>
           <IoMdCloseCircle onClick={() => setZoomMode(false)} className={styles.icon} />
           <div className={styles.zoomImg}>
-            <Image fill loader={() => `${process.env.NEXT_PUBLIC_IMAGES_SRC + zoomedImage}`} src={`${process.env.NEXT_PUBLIC_IMAGES_SRC + zoomedImage}`} alt="" />
+            <Image fill loader={() => `${process.env.NEXT_PUBLIC_IMAGES_SRC}/${zoomedImage}`} src={`${process.env.NEXT_PUBLIC_IMAGES_SRC}/${zoomedImage}`} alt="" />
           </div>
         </div>
       )}

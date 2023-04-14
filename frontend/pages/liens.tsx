@@ -35,7 +35,6 @@ export default function Liens(props: LinksProps) {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.isAdmin) {
           setAdminMode(true);
         } else {

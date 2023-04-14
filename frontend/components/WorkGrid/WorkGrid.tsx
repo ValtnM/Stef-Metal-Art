@@ -61,30 +61,8 @@ export default function WorkGrid(props: WorkProps) {
             {props.worksArray.map((element, index) => (
               <div key={index} className={styles.workContainer}>
                 <Link href={`${pathname}/${element._id}`} key={index} style={{ animationDelay: `${index * 100}ms` }} className={styles.workElement}>
-                  <img src={process.env.NEXT_PUBLIC_IMAGES_SRC + element.thumbnail} alt={`Sculpture ${element.name}`} />
+                  <img src={`${process.env.NEXT_PUBLIC_IMAGES_SRC}/${element.thumbnail}`} alt={`Sculpture ${element.name}`} />
                 </Link>
-                {/* {adminMode && (
-
-
-                  <div className={styles.editBlock}>
-                    <div onClick={() => setEditThumbnail(element._id)} className={styles.iconContainer}>
-                      <FaEdit className={styles.icon} />
-                    </div>
-
-                    <div className={editThumbnail === element._id ? `${styles.editFormContainer} ${styles.active}` : `${styles.editFormContainer}`}>
-                      <div className={styles.editForm}>
-                        <input type="file" />
-                        <div className={styles.editBtn}>
-                          <button>Modifier</button>
-                          <button onClick={() => setEditThumbnail("")}>Annuler</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-
-
-                )} */}
               </div>
             ))}
           </div>

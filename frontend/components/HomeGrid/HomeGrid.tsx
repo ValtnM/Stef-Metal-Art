@@ -15,13 +15,13 @@ type Work = {
   update_date: Date;
 };
 
-export default function HomeGrid() {
-  const [nbOfSculpturesToDisplay, setNbOfSculpturesToDisplay] = useState(6);
-  const [sculpturesArray, setSculpturesArray] = useState<Array<Array<Work>>>([]);
+export default function HomeGrid(props: { sculpturesArray: Work[][]; nbOfSculpturesToDisplay: number }) {
+  const [nbOfSculpturesToDisplay, setNbOfSculpturesToDisplay] = useState(props.nbOfSculpturesToDisplay);
+  const [sculpturesArray, setSculpturesArray] = useState<Array<Array<Work>>>(props.sculpturesArray);
   const [previousRandomNumber, setPreviousRandomNumber] = useState(900);
 
   useEffect(() => {
-    getRandomSculptures(nbOfSculpturesToDisplay);
+    stockSculpturesToLocalStorage();
     const intervalId = setInterval(() => {
       const randomNumber = getRandomNumber(nbOfSculpturesToDisplay);
       getNewRandomSculpture(randomNumber);
@@ -31,20 +31,8 @@ export default function HomeGrid() {
     };
   }, []);
 
-  const getRandomSculptures = (nb: number) => {
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/works/random/${nb}`, {
-      method: "GET",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        let newSculpturesArray: Work[][] = [];
-        for (let i = 0; i < data.length; i++) {
-          newSculpturesArray.push([data[i]]);
-        }
-        setSculpturesArray(newSculpturesArray);
-        window.localStorage.setItem("sculptures", JSON.stringify(newSculpturesArray));
-      })
-      .catch((err) => console.log(err));
+  const stockSculpturesToLocalStorage = () => {
+    window.localStorage.setItem("sculptures", JSON.stringify(sculpturesArray));
   };
 
   const getNewRandomSculpture = async (randomNumber: number) => {
@@ -129,7 +117,7 @@ export default function HomeGrid() {
             <div key={index} style={{ animationDelay: `${index * 100}ms` }} className={styles.block}>
               {element.map((sculpture, index) => (
                 <Link className={styles.sculptureThumb} key={index} href={`/sculptures/${sculpture._id}`}>
-                  <Image className={styles.gridImg} loader={() => `${process.env.NEXT_PUBLIC_IMAGES_SRC}/${sculpture.thumbnail}`} src={`${process.env.NEXT_PUBLIC_IMAGES_SRC}/${ sculpture.thumbnail}`} alt="peinture" width={300} height={300} style={{ objectFit: "contain" }} placeholder="blur" blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN88B8AAsUB4ZtvXtIAAAAASUVORK5CYII=" />
+                  <Image className={styles.gridImg} loader={() => `${process.env.NEXT_PUBLIC_IMAGES_SRC}/${sculpture.thumbnail}`} src={`${process.env.NEXT_PUBLIC_IMAGES_SRC}/${sculpture.thumbnail}`} alt="peinture" width={300} height={300} style={{ objectFit: "contain" }} placeholder="blur" blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN88B8AAsUB4ZtvXtIAAAAASUVORK5CYII=" />
                 </Link>
               ))}
             </div>

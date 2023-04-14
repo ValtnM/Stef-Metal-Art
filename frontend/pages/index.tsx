@@ -1,17 +1,11 @@
 import { useEffect } from "react";
 import HomeGrid from "../components/HomeGrid/HomeGrid";
 import Bio from "../components/Bio/Bio";
-
-type Sculpture = {
-  id: number;
-  name: string;
-  description: string;
-  thumb: string;
-  photos: string[];
-};
+import { GetStaticProps } from "next";
 
 type IndexProps = {
-  sculpturesArray: Sculpture[];
+  sculpturesArray: Work[][];
+  nbOfSculpturesToDisplay: number;
 };
 
 type Work = {
@@ -126,8 +120,34 @@ export default function Home(props: IndexProps) {
   // };
   return (
     <div>
-      <HomeGrid />
+      <HomeGrid sculpturesArray={props.sculpturesArray} nbOfSculpturesToDisplay={props.nbOfSculpturesToDisplay} />
       <Bio />
     </div>
   );
 }
+
+export const getStaticProps: GetStaticProps = async () => {
+  const nbOfSculpturesToDisplay = 6;
+  const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/works/random/${nbOfSculpturesToDisplay}`);
+  let sculpturesArray = await data.json();
+
+  const formatSculpturesArray = (array: Work[]) => {
+    let newSculpturesArray: Work[][] = [];
+        for (let i = 0; i < array.length; i++) {
+          newSculpturesArray.push([array[i]]);
+        }
+        return newSculpturesArray;
+  }
+
+  sculpturesArray = formatSculpturesArray(sculpturesArray);
+
+  console.log(sculpturesArray);
+  
+
+  return {
+    props: {
+      sculpturesArray,
+      nbOfSculpturesToDisplay
+    },
+  };
+};
