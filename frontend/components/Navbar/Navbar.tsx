@@ -18,7 +18,7 @@ export default function Navbar() {
         />
       </Head>
       <nav className={styles.navbar}>
-        <div className={styles.engrenages}>
+        {/* <div className={styles.engrenages}>
 
         <Image
           className={styles.engrenagesImg}
@@ -27,7 +27,7 @@ export default function Navbar() {
           width={200}
           height={180}
           />
-        </div>
+        </div> */}
         <div className={styles.logo}>
 
         <Link href="/">
@@ -40,13 +40,13 @@ export default function Navbar() {
             />
         </Link>
             </div>
-            <div className={styles.link}>
+            <div className={styles.links}>
 
-        <Link className={styles.contactLink} href="/sculptures">
+        <Link className={styles.link} href="/sculptures">
           Sculptures
         </Link>
-        <hr />
-        <Link className={styles.contactLink} href="/contact">
+        {/* <hr /> */}
+        <Link className={styles.link} href="/contact">
           Contact
         </Link>
         </div>
