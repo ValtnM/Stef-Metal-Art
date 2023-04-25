@@ -1,21 +1,33 @@
+.container {
+    background: #333;
+    padding: 50px 0;
+}
+
 .bio {
     max-width: 1000px;
     display: flex;
     align-items: center;
-    margin: 100px auto;
-    padding: 20px;
+    margin: auto;
+    padding: 30px 50px;
+    background: white;
+    border-radius: 20px;
     img {
         max-width: 200px;
         height: auto;
         margin-right: 50px;
     }
     p {
-        font-size: 1.1em;
-        line-height: 1.3em;
+        font-size: 1em;
+        line-height: 1.5em;
         text-align: justify;
     }
 }
 
+@media screen and (max-width: 1200px) {
+    .bio {
+        max-width: 90%;
+    }
+}
 @media screen and (max-width: 900px) {
     .bio {
         flex-direction: column;
@@ -27,6 +39,9 @@
 @media screen and (max-width: 500px) {
     .bio {
        font-size: 0.8em;
-       margin-top: 50px;
+       padding: 30px;
+       img {
+        max-width: 60%;
+       }
     }
 }

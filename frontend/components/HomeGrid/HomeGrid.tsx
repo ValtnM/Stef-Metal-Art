@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./HomeGrid.module.scss";
+import Engrenages from '../../public/assets/engrenages-photo.jpg'
 
 type Work = {
   _id: Object;
@@ -110,7 +111,9 @@ export default function HomeGrid(props: { sculpturesArray: Work[][]; nbOfSculptu
   };
 
   return (
-    <>
+    <div className={styles.container}>
+      <Image className={styles.background} src={Engrenages} width={5472} height={3648} alt="Engrenages en vrac" />
+      <div className={styles.backgroundFilter}></div>
       {sculpturesArray && (
         <div className={styles.grid}>
           {sculpturesArray.map((element, index) => (
@@ -124,6 +127,6 @@ export default function HomeGrid(props: { sculpturesArray: Work[][]; nbOfSculptu
           ))}
         </div>
       )}
-    </>
+    </div>
   );
 }
