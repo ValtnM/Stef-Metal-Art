@@ -1,7 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
 import styles from "./WorkGrid.module.scss";
-import { GetStaticProps } from "next";
 import DeleteNotificationMsg from "../../components/DeleteNotificationMsg/DeleteNotificationMsg";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
@@ -40,13 +39,8 @@ export default function WorkGrid(props: WorkProps) {
     window.localStorage.removeItem("delete-notification");
   };
 
-  const stopPropagation = (e: MouseEvent) => {
-    e.stopPropagation();
-    e.stopImmediatePropagation();
-  };
-
   return (
-    <>
+    <div className={styles.container}>
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -59,15 +53,19 @@ export default function WorkGrid(props: WorkProps) {
         {props.worksArray && (
           <div className={styles.worksGrid}>
             {props.worksArray.map((element, index) => (
-              <div key={index} className={styles.workContainer}>
                 <Link href={`${pathname}/${element._id}`} key={index} style={{ animationDelay: `${index * 100}ms` }} className={styles.workElement}>
                   <img src={`${process.env.NEXT_PUBLIC_IMAGES_SRC}/${element.thumbnail}`} alt={`Sculpture ${element.name}`} />
+                  <h2>{element.name}</h2>
                 </Link>
-              </div>
+              // <div key={index} className={styles.workContainer}>
+              //   <Link href={`${pathname}/${element._id}`} key={index} style={{ animationDelay: `${index * 100}ms` }} className={styles.workElement}>
+              //     <img src={`${process.env.NEXT_PUBLIC_IMAGES_SRC}/${element.thumbnail}`} alt={`Sculpture ${element.name}`} />
+              //   </Link>
+              // </div>
             ))}
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 }
