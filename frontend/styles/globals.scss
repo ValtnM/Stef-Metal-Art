@@ -6,6 +6,7 @@ body {
   /* font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif; */
   font-family: "Roboto", Arial, Helvetica, sans-serif;
+  background: linear-gradient(309deg, rgba(242,242,242,1) 14%, rgba(255,255,255,1) 100%);
 }
 
 li {
@@ -32,6 +33,7 @@ a {
 } */
 
 :root {
+  --background-gradient: linear-gradient(140deg, rgba(242,242,242,1) 14%, rgba(255,255,255,1) 100%);
   --green-gradient: linear-gradient(36deg, rgba(2, 92, 14, 1) 0%, rgba(62, 159, 0, 1) 63%);
   --red-gradient: linear-gradient(35deg, rgba(89, 0, 0, 1) 0%, rgba(235, 13, 13, 1) 80%);
   --font-primary: "Indie Flower", "Roboto", Arial, Helvetica, sans-serif;

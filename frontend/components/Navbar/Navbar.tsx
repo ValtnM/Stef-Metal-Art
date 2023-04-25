@@ -8,7 +8,7 @@ import Logo from "../../public/assets/logo.png";
 
 export default function Navbar() {
   return (
-    <>
+    <div className={styles.container}>
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -51,6 +51,6 @@ export default function Navbar() {
         </Link>
         </div>
       </nav>
-    </>
+    </div>
   );
 }

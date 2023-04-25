@@ -2,6 +2,8 @@ import React from "react";
 import Head from "next/head";
 import Link from "next/link";
 import styles from "./Foot.module.scss";
+import Image from "next/image";
+import Engrenages from '../../public/assets/engrenages-small.png';
 import { FaRegCopyright } from "react-icons/fa";
 
 export default function Foot() {
@@ -17,7 +19,13 @@ export default function Foot() {
       </Head>
       <footer className={styles.footer}>
         <Link href="/admin">
-          <img src="/assets/engrenages-small.png" alt="Engrenages" />
+        <Image
+            className={styles.engrenages}
+            src={Engrenages}
+            alt="Engrenages"
+            width={279}
+            height={246}
+            />
         </Link>
         <ul className={styles.footerNav}>
           <Link href="/peintures">
@@ -30,10 +38,10 @@ export default function Foot() {
             <li>Contact</li>
           </Link>
         </ul>
-        <div className={styles.copyright}>
+        {/* <div className={styles.copyright}>
           <FaRegCopyright className="copyright-icon" />
           <p>2023 Stef Metal Art, Tous droits réservés.</p>
-        </div>
+        </div> */}
       </footer>
     </>
   );
