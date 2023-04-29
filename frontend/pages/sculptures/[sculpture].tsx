@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import styles from "../../styles/Sculptures.module.scss";
 import WorkDetails from "../../components/WorkDetails/WorkDetails";
 import { GetStaticProps, GetStaticPaths } from "next";
+import Slider from "../../components/Slider/Slider";
 
 type Work = {
   _id: Object;
@@ -16,9 +17,12 @@ type Work = {
 };
 
 export default function Sculpture(props: {sculpture: Work}) {
+
+
   return (
     <div className={styles.sculptureContainer}>
-      <WorkDetails typeOfWork="sculpture" workDetails={props.sculpture} />
+      <WorkDetails  typeOfWork="sculpture" workDetails={props.sculpture} />
+      {/* <Slider /> */}
     </div>
   );
 }

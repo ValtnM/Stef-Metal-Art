@@ -8,6 +8,7 @@ import { BsTrash } from "react-icons/bs";
 import { IoMdCloseCircle } from "react-icons/io";
 import { type } from "os";
 import Slider from "../Slider/Slider";
+import WorkCard from "../WorkCard/WorkCard";
 
 type Work = {
   _id: Object;
@@ -62,12 +63,7 @@ export default function WorkDetails({typeOfWork, workDetails}: WorkDetailsProps)
       }
     }
   }, [router.isReady]);
-
-  // useEffect(() => {
-  //   if (workId) {
-  //     getWorkInfos();
-  //   }
-  // }, [workId]);
+ 
 
   const checkIsAdmin = () => {
     const newToken = getTokenFromSessionStorage();
@@ -313,6 +309,9 @@ export default function WorkDetails({typeOfWork, workDetails}: WorkDetailsProps)
 
   return (
     <div className={styles.workContainer}>
+      <WorkCard workInfos={workInfos} modifyWorkInfo={modifyWorkInfo} adminMode={adminMode} handleEditForms={handleEditForms} editThumbnail={editThumbnail} setEditThumbnail={setEditThumbnail} editName={editName} setEditName={setEditName} editDescription={editDescription} setEditDescription={setEditDescription} thumbnailInputRef={thumbnailInputRef} handleNewThumbnail={handleNewThumbnail} updateWork={updateWork}/>
+
+
       {workInfos && deleteMode && (
         <div className={styles.deleteConfirmationContainer}>
           <div className={styles.deleteConfirmationBlock}>
@@ -324,17 +323,17 @@ export default function WorkDetails({typeOfWork, workDetails}: WorkDetailsProps)
           </div>
         </div>
       )}
-      {typeOfWork && <BackBtn typeOfWork={typeOfWork} />}
+      {/* {typeOfWork && <BackBtn typeOfWork={typeOfWork} />} */}
       {workInfos && (
         <div className={styles.work}>
-          {adminMode && (
+          {/* {adminMode && (
             <div onClick={() => setDeleteMode(true)} className={styles.deleteElement}>
               <BsTrash className={styles.icon} />
               <div>Supprimer</div>
             </div>
-          )}
+          )} */}
 
-          {adminMode && (
+          {/* {adminMode && (
             <div className={styles.thumbnail}>
               <div className={styles.thumbnailEditionBtn}>
                 <FaEdit className={styles.icon} />
@@ -351,18 +350,18 @@ export default function WorkDetails({typeOfWork, workDetails}: WorkDetailsProps)
                 </div>
               </div>
             </div>
-          )}
+          )} */}
 
           {/* // Nom de la peinture // */}
-          <div className={styles.name}>
+          {/* <div className={styles.name}>
             <h1>{workInfos.name}</h1>
             {adminMode && (
               <div className={styles.iconContainer}>
                 <FaEdit onClick={() => handleEditForms("name")} className={styles.icon} />
               </div>
             )}
-          </div>
-          {adminMode && (
+          </div> */}
+          {/* {adminMode && (
             <div className={editName ? `${styles.editName} ${styles.editContainer} ${styles.visibleForm}` : `${styles.editName} ${styles.editContainer}`}>
               <div className={styles.editBlock}>
                 <input onChange={(e) => modifyWorkInfo("name", e.target.value)} type="text" id="name" value={workInfos.name} />
@@ -372,7 +371,7 @@ export default function WorkDetails({typeOfWork, workDetails}: WorkDetailsProps)
                 </div>
               </div>
             </div>
-          )}
+          )} */}
 
           {/* // Photo de la peinture // */}
           {workInfos.photos && workInfos.photos.length === 1 && (
@@ -399,7 +398,7 @@ export default function WorkDetails({typeOfWork, workDetails}: WorkDetailsProps)
             </div>
           )}
 
-          {workInfos.photos && workInfos.photos.length > 1 && (
+          {/* {workInfos.photos && workInfos.photos.length > 1 && (
             <div className={styles.sliderBlock}>
               <Slider adminMode={adminMode} deletePhoto={deletePhoto} handleEditForms={handleEditForms} setZoomedImage={setZoomedImage} setZoomMode={setZoomMode} dataSlider={workInfos.photos} />
               {adminMode && (
@@ -415,10 +414,10 @@ export default function WorkDetails({typeOfWork, workDetails}: WorkDetailsProps)
                 </div>
               )}
             </div>
-          )}
+          )} */}
 
           {/* // Description de la peinture // */}
-          <div className={styles.workDescription}>
+          {/* <div className={styles.workDescription}>
             <p>{workInfos.description}</p>
             {adminMode && (
               <div>
@@ -450,7 +449,7 @@ export default function WorkDetails({typeOfWork, workDetails}: WorkDetailsProps)
               //   </div>
               // </div>
             )}
-          </div>
+          </div> */}
         </div>
       )}
 

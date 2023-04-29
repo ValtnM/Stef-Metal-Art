@@ -33,9 +33,18 @@ a {
 } */
 
 :root {
+  --basic-white: #f3f3f3;
+  --basic-black: #333333;
+  --grey-button-hover: rgb(210, 210, 210);
+  --grey-button: rgb(240,240,240);
+  --blue-button-hover: rgb(53, 53, 255);
+  --blue-button: rgb(83, 83, 255);
+  --input-button-hover: #9f9f9f;
+  --input-button: #d9d9d9;
   --background-gradient: linear-gradient(140deg, rgba(242,242,242,1) 14%, rgba(255,255,255,1) 100%);
   --green-gradient: linear-gradient(36deg, rgba(2, 92, 14, 1) 0%, rgba(62, 159, 0, 1) 63%);
   --red-gradient: linear-gradient(35deg, rgba(89, 0, 0, 1) 0%, rgba(235, 13, 13, 1) 80%);
   --font-primary: "Indie Flower", "Roboto", Arial, Helvetica, sans-serif;
+  --box-shadow: 0px 4px 4px 0px rgba(51,51,51,0.25);
 }
 

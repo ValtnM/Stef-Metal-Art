@@ -35,9 +35,8 @@
 
 
 .sculptureContainer {
-  min-height: 100vh;
-  max-width: 1200px;
-  margin: 50px auto;
+  padding: 50px;
+  background: var(--background-gradient);
   .iconContainer {
     width: 30px;
     height: 30px;

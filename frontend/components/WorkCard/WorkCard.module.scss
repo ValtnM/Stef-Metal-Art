@@ -1,0 +1,240 @@
+.workCard {
+  position: relative;
+  width: 800px;
+  height: 400px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  border-radius: 50px;
+  box-shadow: var(--box-shadow);
+  // border: 2px red solid;
+}
+
+.thumbnailImg {
+  border-radius: 50px 0 0 50px;
+}
+
+.infos {
+  position: absolute;
+  right: 0;
+  width: 55%;
+  height: 100%;
+  background: white;
+  border-radius: 50px;
+  padding: 40px;
+  .nameContainer {
+    display: flex;
+    align-items: center;
+  }
+  .descriptionContainer {
+    position: relative;
+    // border: 2px blue solid;
+  }
+  .nameContainer,
+  .descriptionContainer {
+    .icon {
+      width: 25px;
+      height: 25px;
+      margin-left: 10px;
+      padding: 4px;
+      background: var(--basic-black);
+      color: var(--basic-white);
+      border-radius: 5px;
+      cursor: pointer;
+      transition: transform 100ms ease-in-out;
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+  }
+  h2 {
+    font-family: var(--font-primary);
+    font-size: 2em;
+    font-weight: 600;
+    margin: 0;
+  }
+}
+
+.thumbnailEditing {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
+}
+.thumbnailEditingBtn {
+  display: inline-flex;
+  align-items: center;
+  background: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  border-radius: 50px;
+  padding: 5px 10px;
+  box-shadow: var(--box-shadow);
+  cursor: pointer;
+  .icon {
+    margin-right: 10px;
+  }
+  &:hover {
+    background: rgb(242, 242, 242);
+  }
+}
+
+.nameEditing {
+  .editFormContainer {
+    position: absolute;
+    left: 40px;
+    z-index: 10;
+  }
+}
+
+.descriptionEditing {
+  .icon {
+    position: absolute;
+    top: 0;
+    left: -40px;
+  }
+  .editFormContainer {
+    width: 100%;
+    position: absolute;
+    top: -20px;
+  }
+}
+
+.editFormContainer {
+  width: 300px;
+  background: white;
+  margin-top: 20px;
+  border-radius: 20px;
+  box-shadow: var(--box-shadow);
+}
+
+.editForm {
+  width: 100%;
+  text-align: center;
+  h3 {
+    background: var(--basic-black);
+    color: var(--basic-white);
+    font-family: var(--font-primary);
+    font-size: 1.5em;
+    font-weight: 500;
+    margin: 0 0 25px 0;
+    padding: 10px;
+    border-radius: 20px 20px 0 0;
+  }
+  .thumbnailLabel {
+    display: block;
+    width: 150px;
+    background: var(--input-button);
+    font-size: 0.8em;
+    margin: 0 auto 25px auto;
+    padding: 7px 10px;
+    border: 1px white solid;
+    border-radius: 5px;
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+    transition: transform 50ms ease-in-out;
+    &:hover {
+      border: 1px var(--input-button-hover) solid;
+      transform: scale(1.02);
+      background: var(--input-button-hover);
+    }
+  }
+  .tumbnailImgPreview {
+    width: 90%;
+    margin: 0 auto 20px auto;
+
+    img {
+      width: 100%;
+    }
+  }
+  .thumbnailInput {
+    display: none;
+  }
+  .textInput {
+    margin-bottom: 20px;
+    padding: 5px 10px;
+    border: none;
+    box-shadow: var(--box-shadow);
+  }
+  .textAreaInput {
+    max-width: 90%;
+    width: 90%;
+    margin: 0 auto 20px auto;
+    padding: 10px;
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
+    border: none;
+    box-shadow: var(--box-shadow);
+  }
+}
+.editFormBtns {
+  padding-bottom: 20px;
+  button {
+    margin: 0 10px;
+    border-radius: 5px;
+    padding: 7px 20px;
+    font-family: "Roboto";
+    font-weight: 500;
+    font-size: 0.75em;
+    letter-spacing: 0.8px;
+    cursor: pointer;
+    border: 1px black solid;
+    &:hover {
+      background: var(--grey-button-hover);
+    }
+    &:first-child {
+      border: 1px var(--blue-button) solid;
+      background: var(--blue-button);
+      color: white;
+      &:hover {
+        background: var(--blue-button-hover);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .workCard {
+    height: 800px;
+    width: 400px;
+    .thumbnailImg {
+      border-radius: 50px 50px 0 0;
+    }
+    .infos {
+      bottom: 0;
+      height: 55%;
+      width: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .workCard {
+    font-size: 0.8em;
+    height: 800px;
+    width: 90%;
+    .thumbnailImg {
+      border-radius: 50px 50px 0 0;
+      width: 100%;
+      object-fit: cover;
+    }
+    .infos {
+      bottom: 0;
+      height: 55%;
+      width: 100%;
+    }
+
+    .nameEditing {
+      .editFormContainer {
+        max-width: 90%;
+        left: 10px;
+      }
+    }
+    .descriptionEditing {
+      .editFormContainer {
+        width: 250px;
+        left: -30px;
+        // right: -50px;
+        top: 20px;
+      }
+    }
+  }
+}
