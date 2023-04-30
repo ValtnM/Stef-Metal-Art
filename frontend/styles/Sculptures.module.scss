@@ -301,6 +301,12 @@
   }
 }
 
+@media screen and (max-width: 576px) {
+  .sculptureContainer {
+    padding: 10px;
+  }
+}
+
 @keyframes sculptureBottomAppearance {
   0% {
     transform: translateY(50px);

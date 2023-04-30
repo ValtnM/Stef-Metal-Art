@@ -14,28 +14,39 @@ type SliderProps = {
   setZoomedImage: React.Dispatch<React.SetStateAction<string>>;
   setZoomMode: React.Dispatch<React.SetStateAction<boolean>>;
   dataSlider: string[];
+  addPhoto: boolean;
+  setAddPhoto: React.Dispatch<React.SetStateAction<boolean>>;
+  handleNewPhoto: Function;
+  updateWork: Function;
+  photosInputRef: React.MutableRefObject<any>;
 };
 
 export default function Slider(props: SliderProps) {
+  const [imgPreview, setImagePreview] = useState<File>();
+
   const [slideAnim, setSlideAnim] = useState({
     index: 1,
   });
 
   // Faire défilé les photos vers la gauche
   const nextSlide = () => {
-    if (slideAnim.index !== props.dataSlider.length) {
-      setSlideAnim({ index: slideAnim.index + 1 });
-    } else if (slideAnim.index === props.dataSlider.length) {
-      setSlideAnim({ index: 1 });
+    if (props.dataSlider.length > 1) {
+      if (slideAnim.index !== props.dataSlider.length) {
+        setSlideAnim({ index: slideAnim.index + 1 });
+      } else if (slideAnim.index === props.dataSlider.length) {
+        setSlideAnim({ index: 1 });
+      }
     }
   };
 
   // Faire défilé les photos vers la droite
   const prevSlide = () => {
-    if (slideAnim.index !== 1) {
-      setSlideAnim({ index: slideAnim.index - 1 });
-    } else if (slideAnim.index === 1) {
-      setSlideAnim({ index: props.dataSlider.length });
+    if (props.dataSlider.length > 1) {
+      if (slideAnim.index !== 1) {
+        setSlideAnim({ index: slideAnim.index - 1 });
+      } else if (slideAnim.index === 1) {
+        setSlideAnim({ index: props.dataSlider.length });
+      }
     }
   };
 
@@ -71,6 +82,17 @@ export default function Slider(props: SliderProps) {
     }
   };
 
+  const handlePhotoInput = (target: HTMLInputElement) => {
+    setImagePreview(target.files![0]);
+    props.handleNewPhoto(target);
+  };
+
+  const addingPhoto = () => {
+    props.updateWork("photos");
+    setImagePreview(undefined);
+    props.setAddPhoto(false);
+  };
+
   return (
     <div className={styles.containerSlider}>
       {props.dataSlider.length > 0 &&
@@ -80,27 +102,40 @@ export default function Slider(props: SliderProps) {
               <Image onClick={() => zoomPhoto(photo)} loader={() => `${process.env.NEXT_PUBLIC_IMAGES_SRC}/${photo}`} src={`${process.env.NEXT_PUBLIC_IMAGES_SRC}/${photo}`} alt="Photo sculpture" fill />
               {props.adminMode && (
                 <div className={styles.iconsContainer}>
-                  <div onClick={() => props.handleEditForms("photos")} className={styles.iconBlock}>
-                    <FaEdit className={styles.icon} />
-                  </div>
-                  <div className={styles.iconBlock}>
-                    <BsTrash onClick={() => handleDeleteBtn(photo)} className={styles.icon} />
-                  </div>
+                  <FaEdit onClick={() => props.handleEditForms("photos")} className={styles.icon} />
+                  <BsTrash onClick={() => handleDeleteBtn(photo)} className={styles.icon} />
                 </div>
               )}
             </div>
           );
         })}
 
-      <FaArrowAltCircleRight onClick={() => nextSlide()} className={`${styles.btnSlide} ${styles.next}`} />
+      <FaArrowAltCircleRight onClick={() => nextSlide()} className={props.dataSlider.length > 1 ? `${styles.btnSlide} ${styles.next}` : `${styles.btnSlide} ${styles.next} ${styles.disabledBtn}`} />
 
-      <FaArrowAltCircleLeft onClick={() => prevSlide()} className={`${styles.btnSlide} ${styles.prev}`} />
+      <FaArrowAltCircleLeft onClick={() => prevSlide()} className={props.dataSlider.length > 1 ? `${styles.btnSlide} ${styles.prev}` : `${styles.btnSlide} ${styles.prev} ${styles.disabledBtn}`} />
 
       <div className={styles.containerDots}>
         {Array.from({ length: props.dataSlider.length }).map((item, index) => {
           return <button key={uuidv4()} onClick={() => moveDot(index + 1)} className={slideAnim.index === index + 1 ? `${styles.dot} ${styles.active}` : `${styles.dot}`}></button>;
         })}
       </div>
+
+      {props.adminMode && props.addPhoto && (
+        <div className={props.addPhoto ? `${styles.addingPhoto} ${styles.visibleForm}` : `${styles.addingPhoto}`}>
+          <div className={styles.editBlock}>
+            <h3>Ajouter une photo</h3>
+            <label htmlFor="file" className={styles.photoLabel}>
+              Choisir une image
+            </label>
+            <input id="file" className={styles.photoInput} onChange={(e) => handlePhotoInput(e.target)} type="file" ref={props.photosInputRef} />
+            <div className={styles.photoImgPreview}>{imgPreview && <img src={URL.createObjectURL(imgPreview)} alt="Aperçu image" />}</div>
+            <div className={styles.editingFormBtns}>
+              <button onClick={() => addingPhoto()}>Ajouter</button>
+              <button onClick={() => props.setAddPhoto(false)}>Annuler</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

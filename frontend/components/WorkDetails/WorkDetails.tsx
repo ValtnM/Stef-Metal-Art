@@ -374,7 +374,7 @@ export default function WorkDetails({typeOfWork, workDetails}: WorkDetailsProps)
           )} */}
 
           {/* // Photo de la peinture // */}
-          {workInfos.photos && workInfos.photos.length === 1 && (
+          {/* {workInfos.photos && workInfos.photos.length === 1 && (
             <div className={styles.workPhoto}>
               <Image onClick={() => zoomPhoto(workInfos.photos[0])} loader={() => `${process.env.NEXT_PUBLIC_IMAGES_SRC}/${workInfos.photos[0]}`} src={`${process.env.NEXT_PUBLIC_IMAGES_SRC}/${workInfos.photos[0]}`} alt="peinture" width={1000} height={400} style={{ objectFit: "contain" }} placeholder="blur" blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN88B8AAsUB4ZtvXtIAAAAASUVORK5CYII=" />
               {adminMode && (
@@ -396,12 +396,12 @@ export default function WorkDetails({typeOfWork, workDetails}: WorkDetailsProps)
                 </div>
               )}
             </div>
-          )}
+          )} */}
 
-          {/* {workInfos.photos && workInfos.photos.length > 1 && (
+          {workInfos.photos && (
             <div className={styles.sliderBlock}>
-              <Slider adminMode={adminMode} deletePhoto={deletePhoto} handleEditForms={handleEditForms} setZoomedImage={setZoomedImage} setZoomMode={setZoomMode} dataSlider={workInfos.photos} />
-              {adminMode && (
+              <Slider adminMode={adminMode} deletePhoto={deletePhoto} handleEditForms={handleEditForms} setZoomedImage={setZoomedImage} setZoomMode={setZoomMode} dataSlider={workInfos.photos} addPhoto={addPhoto} setAddPhoto={setAddPhoto} handleNewPhoto={handleNewPhoto} updateWork={updateWork} photosInputRef={photosInputRef} />
+              {/* {adminMode && (
                 <div className={addPhoto ? `${styles.editPhoto} ${styles.editContainer} ${styles.visibleForm}` : `${styles.editPhoto} ${styles.editContainer}`}>
                   <div className={styles.editBlock}>
                     {typeOfWork === "sculpture" ? <h2>Ajouter une photo</h2> : <h2>Changer de photo</h2>}
@@ -412,9 +412,9 @@ export default function WorkDetails({typeOfWork, workDetails}: WorkDetailsProps)
                     </div>
                   </div>
                 </div>
-              )}
+              )} */}
             </div>
-          )} */}
+          )}
 
           {/* // Description de la peinture // */}
           {/* <div className={styles.workDescription}>

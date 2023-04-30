@@ -1,0 +1,76 @@
+@mixin editing-form {
+  text-align: center;
+  background: white;
+  border-radius: 20px;
+
+  h3 {
+    font-family: var(--font-primary);
+    background: var(--basic-black);
+    color: var(--basic-white);
+    font-size: 1.5em;
+    font-weight: 500;
+    margin: 0 0 25px 0;
+    padding: 10px;
+    border-radius: 20px 20px 0 0;
+  }
+}
+
+@mixin label-file {
+  display: block;
+  width: 150px;
+  background: var(--input-button);
+  font-size: 0.8em;
+  margin: 0 auto 25px auto;
+  padding: 7px 10px;
+  border: 1px white solid;
+  border-radius: 5px;
+  box-shadow: var(--box-shadow);
+  cursor: pointer;
+  transition: transform 50ms ease-in-out;
+  &:hover {
+    border: 1px var(--input-button-hover) solid;
+    transform: scale(1.02);
+    background: var(--input-button-hover);
+  }
+}
+
+@mixin editing-form-btns {
+  padding-bottom: 20px;
+  button {
+    margin: 0 10px;
+    border-radius: 5px;
+    padding: 7px 20px;
+    font-family: "Roboto";
+    font-weight: 500;
+    font-size: 0.75em;
+    letter-spacing: 0.8px;
+    cursor: pointer;
+    border: 1px black solid;
+    &:hover {
+      background: var(--grey-button-hover);
+    }
+    &:first-child {
+      border: 1px var(--blue-button) solid;
+      background: var(--blue-button);
+      color: white;
+      &:hover {
+        background: var(--blue-button-hover);
+      }
+    }
+  }
+}
+
+@mixin editing-icon {
+  width: 25px;
+  height: 25px;
+  margin-left: 10px;
+  padding: 4px;
+  background: var(--basic-black);
+  color: var(--basic-white);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 100ms ease-in-out;
+  &:hover {
+    transform: scale(1.05);
+  }
+}

@@ -1,27 +1,16 @@
+@import "../../styles/mixins.scss";
+
 .containerSlider {
   max-width: 700px;
   height: 500px;
   max-height: 50vh;
-  margin: 0 auto;
+  margin: 50px auto;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  background: rgba(201, 201, 201, 1);
+  // box-shadow: var(--box-shadow);
+  // background: rgba(201, 201, 201, 1);
+  // border: 2px red solid;
   animation: apparitionBlock 0.5s ease-in-out;
-
-  // .delete-photo-btn {
-  //   position: absolute;
-  //   top: 20px;
-  //   right: 20px;
-  //   width: 20px;
-  //   height: 20px;
-  //   font-size: 1.5em;
-  //   padding: 7px;
-  //   border-radius: 50%;
-  //   color: white;
-  //   z-index: 2;
-  // }
-
 }
 
 .slide {
@@ -37,31 +26,15 @@
     top: 15px;
     right: 15px;
   }
-  .iconBlock {
-    width: 30px;
-    height: 30px;
-    margin: 3px;
-    padding: 5px;
-    border-radius: 5px;
-    color: white;
-    background: rgb(69, 69, 255);
-    &:last-child {
-      background: rgb(255, 88, 88);
-    }
-    cursor: pointer;
-    &:hover {
-      background: rgba(115, 78, 97, 1);
-    }
-  }
   .icon {
-    width: 100%;
-    height: 100%;
-    font-size: 1.3em;
-    color: white;
+    @include editing-icon;
+    &:nth-child(2) {
+      background: var(--red-gradient);
+    }
   }
 }
 .slide img {
-  max-width: 70%; 
+  max-width: 70%;
   margin: auto;
   max-height: 80%;
   object-fit: contain;
@@ -76,13 +49,17 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: #f1f1f1;
-  border: 1px solid rgba(34, 34, 34, 0.287);
+  color: var(--basic-black);
+  background: var(--basic-white);
   position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  &.disabledBtn {
+    color: var(--grey-button-hover);
+    cursor: default;
+  }
 }
 
 .btnSlide img {
@@ -101,7 +78,6 @@
   transform: translateY(-60%);
 }
 
-
 .containerDots {
   position: absolute;
   bottom: 10px;
@@ -113,25 +89,63 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  border: 3px solid #f1f1f1;
+  // border: 3px solid #f1f1f1;
+  border: 3px solid var(--basic-black);
   margin: 0 5px;
-  background: #f1f1f1;
+  // background: #f1f1f1;
+  background: var(--basic-black);
 }
 .dot.active {
-  background: rgb(32, 32, 32);
+  // background: rgb(32, 32, 32);
+  background: var(--basic-white);
 }
 
-// @media screen and (max-width: 700px){
-//   .container-slider {
-//     margin: 0;
-//     height: 300px;
-//   }
-//   .delete-photo-btn {
-//     width: 15px!important;
-//     height: 15px!important;
-//     padding: 4px!important;
-//   }
-// }
+.addingPhoto {
+  @include editing-form;
+  width: 300px;
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  // transform: translateX(-50%);
+}
+
+.photoLabel {
+  @include label-file;
+}
+
+.photoInput {
+  display: none;
+}
+
+.editingFormBtns {
+  @include editing-form-btns;
+}
+
+.photoImgPreview {
+  width: 90%;
+  margin: 0 auto 20px auto;
+
+  img {
+    width: 100%;
+    max-height: 150px;
+  }
+}
+
+@media screen and (max-width: 576px){
+  .btnSlide {
+    width: 30px;
+    height: 30px;
+  }
+  .dot {
+    width: 15px;
+    height: 15px;
+    padding: 0;
+  }
+  .addingPhoto {
+    width: 250px;
+    transform: translateX(-50%);
+  }
+}
 // @media screen and (max-width: 400px) {
 //   .container-slider {
 //     height: 175px;

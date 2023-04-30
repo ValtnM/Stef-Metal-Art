@@ -33,7 +33,6 @@ type WorkCardProps = {
 
 export default function WorkCard(props: WorkCardProps) {
   const [imgPreview, setImagePreview] = useState<File>();
-  const thumbnailInputRef = props.thumbnailInputRef;
 
   const handleThumbnailInput = (target: HTMLInputElement) => {
     setImagePreview(target.files![0]);
@@ -59,7 +58,7 @@ export default function WorkCard(props: WorkCardProps) {
                     </label>
                     <input className={styles.thumbnailInput} id="file" onChange={(e) => handleThumbnailInput(e.target)} type="file" ref={props.thumbnailInputRef} />
                     <div className={styles.tumbnailImgPreview}>{imgPreview && <img src={URL.createObjectURL(imgPreview)} alt="Aperçu image" />}</div>
-                    <div className={styles.editFormBtns}>
+                    <div className={styles.editingFormBtns}>
                       <button onClick={() => props.updateWork("thumbnail")}>Modifier</button>
                       <button onClick={() => props.setEditThumbnail(false)}>Annuler</button>
                     </div>
@@ -80,7 +79,7 @@ export default function WorkCard(props: WorkCardProps) {
                   <div className={styles.editForm}>
                     <h3>Modifier le nom</h3>
                     <input onChange={(e) => props.modifyWorkInfo("name", e.target.value)} className={styles.textInput} type="text" placeholder="Nouveau nom" value={props.workInfos.name} />
-                    <div className={styles.editFormBtns}>
+                    <div className={styles.editingFormBtns}>
                       <button onClick={() => props.updateWork("name")}>Modifier</button>
                       <button onClick={() => props.setEditName(false)}>Annuler</button>
                     </div>
@@ -100,7 +99,7 @@ export default function WorkCard(props: WorkCardProps) {
                   <div className={styles.editForm}>
                     <h3>Modifier la description</h3>
                     <textarea onChange={(e) => props.modifyWorkInfo("description", e.target.value)} className={styles.textAreaInput} rows={10} cols={50} placeholder="Nouvelle description" value={props.workInfos.description} />
-                    <div className={styles.editFormBtns}>
+                    <div className={styles.editingFormBtns}>
                       <button onClick={() => props.updateWork("description")}>Modifier</button>
                       <button onClick={() => props.setEditDescription(false)}>Annuler</button>
                     </div>
