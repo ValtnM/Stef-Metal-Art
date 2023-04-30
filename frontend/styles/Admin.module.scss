@@ -1,7 +1,8 @@
 .admin {
-  max-width: 800px;
   min-height: 50vh;
-  margin: 50px auto;
+  margin: auto;
+  padding: 50px;
+  background: var(--background-gradient);
 
   h2 {
     font-size: 3em;
