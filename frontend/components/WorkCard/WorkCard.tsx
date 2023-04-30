@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import styles from "./WorkCard.module.scss";
 import Image from "next/image";
 import { FaEdit } from "react-icons/fa";
+import { BsTrash } from "react-icons/bs";
 
 type Work = {
   _id: Object;
@@ -29,6 +30,7 @@ type WorkCardProps = {
   thumbnailInputRef: any;
   handleNewThumbnail: Function;
   updateWork: Function;
+  setDeleteMode: Function;
 };
 
 export default function WorkCard(props: WorkCardProps) {
@@ -110,7 +112,13 @@ export default function WorkCard(props: WorkCardProps) {
           )}
         </div>
       </div>
-
+      {
+        props.adminMode &&
+        <div onClick={() => props.setDeleteMode(true)} className={styles.deleteBtn}>
+          <BsTrash className={styles.icon} />
+          <div className={styles.deleteBtnTxt}>Supprimer</div>
+        </div>
+      }
     </div>
   );
 }

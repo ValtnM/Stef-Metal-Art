@@ -125,54 +125,65 @@
 //   }
 // }
 
-// .deleteConfirmationContainer {
-//   position: fixed;
-//   top: 0;
-//   right: 0;
-//   bottom: 0;
-//   left: 0;
-//   background: rgba(0, 0, 0, 0.4);
-//   z-index: 100;
-// }
+.deleteConfirmationContainer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 100;
+}
 
-// .deleteConfirmationBlock {
-//   position: absolute;
-//   top: 50%;
-//   left: 50%;
-//   transform: translate(-50%, -50%);
-//   background: white;
-//   padding: 30px;
-//   border-radius: 10px;
-//   box-shadow: 5px 5px 8px -3px #595959;
-// }
+.deleteConfirmationBlock {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 8px -3px #595959;
+  text-align: center;
+}
 
-// .deleteConfirmationTxt {
-//   font-size: 1.3em;
-//   margin-bottom: 20px;
-// }
+.deleteConfirmationTxt {
+  font-size: 1.3em;
+  margin-bottom: 20px;
+}
 
-// .deleteConfirmationBtn {
-//   display: flex;
-//   justify-content: space-around;
-//   button {
-//     width: 100px;
-//     color: white;
-//     background: rgb(69, 69, 255);
+.deleteConfirmationBtn {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  button {
+    color: white;
+    background: var(--blue-button);
+    font-size: 0.8em;
+    font-weight: 500;
+    padding: 10px 20px;
+    margin: 0 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    &:hover {
+        background: var(--blue-button-hover);
+    }
+    &:nth-child(1) {
+      background: var(--red-gradient);
+      &:hover {
+        background: var(--red-button-hover);
+      }
+    }
+  }
+}
 
-//     font-size: 1em;
-//     font-weight: 600;
-//     padding: 5px;
-//     border: none;
-//     border-radius: 5px;
-//     cursor: pointer;
-//     &:nth-child(1) {
-//       background: red;
-//     }
-//     &:hover {
-//       background: rgba(115, 78, 97, 1);
-//     }
-//   }
-// }
+@media screen and (max-width: 576px) {
+    .deleteConfirmationBlock {
+        width: 90%;
+        font-size: 0.8em;
+    }
+}
 
 // .editContainer {
 //   position: absolute;

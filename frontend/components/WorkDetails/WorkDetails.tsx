@@ -309,7 +309,7 @@ export default function WorkDetails({typeOfWork, workDetails}: WorkDetailsProps)
 
   return (
     <div className={styles.workContainer}>
-      <WorkCard workInfos={workInfos} modifyWorkInfo={modifyWorkInfo} adminMode={adminMode} handleEditForms={handleEditForms} editThumbnail={editThumbnail} setEditThumbnail={setEditThumbnail} editName={editName} setEditName={setEditName} editDescription={editDescription} setEditDescription={setEditDescription} thumbnailInputRef={thumbnailInputRef} handleNewThumbnail={handleNewThumbnail} updateWork={updateWork}/>
+      <WorkCard workInfos={workInfos} modifyWorkInfo={modifyWorkInfo} adminMode={adminMode} handleEditForms={handleEditForms} editThumbnail={editThumbnail} setEditThumbnail={setEditThumbnail} editName={editName} setEditName={setEditName} editDescription={editDescription} setEditDescription={setEditDescription} thumbnailInputRef={thumbnailInputRef} handleNewThumbnail={handleNewThumbnail} updateWork={updateWork} setDeleteMode={setDeleteMode} />
 
 
       {workInfos && deleteMode && (
