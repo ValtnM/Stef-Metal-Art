@@ -39,39 +39,28 @@ export default function ConnectionForm(props: { setAdmin: Function }) {
     <div className={styles.connectionFormContainer}>
       <h2>Connexion administrateur</h2>
 
-      <form className={styles.connectionForm}>
+      <form onSubmit={(e) => sendConnectionData(e)} className={styles.connectionForm}>
         <div className={styles.userField}>
           <label htmlFor="user">Identifiant</label>
           <div className={styles.inputBlock}>
             <FaUser className={styles.icon} />
-            <input type="text" id="user" />
+            <input onChange={(e) => setUser(e.target.value)} type="text" id="user" />
           </div>
         </div>
         <div className={styles.passwordField}>
           <label htmlFor="password">Mot de passe</label>
           <div className={styles.inputBlock}>
             <FaLock className={styles.icon} />
-            <input type="password" id="password" />
+            <input onChange={(e) => setPassword(e.target.value)} type={showingPassword ? "text" : "password"} id="password" />
+          </div>
+          <div className={styles.showingPasswordInput}>
+            <input onChange={(e) => setShowingPassword(e.target.checked)} id="showing-password" type="checkbox" />
+            <label htmlFor="showing-password">Afficher le mot de passe</label>
           </div>
         </div>
         <button className={styles.connectionBtn}>Se connecter</button>
+        {notificationMessage && <div className={styles.notificationMessage}>{notificationMessage}</div>}
       </form>
     </div>
-    // <form onSubmit={(e) => sendConnectionData(e)} className={styles.connectionForm}>
-    //     <h2>Connexion administrateur</h2>
-    //         <label htmlFor="user">Utilisateur</label>
-    //         <input onChange={(e) => setUser(e.target.value)} type="text" id='user' />
-    //         <label htmlFor="password">Mot de passe</label>
-    //         <input onChange={(e) => setPassword(e.target.value)} type={showingPassword ? "text" : "password"} id='password' />
-    //         <div className={styles.showingPasswordInput}>
-    //           <input onChange={(e) => setShowingPassword(e.target.checked)} id='showing-password' type="checkbox" />
-    //           <label htmlFor="showing-password">Afficher le mot de passe</label>
-    //         </div>
-    //         <button>Se connecter</button>
-    //         {
-    //           notificationMessage &&
-    //           <div className={styles.notificationMessage}>{notificationMessage}</div>
-    //         }
-    //     </form>
   );
 }

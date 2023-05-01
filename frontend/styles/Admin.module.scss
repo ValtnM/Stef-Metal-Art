@@ -11,21 +11,71 @@
   }
 }
 
-.logoutBtn {
+.adminMenu {
+  max-width: 700px;
+  margin: auto;
+  display: flex;
+}
+
+.addingWork, .addingLink {
+  width: 50%;
+  margin: 20px;
+  padding: 15px;
   text-align: center;
-  margin-top: 20px;
-
-  button {
-    border: 1px black solid;
-    padding: 5px 10px;
-    background: var(--red-gradient);
+  background: white;
+  border-radius: 20px;
+  box-shadow: var(--box-shadow);
+  cursor: pointer;
+  &:hover {
+    background: var(--light-grey);
     color: white;
-    font-size: 1em;
-    border-radius: 5px;
-    cursor: pointer;
+  }
+  h3 {
+    margin: 0;
+    font-family: var(--font-primary);
+    font-size: 1.2em;
+    font-weight: 500;
+  }
+  .icon {
+    font-size: 2em;
+    margin-bottom: 5px;
+  }
+}
 
-    &:hover {
-      background: linear-gradient(35deg, rgba(89, 0, 0, 1) 40%, rgba(164, 11, 11, 1) 100%);
+.selectedMenu {
+  background: var(--light-grey);
+  color: white;
+}
+
+.logoutBtn {
+  display: block;
+  width: 400px;
+  margin: 30px auto;
+  padding: 10px;
+  font-size: 1.1em;
+  background: var(--red-gradient);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  &:hover {
+    background: var(--red-button-hover);
+  }
+}
+
+@media screen and (max-width:576px) {
+  .admin {
+    padding: 20px;
+  }
+  .addingWork, .addingLink {
+    h3 {
+      display: none;
     }
+    .icon {
+      margin-bottom: 0;
+    }
+  }
+  .logoutBtn {
+    width: 100%;
   }
 }

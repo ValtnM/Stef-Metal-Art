@@ -20,6 +20,7 @@
   width: 150px;
   background: var(--input-button);
   font-size: 0.8em;
+  text-align: center;
   margin: 0 auto 25px auto;
   padding: 7px 10px;
   border: 1px white solid;
@@ -80,9 +81,70 @@
   border-radius: 50px;
   box-shadow: var(--box-shadow);
   display: inline-flex;
-  align-items: center;  
+  align-items: center;
   cursor: pointer;
   .icon {
     margin-right: 10px;
   }
+}
+
+@mixin form-text-field {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+}
+
+@mixin addingForm {
+  background: white;
+  max-width: 800px;
+  margin: auto;
+  padding: 50px;
+
+  h2 {
+    margin: 0;
+    font-weight: 500;
+  }
+
+  form {
+    max-width: 600px;
+    margin: auto;
+    label {
+      display: block;
+      font-weight: 500;
+      margin: 20px 0 10px 0;
+    }
+    button {
+      display: block;
+      width: 400px;
+      margin: 50px auto 0 auto;
+      // margin-top: 40px;
+      padding: 10px;
+      background: var(--basic-black);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.1em;
+      font-weight: 500;
+      cursor: pointer;
+      transition: transform 100ms ease-in-out;
+      &:hover {
+        background: black;
+        transform: scale(1.03);
+      }
+    }
+  }
+  @media screen and (max-width: 576px) {
+      padding: 20px;
+      h2 {
+        font-size: 1.8em;
+      }
+      form {
+  
+        button {
+          width: 100%;
+        }
+      }
+    }    
 }

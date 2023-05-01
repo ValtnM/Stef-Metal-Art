@@ -20,11 +20,15 @@ const selectModel = (type: string) => {
 
 // Récupération du nom de la vignette
 const getThumbnailName = (thumbnailFile) => {
-  return thumbnailFile[0].filename;
+  if (thumbnailFile) {
+    return thumbnailFile[0].filename;
+  }
 };
 
 // Récupération d'un tableau avec le nom des photos
 const getPhotosNamesArray = (photosFilesArray) => {
+  console.log(photosFilesArray);
+  
   let photosNamesArray = [];
   if (photosFilesArray) {
     for (let i = 0; i < photosFilesArray.length; i++) {
@@ -143,10 +147,13 @@ exports.addNewWork = (req: MulterRequest, res: Response) => {
   const thumbnailName = getThumbnailName(req.files.thumbnail);
   const photosNamesArray = getPhotosNamesArray(req.files.photos);
 
+  console.log(photosNamesArray);
+  
+
   if (!thumbnailName) {
     deletePhotos(photosNamesArray);
     res.status(400).json({ erreur: "Aucune vignette n'a été selectionnée" });
-  } else if (!photosNamesArray) {
+  } else if (photosNamesArray.length === 0) {
     deleteThumbnail(thumbnailName);
     res.status(400).json({ erreur: "Aucune photo n'a été selectionnée" });
   } else if (!req.body.name) {

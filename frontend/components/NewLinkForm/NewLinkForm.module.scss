@@ -1,71 +1,39 @@
+@import "../../styles/mixins.scss";
+
 .newLinkForm {
-  background: #313131;
-  color: white;
-  margin: 30px auto;
-  padding: 30px;
-  max-width: 500px;
+  @include addingForm;
+}
 
-  .inputContainer {
-    display: flex;
-    flex-direction: column;
-    margin: 5px 0;
-
-    label {
-      margin-bottom: 3px;
-    }
-
-    input {
-      padding: 2px;
-    }
+.newLinkName,
+.newLinkURL {
+  input {
+    @include form-text-field;
   }
+}
 
-  h2 {
-    font-size: 2em;
-    font-weight: 500;
-    margin: 10px;
+.thumbnailLabel {
+  @include label-file;
+  margin: 0 0 10px 0 !important;
+}
+
+.thumbnailInput {
+  display: none;
+}
+
+.thumbnailPreview {
+  img {
+    width: 200px;
   }
-  form {
-    max-width: 400px;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-  }
+}
 
-  .btnsContainer {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-
-    button {
-      max-width: 100px;
-      margin: 10px;
-      padding: 3px 10px;
-      font-family: "Roboto", Arial, Helvetica, sans-serif;
-      text-transform: uppercase;
-      color: white;
-      background: var(--green-gradient);
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: transform 200ms ease-in-out;
-      &:nth-child(2) {
-        background: var(--red-gradient);
-      }
-
-      &:hover {
-        background: rgb(111, 111, 111);
-        transform: scale(1.05);
-      }
-    }
-  }
 
   .notificationMessage {
     margin-top: 10px;
-    padding: 5px;
+    padding: 10px;
     text-align: center;
     background: var(--red-gradient);
+    color: white;
     &.success {
       background: var(--green-gradient);
     }
   }
-}

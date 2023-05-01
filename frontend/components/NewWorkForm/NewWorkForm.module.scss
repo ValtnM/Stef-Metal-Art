@@ -1,0 +1,102 @@
+@import "../../styles/mixins.scss";
+
+.newWorkForm {
+  @include addingForm;
+}
+
+.newWorkTypeChoices {
+  display: flex;
+  & > * {
+    font-size: 0.8em;
+    font-weight: 500;
+    padding: 7px 30px;
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+  }
+  & > *:hover,
+  .selectedType {
+    background: var(--light-grey);
+    color: white;
+    box-shadow: none;
+    font-weight: 400;
+  }
+}
+
+.thumbnailLabel {
+  @include label-file;
+  text-align: center;
+  margin: 0 0 10px 0 !important;
+}
+
+.thumbnailInput,
+.photosInput {
+  display: none;
+}
+
+.tumbnailImgPreview {
+  img {
+    max-width: 200px;
+  }
+}
+
+.newWorkName {
+  input {
+    @include form-text-field;
+  }
+}
+
+.newWorkDescription {
+  textarea {
+    @include form-text-field;
+    max-width: 100%;
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
+  }
+}
+
+.photosLabel {
+  @include label-file;
+  width: 250px;
+  text-align: center;
+  margin: 0 0 10px 0 !important;
+}
+
+.notificationContainer {
+  width: 100%;
+  margin-top: 20px;
+  background: #f0ffd8;
+  border-radius: 5px;
+  text-align: center;
+  height: 0;
+  transition: all 200ms ease-in-out;
+  transform-origin: top;
+  transform: scaleY(0);
+  overflow: hidden;
+
+  &.visible {
+    height: 50px;
+    transform: scaleY(1);
+  }
+
+  .notificationTxt {
+    color: white;
+    font-size: 1.1em;
+    line-height: 50px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .photosLabel {
+    width: 100%;
+  }
+}
+
+@keyframes adminBottomApparition {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
