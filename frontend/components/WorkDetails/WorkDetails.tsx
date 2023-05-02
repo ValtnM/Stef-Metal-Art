@@ -1,14 +1,9 @@
 import React, { useEffect, useState, useRef } from "react";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import styles from "./WorkDetails.module.scss";
-import BackBtn from "../../components/BackBtn/BackBtn";
-import { FaEdit } from "react-icons/fa";
-import { BsTrash } from "react-icons/bs";
-import { IoMdCloseCircle } from "react-icons/io";
-import { type } from "os";
 import Slider from "../Slider/Slider";
 import WorkCard from "../WorkCard/WorkCard";
+import PhotoViewer from "../PhotoViewer/PhotoViewer";
 
 type Work = {
   _id: Object;
@@ -27,13 +22,13 @@ type WorkDetailsProps = {
   workDetails: Work;
 };
 
-export default function WorkDetails({typeOfWork, workDetails}: WorkDetailsProps) {
+export default function WorkDetails({ typeOfWork, workDetails }: WorkDetailsProps) {
   const [workId, setWorkId] = useState<String>();
   const [workInfos, setWorkInfos] = useState<Work>(workDetails);
   const [token, setToken] = useState("");
 
   const [zoomMode, setZoomMode] = useState(false);
-  const [zoomedImage, setZoomedImage] = useState("");
+  const [zoomedPhoto, setZoomedPhoto] = useState("");
 
   const [adminMode, setAdminMode] = useState(false);
   const [editThumbnail, setEditThumbnail] = useState(false);
@@ -63,7 +58,6 @@ export default function WorkDetails({typeOfWork, workDetails}: WorkDetailsProps)
       }
     }
   }, [router.isReady]);
- 
 
   const checkIsAdmin = () => {
     const newToken = getTokenFromSessionStorage();
@@ -230,7 +224,7 @@ export default function WorkDetails({typeOfWork, workDetails}: WorkDetailsProps)
 
   const zoomPhoto = (image: string) => {
     setZoomMode(true);
-    setZoomedImage(image);
+    setZoomedPhoto(image);
   };
 
   const handleEditForms = (formName: string) => {
@@ -303,14 +297,12 @@ export default function WorkDetails({typeOfWork, workDetails}: WorkDetailsProps)
           getWorkInfos();
         })
         .catch((err) => console.log(err));
-      
     }
   };
 
   return (
     <div className={styles.workContainer}>
       <WorkCard workInfos={workInfos} modifyWorkInfo={modifyWorkInfo} adminMode={adminMode} handleEditForms={handleEditForms} editThumbnail={editThumbnail} setEditThumbnail={setEditThumbnail} editName={editName} setEditName={setEditName} editDescription={editDescription} setEditDescription={setEditDescription} thumbnailInputRef={thumbnailInputRef} handleNewThumbnail={handleNewThumbnail} updateWork={updateWork} setDeleteMode={setDeleteMode} />
-
 
       {workInfos && deleteMode && (
         <div className={styles.deleteConfirmationContainer}>
@@ -326,141 +318,15 @@ export default function WorkDetails({typeOfWork, workDetails}: WorkDetailsProps)
       {/* {typeOfWork && <BackBtn typeOfWork={typeOfWork} />} */}
       {workInfos && (
         <div className={styles.work}>
-          {/* {adminMode && (
-            <div onClick={() => setDeleteMode(true)} className={styles.deleteElement}>
-              <BsTrash className={styles.icon} />
-              <div>Supprimer</div>
-            </div>
-          )} */}
-
-          {/* {adminMode && (
-            <div className={styles.thumbnail}>
-              <div className={styles.thumbnailEditionBtn}>
-                <FaEdit className={styles.icon} />
-                <div onClick={() => handleEditForms("thumbnail")}>Modifier la vignette</div>
-              </div>
-              <div className={editThumbnail ? `${styles.editThumbnail} ${styles.editContainer} ${styles.visibleForm}` : `${styles.editThumbnail} ${styles.editContainer}`}>
-                <div className={styles.editBlock}>
-                  <h2>Changer de vignette</h2>
-                  <input onChange={(e) => handleNewThumbnail(e.target)} type="file" ref={thumbnailInputRef} />
-                  <div>
-                    <button onClick={() => updateWork("thumbnail")}>Modifier</button>
-                    <button onClick={() => setEditThumbnail(false)}>Annuler</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )} */}
-
-          {/* // Nom de la peinture // */}
-          {/* <div className={styles.name}>
-            <h1>{workInfos.name}</h1>
-            {adminMode && (
-              <div className={styles.iconContainer}>
-                <FaEdit onClick={() => handleEditForms("name")} className={styles.icon} />
-              </div>
-            )}
-          </div> */}
-          {/* {adminMode && (
-            <div className={editName ? `${styles.editName} ${styles.editContainer} ${styles.visibleForm}` : `${styles.editName} ${styles.editContainer}`}>
-              <div className={styles.editBlock}>
-                <input onChange={(e) => modifyWorkInfo("name", e.target.value)} type="text" id="name" value={workInfos.name} />
-                <div className={styles.editNameBtn}>
-                  <button onClick={() => updateWork("name")}>Modifier</button>
-                  <button onClick={() => setEditName(false)}>Annuler</button>
-                </div>
-              </div>
-            </div>
-          )} */}
-
-          {/* // Photo de la peinture // */}
-          {/* {workInfos.photos && workInfos.photos.length === 1 && (
-            <div className={styles.workPhoto}>
-              <Image onClick={() => zoomPhoto(workInfos.photos[0])} loader={() => `${process.env.NEXT_PUBLIC_IMAGES_SRC}/${workInfos.photos[0]}`} src={`${process.env.NEXT_PUBLIC_IMAGES_SRC}/${workInfos.photos[0]}`} alt="peinture" width={1000} height={400} style={{ objectFit: "contain" }} placeholder="blur" blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN88B8AAsUB4ZtvXtIAAAAASUVORK5CYII=" />
-              {adminMode && (
-                <div>
-                  <div onClick={() => handleEditForms("photo")} className={styles.iconContainer}>
-                    <FaEdit className={styles.icon} />
-                  </div>
-
-                  <div className={editPhoto ? `${styles.editPhoto} ${styles.editContainer} ${styles.visibleForm}` : `${styles.editPhoto} ${styles.editContainer}`}>
-                    <div className={styles.editBlock}>
-                      {typeOfWork === "sculpture" ? <h2>Ajouter une photo</h2> : <h2>Changer de photo</h2>}
-                      <input onChange={(e) => handleNewPhoto(e.target)} type="file" ref={photosInputRef} />
-                      <div>
-                        <button onClick={() => updateWork("photos")}>Modifier</button>
-                        <button onClick={() => setEditPhoto(false)}>Annuler</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-          )} */}
-
           {workInfos.photos && (
             <div className={styles.sliderBlock}>
-              <Slider adminMode={adminMode} deletePhoto={deletePhoto} handleEditForms={handleEditForms} setZoomedImage={setZoomedImage} setZoomMode={setZoomMode} dataSlider={workInfos.photos} addPhoto={addPhoto} setAddPhoto={setAddPhoto} handleNewPhoto={handleNewPhoto} updateWork={updateWork} photosInputRef={photosInputRef} />
-              {/* {adminMode && (
-                <div className={addPhoto ? `${styles.editPhoto} ${styles.editContainer} ${styles.visibleForm}` : `${styles.editPhoto} ${styles.editContainer}`}>
-                  <div className={styles.editBlock}>
-                    {typeOfWork === "sculpture" ? <h2>Ajouter une photo</h2> : <h2>Changer de photo</h2>}
-                    <input onChange={(e) => handleNewPhoto(e.target)} type="file" ref={photosInputRef} />
-                    <div>
-                      <button onClick={() => updateWork("photos")}>Ajouter</button>
-                      <button onClick={() => setAddPhoto(false)}>Annuler</button>
-                    </div>
-                  </div>
-                </div>
-              )} */}
+              <Slider adminMode={adminMode} deletePhoto={deletePhoto} handleEditForms={handleEditForms} setZoomedPhoto={setZoomedPhoto} setZoomMode={setZoomMode} dataSlider={workInfos.photos} addPhoto={addPhoto} setAddPhoto={setAddPhoto} handleNewPhoto={handleNewPhoto} updateWork={updateWork} photosInputRef={photosInputRef} />
             </div>
           )}
-
-          {/* // Description de la peinture // */}
-          {/* <div className={styles.workDescription}>
-            <p>{workInfos.description}</p>
-            {adminMode && (
-              <div>
-                <div onClick={() => handleEditForms("description")} className={styles.iconContainer}>
-                  <FaEdit className={styles.icon} />
-                </div>
-
-                <div className={editDescription ? `${styles.editDescription} ${styles.editContainer} ${styles.visibleForm}` : `${styles.editDescription} ${styles.editContainer}`}>
-                  <div className={styles.editBlock}>
-                    <textarea onChange={(e) => modifyWorkInfo("description", e.target.value)} rows={10} value={workInfos.description} />
-                    <div>
-                      <button onClick={() => updateWork("description")}>Modifier</button>
-                      <button onClick={() => setEditDescription(false)}>Annuler</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              // <div>
-              //   <div onClick={() => setEditDescription(!editDescription)} className={styles.iconContainer}>
-              //     <FaEdit className={styles.icon} />
-              //   </div>
-              //   <div className={editDescription ? `${styles.editDescription} ${styles.editBlock} ${styles.showForm}` : `${styles.editDescription} ${styles.editBlock}`}>
-              //     <textarea onChange={(e) => modifyWorkInfo("description", e.target.value)} rows={10} value={workInfos.description} />
-
-              //     <div>
-              //       <button onClick={() => updateWork("description")}>Modifier</button>
-              //       <button onClick={() => setEditDescription(false)}>Annuler</button>
-              //     </div>
-              //   </div>
-              // </div>
-            )}
-          </div> */}
         </div>
       )}
 
-      {zoomMode && (
-        <div className={styles.zoom}>
-          <IoMdCloseCircle onClick={() => setZoomMode(false)} className={styles.icon} />
-          <div className={styles.zoomImg}>
-            <Image fill loader={() => `${process.env.NEXT_PUBLIC_IMAGES_SRC}/${zoomedImage}`} src={`${process.env.NEXT_PUBLIC_IMAGES_SRC}/${zoomedImage}`} alt="" />
-          </div>
-        </div>
-      )}
+      {zoomMode && <PhotoViewer setZoomMode={setZoomMode} zoomedPhoto={zoomedPhoto} />}
     </div>
   );
 }

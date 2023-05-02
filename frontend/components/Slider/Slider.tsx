@@ -11,7 +11,7 @@ type SliderProps = {
   adminMode: boolean;
   deletePhoto: Function;
   handleEditForms: Function;
-  setZoomedImage: React.Dispatch<React.SetStateAction<string>>;
+  setZoomedPhoto: React.Dispatch<React.SetStateAction<string>>;
   setZoomMode: React.Dispatch<React.SetStateAction<boolean>>;
   dataSlider: string[];
   addPhoto: boolean;
@@ -57,7 +57,7 @@ export default function Slider(props: SliderProps) {
 
   const zoomPhoto = (image: string) => {
     props.setZoomMode(true);
-    props.setZoomedImage(image);
+    props.setZoomedPhoto(image);
   };
 
   const handleDeleteBtn = (photoName: string) => {
