@@ -172,55 +172,5 @@ export default function NewPostForm() {
         </div>
       </form>
     </div>
-
-    // <form className={styles.newPostForm}>
-    //   {/* <h2>Ajouter une oeuvre</h2> */}
-    //   <div>
-    //     <h3>Type</h3>
-    //     <div className={styles.type}>
-    //       <div className={styles.sculptureType}>
-    //         <label htmlFor="sculpture">Sculpture</label>
-    //         <input onChange={() => setType("sculpture")} name="type" value="sculpture" type="radio" id="sculpture" checked={type === "sculpture" ? true : false} />
-    //       </div>
-    //       <div className={styles.paintType}>
-    //         <label htmlFor="paint">Peinture</label>
-    //         <input onChange={() => setType("painting")} name="type" value="painting" type="radio" id="paint" checked={type === "painting" ? true : false} />
-    //       </div>
-    //     </div>
-    //   </div>
-    //   <label htmlFor="thumbnail">Vignette</label>
-    //   <input onInput={(e) => handleThumbnail(e.target as HTMLInputElement)} type="file" id="thumbnail" name="thumbnail" ref={thumbnailInputRef} />
-    //   <label htmlFor="name">Nom</label>
-    //   <input onChange={(e) => setName(e.target.value)} type="text" id="name" value={name} />
-    //   <label htmlFor="description">Description</label>
-    //   <textarea onChange={(e) => setDescription(e.target.value)} rows={10} id="description" value={description} />
-    //   <div className={styles.photoContainer}>
-    //     <label htmlFor="photos">Photo(s)</label>
-    //     <input onInput={(e) => handlePhotos(e.target as HTMLInputElement)} type="file" id="photos" name="photos" multiple ref={photosInputRef} />
-    //   </div>
-
-    //   <div className={styles.instagramRadio}>
-    //     <legend>Publier sur instagram ?</legend>
-    //     <input onChange={() => setInstagram(true)} name="instagram" id="yes" type="radio" checked={instagram ? true : false} />
-    //     <label htmlFor="yes">Oui</label>
-    //     <input onChange={() => setInstagram(false)} name="instagram" id="no" type="radio" checked={!instagram ? true : false} />
-    //     <label htmlFor="no">Non</label>
-    //   </div>
-    //   <button onClick={(e) => sendData(e)}>Ajouter</button>
-    //   <div
-    //     style={
-    //       success
-    //         ? {
-    //             background: "linear-gradient(36deg, rgba(2,92,14,1) 0%, rgba(62,159,0,1) 63%)",
-    //           }
-    //         : {
-    //             background: "linear-gradient(35deg, rgba(89,0,0,1) 0%, rgba(235,13,13,1) 80%)",
-    //           }
-    //     }
-    //     className={notification ? `${styles.notificationContainer} ${styles.visible}` : `${styles.notificationContainer}`}
-    //   >
-    //     <div className={styles.notificationTxt}>{notification}</div>
-    //   </div>
-    // </form>
   );
 }

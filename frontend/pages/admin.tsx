@@ -79,9 +79,7 @@ export default function Admin() {
                 :
                 <NewLinkForm />
               }
-              {/* <div className={styles.logoutBtn}> */}
                 <button className={styles.logoutBtn} onClick={() => deleteTokenFromSessionStorage()}>Déconnexion</button>
-              {/* </div> */}
             </div>
           ) : (
             <ConnectionForm setAdmin={setAdmin} />

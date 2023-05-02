@@ -29,10 +29,10 @@ export default function Contact() {
     setSendedMessage(false);
     setNotificationMessage("");
 
-    fetch("https://localhost:8080/api/email", {
+    fetch("http://localhost:8080/api/email", {
       method: "POST",
       headers: {
-        "Accept": "application/json",
+        Accept: "application/json",
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ ...emailContent, token }),
@@ -63,8 +63,43 @@ export default function Contact() {
   };
 
   return (
-    <div className={styles.contact}>
-      <h2>Me contacter</h2>
+    <div className={styles.container}>
+      <div className={styles.contact}>
+        <h2>Contact</h2>
+        <form onSubmit={(e) => sendEmail(e)}>
+          <div className={styles.nameFields}>
+            <div>
+              <label htmlFor="firstname">Prénom</label>
+              <input onChange={(e) => setFirstname(e.target.value)} type="text" id="firstname" />
+            </div>
+            <div>
+              <label htmlFor="lastname">Nom</label>
+              <input onChange={(e) => setLastname(e.target.value)} type="text" id="lastname" />
+            </div>
+          </div>
+          <div>
+            <label htmlFor="email">Email</label>
+            <input onChange={(e) => setEmail(e.target.value)} type="email" id="email" />
+          </div>
+          <div>
+            <label htmlFor="subject">Objet</label>
+            <input onChange={(e) => setSubject(e.target.value)} type="text" id="subject" />
+          </div>
+          <div>
+            <label htmlFor="message">Message</label>
+            <textarea onChange={(e) => setMessage(e.target.value)} id="message" rows={20} />
+          </div>
+          <div className={styles.messageValidation}>
+
+          <button>Envoyer le message</button>
+          <ReCAPTCHA className={styles.recaptcha} sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!} ref={captchaRef} />
+          </div>
+          {notificationMessage && <div className={successfulSending ? `${styles.notificationMessage} ${styles.success}` : `${styles.notificationMessage} ${styles.fail}`}>{notificationMessage}</div>}
+          {!sendedMessage && <div className={sendedMessage ? styles.loader : `${styles.loader} ${styles.visible}`}></div>}
+        </form>
+      </div>
+
+      {/* <h2>Me contacter</h2>
       <form onSubmit={(e) => sendEmail(e)}>
         <div className={styles.name}>
           <div className={styles.firstname}>
@@ -86,7 +121,7 @@ export default function Contact() {
         <button>Envoyer</button>
         {notificationMessage && <div className={successfulSending ? `${styles.notificationMessage} ${styles.success}` : `${styles.notificationMessage} ${styles.fail}`}>{notificationMessage}</div>}
         {!sendedMessage && <div className={sendedMessage ? styles.loader : `${styles.loader} ${styles.visible}`}></div>}
-      </form>
+      </form> */}
     </div>
   );
 }
