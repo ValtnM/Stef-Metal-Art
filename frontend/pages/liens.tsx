@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styles from "../styles/Liens.module.scss";
-import Image from "next/image";
 import Link from "next/link";
 import { GetStaticProps } from "next";
-import NewLinkForm from "../components/NewLinkForm/NewLinkForm";
-import { BsTrash } from "react-icons/bs";
+import LinkCard from "../components/LinkCard/LinkCard";
 
 type Link = {
   _id: Object;
@@ -18,17 +16,16 @@ type LinksProps = {
 };
 
 export default function Liens(props: LinksProps) {
+  const [adminMode, setAdminMode] = useState(false);
+  const [token, setToken] = useState("");
 
-  const [adminMode, setAdminMode] = useState(false)
-  const [token, setToken] = useState("")
-  
-  const [links, setLinks] = useState(props.linksArray)
+  const [links, setLinks] = useState(props.linksArray);
 
   useEffect(() => {
     checkIsAdmin();
-  }, [])
+  }, []);
 
-    const checkIsAdmin = () => {
+  const checkIsAdmin = () => {
     const newToken = getTokenFromSessionStorage();
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin/${newToken}`, {
       method: "GET",
@@ -54,50 +51,34 @@ export default function Liens(props: LinksProps) {
 
   const getAllLinks = () => {
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/link`, {
-      method: "GET"
+      method: "GET",
     })
-    .then(res => res.json())
-    .then(data => setLinks(data))
-    .catch(err => console.log(err))
-  }
+      .then((res) => res.json())
+      .then((data) => setLinks(data))
+      .catch((err) => console.log(err));
+  };
 
   const deleteLink = (e: React.MouseEvent<SVGElement, MouseEvent>, linkId: Object) => {
     e.preventDefault();
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/link/${linkId}`, {
-      method: "DELETE"
+      method: "DELETE",
     })
-    .then(res => res.json())
-    .then(data => {
-      console.log(data);
-      getAllLinks();      
-    })
-    .catch(err => console.log(err))
-  }
-
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        getAllLinks();
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <div className={styles.linksContainer}>
       <h2>Liens</h2>
       <div className={styles.links}>
         {links.map((element, index) => (
-          <a href={element.link} className={styles.link} target="blank" style={{ animationDelay: `${index * 100}ms` }}>
-            {
-              adminMode &&
-              <BsTrash onClick={(e) => deleteLink(e, element._id)} className={styles.icon} />
-            }
-            <h3>{element.name}</h3>
-            <hr />
-            <div className={styles.linkImg}>
-              <Image fill src={`${process.env.NEXT_PUBLIC_IMAGES_SRC}/${element.thumbnail}`}  loader={() => `${process.env.NEXT_PUBLIC_IMAGES_SRC}/${element.thumbnail}`} alt="" />
-            </div>
-            <div className={styles.filter}></div>
-          </a>
+          <LinkCard linkInfos={element} adminMode={adminMode} deleteLink={deleteLink} index={index} />
         ))}
       </div>
-      {
-        adminMode &&
-        <NewLinkForm getAllLinks={getAllLinks} />
-      }
     </div>
   );
 }
@@ -107,7 +88,6 @@ export const getStaticProps: GetStaticProps = async () => {
   const linksArray = await data.json();
 
   console.log(linksArray);
-  
 
   return {
     props: {

@@ -137,7 +137,7 @@
     max-width: 600px;
     margin: auto;
     label {
-      @include basic-label;
+      @include form-basic-label;
     }
     button {
       @include form-basic-button;
