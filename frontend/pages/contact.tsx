@@ -72,24 +72,24 @@ export default function Contact() {
           <div className={styles.nameFields}>
             <div>
               <label htmlFor="firstname">Prénom</label>
-              <input onChange={(e) => setFirstname(e.target.value)} type="text" id="firstname" />
+              <input onChange={(e) => setFirstname(e.target.value)} type="text" id="firstname" value={firstname}/>
             </div>
             <div>
               <label htmlFor="lastname">Nom</label>
-              <input onChange={(e) => setLastname(e.target.value)} type="text" id="lastname" />
+              <input onChange={(e) => setLastname(e.target.value)} type="text" id="lastname" value={lastname} />
             </div>
           </div>
           <div>
             <label htmlFor="email">Email</label>
-            <input onChange={(e) => setEmail(e.target.value)} type="email" id="email" />
+            <input onChange={(e) => setEmail(e.target.value)} type="email" id="email" value={email}/>
           </div>
           <div>
             <label htmlFor="subject">Objet</label>
-            <input onChange={(e) => setSubject(e.target.value)} type="text" id="subject" />
+            <input onChange={(e) => setSubject(e.target.value)} type="text" id="subject" value={subject} />
           </div>
           <div>
             <label htmlFor="message">Message</label>
-            <textarea onChange={(e) => setMessage(e.target.value)} id="message" rows={20} />
+            <textarea onChange={(e) => setMessage(e.target.value)} id="message" rows={20} value={message}/>
           </div>
           <div className={styles.messageValidation}>
 

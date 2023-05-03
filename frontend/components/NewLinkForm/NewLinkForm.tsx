@@ -10,11 +10,9 @@ export default function NewLinkForm() {
 
   const thumbnailInputRef = useRef<any>();
 
-  const [thumbnailPreview, setThumbnailPreview] = useState<File>();
 
   const handleThumbnail = (target: HTMLInputElement) => {
     if (target.files) {
-      setThumbnailPreview(target.files[0]);
       setThumbnail(target.files[0]);
     }
   };
@@ -33,7 +31,6 @@ export default function NewLinkForm() {
           setNotificationMessage(data.error);
           setSuccess(false);
         } else if (data.message) {
-          // props.getAllLinks()
           clearForm();
           setNotificationMessage(data.message);
           setSuccess(true);
@@ -62,6 +59,7 @@ export default function NewLinkForm() {
     if (input.current) {
       input.current.value = null;
     }
+    setThumbnail(undefined)
   };
 
   return (
@@ -70,7 +68,7 @@ export default function NewLinkForm() {
       <form>
         <div className={styles.newLinkName}>
           <label htmlFor="name">Nom</label>
-          <input onChange={(e) => setName(e.target.value)} type="text" id="name" placeholder="Entrer un nom" />
+          <input onChange={(e) => setName(e.target.value)} type="text" id="name" placeholder="Entrer un nom" value={name} />
         </div>
         <div className={styles.newLinkThumbnail}>
           <label htmlFor="thumbnail">Vignette</label>
@@ -78,11 +76,11 @@ export default function NewLinkForm() {
             Choisir une image
           </label>
           <input onInput={(e) => handleThumbnail(e.target as HTMLInputElement)} className={styles.thumbnailInput} type="file" id="thumbnail" ref={thumbnailInputRef} />
-          <div className={styles.thumbnailPreview}>{thumbnailPreview && <img src={URL.createObjectURL(thumbnailPreview)} alt="Aperçu image" />}</div>
+          <div className={styles.thumbnailPreview}>{thumbnail && <img src={URL.createObjectURL(thumbnail)} alt="Aperçu image" />}</div>
         </div>
         <div className={styles.newLinkURL}>
           <label htmlFor="link">Lien</label>
-          <input onChange={(e) => setLink(e.target.value)} type="text" id="link" placeholder="Entrer un URL" />
+          <input onChange={(e) => setLink(e.target.value)} type="text" id="link" placeholder="Entrer un URL" value={link}/>
         </div>
         <button onClick={(e) => sendData(e)}>Ajouter</button>
         {notificationMessage && <div className={success ? `${styles.notificationMessage} ${styles.success}` : `${styles.notificationMessage}`}>{notificationMessage}</div>}

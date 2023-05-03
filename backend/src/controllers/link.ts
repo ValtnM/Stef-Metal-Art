@@ -38,13 +38,13 @@ exports.addLink = (req: MulterRequest, res: Response) => {
   const link = req.body.link;
 
   if (!file) {
-    res.status(400).json({ error: "Aucune vignette d'ajouter" });
+    res.status(400).json({ error: "Aucune vignette d'ajoutée" });
   } else if (!name) {
     deleteThumbnailFile(file.filename);
-    res.status(400).json({ error: "Aucun nom d'indiquer" });
+    res.status(400).json({ error: "Aucun nom d'indiqué" });
   } else if (!link) {
     deleteThumbnailFile(file.filename);
-    res.status(400).json({ error: "Aucun lien d'indiquer" });
+    res.status(400).json({ error: "Aucun lien d'indiqué" });
   } else {
     Link.create(
       {

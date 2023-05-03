@@ -309,7 +309,7 @@ export default function WorkDetails({ typeOfWork, workDetails }: WorkDetailsProp
       {workInfos && deleteMode && (
         <div className={styles.deleteConfirmationContainer}>
           <div className={styles.deleteConfirmationBlock}>
-            <div className={styles.deleteConfirmationTxt}>{`Confirmer la suppression de "${workInfos.name}" ?}`}</div>
+            <div className={styles.deleteConfirmationTxt}>{`Confirmer la suppression de "${workInfos.name}" ?`}</div>
             <div className={styles.deleteConfirmationBtn}>
               <button onClick={() => deleteWork()}>Confirmer</button>
               <button onClick={() => setDeleteMode(false)}>Annuler</button>

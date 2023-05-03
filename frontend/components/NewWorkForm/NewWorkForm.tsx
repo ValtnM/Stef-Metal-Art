@@ -12,11 +12,9 @@ export default function NewPostForm() {
   const [notification, setNotification] = useState(String);
   const [success, setSuccess] = useState(Boolean);
 
-  const [thumbnailPreview, setThumbnailPreview] = useState<File>();
 
   const handleThumbnail = (target: HTMLInputElement) => {
     if (target.files) {
-      setThumbnailPreview(target.files[0]);
       setThumbnail(target.files[0]);
     }
   };
@@ -79,17 +77,19 @@ export default function NewPostForm() {
 
   const clearForm = () => {
     setType("");
-    clearThumbnailInput(thumbnailInputRef);
+    clearFileInput(thumbnailInputRef);
     setName("");
     setDescription("");
-    clearThumbnailInput(photosInputRef);
+    clearFileInput(photosInputRef);
     setInstagram(false);
+    setPhotos(undefined);
+    setThumbnail(undefined);
   };
 
   const thumbnailInputRef = useRef<any>(null);
   const photosInputRef = useRef<any>(null);
 
-  const clearThumbnailInput = (input: any) => {
+  const clearFileInput = (input: any) => {
     if (input.current) {
       input.current.value = null;
     }
@@ -109,7 +109,7 @@ export default function NewPostForm() {
             <div className={type === "sculpture" ? `${styles.selectedType}` : ``} onClick={() => setType("sculpture")}>
               Sculpture
             </div>
-            <div className={type === "peinture" ? `${styles.selectedType}` : ``} onClick={() => setType("peinture")}>
+            <div className={type === "painting" ? `${styles.selectedType}` : ``} onClick={() => setType("painting")}>
               Peinture
             </div>
           </div>
@@ -119,16 +119,16 @@ export default function NewPostForm() {
           <label className={styles.thumbnailLabel} htmlFor="thumbnail">
             Choisir un image
           </label>
-          <input onInput={(e) => handleThumbnail(e.target as HTMLInputElement)} className={styles.thumbnailInput} id="thumbnail" type="file" ref={thumbnailInputRef} />
-          <div className={styles.tumbnailImgPreview}>{thumbnailPreview && <img src={URL.createObjectURL(thumbnailPreview)} alt="Aperçu image" />}</div>
+          <input onInput={(e) => handleThumbnail(e.target as HTMLInputElement)} className={styles.thumbnailInput} id="thumbnail" type="file" ref={thumbnailInputRef}/>
+          <div className={styles.imgPreview}>{thumbnail && <img src={URL.createObjectURL(thumbnail)} alt="Aperçu image" />}</div>
         </div>
         <div className={styles.newWorkName}>
           <label htmlFor="name">Nom</label>
-          <input onChange={(e) => setName(e.target.value)} type="text" placeholder="Entrer un nom" />
+          <input onChange={(e) => setName(e.target.value)} type="text" placeholder="Entrer un nom" value={name}/>
         </div>
         <div className={styles.newWorkDescription}>
           <label htmlFor="name">Description</label>
-          <textarea onChange={(e) => setDescription(e.target.value)} rows={20} placeholder="Entrer une description" />
+          <textarea onChange={(e) => setDescription(e.target.value)} rows={20} placeholder="Entrer une description" value={description}/>
         </div>
         <div className={styles.newWorkPhotos}>
           <label htmlFor="photos">Photo(s)</label>
@@ -139,7 +139,7 @@ export default function NewPostForm() {
           {photos && (
             <div>
               {photos.map((photo, index) => (
-                <div key={index} className={styles.tumbnailImgPreview}>{photo && <img src={URL.createObjectURL(photo)} alt="Aperçu image" />}</div>
+                <div key={index} className={styles.imgPreview}>{photo && <img src={URL.createObjectURL(photo)} alt="Aperçu image" />}</div>
               ))}
             </div>
           )}
