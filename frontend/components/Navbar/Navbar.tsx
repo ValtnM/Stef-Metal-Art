@@ -18,7 +18,7 @@ export default function Navbar() {
         />
       </Head>
       <nav className={styles.navbar}>
-        {/* <div className={styles.engrenages}>
+        <div className={styles.engrenages}>
 
         <Image
           className={styles.engrenagesImg}
@@ -27,7 +27,7 @@ export default function Navbar() {
           width={200}
           height={180}
           />
-        </div> */}
+        </div>
         <div className={styles.logo}>
 
         <Link href="/">

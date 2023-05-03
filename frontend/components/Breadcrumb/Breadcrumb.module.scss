@@ -16,3 +16,9 @@
         color: var(--light-grey);
     }
 }
+
+@media screen and (max-width: 576px) {
+    .breadcrumb {
+        font-size: 0.7em;
+    }
+}

@@ -1,5 +1,6 @@
 .container{
   background: white;
+  overflow: hidden;
 }
 
 .navbar {
@@ -11,6 +12,18 @@
   align-items: flex-end;
 }
 
+.engrenages {
+  position: relative;
+  bottom: -60px;
+  left: -60px;
+  width: 250px;
+  
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
 .logoImg {
   max-width: 100%;
   padding: 30px;
@@ -18,6 +31,7 @@
 }
 
 .links {
+  width: 250px;
   display: flex;
   margin: 20px;
 }
@@ -29,14 +43,37 @@
   margin-right: 30px;
 }
 
+
+
+
+
+@media screen and (max-width: 992px) {
+  .engrenages, .links {
+    width: 30%;
+  }
+
+  .engrenages {
+    bottom: -2em;
+  }
+  .links {
+    font-size: 0.8em;
+    margin: 0 0 15px 0;
+  }
+}
 @media screen and (max-width: 768px) {
   .navbar {
     max-height: none;
     flex-direction: column;
     align-items: center;
   }
+  .engrenages {
+    position: static;
+    margin-top: 20px;
+  }
   .links {
     margin: 0;
+    width: 100%;
+    justify-content: center;
   }
   .link {
     margin: 20px;
