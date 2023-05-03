@@ -78,7 +78,7 @@ export default function Liens(props: LinksProps) {
       <h2>Liens</h2>
       <div className={styles.links}>
         {links.map((element, index) => (
-          <LinkCard linkInfos={element} adminMode={adminMode} deleteLink={deleteLink} index={index} />
+          <LinkCard key={index} linkInfos={element} adminMode={adminMode} deleteLink={deleteLink} index={index} />
         ))}
       </div>
     </div>

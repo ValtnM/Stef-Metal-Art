@@ -104,7 +104,7 @@ export default function NewPostForm() {
       <h2>Ajouter une œuvre</h2>
       <form>
         <div className={styles.newWorkType}>
-          <label htmlFor="type">Type d'œuvre</label>
+          <label htmlFor="type">{"Type d'œuvre"}</label>
           <div className={styles.newWorkTypeChoices}>
             <div className={type === "sculpture" ? `${styles.selectedType}` : ``} onClick={() => setType("sculpture")}>
               Sculpture
@@ -139,7 +139,7 @@ export default function NewPostForm() {
           {photos && (
             <div>
               {photos.map((photo, index) => (
-                <div className={styles.tumbnailImgPreview}>{photo && <img src={URL.createObjectURL(photo)} alt="Aperçu image" />}</div>
+                <div key={index} className={styles.tumbnailImgPreview}>{photo && <img src={URL.createObjectURL(photo)} alt="Aperçu image" />}</div>
               ))}
             </div>
           )}

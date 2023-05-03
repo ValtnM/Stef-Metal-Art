@@ -37,7 +37,7 @@ export default function Breadcrumb(props: BreadcrumbProps) {
       </Link>
       {
         breadcrumb?.map((element, index) => (
-          <div className={styles.breadcrumbPath}>
+          <div key={index} className={styles.breadcrumbPath}>
             <FaChevronRight className={styles.chevron} />
             {
               index + 1 === breadcrumb.length ?
