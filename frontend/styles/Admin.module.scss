@@ -1,8 +1,14 @@
-.admin {
+@import '../styles/animation.scss';
+
+.adminContainer {
   min-height: 50vh;
+  background: var(--background-gradient);
+
+}
+
+.admin {
   margin: auto;
   padding: 30px 50px 50px 50px;
-  background: var(--background-gradient);
 
   h2 {
     font-size: 3em;
@@ -15,6 +21,7 @@
   max-width: 700px;
   margin: auto;
   display: flex;
+  animation: adminMenuAppearance 500ms ease-in-out;
 }
 
 .addingWork, .addingLink {
@@ -77,5 +84,16 @@
   }
   .logoutBtn {
     width: 100%;
+  }
+}
+
+@keyframes adminMenuAppearance{
+  0% {
+    transform: translateX(200px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
   }
 }

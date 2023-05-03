@@ -5,6 +5,7 @@
   background: white;
   border-radius: 20px;
   box-shadow: var(--box-shadow);
+  animation: connectionFormAppearance 500ms ease-in-out;
 
   h2 {
     font-size: 2.5em;
@@ -88,7 +89,7 @@
   border-radius: 10px;
 }
 
-@keyframes adminBottomApparition {
+@keyframes connectionFormAppearance {
   0% {
     transform: translateY(50px);
     opacity: 0;

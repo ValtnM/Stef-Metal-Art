@@ -2,6 +2,7 @@
 
 .newWorkForm {
   @include addingForm;
+  animation: newWorkFormAppearance 500ms ease-in-out;
 }
 
 .newWorkTypeChoices {
@@ -90,7 +91,7 @@
   }
 }
 
-@keyframes adminBottomApparition {
+@keyframes newWorkFormAppearance{
   0% {
     transform: translateY(50px);
     opacity: 0;

@@ -59,7 +59,7 @@ export default function Admin() {
   };
 
   return (
-    <>
+    <div className={styles.adminContainer}>
       {readyToRender && (
         <div className={styles.admin}>
           <Breadcrumb page={["Admin", "admin"]} />
@@ -88,6 +88,6 @@ export default function Admin() {
           )}
         </div>
       )}
-    </>
+    </div>
   );
 }

@@ -2,6 +2,7 @@
 
 .newLinkForm {
   @include addingForm;
+  animation: newLinkFormAppearance 500ms ease-in-out;
 }
 
 .newLinkName,
@@ -35,5 +36,17 @@
     color: white;
     &.success {
       background: var(--green-gradient);
+    }
+  }
+
+
+  @keyframes newLinkFormAppearance {
+    0% {
+      transform: translateY(50px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
     }
   }

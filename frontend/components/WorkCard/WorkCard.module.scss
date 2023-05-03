@@ -9,7 +9,7 @@
   flex-direction: column;
   border-radius: 50px;
   box-shadow: var(--box-shadow);
-  // border: 2px red solid;
+  animation: workCardAppearance 400ms ease-in-out;
 }
 
 .thumbnailImg {
@@ -207,5 +207,17 @@
         margin-right: 0;
       }
     }
+  }
+}
+
+
+@keyframes workCardAppearance{
+  0% {
+    transform: translateX(200px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
   }
 }

@@ -7,10 +7,7 @@
   margin: 50px auto;
   position: relative;
   overflow: hidden;
-  // box-shadow: var(--box-shadow);
-  // background: rgba(201, 201, 201, 1);
-  // border: 2px red solid;
-  animation: apparitionBlock 0.5s ease-in-out;
+  animation: sliderAppearance 0.4s ease-in-out;
 }
 
 .slide {
@@ -89,14 +86,11 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  // border: 3px solid #f1f1f1;
   border: 3px solid var(--basic-black);
   margin: 0 5px;
-  // background: #f1f1f1;
   background: var(--basic-black);
 }
 .dot.active {
-  // background: rgb(32, 32, 32);
   background: var(--basic-white);
 }
 
@@ -106,7 +100,6 @@
   position: absolute;
   top: 50px;
   left: 50%;
-  // transform: translateX(-50%);
 }
 
 .photoLabel {
@@ -146,16 +139,14 @@
     transform: translateX(-50%);
   }
 }
-// @media screen and (max-width: 400px) {
-//   .container-slider {
-//     height: 175px;
-//   }
-//   .btn-slide {
-//     width: 30px;
-//     height: 30px;
-//     img {
-//       width: 10px;
-//       height: 10px;
-//     }
-//   }
-// }
+
+@keyframes sliderAppearance {
+  0% {
+    transform: translateX(-200px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
