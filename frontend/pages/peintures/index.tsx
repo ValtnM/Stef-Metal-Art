@@ -2,6 +2,7 @@ import Head from "next/head";
 import styles from "../../styles/Peintures.module.scss";
 import { GetStaticProps } from "next";
 import WorkGrid from "../../components/WorkGrid/WorkGrid";
+import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 
 type Work = {
   _id: string;
@@ -28,6 +29,7 @@ export default function Peintures(props: WorksProps) {
         <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet" />
       </Head>
       <div className={styles.paintings}>
+        <Breadcrumb page={["Peintures", "peintures"]} />
         <WorkGrid worksArray={props.paintingsArray} title="Peintures" />
       </div>
     </>

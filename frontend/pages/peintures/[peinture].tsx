@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
+import styles from '../../styles/Peintures.module.scss'
 import WorkDetails from "../../components/WorkDetails/WorkDetails";
 import { GetStaticProps, GetStaticPaths } from "next";
+import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 
 type Work = {
   _id: Object;
@@ -16,7 +18,8 @@ type Work = {
 
 export default function Peinture(props: {peinture: Work}) {
   return (
-    <div>
+    <div className={styles.paintingContainer}>
+      <Breadcrumb page={["Peintures", "peintures"]} work={[props.peinture.name, props.peinture._id.toString()]} />
       <WorkDetails typeOfWork="painting" workDetails={props.peinture}/>
     </div>
   );

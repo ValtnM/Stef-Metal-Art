@@ -21,7 +21,6 @@ const getThumbnailName = (thumbnailFile) => {
 };
 // Récupération d'un tableau avec le nom des photos
 const getPhotosNamesArray = (photosFilesArray) => {
-    console.log(photosFilesArray);
     let photosNamesArray = [];
     if (photosFilesArray) {
         for (let i = 0; i < photosFilesArray.length; i++) {
@@ -73,9 +72,6 @@ exports.getRandomWork = (req, res) => {
         .find({ _id: { $nin: oldWorks } })
         .count({}, (err, count) => {
         const randomNumber = Math.floor(Math.random() * count);
-        // if (count === 0) {
-        //   selectModel("");
-        // }
         selectModel("sculpture")
             .find({ _id: { $nin: oldWorks } })
             .limit(1)

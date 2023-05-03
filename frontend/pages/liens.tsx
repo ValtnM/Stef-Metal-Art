@@ -3,6 +3,7 @@ import styles from "../styles/Liens.module.scss";
 import Link from "next/link";
 import { GetStaticProps } from "next";
 import LinkCard from "../components/LinkCard/LinkCard";
+import Breadcrumb from "../components/Breadcrumb/Breadcrumb";
 
 type Link = {
   _id: Object;
@@ -73,6 +74,7 @@ export default function Liens(props: LinksProps) {
 
   return (
     <div className={styles.linksContainer}>
+      <Breadcrumb page={["Liens", "liens"]}/>
       <h2>Liens</h2>
       <div className={styles.links}>
         {links.map((element, index) => (

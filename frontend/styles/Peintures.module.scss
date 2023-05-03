@@ -1,7 +1,11 @@
+.paintings {
+  background: var(--background-gradient);
+  padding: 30px 50px 50px 50px;
+}
+
 .paintingContainer {
-  max-width: 1000px;
-  min-height: 100vh;
-  margin: 50px auto;
+  padding: 30px 50px 50px 50px;
+  background: var(--background-gradient);
   .iconContainer {
     width: 30px;
     height: 30px;

@@ -5,6 +5,7 @@ import NewPostForm from "../components/NewWorkForm/NewWorkForm";
 import { BsPencilFill } from "react-icons/bs";
 import { FaLink } from "react-icons/fa";
 import NewLinkForm from "../components/NewLinkForm/NewLinkForm";
+import Breadcrumb from "../components/Breadcrumb/Breadcrumb";
 
 export default function Admin() {
   const [admin, setAdmin] = useState(false);
@@ -61,6 +62,7 @@ export default function Admin() {
     <>
       {readyToRender && (
         <div className={styles.admin}>
+          <Breadcrumb page={["Admin", "admin"]} />
           {admin ? (
             <div>
               <div className={styles.adminMenu}>

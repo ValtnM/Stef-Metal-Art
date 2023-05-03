@@ -2,6 +2,7 @@ import Head from "next/head";
 import styles from "../../styles/Sculptures.module.scss";
 import { GetStaticProps } from "next";
 import WorkGrid from "../../components/WorkGrid/WorkGrid";
+import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 
 type Work = {
   _id: string;
@@ -30,6 +31,7 @@ export default function Sculptures(props: WorksProps) {
         />
       </Head>
       <div className={styles.sculptures}>
+        <Breadcrumb page={["Sculptures", "sculptures"]} />
         <WorkGrid worksArray={props.sculpturesArray} title="Sculptures" />
       </div>
     </>

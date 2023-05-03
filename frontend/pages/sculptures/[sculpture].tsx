@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import styles from "../../styles/Sculptures.module.scss";
 import WorkDetails from "../../components/WorkDetails/WorkDetails";
 import { GetStaticProps, GetStaticPaths } from "next";
-import Slider from "../../components/Slider/Slider";
+import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 
 type Work = {
   _id: Object;
@@ -21,6 +21,7 @@ export default function Sculpture(props: {sculpture: Work}) {
 
   return (
     <div className={styles.sculptureContainer}>
+      <Breadcrumb page={["Sculptures", "sculptures"]} work={[props.sculpture.name, props.sculpture._id.toString()]} />
       <WorkDetails  typeOfWork="sculpture" workDetails={props.sculpture} />
       {/* <Slider /> */}
     </div>

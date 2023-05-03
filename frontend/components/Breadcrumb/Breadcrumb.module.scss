@@ -1,0 +1,18 @@
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+    .home {
+        font-size: 1.2em;
+    }
+}
+
+.breadcrumbPath {
+    display: flex;
+    align-items: center;
+    .chevron {
+        font-size: 0.8em;
+        margin: 0 7px;
+        color: var(--light-grey);
+    }
+}

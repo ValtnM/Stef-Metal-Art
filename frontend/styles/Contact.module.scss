@@ -2,11 +2,10 @@
 
 .container {
   background: var(--background-gradient);
-  padding: 50px;
+  padding: 30px 50px 50px 50px;
 }
 
 .contact {
-  // border: 2px red solid;
   max-width: 1000px;
   margin: auto;
   animation: contactBottomAppearance 500ms ease-in-out backwards;

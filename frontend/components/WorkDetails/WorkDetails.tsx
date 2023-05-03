@@ -52,6 +52,8 @@ export default function WorkDetails({ typeOfWork, workDetails }: WorkDetailsProp
   }, []);
 
   useEffect(() => {
+    console.log(router);
+    
     if (router.isReady) {
       if (typeOfWork) {
         setWorkId(getWorkId(typeOfWork));

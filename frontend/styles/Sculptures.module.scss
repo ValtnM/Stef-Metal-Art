@@ -1,3 +1,8 @@
+.sculptures {
+  background: var(--background-gradient);
+  padding: 30px 50px 50px 50px;
+}
+
 .zoom {
   position: fixed;
   top: 0;
@@ -35,7 +40,8 @@
 
 
 .sculptureContainer {
-  padding: 50px;
+    padding: 30px 50px 50px 50px;
+    // padding: 50px;
   background: var(--background-gradient);
   .iconContainer {
     width: 30px;

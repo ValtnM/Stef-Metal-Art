@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef, FormEvent } from "react";
 import styles from "../styles/Contact.module.scss";
 import ReCAPTCHA from "react-google-recaptcha";
+import Breadcrumb from "../components/Breadcrumb/Breadcrumb";
 
 export default function Contact() {
   const [firstname, setFirstname] = useState("");
@@ -64,6 +65,7 @@ export default function Contact() {
 
   return (
     <div className={styles.container}>
+      <Breadcrumb page={["Contact", "contact"]} />
       <div className={styles.contact}>
         <h2>Contact</h2>
         <form onSubmit={(e) => sendEmail(e)}>
