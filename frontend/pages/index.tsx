@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import HomeGrid from "../components/HomeGrid/HomeGrid";
 import Bio from "../components/Bio/Bio";
 import { GetStaticProps } from "next";
+import Head from "next/head";
 
 type IndexProps = {
   sculpturesArray: Work[][];
@@ -120,6 +121,10 @@ export default function Home(props: IndexProps) {
   // };
   return (
     <div>
+      <Head>
+        <title>Stef Metal Art</title>
+        <meta name="description" content="Stef Metal Art est un artiste de Mazé-Milon qui créé des œuvres originales à partir d'objets de récupération"></meta>
+      </Head>
       <HomeGrid sculpturesArray={props.sculpturesArray} nbOfSculpturesToDisplay={props.nbOfSculpturesToDisplay} />
       <Bio />
     </div>
@@ -133,21 +138,20 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const formatSculpturesArray = (array: Work[]) => {
     let newSculpturesArray: Work[][] = [];
-        for (let i = 0; i < array.length; i++) {
-          newSculpturesArray.push([array[i]]);
-        }
-        return newSculpturesArray;
-  }
+    for (let i = 0; i < array.length; i++) {
+      newSculpturesArray.push([array[i]]);
+    }
+    return newSculpturesArray;
+  };
 
   sculpturesArray = formatSculpturesArray(sculpturesArray);
 
   console.log(sculpturesArray);
-  
 
   return {
     props: {
       sculpturesArray,
-      nbOfSculpturesToDisplay
+      nbOfSculpturesToDisplay,
     },
   };
 };

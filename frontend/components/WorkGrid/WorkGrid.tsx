@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
+import Image from "next/image";
 import styles from "./WorkGrid.module.scss";
 import DeleteNotificationMsg from "../../components/DeleteNotificationMsg/DeleteNotificationMsg";
 import { useEffect, useState } from "react";
@@ -54,7 +55,7 @@ export default function WorkGrid(props: WorkProps) {
           <div className={styles.worksGrid}>
             {props.worksArray.map((element, index) => (
                 <Link href={`${pathname}/${element._id}`} key={index} style={{ animationDelay: `${index * 100}ms` }} className={styles.workElement}>
-                  <img src={`${process.env.NEXT_PUBLIC_IMAGES_SRC}/${element.thumbnail}`} alt={`Sculpture ${element.name}`} />
+                  <Image loader={() => `${process.env.NEXT_PUBLIC_IMAGES_SRC}/${element.thumbnail}`} src={`${process.env.NEXT_PUBLIC_IMAGES_SRC}/${element.thumbnail}`} alt={`Sculpture ${element.name}`} width={300} height={300} />
                   <h2>{element.name}</h2>
                 </Link>
               // <div key={index} className={styles.workContainer}>

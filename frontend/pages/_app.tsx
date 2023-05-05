@@ -10,10 +10,4 @@ export default function App({ Component, pageProps }: AppProps) {
   );
 }
 
-// Syne Mono
-// indie flower
-// Permanent marker
-// covered by your grace
-// zen dots
-
 

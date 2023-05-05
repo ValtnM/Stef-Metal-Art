@@ -3,8 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import styles from "./Foot.module.scss";
 import Image from "next/image";
-import Engrenages from '../../public/assets/engrenages-small.png';
-import { FaRegCopyright } from "react-icons/fa";
+import Engrenages from '../../public/assets/engrenages-small.webp';
 
 export default function Foot() {
   return (
@@ -38,10 +37,6 @@ export default function Foot() {
             <li>Contact</li>
           </Link>
         </ul>
-        {/* <div className={styles.copyright}>
-          <FaRegCopyright className="copyright-icon" />
-          <p>2023 Stef Metal Art, Tous droits réservés.</p>
-        </div> */}
       </footer>
     </>
   );

@@ -59,7 +59,7 @@ export default function WorkCard(props: WorkCardProps) {
                       Choisir une image
                     </label>
                     <input className={styles.thumbnailInput} id="file" onChange={(e) => handleThumbnailInput(e.target)} type="file" ref={props.thumbnailInputRef} />
-                    <div className={styles.tumbnailImgPreview}>{imgPreview && <img src={URL.createObjectURL(imgPreview)} alt="Aperçu image" />}</div>
+                    <div className={styles.tumbnailImgPreview}>{imgPreview && <Image src={URL.createObjectURL(imgPreview)} alt="Aperçu image" />}</div>
                     <div className={styles.editingFormBtns}>
                       <button onClick={() => props.updateWork("thumbnail")}>Modifier</button>
                       <button onClick={() => props.setEditThumbnail(false)}>Annuler</button>

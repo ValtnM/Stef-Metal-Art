@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
 import { FaArrowAltCircleRight } from "react-icons/fa";
 import { BsTrash } from "react-icons/bs";
-import { FaEdit } from "react-icons/fa";
+import { BiImageAdd } from "react-icons/bi";
 
 type SliderProps = {
   adminMode: boolean;
@@ -102,8 +102,11 @@ export default function Slider(props: SliderProps) {
               <Image onClick={() => zoomPhoto(photo)} loader={() => `${process.env.NEXT_PUBLIC_IMAGES_SRC}/${photo}`} src={`${process.env.NEXT_PUBLIC_IMAGES_SRC}/${photo}`} alt="Photo sculpture" fill />
               {props.adminMode && (
                 <div className={styles.iconsContainer}>
-                  <FaEdit onClick={() => props.handleEditForms("photos")} className={styles.icon} />
-                  <BsTrash onClick={() => handleDeleteBtn(photo)} className={styles.icon} />
+                  <BiImageAdd onClick={() => props.handleEditForms("photos")} className={styles.icon} />
+                  {
+                    props.dataSlider.length > 1 &&
+                    <BsTrash onClick={() => handleDeleteBtn(photo)} className={styles.icon} />
+                  }
                 </div>
               )}
             </div>
@@ -128,7 +131,7 @@ export default function Slider(props: SliderProps) {
               Choisir une image
             </label>
             <input id="file" className={styles.photoInput} onChange={(e) => handlePhotoInput(e.target)} type="file" ref={props.photosInputRef} />
-            <div className={styles.photoImgPreview}>{imgPreview && <img src={URL.createObjectURL(imgPreview)} alt="Aperçu image" />}</div>
+            <div className={styles.photoImgPreview}>{imgPreview && <Image src={URL.createObjectURL(imgPreview)} alt="Aperçu image" />}</div>
             <div className={styles.editingFormBtns}>
               <button onClick={() => addingPhoto()}>Ajouter</button>
               <button onClick={() => props.setAddPhoto(false)}>Annuler</button>

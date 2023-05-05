@@ -48,11 +48,33 @@ export default function WorkDetails({ typeOfWork, workDetails }: WorkDetailsProp
   const router = useRouter();
 
   useEffect(() => {
+    const checkIsAdmin = () => {
+      const newToken = getTokenFromSessionStorage();
+      fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin/${newToken}`, {
+        method: "GET",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data.isAdmin) {
+            setAdminMode(true);
+          } else {
+            setAdminMode(false);
+          }
+        })
+        .catch((err) => console.log(err));
+    };
     checkIsAdmin();
   }, []);
 
   useEffect(() => {
-    console.log(router);
+    const getWorkId = (typeOfWork: string) => {
+      if (typeOfWork === "painting") {
+        return router.query.peinture as string;
+      } else if (typeOfWork === "sculpture") {
+        return router.query.sculpture as string;
+      }
+    };
     
     if (router.isReady) {
       if (typeOfWork) {
@@ -61,22 +83,6 @@ export default function WorkDetails({ typeOfWork, workDetails }: WorkDetailsProp
     }
   }, [router.isReady]);
 
-  const checkIsAdmin = () => {
-    const newToken = getTokenFromSessionStorage();
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin/${newToken}`, {
-      method: "GET",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.isAdmin) {
-          setAdminMode(true);
-        } else {
-          setAdminMode(false);
-        }
-      })
-      .catch((err) => console.log(err));
-  };
 
   const getTokenFromSessionStorage = () => {
     const stockedToken = window.sessionStorage.getItem("token");
@@ -86,13 +92,6 @@ export default function WorkDetails({ typeOfWork, workDetails }: WorkDetailsProp
     return stockedToken;
   };
 
-  const getWorkId = (typeOfWork: string) => {
-    if (typeOfWork === "painting") {
-      return router.query.peinture as string;
-    } else if (typeOfWork === "sculpture") {
-      return router.query.sculpture as string;
-    }
-  };
 
   const getWorkInfos = () => {
     fetch(`http://localhost:8080/api/works/${typeOfWork}/${workId}`)

@@ -23,24 +23,24 @@ export default function Liens(props: LinksProps) {
   const [links, setLinks] = useState(props.linksArray);
 
   useEffect(() => {
+    const checkIsAdmin = () => {
+      const newToken = getTokenFromSessionStorage();
+      fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin/${newToken}`, {
+        method: "GET",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.isAdmin) {
+            setAdminMode(true);
+          } else {
+            setAdminMode(false);
+          }
+        })
+        .catch((err) => console.log(err));
+    };
     checkIsAdmin();
   }, []);
 
-  const checkIsAdmin = () => {
-    const newToken = getTokenFromSessionStorage();
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin/${newToken}`, {
-      method: "GET",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.isAdmin) {
-          setAdminMode(true);
-        } else {
-          setAdminMode(false);
-        }
-      })
-      .catch((err) => console.log(err));
-  };
 
   const getTokenFromSessionStorage = () => {
     const stockedToken = window.sessionStorage.getItem("token");

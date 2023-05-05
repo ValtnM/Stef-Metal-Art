@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import Image from "next/image";
 import styles from "./NewLinkForm.module.scss";
 
 export default function NewLinkForm() {
@@ -76,7 +77,7 @@ export default function NewLinkForm() {
             Choisir une image
           </label>
           <input onInput={(e) => handleThumbnail(e.target as HTMLInputElement)} className={styles.thumbnailInput} type="file" id="thumbnail" ref={thumbnailInputRef} />
-          <div className={styles.thumbnailPreview}>{thumbnail && <img src={URL.createObjectURL(thumbnail)} alt="Aperçu image" />}</div>
+          <div className={styles.thumbnailPreview}>{thumbnail && <Image src={URL.createObjectURL(thumbnail)} alt="Aperçu image" />}</div>
         </div>
         <div className={styles.newLinkURL}>
           <label htmlFor="link">Lien</label>

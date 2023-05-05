@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import Image from "next/image";
 import styles from "./NewWorkForm.module.scss";
 
 export default function NewPostForm() {
@@ -120,7 +121,7 @@ export default function NewPostForm() {
             Choisir un image
           </label>
           <input onInput={(e) => handleThumbnail(e.target as HTMLInputElement)} className={styles.thumbnailInput} id="thumbnail" type="file" ref={thumbnailInputRef}/>
-          <div className={styles.imgPreview}>{thumbnail && <img src={URL.createObjectURL(thumbnail)} alt="Aperçu image" />}</div>
+          <div className={styles.imgPreview}>{thumbnail && <Image src={URL.createObjectURL(thumbnail)} alt="Aperçu image" />}</div>
         </div>
         <div className={styles.newWorkName}>
           <label htmlFor="name">Nom</label>
@@ -139,7 +140,7 @@ export default function NewPostForm() {
           {photos && (
             <div>
               {photos.map((photo, index) => (
-                <div key={index} className={styles.imgPreview}>{photo && <img src={URL.createObjectURL(photo)} alt="Aperçu image" />}</div>
+                <div key={index} className={styles.imgPreview}>{photo && <Image src={URL.createObjectURL(photo)} alt="Aperçu image" />}</div>
               ))}
             </div>
           )}

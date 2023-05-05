@@ -3,8 +3,8 @@ import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./Navbar.module.scss";
-import Engrenages from "../../public/assets/engrenages-small.png";
-import Logo from "../../public/assets/logo.png";
+import Engrenages from "../../public/assets/engrenages-small.webp";
+import Logo from "../../public/assets/logo.webp";
 
 export default function Navbar() {
   return (
