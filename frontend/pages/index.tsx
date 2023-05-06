@@ -3,6 +3,7 @@ import HomeGrid from "../components/HomeGrid/HomeGrid";
 import Bio from "../components/Bio/Bio";
 import { GetStaticProps } from "next";
 import Head from "next/head";
+import { log } from "console";
 
 type IndexProps = {
   sculpturesArray: Work[][];
@@ -133,25 +134,34 @@ export default function Home(props: IndexProps) {
 
 export const getStaticProps: GetStaticProps = async () => {
   const nbOfSculpturesToDisplay = 6;
-  const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/works/random/${nbOfSculpturesToDisplay}`);
-  let sculpturesArray = await data.json();
+  let sculpturesArray: Work[][] = [];
 
-  const formatSculpturesArray = (array: Work[]) => {
+  // try {
+
+    const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/works/random/${nbOfSculpturesToDisplay}`);
+    let response = await data.json();
+
+    const formatSculpturesArray = (array: Work[]) => {
     let newSculpturesArray: Work[][] = [];
     for (let i = 0; i < array.length; i++) {
       newSculpturesArray.push([array[i]]);
     }
     return newSculpturesArray;
   };
-
-  sculpturesArray = formatSculpturesArray(sculpturesArray);
-
-  console.log(sculpturesArray);
-
+  
+  sculpturesArray = formatSculpturesArray(response);
+// }
+// catch(error) {
+  // console.log("getStaticProps : error = ", error);
+  
+// }
+// finally {  
+  
   return {
     props: {
       sculpturesArray,
       nbOfSculpturesToDisplay,
     },
-  };
+  // };
+}
 };

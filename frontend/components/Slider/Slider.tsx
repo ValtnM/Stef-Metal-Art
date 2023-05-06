@@ -21,6 +21,17 @@ type SliderProps = {
   photosInputRef: React.MutableRefObject<any>;
 };
 
+type ImageLoaderProps = {
+  src: string
+  width: number
+  quality?: number
+  root?: string
+}
+
+const imageLoader = (props: ImageLoaderProps) => {
+  return `${props.src}?w=${props.width}`
+}
+
 export default function Slider(props: SliderProps) {
   const [imgPreview, setImagePreview] = useState<File>();
 
@@ -99,7 +110,7 @@ export default function Slider(props: SliderProps) {
         props.dataSlider.map((photo, index) => {
           return (
             <div key={uuidv4()} className={slideAnim.index === index + 1 ? `${styles.slide} ${styles.activeAnim}` : `${styles.slide}`}>
-              <Image onClick={() => zoomPhoto(photo)} loader={() => `${process.env.NEXT_PUBLIC_IMAGES_SRC}/${photo}`} src={`${process.env.NEXT_PUBLIC_IMAGES_SRC}/${photo}`} alt="Photo sculpture" fill />
+              <Image onClick={() => zoomPhoto(photo)} loader={imageLoader} src={`${process.env.NEXT_PUBLIC_IMAGES_SRC}/${photo}`} alt="Photo sculpture" fill />
               {props.adminMode && (
                 <div className={styles.iconsContainer}>
                   <BiImageAdd onClick={() => props.handleEditForms("photos")} className={styles.icon} />

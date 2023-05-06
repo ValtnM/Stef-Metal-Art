@@ -33,6 +33,17 @@ type WorkCardProps = {
   setDeleteMode: Function;
 };
 
+type ImageLoaderProps = {
+  src: string
+  width: number
+  quality?: number
+  root?: string
+}
+
+const imageLoader = (props: ImageLoaderProps) => {
+  return `${props.src}?w=${props.width}`
+}
+
 export default function WorkCard(props: WorkCardProps) {
   const [imgPreview, setImagePreview] = useState<File>();
 
@@ -44,7 +55,7 @@ export default function WorkCard(props: WorkCardProps) {
   return (
     <div className={styles.workCard}>
       <div className={styles.thumbnail}>
-        <Image className={styles.thumbnailImg} loader={() => `${process.env.NEXT_PUBLIC_IMAGES_SRC}/${props.workInfos.thumbnail}`} src={`${process.env.NEXT_PUBLIC_IMAGES_SRC}/${props.workInfos.thumbnail}`} alt={`${props.workInfos.name}`} width={400} height={400} placeholder="blur" blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN88B8AAsUB4ZtvXtIAAAAASUVORK5CYII=" />
+        <Image className={styles.thumbnailImg} loader={imageLoader} src={`${process.env.NEXT_PUBLIC_IMAGES_SRC}/${props.workInfos.thumbnail}`} alt={`${props.workInfos.name}`} width={400} height={400} placeholder="blur" blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN88B8AAsUB4ZtvXtIAAAAASUVORK5CYII=" />
           {props.adminMode && (
             <div className={styles.thumbnailEditing}>
               <div onClick={() => props.handleEditForms("thumbnail")} className={styles.thumbnailEditingBtn}>

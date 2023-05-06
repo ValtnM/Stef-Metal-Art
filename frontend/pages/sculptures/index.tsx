@@ -22,14 +22,14 @@ type WorksProps = {
 export default function Sculptures(props: WorksProps) {
   return (
     <>
-      <Head>
+      {/* <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
           href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap"
           rel="stylesheet"
         />
-      </Head>
+      </Head> */}
       <div className={styles.sculptures}>
         <Breadcrumb page={["Sculptures", "sculptures"]} />
         <WorkGrid worksArray={props.sculpturesArray} title="Sculptures" />

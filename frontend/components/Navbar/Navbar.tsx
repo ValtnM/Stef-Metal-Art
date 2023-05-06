@@ -9,14 +9,14 @@ import Logo from "../../public/assets/logo.webp";
 export default function Navbar() {
   return (
     <div className={styles.container}>
-      <Head>
+      {/* <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
           href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap"
           rel="stylesheet"
         />
-      </Head>
+      </Head> */}
       <nav className={styles.navbar}>
         <div className={styles.engrenages}>
 

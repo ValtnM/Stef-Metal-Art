@@ -89,7 +89,6 @@ export const getStaticProps: GetStaticProps = async () => {
   const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/link`);
   const linksArray = await data.json();
 
-  console.log(linksArray);
 
   return {
     props: {

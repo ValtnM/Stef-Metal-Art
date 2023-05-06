@@ -22,6 +22,17 @@ type WorkProps = {
   title: String;
 };
 
+type ImageLoaderProps = {
+  src: string
+  width: number
+  quality?: number
+  root?: string
+}
+
+const imageLoader = (props: ImageLoaderProps) => {
+  return `${props.src}?w=${props.width}`
+}
+
 export default function WorkGrid(props: WorkProps) {
   const [deleteNotificationMsg, setDeleteNotificationMsg] = useState<string>();
 
@@ -42,11 +53,11 @@ export default function WorkGrid(props: WorkProps) {
 
   return (
     <div className={styles.container}>
-      <Head>
+      {/* <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet" />
-      </Head>
+      </Head> */}
 
       <div className={styles.works}>
         <h1>{props.title}</h1>
@@ -55,7 +66,7 @@ export default function WorkGrid(props: WorkProps) {
           <div className={styles.worksGrid}>
             {props.worksArray.map((element, index) => (
                 <Link href={`${pathname}/${element._id}`} key={index} style={{ animationDelay: `${index * 100}ms` }} className={styles.workElement}>
-                  <Image loader={() => `${process.env.NEXT_PUBLIC_IMAGES_SRC}/${element.thumbnail}`} src={`${process.env.NEXT_PUBLIC_IMAGES_SRC}/${element.thumbnail}`} alt={`Sculpture ${element.name}`} width={300} height={300} />
+                  <Image loader={imageLoader} src={`${process.env.NEXT_PUBLIC_IMAGES_SRC}/${element.thumbnail}`} alt={`Sculpture ${element.name}`} width={300} height={300} />
                   <h2>{element.name}</h2>
                 </Link>
               // <div key={index} className={styles.workContainer}>
