@@ -41,7 +41,6 @@ export default function Liens(props: LinksProps) {
     checkIsAdmin();
   }, []);
 
-
   const getTokenFromSessionStorage = () => {
     const stockedToken = window.sessionStorage.getItem("token");
     if (stockedToken) {
@@ -74,7 +73,7 @@ export default function Liens(props: LinksProps) {
 
   return (
     <div className={styles.linksContainer}>
-      <Breadcrumb page={["Liens", "liens"]}/>
+      <Breadcrumb page={["Liens", "liens"]} />
       <h2>Liens</h2>
       <div className={styles.links}>
         {links.map((element, index) => (
@@ -86,13 +85,18 @@ export default function Liens(props: LinksProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/link`);
-  const linksArray = await data.json();
-
-
-  return {
-    props: {
-      linksArray,
-    },
-  };
+  let linksArray: Link[] = [];
+  try {
+    const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/link`);
+    linksArray = await data.json();
+    
+  } catch (err) {
+    console.log("getStaticProps Links = error: ", err);
+  } finally {
+    return {
+      props: {
+        linksArray,
+      },
+    };
+  }
 };

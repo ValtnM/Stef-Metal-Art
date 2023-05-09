@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./HomeGrid.module.scss";
-import Engrenages from '../../public/assets/engrenages-photo.webp'
+import Engrenages from "../../public/assets/engrenages-photo.webp";
 
 type Work = {
   _id: Object;
@@ -17,29 +17,29 @@ type Work = {
 };
 
 type ImageLoaderProps = {
-  src: string
-  width: number
-  quality?: number
-  root?: string
-}
+  src: string;
+  width: number;
+  quality?: number;
+  root?: string;
+};
 
 const imageLoader = (props: ImageLoaderProps) => {
-  return `${props.src}?w=${props.width}`
-}
+  return `${props.src}?w=${props.width}`;
+};
 
 export default function HomeGrid(props: { sculpturesArray: Work[][]; nbOfSculpturesToDisplay: number }) {
   const [sculpturesArray, setSculpturesArray] = useState<Array<Array<Work>>>(props.sculpturesArray);
   const [nbOfSculpturesToDisplay, setNbOfSculpturesToDisplay] = useState(props.nbOfSculpturesToDisplay);
   const [previousRandomNumber, setPreviousRandomNumber] = useState(900);
-  
-  useEffect(() => {    
+
+  useEffect(() => {
     const stockSculpturesToLocalStorage = () => {
       window.localStorage.setItem("sculptures", JSON.stringify(sculpturesArray));
     };
-  
+
     const getNewRandomSculpture = async (randomNumber: number) => {
       const listOfIds = formatListOfIds(getSculpturesFromLocalStorage());
-  
+
       fetch(`${process.env.NEXT_PUBLIC_API_URL}/works/random/1/${listOfIds}`, {
         method: "GET",
       })
@@ -51,7 +51,7 @@ export default function HomeGrid(props: { sculpturesArray: Work[][]; nbOfSculptu
             } else {
               let newArray = sculpturesArray;
               newArray[randomNumber].push(data[0]);
-  
+
               deleteOldSculpture(randomNumber, newArray);
               setTimeout(() => {
                 updateLocalStorageSculpturesArray(newArray, randomNumber);
@@ -64,15 +64,16 @@ export default function HomeGrid(props: { sculpturesArray: Work[][]; nbOfSculptu
     };
 
     stockSculpturesToLocalStorage();
-    const intervalId = setInterval(() => {
-      const randomNumber = getRandomNumber(nbOfSculpturesToDisplay);
-      getNewRandomSculpture(randomNumber);
-    }, 5000);
-    return () => {
-      clearInterval(intervalId);
-    };
+    if (sculpturesArray.length > 0) {
+      const intervalId = setInterval(() => {
+        const randomNumber = getRandomNumber(nbOfSculpturesToDisplay);
+        getNewRandomSculpture(randomNumber);
+      }, 5000);
+      return () => {
+        clearInterval(intervalId);
+      };
+    }
   }, []);
-
 
   const getSculpturesFromLocalStorage = () => {
     let sculptures = window.localStorage.getItem("sculptures");

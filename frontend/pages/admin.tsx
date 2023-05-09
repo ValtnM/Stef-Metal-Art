@@ -38,11 +38,15 @@ export default function Admin() {
 
   const checkIsAdmin = () => {
     const stockedToken = window.sessionStorage.getItem("token");
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin/${stockedToken}`, {
-      method: "GET",
-    })
+    try {
+
+      fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin/${stockedToken}`, {
+        method: "GET",
+      })
       .then((res) => res.json())
       .then((data) => {
+        console.log("admin success: ", data);
+        
         if (data.isAdmin) {
           setAdmin(true);
         } else {
@@ -51,6 +55,12 @@ export default function Admin() {
         setReadyToRender(true);
       })
       .catch((err) => console.log(err));
+    } catch(err) {
+      console.log("checkAdmin error: ", err);      
+    } finally {
+      setAdmin(false);
+      setReadyToRender(true);
+    }
   };
 
   const deleteTokenFromSessionStorage = () => {

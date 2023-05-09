@@ -4,7 +4,6 @@ const jwt = require('jsonwebtoken');
 exports.login = (req, res) => {
     const user = req.body.user;
     const password = req.body.password;
-    console.log(req.body);
     if (user === process.env.USER && password === process.env.PASSWORD) {
         res.status(200).json({
             isAdmin: true,

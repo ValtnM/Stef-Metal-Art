@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const fs = require("fs");
 const { Sculptures } = require("../models/Work.js");
 const { Paintings } = require("../models/Work.js");
+const checkDbConnection = mongoose.connection.readyState;
 // Selection d'un modèle en fonction du type d'œuvre
 const selectModel = (type) => {
     if (type === "sculpture") {
@@ -89,27 +90,42 @@ exports.getRandomWork = (req, res) => {
 // Récupération d'un nombre défini d'œuvres aléatoires
 exports.getRandomWorks = (req, res) => {
     const nbOfWork = Number(req.params.nbOfWork);
-    selectModel("sculpture")
-        .aggregate([{ $sample: { size: nbOfWork } }])
-        .exec((err, sculptures) => {
-        if (err) {
-            res.status(400).json({ erreur: "Sculptures not found" });
-        }
-        else {
-            res.status(200).json(sculptures);
-        }
-    });
+    console.log("RandomWorks", selectModel("sculpture"));
+    console.log("Mongoose", checkDbConnection);
+    console.log("Mongoose", mongoose.connection.readyState);
+    if (mongoose.connection.readyState === 1) {
+        console.log("RandomWorks: success");
+        selectModel("sculpture")
+            .aggregate([{ $sample: { size: nbOfWork } }])
+            .exec((err, sculptures) => {
+            if (err) {
+                res.status(400).json({ erreur: "Sculptures not found" });
+            }
+            else {
+                res.status(200).json(sculptures);
+            }
+        });
+    }
+    else {
+        console.log("RandomWorks:  error");
+        res.status(400).json({ erreur: "ERREUR !!!!" });
+    }
 };
 // Récupération des œuvres par type
 exports.getWorkByType = (req, res) => {
-    selectModel(req.params.type).find({ type: req.params.type }, (err, works) => {
-        if (err) {
-            res.status(404).json({ err });
-        }
-        else {
-            res.status(200).json(works);
-        }
-    });
+    if (mongoose.connection.readyState === 1) {
+        selectModel(req.params.type).find({ type: req.params.type }, (err, works) => {
+            if (err) {
+                res.status(404).json({ err });
+            }
+            else {
+                res.status(200).json(works);
+            }
+        });
+    }
+    else {
+        res.status(400).json({ error: "Database not connected" });
+    }
 };
 // Récupération d'une œuvre par ID
 exports.getWorkById = (req, res) => {

@@ -5,6 +5,8 @@ import { Request, Response } from "express";
 const { Sculptures } = require("../models/Work.js");
 const { Paintings } = require("../models/Work.js");
 
+const checkDbConnection = mongoose.connection.readyState;
+
 interface MulterRequest extends Request {
   files: any;
 }
@@ -78,7 +80,10 @@ exports.getRandomWork = (req: MulterRequest, res: Response) => {
 
   const oldWorks = formatListOfIds(req.params.oldWorks);
 
-  selectModel("sculpture")
+  if(mongoose.connection.readyState === 1) {
+
+    
+    selectModel("sculpture")
     .find({ _id: { $nin: oldWorks } })
     .count({}, (err, count) => {
       const randomNumber = Math.floor(Math.random() * count);
@@ -94,46 +99,74 @@ exports.getRandomWork = (req: MulterRequest, res: Response) => {
             res.status(200).json(sculpture);
           }
         });
-    });
+      });
+    } else {
+      res.status(400).json({error: "Database not connected"})
+    }
 };
 
 // Récupération d'un nombre défini d'œuvres aléatoires
 exports.getRandomWorks = (req: MulterRequest, res: Response) => {
   const nbOfWork = Number(req.params.nbOfWork);
+  console.log("RandomWorks", selectModel("sculpture"));
+  console.log("Mongoose", checkDbConnection);
+  console.log("Mongoose", mongoose.connection.readyState);
+  
+  
+  if(mongoose.connection.readyState === 1) {
+    console.log("RandomWorks: success");
+    
 
-  selectModel("sculpture")
+    selectModel("sculpture")
     .aggregate([{ $sample: { size: nbOfWork } }])
     .exec((err, sculptures) => {
       if (err) {
+        
         res.status(400).json({ erreur: "Sculptures not found" });
       } else {
         res.status(200).json(sculptures);
       }
     });
+  }
+  else {
+    console.log("RandomWorks:  error");
+    res.status(400).json({erreur: "ERREUR !!!!"})
+    
+  }
 };
 
 // Récupération des œuvres par type
 exports.getWorkByType = (req: Request, res: Response) => {
-  selectModel(req.params.type).find({ type: req.params.type }, (err, works) => {
-    if (err) {
-      res.status(404).json({ err });
-    } else {
-      res.status(200).json(works);
-    }
-  });
+  if(mongoose.connection.readyState === 1) {
+
+    selectModel(req.params.type).find({ type: req.params.type }, (err, works) => {
+      if (err) {
+        res.status(404).json({ err });
+      } else {
+        res.status(200).json(works);
+      }
+    });
+  } else {
+    res.status(400).json({error: "Database not connected"})
+  }
 };
 
 // Récupération d'une œuvre par ID
 exports.getWorkById = (req: Request, res: Response) => {
   const typeOfWork = req.params.type;
-  if (typeOfWork) {
-    selectModel(typeOfWork).findById(mongoose.Types.ObjectId(req.params.id), (err, work) => {
-      if (err) {
-        res.status(404).json({ erreur: "Œuvre introuvable !" });
-      } else {
-        res.status(200).json(work);
-      }
-    });
+  if(mongoose.connection.readyState === 1) {
+
+    if (typeOfWork) {
+      selectModel(typeOfWork).findById(mongoose.Types.ObjectId(req.params.id), (err, work) => {
+        if (err) {
+          res.status(404).json({ erreur: "Œuvre introuvable !" });
+        } else {
+          res.status(200).json(work);
+        }
+      });
+    }
+  } else {
+    res.status(400).json({error: "Database not connected"})
   }
 };
 

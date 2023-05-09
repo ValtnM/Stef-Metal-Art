@@ -16,13 +16,11 @@ type Work = {
   update_date: Date;
 };
 
-export default function Sculpture(props: {sculpture: Work}) {
-
-
+export default function Sculpture(props: { sculpture: Work }) {
   return (
     <div className={styles.sculptureContainer}>
       <Breadcrumb page={["Sculptures", "sculptures"]} work={[props.sculpture.name, props.sculpture._id.toString()]} />
-      <WorkDetails  typeOfWork="sculpture" workDetails={props.sculpture} />
+      <WorkDetails typeOfWork="sculpture" workDetails={props.sculpture} />
       {/* <Slider /> */}
     </div>
   );
@@ -39,19 +37,27 @@ export const getStaticProps: GetStaticProps = async (context) => {
       sculpture,
     },
   };
-}
+};
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/works/sculpture`);
-  
-  const sculptures = await data.json();
+  let paths = [];
 
-  const paths = sculptures.map((item: Work) => ({
-    params: { sculpture: item._id.toString() },
-  }));
+  try {
+    const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/works/sculpture`);
 
-  return {
-    paths,
-    fallback: false,
-  };
-}
+    const sculptures = await data.json();
+
+    paths = sculptures.map((item: Work) => ({
+      params: { sculpture: item._id.toString() },
+    }));
+
+    
+  } catch (err) {
+    console.log("getStaticPath Sculpture error: ", err);
+  } finally {
+    return {
+      paths,
+      fallback: false,
+    };
+  }
+};

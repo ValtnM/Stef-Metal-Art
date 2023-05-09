@@ -14,15 +14,20 @@ const deleteThumbnailFile = (filename) => {
     });
 };
 exports.getAllLinks = (req, res) => {
-    Link.find((err, link) => {
-        if (err) {
-            res.status(400).json(err);
-        }
-        else {
-            console.log(link);
-            res.status(200).json(link);
-        }
-    });
+    if (mongoose.connection.readyState === 1) {
+        Link.find((err, link) => {
+            if (err) {
+                res.status(400).json(err);
+            }
+            else {
+                console.log(link);
+                res.status(200).json(link);
+            }
+        });
+    }
+    else {
+        res.status(400).json({ error: "Database not connected" });
+    }
 };
 exports.addLink = (req, res) => {
     console.log(req.body);

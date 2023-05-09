@@ -11,9 +11,9 @@ export default function ConnectionForm(props: { setAdmin: Function }) {
 
   const sendConnectionData = (e: FormEvent) => {
     e.preventDefault();
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin`, {
-      method: "POST",
-      headers: {
+      fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin`, {
+        method: "POST",
+        headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
@@ -28,8 +28,12 @@ export default function ConnectionForm(props: { setAdmin: Function }) {
           setNotificationMessage(data.error);
         }
       })
-      .catch((err) => console.log(err));
-  };
+      .catch((err) => {
+        console.log(err)
+        setNotificationMessage("Erreur lors de la communication avec le serveur");
+      });
+    
+    };
 
   const saveTokenToSessionStorage = (token: string) => {
     window.sessionStorage.setItem("token", token);

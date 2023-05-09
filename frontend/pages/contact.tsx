@@ -52,7 +52,11 @@ export default function Contact() {
         }
         setSendedMessage(true);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log("sendingEmail error: ",err)
+        setSendedMessage(true);
+        setNotificationMessage("Erreur lors de la communication avec le serveur")
+      });
   };
 
   const clearForm = () => {

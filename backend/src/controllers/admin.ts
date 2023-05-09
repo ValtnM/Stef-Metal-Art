@@ -5,7 +5,6 @@ exports.login = (req: Request, res: Response) => {
     const user = req.body.user;
     const password = req.body.password;
 
-    console.log(req.body);
     
 
     if(user === process.env.USER && password === process.env.PASSWORD) {

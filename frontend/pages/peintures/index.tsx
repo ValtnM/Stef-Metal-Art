@@ -16,18 +16,12 @@ type Work = {
 };
 
 type WorksProps = {
-  sculpturesArray: Work[];
   paintingsArray: Work[];
 };
 
 export default function Peintures(props: WorksProps) {
   return (
     <>
-      {/* <Head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet" />
-      </Head> */}
       <div className={styles.paintings}>
         <Breadcrumb page={["Peintures", "peintures"]} />
         <WorkGrid worksArray={props.paintingsArray} title="Peintures" />
@@ -37,16 +31,18 @@ export default function Peintures(props: WorksProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const sculptureData = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/works/sculpture`);
-  const sculpturesArray = await sculptureData.json();
+  let paintingsArray: Work[][] = [];
 
-  const paintingData = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/works/painting`);
-  const paintingsArray = await paintingData.json();
-
-  return {
-    props: {
-      sculpturesArray,
-      paintingsArray,
-    },
-  };
+  try {
+    const paintingData = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/works/painting`);
+    paintingsArray = await paintingData.json();
+  } catch (err) {
+    console.log("getStaticProps Paintings = error: ", err);
+  } finally {
+    return {
+      props: {
+        paintingsArray,
+      },
+    };
+  }
 };

@@ -39,14 +39,17 @@ export default function Sculptures(props: WorksProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const sculptureData = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/works/sculpture`
-  );
-  const sculpturesArray = await sculptureData.json();
-
-  return {
-    props: {
-      sculpturesArray,
-    },
-  };
+  let sculpturesArray: Work[][] = [];
+  try {
+    const sculptureData = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/works/sculpture`);
+    sculpturesArray = await sculptureData.json();
+  } catch (err) {
+    console.log("getStaticProps Sculptures = error: ", err);
+  } finally {
+    return {
+      props: {
+        sculpturesArray,
+      },
+    };
+  }
 };

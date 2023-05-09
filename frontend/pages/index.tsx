@@ -3,7 +3,6 @@ import HomeGrid from "../components/HomeGrid/HomeGrid";
 import Bio from "../components/Bio/Bio";
 import { GetStaticProps } from "next";
 import Head from "next/head";
-import { log } from "console";
 
 type IndexProps = {
   sculpturesArray: Work[][];
@@ -23,6 +22,7 @@ type Work = {
 };
 
 export default function Home(props: IndexProps) {
+// export default function Home() {
   // const logout = () => {
   //     window.FB.logout((res) => {
   //       console.log(res);
@@ -120,6 +120,12 @@ export default function Home(props: IndexProps) {
   //     })
   //     .catch((err) => console.log(err));
   // };
+
+  useEffect(() => {
+    console.log("Home");
+    
+  }, [])
+
   return (
     <div>
       <Head>
@@ -136,7 +142,10 @@ export const getStaticProps: GetStaticProps = async () => {
   const nbOfSculpturesToDisplay = 6;
   let sculpturesArray: Work[][] = [];
 
-  // try {
+  console.log("getStaticProps");
+  
+
+  try {
 
     const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/works/random/${nbOfSculpturesToDisplay}`);
     let response = await data.json();
@@ -150,18 +159,18 @@ export const getStaticProps: GetStaticProps = async () => {
   };
   
   sculpturesArray = formatSculpturesArray(response);
-// }
-// catch(error) {
-  // console.log("getStaticProps : error = ", error);
+}
+catch(error) {
+  console.log("getStaticProps : error = ", error);
   
-// }
-// finally {  
+}
+finally {  
   
   return {
     props: {
       sculpturesArray,
       nbOfSculpturesToDisplay,
     },
-  // };
+  };
 }
 };
