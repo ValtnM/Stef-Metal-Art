@@ -62,7 +62,7 @@ export default function WorkGrid(props: WorkProps) {
       <div className={styles.works}>
         <h1>{props.title}</h1>
         {deleteNotificationMsg && <DeleteNotificationMsg deleteNotificationMsg={deleteNotificationMsg} setDeleteNotificationMsg={setDeleteNotificationMsg} />}
-        {props.worksArray && (
+        {props.worksArray.length > 0 && (
           <div className={styles.worksGrid}>
             {props.worksArray.map((element, index) => (
                 <Link href={`${pathname}/${element._id}`} key={index} style={{ animationDelay: `${index * 100}ms` }} className={styles.workElement}>
