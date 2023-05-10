@@ -69,23 +69,28 @@ exports.getRandomWork = (req, res) => {
         return formatWorksIdArray;
     };
     const oldWorks = formatListOfIds(req.params.oldWorks);
-    selectModel("sculpture")
-        .find({ _id: { $nin: oldWorks } })
-        .count({}, (err, count) => {
-        const randomNumber = Math.floor(Math.random() * count);
+    if (mongoose.connection.readyState === 1) {
         selectModel("sculpture")
             .find({ _id: { $nin: oldWorks } })
-            .limit(1)
-            .skip(randomNumber)
-            .exec((err, sculpture) => {
-            if (err) {
-                console.log(err);
-            }
-            else {
-                res.status(200).json(sculpture);
-            }
+            .count({}, (err, count) => {
+            const randomNumber = Math.floor(Math.random() * count);
+            selectModel("sculpture")
+                .find({ _id: { $nin: oldWorks } })
+                .limit(1)
+                .skip(randomNumber)
+                .exec((err, sculpture) => {
+                if (err) {
+                    console.log(err);
+                }
+                else {
+                    res.status(200).json(sculpture);
+                }
+            });
         });
-    });
+    }
+    else {
+        res.status(400).json({ error: "Database not connected" });
+    }
 };
 // Récupération d'un nombre défini d'œuvres aléatoires
 exports.getRandomWorks = (req, res) => {
@@ -130,15 +135,20 @@ exports.getWorkByType = (req, res) => {
 // Récupération d'une œuvre par ID
 exports.getWorkById = (req, res) => {
     const typeOfWork = req.params.type;
-    if (typeOfWork) {
-        selectModel(typeOfWork).findById(mongoose.Types.ObjectId(req.params.id), (err, work) => {
-            if (err) {
-                res.status(404).json({ erreur: "Œuvre introuvable !" });
-            }
-            else {
-                res.status(200).json(work);
-            }
-        });
+    if (mongoose.connection.readyState === 1) {
+        if (typeOfWork) {
+            selectModel(typeOfWork).findById(mongoose.Types.ObjectId(req.params.id), (err, work) => {
+                if (err) {
+                    res.status(404).json({ erreur: "Œuvre introuvable !" });
+                }
+                else {
+                    res.status(200).json(work);
+                }
+            });
+        }
+    }
+    else {
+        res.status(400).json({ error: "Database not connected" });
     }
 };
 // Ajoût d'une nouvelle œuvre
