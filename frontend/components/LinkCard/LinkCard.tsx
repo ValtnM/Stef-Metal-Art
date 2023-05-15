@@ -30,7 +30,7 @@ const imageLoader = (props: ImageLoaderProps) => {
 
 export default function LinkCard(props: LinkCardProps) {
   return (
-    <a className={styles.linkCard} href={props.linkInfos.link} style={{animationDelay: `${props.index * 100}ms`}}>
+    <a className={styles.linkCard} href={props.linkInfos.link} style={{animationDelay: `${props.index * 100}ms`}} target="_blank" rel="noreferrer">
       <div className={styles.linkImgContainer}>
         <Image fill src={`${process.env.NEXT_PUBLIC_IMAGES_SRC}/${props.linkInfos.thumbnail}`} loader={imageLoader} alt="" />
       </div>

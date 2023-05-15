@@ -1,7 +1,6 @@
-import React, { useEffect, useState, useRef } from "react";
 import styles from "../../styles/Peintures.module.scss";
 import WorkDetails from "../../components/WorkDetails/WorkDetails";
-import { GetStaticProps, GetStaticPaths } from "next";
+import { GetServerSideProps } from "next";
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 
 type Work = {
@@ -25,7 +24,7 @@ export default function Peinture(props: { peinture: Work }) {
   );
 }
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const peintureId = context.params!.peinture;
   const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/works/painting/${peintureId}`);
 
@@ -38,20 +37,3 @@ export const getStaticProps: GetStaticProps = async (context) => {
   };
 };
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  let paths = [];
-  try {
-    const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/works/painting`);
-    const peintures = await data.json();
-    paths = peintures.map((item: Work) => ({
-      params: { peinture: item._id.toString() },
-    }));
-  } catch (err) {
-    console.log("getStaticPaths paintings error: ", err);
-  } finally {
-    return {
-      paths,
-      fallback: false,
-    };
-  }
-};

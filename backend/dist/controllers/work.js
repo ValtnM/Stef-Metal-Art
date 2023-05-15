@@ -4,7 +4,6 @@ const mongoose = require("mongoose");
 const fs = require("fs");
 const { Sculptures } = require("../models/Work.js");
 const { Paintings } = require("../models/Work.js");
-const checkDbConnection = mongoose.connection.readyState;
 // Selection d'un modèle en fonction du type d'œuvre
 const selectModel = (type) => {
     if (type === "sculpture") {
@@ -95,11 +94,8 @@ exports.getRandomWork = (req, res) => {
 // Récupération d'un nombre défini d'œuvres aléatoires
 exports.getRandomWorks = (req, res) => {
     const nbOfWork = Number(req.params.nbOfWork);
-    console.log("RandomWorks", selectModel("sculpture"));
-    console.log("Mongoose", checkDbConnection);
-    console.log("Mongoose", mongoose.connection.readyState);
+    console.log(process.env.RECAPTCHA_SECRET_KEY);
     if (mongoose.connection.readyState === 1) {
-        console.log("RandomWorks: success");
         selectModel("sculpture")
             .aggregate([{ $sample: { size: nbOfWork } }])
             .exec((err, sculptures) => {
@@ -112,8 +108,7 @@ exports.getRandomWorks = (req, res) => {
         });
     }
     else {
-        console.log("RandomWorks:  error");
-        res.status(400).json({ erreur: "ERREUR !!!!" });
+        res.status(400).json([{ _id: {}, name: "Pas de BDD", description: "Pas de BDD", thumbnail: "Pas de BDD", photos: ["Pas de BDD"], instagram: false, like: 0, create_date: Date.now(), update_date: Date.now() }]);
     }
 };
 // Récupération des œuvres par type

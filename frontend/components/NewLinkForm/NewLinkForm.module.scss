@@ -27,26 +27,24 @@
   }
 }
 
-
-  .notificationMessage {
-    margin-top: 10px;
-    padding: 10px;
-    text-align: center;
-    background: var(--red-gradient);
-    color: white;
-    &.success {
-      background: var(--green-gradient);
-    }
+.notificationMessage {
+  margin-top: 10px;
+  padding: 10px;
+  text-align: center;
+  background: var(--red-gradient);
+  color: white;
+  &.success {
+    background: var(--green-gradient);
   }
+}
 
-
-  @keyframes newLinkFormAppearance {
-    0% {
-      transform: translateY(50px);
-      opacity: 0;
-    }
-    100% {
-      transform: translateY(0);
-      opacity: 1;
-    }
+@keyframes newLinkFormAppearance {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
   }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

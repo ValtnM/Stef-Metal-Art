@@ -5,7 +5,6 @@ import { Request, Response } from "express";
 const { Sculptures } = require("../models/Work.js");
 const { Paintings } = require("../models/Work.js");
 
-const checkDbConnection = mongoose.connection.readyState;
 
 interface MulterRequest extends Request {
   files: any;
@@ -83,6 +82,7 @@ exports.getRandomWork = (req: MulterRequest, res: Response) => {
   if(mongoose.connection.readyState === 1) {
 
     
+    
     selectModel("sculpture")
     .find({ _id: { $nin: oldWorks } })
     .count({}, (err, count) => {
@@ -108,13 +108,10 @@ exports.getRandomWork = (req: MulterRequest, res: Response) => {
 // Récupération d'un nombre défini d'œuvres aléatoires
 exports.getRandomWorks = (req: MulterRequest, res: Response) => {
   const nbOfWork = Number(req.params.nbOfWork);
-  console.log("RandomWorks", selectModel("sculpture"));
-  console.log("Mongoose", checkDbConnection);
-  console.log("Mongoose", mongoose.connection.readyState);
-  
+   console.log(process.env.RECAPTCHA_SECRET_KEY);
+   
   
   if(mongoose.connection.readyState === 1) {
-    console.log("RandomWorks: success");
     
 
     selectModel("sculpture")
@@ -129,9 +126,7 @@ exports.getRandomWorks = (req: MulterRequest, res: Response) => {
     });
   }
   else {
-    console.log("RandomWorks:  error");
-    res.status(400).json({erreur: "ERREUR !!!!"})
-    
+    res.status(400).json([{_id: {},name: "Pas de BDD", description:"Pas de BDD", thumbnail: "Pas de BDD", photos:["Pas de BDD"], instagram: false, like:0, create_date: Date.now(), update_date: Date.now()}])    
   }
 };
 

@@ -1,7 +1,6 @@
-import React, { useEffect, useState, useRef } from "react";
 import styles from "../../styles/Sculptures.module.scss";
 import WorkDetails from "../../components/WorkDetails/WorkDetails";
-import { GetStaticProps, GetStaticPaths } from "next";
+import { GetServerSideProps } from "next";
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 
 type Work = {
@@ -21,12 +20,11 @@ export default function Sculpture(props: { sculpture: Work }) {
     <div className={styles.sculptureContainer}>
       <Breadcrumb page={["Sculptures", "sculptures"]} work={[props.sculpture.name, props.sculpture._id.toString()]} />
       <WorkDetails typeOfWork="sculpture" workDetails={props.sculpture} />
-      {/* <Slider /> */}
     </div>
   );
 }
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const sculptureId = context.params!.sculpture;
   const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/works/sculpture/${sculptureId}`);
 
@@ -37,27 +35,4 @@ export const getStaticProps: GetStaticProps = async (context) => {
       sculpture,
     },
   };
-};
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  let paths = [];
-
-  try {
-    const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/works/sculpture`);
-
-    const sculptures = await data.json();
-
-    paths = sculptures.map((item: Work) => ({
-      params: { sculpture: item._id.toString() },
-    }));
-
-    
-  } catch (err) {
-    console.log("getStaticPath Sculpture error: ", err);
-  } finally {
-    return {
-      paths,
-      fallback: false,
-    };
-  }
 };

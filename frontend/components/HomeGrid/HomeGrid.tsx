@@ -32,48 +32,50 @@ export default function HomeGrid(props: { sculpturesArray: Work[][]; nbOfSculptu
   const [nbOfSculpturesToDisplay, setNbOfSculpturesToDisplay] = useState(props.nbOfSculpturesToDisplay);
   const [previousRandomNumber, setPreviousRandomNumber] = useState(900);
 
+
   useEffect(() => {
-    const stockSculpturesToLocalStorage = () => {
-      window.localStorage.setItem("sculptures", JSON.stringify(sculpturesArray));
-    };
-
-    const getNewRandomSculpture = async (randomNumber: number) => {
-      const listOfIds = formatListOfIds(getSculpturesFromLocalStorage());
-
-      fetch(`${process.env.NEXT_PUBLIC_API_URL}/works/random/1/${listOfIds}`, {
-        method: "GET",
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          setSculpturesArray((sculpturesArray) => {
-            if (data.length === 0) {
-              return sculpturesArray;
-            } else {
-              let newArray = sculpturesArray;
-              newArray[randomNumber].push(data[0]);
-
-              deleteOldSculpture(randomNumber, newArray);
-              setTimeout(() => {
-                updateLocalStorageSculpturesArray(newArray, randomNumber);
-              }, 500);
-              return newArray;
-            }
-          });
-        })
-        .catch((err: Work[][]) => err);
-    };
-
     stockSculpturesToLocalStorage();
     if (sculpturesArray.length > 0) {
-      const intervalId = setInterval(() => {
-        const randomNumber = getRandomNumber(nbOfSculpturesToDisplay);
-        getNewRandomSculpture(randomNumber);
-      }, 5000);
-      return () => {
-        clearInterval(intervalId);
-      };
+    const intervalId = setInterval(() => {
+      const randomNumber = getRandomNumber(nbOfSculpturesToDisplay);
+      getNewRandomSculpture(randomNumber);
+    }, 5000);
+    return () => {
+      clearInterval(intervalId);
+    };
     }
   }, []);
+
+  const stockSculpturesToLocalStorage = () => {
+    window.localStorage.setItem("sculptures", JSON.stringify(sculpturesArray));
+  };
+
+  const getNewRandomSculpture = async (randomNumber: number) => {
+    const listOfIds = formatListOfIds(getSculpturesFromLocalStorage());
+
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/works/random/1/${listOfIds}`, {
+      method: "GET",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setSculpturesArray((sculpturesArray) => {
+          if (data.length === 0) {
+            return sculpturesArray;
+          } else {
+            let newArray = sculpturesArray;
+            newArray[randomNumber].push(data[0]);
+
+            deleteOldSculpture(randomNumber, newArray);
+            setTimeout(() => {
+              updateLocalStorageSculpturesArray(newArray, randomNumber);
+            }, 500);
+            return newArray;
+          }
+        });
+      })
+      .catch((err: Work[][]) => err);
+  };
+
 
   const getSculpturesFromLocalStorage = () => {
     let sculptures = window.localStorage.getItem("sculptures");
@@ -85,6 +87,7 @@ export default function HomeGrid(props: { sculpturesArray: Work[][]; nbOfSculptu
   };
 
   const updateLocalStorageSculpturesArray = (newArray: Work[][], randomNumber: number) => {
+    
     window.localStorage.setItem("sculptures", JSON.stringify(newArray));
   };
 

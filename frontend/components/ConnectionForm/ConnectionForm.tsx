@@ -29,7 +29,7 @@ export default function ConnectionForm(props: { setAdmin: Function }) {
         }
       })
       .catch((err) => {
-        console.log(err)
+        console.log("sendConnectionData: ",err)
         setNotificationMessage("Erreur lors de la communication avec le serveur");
       });
     

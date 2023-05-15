@@ -1,6 +1,5 @@
-import Head from "next/head";
 import styles from "../../styles/Peintures.module.scss";
-import { GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import WorkGrid from "../../components/WorkGrid/WorkGrid";
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 
@@ -21,16 +20,14 @@ type WorksProps = {
 
 export default function Peintures(props: WorksProps) {
   return (
-    <>
-      <div className={styles.paintings}>
-        <Breadcrumb page={["Peintures", "peintures"]} />
-        <WorkGrid worksArray={props.paintingsArray} title="Peintures" />
-      </div>
-    </>
+    <div className={styles.paintings}>
+      <Breadcrumb page={["Peintures", "peintures"]} />
+      <WorkGrid worksArray={props.paintingsArray} title="Peintures" />
+    </div>
   );
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   let paintingsArray: Work[][] = [];
 
   try {

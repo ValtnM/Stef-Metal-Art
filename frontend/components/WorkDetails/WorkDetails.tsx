@@ -94,7 +94,7 @@ export default function WorkDetails({ typeOfWork, workDetails }: WorkDetailsProp
 
 
   const getWorkInfos = () => {
-    fetch(`http://localhost:8080/api/works/${typeOfWork}/${workId}`)
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/works/${typeOfWork}/${workId}`)
       .then((res) => res.json())
       .then((data) => {
         setWorkInfos(data);
@@ -103,7 +103,7 @@ export default function WorkDetails({ typeOfWork, workDetails }: WorkDetailsProp
   };
 
   const deleteWork = () => {
-    fetch(`http://localhost:8080/api/works/${typeOfWork}/${workId}`, {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/works/${typeOfWork}/${workId}`, {
       method: "DELETE",
       headers: {
         authorization: `Bearer ${token}`,
@@ -139,7 +139,7 @@ export default function WorkDetails({ typeOfWork, workDetails }: WorkDetailsProp
   // Envoi de la requête pour modifier la vignette
   const updateWork = async (typeOfData: string) => {
     if (workId) {
-      fetch(`http://localhost:8080/api/works/${workId}`, {
+      fetch(`${process.env.NEXT_PUBLIC_API_URL}/works/${workId}`, {
         method: "PUT",
         headers: {
           authorization: `Bearer ${token}`,
@@ -285,7 +285,7 @@ export default function WorkDetails({ typeOfWork, workDetails }: WorkDetailsProp
 
   const deletePhoto = (photoName: string) => {
     if (photoName && workId) {
-      fetch(`http://localhost:8080/api/works/${workId}/${photoName}`, {
+      fetch(`${process.env.NEXT_PUBLIC_API_URL}/works/${workId}/${photoName}`, {
         method: "PUT",
         headers: {
           Accept: "application/json",

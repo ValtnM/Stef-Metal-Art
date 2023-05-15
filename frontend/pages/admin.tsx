@@ -14,49 +14,28 @@ export default function Admin() {
 
   useEffect(() => {
     checkIsAdmin();
-
-    // window.fbAsyncInit = function() {
-    //   FB.init({
-    //     appId      : '{your-app-id}',
-    //     cookie     : true,
-    //     xfbml      : true,
-    //     version    : '{api-version}'
-    //   });
-
-    //   FB.AppEvents.logPageView();
-
-    // };
-
-    // (function(d, s, id){
-    //    var js, fjs = d.getElementsByTagName(s)[0];
-    //    if (d.getElementById(id)) {return;}
-    //    js = d.createElement(s); js.id = id;
-    //    js.src = "https://connect.facebook.net/en_US/sdk.js";
-    //    fjs.parentNode.insertBefore(js, fjs);
-    //  }(document, 'script', 'facebook-jssdk'));
   }, []);
 
   const checkIsAdmin = () => {
     const stockedToken = window.sessionStorage.getItem("token");
     try {
-
       fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin/${stockedToken}`, {
         method: "GET",
       })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("admin success: ", data);
-        
-        if (data.isAdmin) {
-          setAdmin(true);
-        } else {
-          setAdmin(false);
-        }
-        setReadyToRender(true);
-      })
-      .catch((err) => console.log(err));
-    } catch(err) {
-      console.log("checkAdmin error: ", err);      
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("admin success: ", data);
+
+          if (data.isAdmin) {
+            setAdmin(true);
+          } else {
+            setAdmin(false);
+          }
+          setReadyToRender(true);
+        })
+        .catch((err) => console.log(err));
+    } catch (err) {
+      console.log("checkAdmin error: ", err);
     } finally {
       setAdmin(false);
       setReadyToRender(true);
@@ -85,13 +64,10 @@ export default function Admin() {
                   <h3>Ajouter un lien</h3>
                 </div>
               </div>
-              {
-                selectedMenu === "work" ?
-                <NewPostForm />
-                :
-                <NewLinkForm />
-              }
-                <button className={styles.logoutBtn} onClick={() => deleteTokenFromSessionStorage()}>Déconnexion</button>
+              {selectedMenu === "work" ? <NewPostForm /> : <NewLinkForm />}
+              <button className={styles.logoutBtn} onClick={() => deleteTokenFromSessionStorage()}>
+                Déconnexion
+              </button>
             </div>
           ) : (
             <ConnectionForm setAdmin={setAdmin} />

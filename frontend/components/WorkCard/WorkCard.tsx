@@ -103,7 +103,7 @@ export default function WorkCard(props: WorkCardProps) {
           )}
         </div>
         <div className={styles.descriptionContainer}>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reprehenderit nihil, numquam ipsum hic aperiam, corporis aliquam, dignissimos exercitationem enim vitae accusamus ratione eligendi quos nostrum expedita accusantium distinctio officiis. Animi ducimus fugiat ratione necessitatibus aliquam fuga nisi nesciunt error velit vitae, magnam repellat itaque eius est numquam earum accusantium eos.</p>
+          <p>{props.workInfos.description}</p>
           {props.adminMode && (
             <div className={styles.descriptionEditing}>
               <FaEdit onClick={() => props.handleEditForms("description")} className={styles.icon} />

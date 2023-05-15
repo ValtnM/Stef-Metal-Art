@@ -9,8 +9,8 @@ export default function Bio() {
       <div className={styles.bio}>
         <Image width={1845} height={2338} src={Portrait} alt="Portrait de Stéphane" />
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus obcaecati rerum expedita minus perspiciatis, architecto, mollitia accusamus facilis dolore molestias dolorum vitae in nostrum ipsa fugiat sit a consectetur neque fuga dicta culpa ullam, voluptatem iusto! Voluptates repudiandae recusandae vero debitis animi autem iure fuga at laboriosam quisquam eaque libero delectus similique, iste itaque, voluptatem iusto quod aut ut hic maxime inventore dicta? Molestiae ipsum, ullam dolorem voluptatum voluptatem non veniam eius beatae debitis, eaque quasi quaerat doloribus
-          harum. Molestiae doloribus reprehenderit vitae facilis amet aliquid, consectetur itaque soluta laborum distinctio iure inventore vel, dolorum ipsum mollitia consequatur officia deleniti!
+          Je suis né la même année que Fantômas. Autodidacte, je peins autant que je bricole, bricole autant que je sculpte, sculpte un peu moins que je récupère... Ma devise prise à Lavoisier (et non à Fantômas): &quot;Rien ne se perd, rien ne se crée, tout se transforme.&quot; Ou comme le disait si bien Boby Lapointe : &quot;On peut presque tout changer excepté ce qu&apos;on n&apos;peut pas&quot;. J&apos;aime bien la magie de créer quelque chose à partir de pas grand chose . Des pièces de moto, de vieux phares de vélo, une boîte à biscuits jaunie, un moulin à légumes, une montre cassée... Des morceaux du quotidien que vous ne
+          verrez plus de la même manière.
         </p>
       </div>
     </div>

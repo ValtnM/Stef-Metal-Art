@@ -26,7 +26,7 @@ exports.getAllLinks = (req, res) => {
         });
     }
     else {
-        res.status(400).json({ error: "Database not connected" });
+        res.status(400).json([]);
     }
 };
 exports.addLink = (req, res) => {

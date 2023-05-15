@@ -7,7 +7,7 @@
   margin: 50px auto;
   position: relative;
   overflow: hidden;
-  animation: sliderAppearance 0.4s ease-in-out;
+  animation: sliderAppearance 0.4s ease-in-out 0.2s backwards;
 }
 
 .slide {

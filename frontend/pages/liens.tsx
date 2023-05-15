@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "../styles/Liens.module.scss";
 import Link from "next/link";
-import { GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import LinkCard from "../components/LinkCard/LinkCard";
 import Breadcrumb from "../components/Breadcrumb/Breadcrumb";
 
@@ -75,21 +75,22 @@ export default function Liens(props: LinksProps) {
     <div className={styles.linksContainer}>
       <Breadcrumb page={["Liens", "liens"]} />
       <h2>Liens</h2>
-      <div className={styles.links}>
-        {links.map((element, index) => (
-          <LinkCard key={index} linkInfos={element} adminMode={adminMode} deleteLink={deleteLink} index={index} />
-        ))}
-      </div>
+      {links.length > 0 && (
+        <div className={styles.links}>
+          {links.map((element, index) => (
+            <LinkCard key={index} linkInfos={element} adminMode={adminMode} deleteLink={deleteLink} index={index} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   let linksArray: Link[] = [];
   try {
     const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/link`);
     linksArray = await data.json();
-    
   } catch (err) {
     console.log("getStaticProps Links = error: ", err);
   } finally {

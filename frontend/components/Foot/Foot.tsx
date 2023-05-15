@@ -7,15 +7,7 @@ import Engrenages from '../../public/assets/engrenages-small.webp';
 
 export default function Foot() {
   return (
-    <>
-      {/* <Head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap"
-          rel="stylesheet"
-        />
-      </Head> */}
+    <>      
       <footer className={styles.footer}>
         <Link href="/admin">
         <Image

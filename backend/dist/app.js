@@ -45,4 +45,6 @@ app.use('/api/images', express.static(path.join(__dirname, 'images')));
 // }).listen(port, hostname)
 // http.createServer(app).listen(8080);
 // https.createServer(options, app).listen(8080);
-app.listen(port, hostname);
+app.listen(port, () => {
+    console.log(`Server started on port ${port}`);
+});

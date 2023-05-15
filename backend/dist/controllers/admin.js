@@ -1,19 +1,29 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const mongoose = require("mongoose");
 const jwt = require('jsonwebtoken');
 exports.login = (req, res) => {
     const user = req.body.user;
     const password = req.body.password;
-    if (user === process.env.USER && password === process.env.PASSWORD) {
-        res.status(200).json({
-            isAdmin: true,
-            token: jwt.sign({
-                userName: process.env.USER
-            }, process.env.TOKEN_KEY, { expiresIn: '1h' })
-        });
+    console.log("USER: ", user);
+    console.log("PASSWORD: ", password);
+    console.log(".env USER: ", process.env.USERNAME);
+    console.log(".env PASSWORD: ", process.env.PASSWORD);
+    if (mongoose.connection.readyState === 1) {
+        if (user === process.env.USERNAME && password === process.env.PASSWORD) {
+            res.status(200).json({
+                isAdmin: true,
+                token: jwt.sign({
+                    userName: process.env.USERNAME
+                }, process.env.TOKEN_KEY, { expiresIn: '1h' })
+            });
+        }
+        else {
+            res.status(400).json({ isAdmin: false, error: "Nom d'utilisateur ou mot de passe incorrect" });
+        }
     }
     else {
-        res.status(400).json({ isAdmin: false, error: "Nom d'utilisateur ou mot de passe incorrect" });
+        res.status(400).json({ error: "Database not connected" });
     }
 };
 exports.checkToken = (req, res) => {
@@ -21,7 +31,7 @@ exports.checkToken = (req, res) => {
     if (token !== null) {
         try {
             let jwtToken = jwt.verify(token, process.env.TOKEN_KEY);
-            if (jwtToken.userName === process.env.USER) {
+            if (jwtToken.userName === process.env.USERNAME) {
                 res.status(200).json({ isAdmin: true });
             }
             else {

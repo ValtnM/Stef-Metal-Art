@@ -37,7 +37,7 @@ export default function NewPostForm() {
 
     const token = getTokenFromSessionStorage();
 
-    fetch(`http://localhost:8080/api/works`, {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/works`, {
       method: "POST",
       headers: {
         authorization: `Bearer ${token}`,
