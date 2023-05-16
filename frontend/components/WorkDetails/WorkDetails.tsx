@@ -48,6 +48,7 @@ export default function WorkDetails({ typeOfWork, workDetails }: WorkDetailsProp
   const router = useRouter();
 
   useEffect(() => {
+    // Vérification du status de l'utilisateur
     const checkIsAdmin = () => {
       const newToken = getTokenFromSessionStorage();
       fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin/${newToken}`, {
@@ -68,6 +69,7 @@ export default function WorkDetails({ typeOfWork, workDetails }: WorkDetailsProp
   }, []);
 
   useEffect(() => {
+    // Récupération de l'ID de l'œuvre
     const getWorkId = (typeOfWork: string) => {
       if (typeOfWork === "painting") {
         return router.query.peinture as string;
@@ -75,7 +77,7 @@ export default function WorkDetails({ typeOfWork, workDetails }: WorkDetailsProp
         return router.query.sculpture as string;
       }
     };
-    
+
     if (router.isReady) {
       if (typeOfWork) {
         setWorkId(getWorkId(typeOfWork));
@@ -83,7 +85,7 @@ export default function WorkDetails({ typeOfWork, workDetails }: WorkDetailsProp
     }
   }, [router.isReady]);
 
-
+  // Récupération du token d'authentification dans le session storage
   const getTokenFromSessionStorage = () => {
     const stockedToken = window.sessionStorage.getItem("token");
     if (stockedToken) {
@@ -92,7 +94,7 @@ export default function WorkDetails({ typeOfWork, workDetails }: WorkDetailsProp
     return stockedToken;
   };
 
-
+  // Récupération des informations sur l'œuvre
   const getWorkInfos = () => {
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/works/${typeOfWork}/${workId}`)
       .then((res) => res.json())
@@ -102,6 +104,7 @@ export default function WorkDetails({ typeOfWork, workDetails }: WorkDetailsProp
       .catch((err) => console.log(err));
   };
 
+  // Suppression de l'œuvre
   const deleteWork = () => {
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/works/${typeOfWork}/${workId}`, {
       method: "DELETE",
@@ -118,6 +121,7 @@ export default function WorkDetails({ typeOfWork, workDetails }: WorkDetailsProp
       .catch((err) => console.log(err));
   };
 
+  // Redirection vers le composant parent
   const redirectToParentComponent = (typeOfWork: string) => {
     if (typeOfWork === "sculpture") {
       router.push("/sculptures");
@@ -223,11 +227,7 @@ export default function WorkDetails({ typeOfWork, workDetails }: WorkDetailsProp
     }
   };
 
-  const zoomPhoto = (image: string) => {
-    setZoomMode(true);
-    setZoomedPhoto(image);
-  };
-
+  // Gestion des formulaires d'édition
   const handleEditForms = (formName: string) => {
     if (formName === "thumbnail") {
       if (editThumbnail) {
@@ -283,6 +283,7 @@ export default function WorkDetails({ typeOfWork, workDetails }: WorkDetailsProp
     }
   };
 
+  // Suppression d'une photo
   const deletePhoto = (photoName: string) => {
     if (photoName && workId) {
       fetch(`${process.env.NEXT_PUBLIC_API_URL}/works/${workId}/${photoName}`, {
@@ -316,7 +317,6 @@ export default function WorkDetails({ typeOfWork, workDetails }: WorkDetailsProp
           </div>
         </div>
       )}
-      {/* {typeOfWork && <BackBtn typeOfWork={typeOfWork} />} */}
       {workInfos && (
         <div className={styles.work}>
           {workInfos.photos && (

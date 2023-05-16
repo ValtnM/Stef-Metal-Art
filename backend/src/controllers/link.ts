@@ -9,6 +9,7 @@ interface MulterRequest extends Request {
   file: any;
 }
 
+// Suppression d'une image
 const deleteThumbnailFile = (filename) => {
   fs.unlink(`dist/images/${filename}`, (err) => {
     if (err) {
@@ -19,6 +20,7 @@ const deleteThumbnailFile = (filename) => {
   });
 };
 
+// Récupération de tous les liens
 exports.getAllLinks = (req: Request, res: Response) => {
   if (mongoose.connection.readyState === 1) {
     Link.find((err, link) => {
@@ -34,6 +36,7 @@ exports.getAllLinks = (req: Request, res: Response) => {
   }
 };
 
+// Ajout d'un nouveau lien
 exports.addLink = (req: MulterRequest, res: Response) => {
   console.log(req.body);
   console.log(req.file);
@@ -71,6 +74,7 @@ exports.addLink = (req: MulterRequest, res: Response) => {
   }
 };
 
+// Suppression d'un lien par son ID
 exports.deleteLinkById = (req: Request, res: Response) => {
   const linkId = mongoose.Types.ObjectId(req.params.linkId);
 

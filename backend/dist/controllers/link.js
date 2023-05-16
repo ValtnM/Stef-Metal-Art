@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose = require("mongoose");
 const fs = require("fs");
 const Link = require("../models/Link");
+// Suppression d'une image
 const deleteThumbnailFile = (filename) => {
     fs.unlink(`dist/images/${filename}`, (err) => {
         if (err) {
@@ -13,6 +14,7 @@ const deleteThumbnailFile = (filename) => {
         }
     });
 };
+// Récupération de tous les liens
 exports.getAllLinks = (req, res) => {
     if (mongoose.connection.readyState === 1) {
         Link.find((err, link) => {
@@ -29,6 +31,7 @@ exports.getAllLinks = (req, res) => {
         res.status(400).json([]);
     }
 };
+// Ajout d'un nouveau lien
 exports.addLink = (req, res) => {
     console.log(req.body);
     console.log(req.file);
@@ -65,6 +68,7 @@ exports.addLink = (req, res) => {
         });
     }
 };
+// Suppression d'un lien par son ID
 exports.deleteLinkById = (req, res) => {
     const linkId = mongoose.Types.ObjectId(req.params.linkId);
     Link.findById(linkId, (err, link) => {

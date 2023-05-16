@@ -23,6 +23,7 @@ export default function Liens(props: LinksProps) {
   const [links, setLinks] = useState(props.linksArray);
 
   useEffect(() => {
+    // Vérification du status de l'utilisateur
     const checkIsAdmin = () => {
       const newToken = getTokenFromSessionStorage();
       fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin/${newToken}`, {
@@ -41,6 +42,7 @@ export default function Liens(props: LinksProps) {
     checkIsAdmin();
   }, []);
 
+  // Récupération du token d'authentification dans le session storage
   const getTokenFromSessionStorage = () => {
     const stockedToken = window.sessionStorage.getItem("token");
     if (stockedToken) {
@@ -49,6 +51,7 @@ export default function Liens(props: LinksProps) {
     return stockedToken;
   };
 
+  // Récupération des liens dans la base de données
   const getAllLinks = () => {
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/link`, {
       method: "GET",
@@ -58,6 +61,7 @@ export default function Liens(props: LinksProps) {
       .catch((err) => console.log(err));
   };
 
+  // Suppression d'un lien
   const deleteLink = (e: React.MouseEvent<SVGElement, MouseEvent>, linkId: Object) => {
     e.preventDefault();
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/link/${linkId}`, {

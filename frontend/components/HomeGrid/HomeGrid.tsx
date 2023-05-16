@@ -45,10 +45,12 @@ export default function HomeGrid(props: { sculpturesArray: Work[][]; nbOfSculptu
     }
   }, []);
 
+  // Stockage du tableau de sculptures dans le local storage
   const stockSculpturesToLocalStorage = () => {
     window.localStorage.setItem("sculptures", JSON.stringify(sculpturesArray));
   };
 
+  // Récupération d'une sculpture aléatoire dans la base de données
   const getNewRandomSculpture = async (randomNumber: number) => {
     const listOfIds = formatListOfIds(getSculpturesFromLocalStorage());
 
@@ -75,6 +77,7 @@ export default function HomeGrid(props: { sculpturesArray: Work[][]; nbOfSculptu
       .catch((err: Work[][]) => err);
   };
 
+  // Récupération du tableau de sculptures dans le local storage
   const getSculpturesFromLocalStorage = () => {
     let sculptures = window.localStorage.getItem("sculptures");
     if (sculptures) {
@@ -84,10 +87,12 @@ export default function HomeGrid(props: { sculpturesArray: Work[][]; nbOfSculptu
     }
   };
 
+  // Mise à jour du tableau de sculptures stocké dans le local storage
   const updateLocalStorageSculpturesArray = (newArray: Work[][], randomNumber: number) => {
     window.localStorage.setItem("sculptures", JSON.stringify(newArray));
   };
 
+  // Suppression d'un élément du tableau de sculptures
   const deleteOldSculpture = (randomNumber: number, sculpturesArray: Work[][]) => {
     let newArray = sculpturesArray;
 
@@ -99,6 +104,7 @@ export default function HomeGrid(props: { sculpturesArray: Work[][]; nbOfSculptu
     });
   };
 
+  // Récupération d'un nombre aléatoire
   const getRandomNumber = (nb: number) => {
     let randomNumber = Math.floor(Math.random() * nb);
     setPreviousRandomNumber((previousRandomNumber) => {
@@ -110,6 +116,7 @@ export default function HomeGrid(props: { sculpturesArray: Work[][]; nbOfSculptu
     return randomNumber;
   };
 
+  // Formatage d'un tableau contenant les IDs des sculptures selectionnées
   const formatListOfIds = (oldSculpturesArray: Work[][]) => {
     let listOfIds: string[] = [];
 

@@ -6,6 +6,7 @@ export default function DeleteNotificationMsg(props: {deleteNotificationMsg: str
 
   const [deleteInProgress, setDeleteInProgress] =  useState(false)
 
+  // Suppression du composant  
   const deleteComponent = () => {
     setDeleteInProgress(true);
     setTimeout(() => {

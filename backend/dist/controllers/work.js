@@ -282,6 +282,7 @@ exports.updateWorkById = (req, res) => {
         });
     }
 };
+// Suppression d'une photo par son nom
 exports.deletePhotoByName = (req, res) => {
     const workId = mongoose.Types.ObjectId(req.params.id);
     const photoName = req.params.photoName;

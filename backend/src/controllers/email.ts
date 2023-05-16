@@ -12,9 +12,9 @@ exports.sendEmail = (req: Request, res: Response) => {
     replyTo: req.body.email,
   };
 
+  // Vérification ReCaptcha
   const validateHuman = async (token: string) => {
     const secret = process.env.RECAPTCHA_SECRET_KEY;
-
     axios
       .post(`https://www.google.com/recaptcha/api/siteverify?secret=${secret}&response=${token}`)
       .then((response) => {
@@ -28,6 +28,7 @@ exports.sendEmail = (req: Request, res: Response) => {
       .catch((err) => console.log(err));
   };
 
+  // Création d'un transporter
   const transporter = nodemailer.createTransport({
     host: "pro1.mail.ovh.net",
     port: 587,
@@ -37,6 +38,7 @@ exports.sendEmail = (req: Request, res: Response) => {
     },
   });
 
+  // Vérification du transporter
   transporter.verify(function (error, success) {
     if (error) {
       console.log(error);
@@ -45,6 +47,7 @@ exports.sendEmail = (req: Request, res: Response) => {
     }
   });
 
+  // Envoi de l'email
   const sendingMail = (mailInfos) => {
     if (!req.body.firstname) {
       res.status(400).json({ error: "Veuillez saisir un prénom" });

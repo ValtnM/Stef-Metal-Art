@@ -16,6 +16,7 @@ export default function Admin() {
     checkIsAdmin();
   }, []);
 
+  // Vérification du status de l'utilisateur
   const checkIsAdmin = () => {
     const stockedToken = window.sessionStorage.getItem("token");
     try {
@@ -42,6 +43,7 @@ export default function Admin() {
     }
   };
 
+  // Suppression du token d'authentification du session storage
   const deleteTokenFromSessionStorage = () => {
     window.sessionStorage.removeItem("token");
     checkIsAdmin();

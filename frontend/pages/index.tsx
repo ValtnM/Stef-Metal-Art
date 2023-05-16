@@ -22,18 +22,19 @@ type Work = {
 };
 
 export default function Home(props: IndexProps) {
-  const [sculpturesArray, setSculpturesArray] = useState(props.sculpturesArray);
+  // const [sculpturesArray, setSculpturesArray] = useState(props.sculpturesArray);
 
-  useEffect(() => {
-    getUpdatedSculpturesArray();
-  }, []);
+  // useEffect(() => {
+  //   getUpdatedSculpturesArray();
+  // }, []);
 
-  const getUpdatedSculpturesArray = () => {
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/works/sculpture`)
-      .then((res) => res.json())
-      .then((data) => setSculpturesArray(data))
-      .catch((err) => console.log(err));
-  };
+
+  // const getUpdatedSculpturesArray = () => {
+  //   fetch(`${process.env.NEXT_PUBLIC_API_URL}/works/sculpture`)
+  //     .then((res) => res.json())
+  //     .then((data) => setSculpturesArray(data))
+  //     .catch((err) => console.log(err));
+  // };
 
   return (
     <div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import Image from "next/image";
 import styles from "./NewLinkForm.module.scss";
 
@@ -11,13 +11,15 @@ export default function NewLinkForm() {
 
   const thumbnailInputRef = useRef<any>();
 
-
+  // Récupération de l'image ajoutée par l'utilisateur en tant que vignette
   const handleThumbnail = (target: HTMLInputElement) => {
     if (target.files) {
       setThumbnail(target.files[0]);
     }
   };
 
+
+  // Envoi des données du formulaire au backend
   const sendData = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
 
@@ -40,6 +42,7 @@ export default function NewLinkForm() {
       .catch((err) => console.log(err));
   };
 
+  // Création d'un formData
   const createFormData = () => {
     let formData = new FormData();
     formData.append("name", name);
@@ -50,12 +53,14 @@ export default function NewLinkForm() {
     return formData;
   };
 
+  // Remise à zéro des différents champs du formulaire
   const clearForm = () => {
     setName("");
     clearThumbnailInput(thumbnailInputRef);
     setLink("");
   };
 
+  // Remise à zéro du champs "Vignette"
   const clearThumbnailInput = (input: any) => {
     if (input.current) {
       input.current.value = null;

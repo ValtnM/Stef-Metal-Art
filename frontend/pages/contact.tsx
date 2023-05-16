@@ -15,6 +15,7 @@ export default function Contact() {
 
   const captchaRef = useRef<ReCAPTCHA>(null);
 
+  // Envoi des données du formulaire vers le backend
   const sendEmail = (e: FormEvent) => {
     const emailContent = {
       firstname,
@@ -59,6 +60,7 @@ export default function Contact() {
       });
   };
 
+  // Remise à zéro des différents champs du formulaire
   const clearForm = () => {
     setFirstname("");
     setLastname("");

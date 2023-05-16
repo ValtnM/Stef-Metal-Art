@@ -1,7 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose = require("mongoose");
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
+// Connection en tant qu'administrateur
 exports.login = (req, res) => {
     const user = req.body.user;
     const password = req.body.password;
@@ -14,8 +15,8 @@ exports.login = (req, res) => {
             res.status(200).json({
                 isAdmin: true,
                 token: jwt.sign({
-                    userName: process.env.USERNAME
-                }, process.env.TOKEN_KEY, { expiresIn: '1h' })
+                    userName: process.env.USERNAME,
+                }, process.env.TOKEN_KEY, { expiresIn: "1h" }),
             });
         }
         else {
@@ -26,6 +27,7 @@ exports.login = (req, res) => {
         res.status(400).json({ error: "Database not connected" });
     }
 };
+// Vérification du token d'authentification
 exports.checkToken = (req, res) => {
     const token = req.params.token;
     if (token !== null) {

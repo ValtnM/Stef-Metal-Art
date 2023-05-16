@@ -39,10 +39,11 @@ export default function WorkGrid(props: WorkProps) {
   const pathname = router.pathname;
 
   useEffect(() => {
-    getMsgFromLocaleStorage();
+    getMsgFromLocalStorage();
   }, []);
 
-  const getMsgFromLocaleStorage = () => {
+  // Récupération du message de notification de suppression dans le local storage
+  const getMsgFromLocalStorage = () => {
     const msg = window.localStorage.getItem("delete-notification");
     if (msg) {
       setDeleteNotificationMsg(msg);

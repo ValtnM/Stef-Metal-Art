@@ -22,15 +22,15 @@ type SliderProps = {
 };
 
 type ImageLoaderProps = {
-  src: string
-  width: number
-  quality?: number
-  root?: string
-}
+  src: string;
+  width: number;
+  quality?: number;
+  root?: string;
+};
 
 const imageLoader = (props: ImageLoaderProps) => {
-  return `${props.src}?w=${props.width}`
-}
+  return `${props.src}?w=${props.width}`;
+};
 
 export default function Slider(props: SliderProps) {
   const [imgPreview, setImagePreview] = useState<File>();
@@ -66,11 +66,13 @@ export default function Slider(props: SliderProps) {
     setSlideAnim({ index: index });
   };
 
+  // Activer le mode zoom
   const zoomPhoto = (image: string) => {
     props.setZoomMode(true);
     props.setZoomedPhoto(image);
   };
 
+  // Gestion du bouton de suppression de photo
   const handleDeleteBtn = (photoName: string) => {
     props.deletePhoto(photoName);
     if (checkPhotosArray(props.dataSlider, photoName)) {
@@ -82,6 +84,7 @@ export default function Slider(props: SliderProps) {
     }
   };
 
+  // Verification du bon déroulement de la suppression d'une photo
   const checkPhotosArray = (photosArray: string[], deletedPhoto: string) => {
     for (let i = 0; i < photosArray.length; i++) {
       if (photosArray[i] === deletedPhoto) {
@@ -93,11 +96,13 @@ export default function Slider(props: SliderProps) {
     }
   };
 
+  // Récupération de l'image ajouté par l'utilisateur
   const handlePhotoInput = (target: HTMLInputElement) => {
     setImagePreview(target.files![0]);
     props.handleNewPhoto(target);
   };
 
+  // Ajout de la photo
   const addingPhoto = () => {
     props.updateWork("photos");
     setImagePreview(undefined);
@@ -114,10 +119,7 @@ export default function Slider(props: SliderProps) {
               {props.adminMode && (
                 <div className={styles.iconsContainer}>
                   <BiImageAdd onClick={() => props.handleEditForms("photos")} className={styles.icon} />
-                  {
-                    props.dataSlider.length > 1 &&
-                    <BsTrash onClick={() => handleDeleteBtn(photo)} className={styles.icon} />
-                  }
+                  {props.dataSlider.length > 1 && <BsTrash onClick={() => handleDeleteBtn(photo)} className={styles.icon} />}
                 </div>
               )}
             </div>

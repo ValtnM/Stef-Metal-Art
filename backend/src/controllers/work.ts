@@ -297,6 +297,7 @@ exports.updateWorkById = (req: MulterRequest, res: Response) => {
   }
 };
 
+// Suppression d'une photo par son nom
 exports.deletePhotoByName = (req: MulterRequest, res: Response) => {
   const workId = mongoose.Types.ObjectId(req.params.id);
   const photoName = req.params.photoName;

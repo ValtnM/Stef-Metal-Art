@@ -11,6 +11,8 @@ type BreadcrumbProps = {
 export default function Breadcrumb(props: BreadcrumbProps) {
   const [breadcrumb, setBreadcrumb] = useState<Array<Array<string>>>();
 
+
+  // Création du fil d'ariane
   const createBreadcrumb = () => {
     let newArray: string[][] = [];
     if(props.page.length > 0) {
@@ -21,8 +23,7 @@ export default function Breadcrumb(props: BreadcrumbProps) {
         newArray.push(props.work)
       }
     }
-    setBreadcrumb(newArray);
-    
+    setBreadcrumb(newArray);    
   };
   
   useEffect(() => {

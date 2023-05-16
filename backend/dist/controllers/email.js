@@ -23,6 +23,7 @@ exports.sendEmail = (req, res) => {
         text: req.body.message,
         replyTo: req.body.email,
     };
+    // Vérification ReCaptcha
     const validateHuman = (token) => __awaiter(void 0, void 0, void 0, function* () {
         const secret = process.env.RECAPTCHA_SECRET_KEY;
         axios_1.default
@@ -38,6 +39,7 @@ exports.sendEmail = (req, res) => {
         })
             .catch((err) => console.log(err));
     });
+    // Création d'un transporter
     const transporter = nodemailer.createTransport({
         host: "pro1.mail.ovh.net",
         port: 587,
@@ -46,6 +48,7 @@ exports.sendEmail = (req, res) => {
             pass: process.env.EMAIL_PASSWORD,
         },
     });
+    // Vérification du transporter
     transporter.verify(function (error, success) {
         if (error) {
             console.log(error);
@@ -54,6 +57,7 @@ exports.sendEmail = (req, res) => {
             console.log("Server is ready to take our messages");
         }
     });
+    // Envoi de l'email
     const sendingMail = (mailInfos) => {
         if (!req.body.firstname) {
             res.status(400).json({ error: "Veuillez saisir un prénom" });

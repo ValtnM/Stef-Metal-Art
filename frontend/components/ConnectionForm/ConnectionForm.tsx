@@ -9,6 +9,8 @@ export default function ConnectionForm(props: { setAdmin: Function }) {
   const [showingPassword, setShowingPassword] = useState(false);
   const [notificationMessage, setNotificationMessage] = useState("");
 
+
+  // Envoi des identifiants de connexion saisis par l'utilisateur vers le backend
   const sendConnectionData = (e: FormEvent) => {
     e.preventDefault();
       fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin`, {
@@ -34,7 +36,8 @@ export default function ConnectionForm(props: { setAdmin: Function }) {
       });
     
     };
-
+  
+  // Stockage du token d'authentification sur le session storage
   const saveTokenToSessionStorage = (token: string) => {
     window.sessionStorage.setItem("token", token);
   };

@@ -13,13 +13,14 @@ export default function NewPostForm() {
   const [notification, setNotification] = useState(String);
   const [success, setSuccess] = useState(Boolean);
 
-
+  // Récupération de l'image ajoutée par l'utilisateur en tant que vignette
   const handleThumbnail = (target: HTMLInputElement) => {
     if (target.files) {
       setThumbnail(target.files[0]);
     }
   };
 
+  // Récupération des images ajoutées par l'utilisateur en tant que photos
   const handlePhotos = (target: HTMLInputElement) => {
     if (target.files) {
       let filesArray = [];
@@ -32,6 +33,7 @@ export default function NewPostForm() {
     }
   };
 
+  // Envoi des données du formulaire au backend
   const sendData = (e: React.MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
     e.preventDefault();
 
@@ -58,6 +60,7 @@ export default function NewPostForm() {
       .catch((err) => console.log(err));
   };
 
+  // Création d'un formData
   const createFormData = () => {
     let formData = new FormData();
     if (thumbnail) {
@@ -76,6 +79,7 @@ export default function NewPostForm() {
     return formData;
   };
 
+  // Remise à zéro des différents champs du formulaire
   const clearForm = () => {
     setType("");
     clearFileInput(thumbnailInputRef);
@@ -90,12 +94,14 @@ export default function NewPostForm() {
   const thumbnailInputRef = useRef<any>(null);
   const photosInputRef = useRef<any>(null);
 
+  // Remise à zéro des champs d'ajout de fichier
   const clearFileInput = (input: any) => {
     if (input.current) {
       input.current.value = null;
     }
   };
 
+  // Récupération du token d'authentification dans le session storage
   const getTokenFromSessionStorage = () => {
     return window.sessionStorage.getItem("token");
   };
@@ -120,16 +126,16 @@ export default function NewPostForm() {
           <label className={styles.thumbnailLabel} htmlFor="thumbnail">
             Choisir un image
           </label>
-          <input onInput={(e) => handleThumbnail(e.target as HTMLInputElement)} className={styles.thumbnailInput} id="thumbnail" type="file" ref={thumbnailInputRef}/>
+          <input onInput={(e) => handleThumbnail(e.target as HTMLInputElement)} className={styles.thumbnailInput} id="thumbnail" type="file" ref={thumbnailInputRef} />
           <div className={styles.imgPreview}>{thumbnail && <Image src={URL.createObjectURL(thumbnail)} alt="Aperçu image" />}</div>
         </div>
         <div className={styles.newWorkName}>
           <label htmlFor="name">Nom</label>
-          <input onChange={(e) => setName(e.target.value)} type="text" placeholder="Entrer un nom" value={name}/>
+          <input onChange={(e) => setName(e.target.value)} type="text" placeholder="Entrer un nom" value={name} />
         </div>
         <div className={styles.newWorkDescription}>
           <label htmlFor="name">Description</label>
-          <textarea onChange={(e) => setDescription(e.target.value)} rows={20} placeholder="Entrer une description" value={description}/>
+          <textarea onChange={(e) => setDescription(e.target.value)} rows={20} placeholder="Entrer une description" value={description} />
         </div>
         <div className={styles.newWorkPhotos}>
           <label htmlFor="photos">Photo(s)</label>
@@ -140,7 +146,9 @@ export default function NewPostForm() {
           {photos && (
             <div>
               {photos.map((photo, index) => (
-                <div key={index} className={styles.imgPreview}>{photo && <Image src={URL.createObjectURL(photo)} alt="Aperçu image" />}</div>
+                <div key={index} className={styles.imgPreview}>
+                  {photo && <Image src={URL.createObjectURL(photo)} alt="Aperçu image" />}
+                </div>
               ))}
             </div>
           )}

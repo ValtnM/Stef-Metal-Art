@@ -34,19 +34,20 @@ type WorkCardProps = {
 };
 
 type ImageLoaderProps = {
-  src: string
-  width: number
-  quality?: number
-  root?: string
-}
+  src: string;
+  width: number;
+  quality?: number;
+  root?: string;
+};
 
 const imageLoader = (props: ImageLoaderProps) => {
-  return `${props.src}?w=${props.width}`
-}
+  return `${props.src}?w=${props.width}`;
+};
 
 export default function WorkCard(props: WorkCardProps) {
   const [imgPreview, setImagePreview] = useState<File>();
 
+  // Récupération de l'image ajoutée par l'utilisateur
   const handleThumbnailInput = (target: HTMLInputElement) => {
     setImagePreview(target.files![0]);
     props.handleNewThumbnail(target);
@@ -56,30 +57,30 @@ export default function WorkCard(props: WorkCardProps) {
     <div className={styles.workCard}>
       <div className={styles.thumbnail}>
         <Image className={styles.thumbnailImg} loader={imageLoader} src={`${process.env.NEXT_PUBLIC_IMAGES_SRC}/${props.workInfos.thumbnail}`} alt={`${props.workInfos.name}`} width={400} height={400} placeholder="blur" blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN88B8AAsUB4ZtvXtIAAAAASUVORK5CYII=" />
-          {props.adminMode && (
-            <div className={styles.thumbnailEditing}>
-              <div onClick={() => props.handleEditForms("thumbnail")} className={styles.thumbnailEditingBtn}>
-                <FaEdit className={styles.icon} />
-                <div>Modifier la vignette</div>
-              </div>
-              {props.editThumbnail && (
-                <div className={props.editThumbnail ? `${styles.editFormContainer} ${styles.visibleForm}` : ` ${styles.editFormContainer}`}>
-                  <div className={styles.editForm}>
-                    <h3>Changer de vignette</h3>
-                    <label className={styles.thumbnailLabel} htmlFor="file">
-                      Choisir une image
-                    </label>
-                    <input className={styles.thumbnailInput} id="file" onChange={(e) => handleThumbnailInput(e.target)} type="file" ref={props.thumbnailInputRef} />
-                    <div className={styles.tumbnailImgPreview}>{imgPreview && <Image src={URL.createObjectURL(imgPreview)} alt="Aperçu image" />}</div>
-                    <div className={styles.editingFormBtns}>
-                      <button onClick={() => props.updateWork("thumbnail")}>Modifier</button>
-                      <button onClick={() => props.setEditThumbnail(false)}>Annuler</button>
-                    </div>
+        {props.adminMode && (
+          <div className={styles.thumbnailEditing}>
+            <div onClick={() => props.handleEditForms("thumbnail")} className={styles.thumbnailEditingBtn}>
+              <FaEdit className={styles.icon} />
+              <div>Modifier la vignette</div>
+            </div>
+            {props.editThumbnail && (
+              <div className={props.editThumbnail ? `${styles.editFormContainer} ${styles.visibleForm}` : ` ${styles.editFormContainer}`}>
+                <div className={styles.editForm}>
+                  <h3>Changer de vignette</h3>
+                  <label className={styles.thumbnailLabel} htmlFor="file">
+                    Choisir une image
+                  </label>
+                  <input className={styles.thumbnailInput} id="file" onChange={(e) => handleThumbnailInput(e.target)} type="file" ref={props.thumbnailInputRef} />
+                  <div className={styles.tumbnailImgPreview}>{imgPreview && <Image src={URL.createObjectURL(imgPreview)} alt="Aperçu image" />}</div>
+                  <div className={styles.editingFormBtns}>
+                    <button onClick={() => props.updateWork("thumbnail")}>Modifier</button>
+                    <button onClick={() => props.setEditThumbnail(false)}>Annuler</button>
                   </div>
                 </div>
-              )}
-            </div>
-          )}
+              </div>
+            )}
+          </div>
+        )}
       </div>
       <div className={styles.infos}>
         <div className={styles.nameContainer}>
@@ -123,13 +124,12 @@ export default function WorkCard(props: WorkCardProps) {
           )}
         </div>
       </div>
-      {
-        props.adminMode &&
+      {props.adminMode && (
         <div onClick={() => props.setDeleteMode(true)} className={styles.deleteBtn}>
           <BsTrash className={styles.icon} />
           <div className={styles.deleteBtnTxt}>Supprimer</div>
         </div>
-      }
+      )}
     </div>
   );
 }
