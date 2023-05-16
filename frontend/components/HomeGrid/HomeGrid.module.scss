@@ -75,6 +75,19 @@
   }
 }
 
+.noSculptureMessage {
+  width: 90%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background: rgba(255, 255, 255, 0.5);
+  padding: 50px;
+  font-family: var(--font-secondary);
+  font-size: 1.7em;
+  text-align: center;
+}
+
 @media screen and (max-width: 1200px) {
   .grid {
     width: 640px;
@@ -105,6 +118,11 @@
   }
   .background {
     height: 1400px;
+  }
+  .noSculptureMessage {
+    height: 100%;
+    font-size: 1em;
+    padding: 20px;
   }
 }
 

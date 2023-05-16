@@ -32,17 +32,16 @@ export default function HomeGrid(props: { sculpturesArray: Work[][]; nbOfSculptu
   const [nbOfSculpturesToDisplay, setNbOfSculpturesToDisplay] = useState(props.nbOfSculpturesToDisplay);
   const [previousRandomNumber, setPreviousRandomNumber] = useState(900);
 
-
   useEffect(() => {
     stockSculpturesToLocalStorage();
     if (sculpturesArray.length > 0) {
-    const intervalId = setInterval(() => {
-      const randomNumber = getRandomNumber(nbOfSculpturesToDisplay);
-      getNewRandomSculpture(randomNumber);
-    }, 5000);
-    return () => {
-      clearInterval(intervalId);
-    };
+      const intervalId = setInterval(() => {
+        const randomNumber = getRandomNumber(nbOfSculpturesToDisplay);
+        getNewRandomSculpture(randomNumber);
+      }, 5000);
+      return () => {
+        clearInterval(intervalId);
+      };
     }
   }, []);
 
@@ -76,7 +75,6 @@ export default function HomeGrid(props: { sculpturesArray: Work[][]; nbOfSculptu
       .catch((err: Work[][]) => err);
   };
 
-
   const getSculpturesFromLocalStorage = () => {
     let sculptures = window.localStorage.getItem("sculptures");
     if (sculptures) {
@@ -87,7 +85,6 @@ export default function HomeGrid(props: { sculpturesArray: Work[][]; nbOfSculptu
   };
 
   const updateLocalStorageSculpturesArray = (newArray: Work[][], randomNumber: number) => {
-    
     window.localStorage.setItem("sculptures", JSON.stringify(newArray));
   };
 
@@ -130,7 +127,7 @@ export default function HomeGrid(props: { sculpturesArray: Work[][]; nbOfSculptu
     <div className={styles.container}>
       <Image className={styles.background} src={Engrenages} width={1920} height={1280} alt="Engrenages en vrac" />
       <div className={styles.backgroundFilter}></div>
-      {sculpturesArray && (
+      {sculpturesArray.length > 0 ? (
         <div className={styles.grid}>
           {sculpturesArray.map((element, index) => (
             <div key={index} style={{ animationDelay: `${index * 100}ms` }} className={styles.block}>
@@ -142,6 +139,8 @@ export default function HomeGrid(props: { sculpturesArray: Work[][]; nbOfSculptu
             </div>
           ))}
         </div>
+      ) : (
+        <div className={styles.noSculptureMessage}>Aucune sculpture disponible</div>
       )}
     </div>
   );

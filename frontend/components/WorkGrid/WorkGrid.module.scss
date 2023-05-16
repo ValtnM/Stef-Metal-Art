@@ -1,4 +1,5 @@
 .works {
+  // min-height: 50vh;
   max-width: 1500px;
   margin: auto;
   text-align: center;
@@ -82,6 +83,16 @@
   }
 }
 
+.noWorkMessage {
+  height: 500px;
+  padding: 200px 40px;
+  background: white;
+  font-family: var(--font-secondary);
+  font-size: 1.8em;
+  line-height: 45px;
+  margin-top: 30px;
+}
+
 @media screen and (max-width:768px) {
   .workElement {
     width: 200px;
@@ -98,6 +109,10 @@
     h1 {
       font-size: 2em;
     }
+  }
+  .noWorkMessage {
+    font-size: 1em;
+    line-height: 30px;
   }
 }
 

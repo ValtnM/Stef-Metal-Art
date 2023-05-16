@@ -75,12 +75,14 @@ export default function Liens(props: LinksProps) {
     <div className={styles.linksContainer}>
       <Breadcrumb page={["Liens", "liens"]} />
       <h2>Liens</h2>
-      {links.length > 0 && (
+      {links.length > 0 ? (
         <div className={styles.links}>
           {links.map((element, index) => (
             <LinkCard key={index} linkInfos={element} adminMode={adminMode} deleteLink={deleteLink} index={index} />
           ))}
         </div>
+      ) : (
+        <div className={styles.noLinkMessage}>Aucun lien disponible</div>
       )}
     </div>
   );

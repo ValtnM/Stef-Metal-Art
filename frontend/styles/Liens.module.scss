@@ -1,42 +1,52 @@
 .linksContainer {
-    background: var(--background-gradient);
-    padding: 30px 50px 50px 50px;
-    h2 {
-        text-align: center;
-        font-family: var(--font-primary);
-        font-size: 3em;
-        font-weight: 500;
-        margin: 0;
-    }
+  background: var(--background-gradient);
+  padding: 30px 50px 50px 50px;
+  h2 {
+    text-align: center;
+    font-family: var(--font-primary);
+    font-size: 4em;
+    font-weight: 500;
+    margin: 0;
+  }
 }
 
 .links {
-    max-width: 1000px;
-    margin: 30px auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
+  max-width: 1000px;
+  margin: 30px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-
+.noLinkMessage {
+  height: 500px;
+  padding: 200px 40px;
+  background: white;
+  font-family: var(--font-secondary);
+  font-size: 1.8em;
+  line-height: 45px;
+  margin-top: 30px;
+  text-align: center;
+}
 
 @media screen and (max-width: 576px) {
-    .links {
-        flex-direction: column;
-    }
+  .links {
+    flex-direction: column;
+  }
+  .noLinkMessage {
+    font-size: 1em;
+    line-height: 30px;
+  }
 }
 
-
-
-
 @keyframes linkTopAppearance {
-    0% {
-        transform: translateY(-50px);
-        opacity: 0;
-    }
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }

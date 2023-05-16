@@ -108,7 +108,7 @@ exports.getRandomWorks = (req, res) => {
         });
     }
     else {
-        res.status(400).json([{ _id: {}, name: "Pas de BDD", description: "Pas de BDD", thumbnail: "Pas de BDD", photos: ["Pas de BDD"], instagram: false, like: 0, create_date: Date.now(), update_date: Date.now() }]);
+        res.status(400).json([]);
     }
 };
 // Récupération des œuvres par type
