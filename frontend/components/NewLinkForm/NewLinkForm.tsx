@@ -82,7 +82,7 @@ export default function NewLinkForm() {
             Choisir une image
           </label>
           <input onInput={(e) => handleThumbnail(e.target as HTMLInputElement)} className={styles.thumbnailInput} type="file" id="thumbnail" ref={thumbnailInputRef} />
-          <div className={styles.thumbnailPreview}>{thumbnail && <Image src={URL.createObjectURL(thumbnail)} alt="Aperçu image" />}</div>
+          {thumbnail && <div className={styles.thumbnailPreview}><Image src={URL.createObjectURL(thumbnail)} alt="Aperçu image" fill /></div>}
         </div>
         <div className={styles.newLinkURL}>
           <label htmlFor="link">Lien</label>

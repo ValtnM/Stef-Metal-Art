@@ -30,7 +30,6 @@
   }
   .descriptionContainer {
     position: relative;
-    // border: 2px blue solid;
   }
   .nameContainer,
   .descriptionContainer {
@@ -108,11 +107,14 @@
     @include label-file;
   }
   .tumbnailImgPreview {
+    position: relative;
     width: 90%;
+    min-height: 200px;
     margin: 0 auto 20px auto;
-
+    
     img {
       width: 100%;
+      object-fit: contain;
     }
   }
   .thumbnailInput {

@@ -9,16 +9,14 @@ exports.login = (req: Request, res: Response) => {
 
   console.log("USER: ", user);
   console.log("PASSWORD: ", password);
-  console.log(".env USER: ", process.env.USERNAME);
-  console.log(".env PASSWORD: ", process.env.PASSWORD);
 
   if (mongoose.connection.readyState === 1) {
-    if (user === process.env.USERNAME && password === process.env.PASSWORD) {
+    if (user === process.env.LOGNAME && password === process.env.PASSWORD) {
       res.status(200).json({
         isAdmin: true,
         token: jwt.sign(
           {
-            userName: process.env.USERNAME,
+            userName: process.env.LOGNAME,
           },
           process.env.TOKEN_KEY,
           { expiresIn: "1h" }
@@ -38,7 +36,7 @@ exports.checkToken = (req: Request, res: Response) => {
   if (token !== null) {
     try {
       let jwtToken = jwt.verify(token, process.env.TOKEN_KEY);
-      if (jwtToken.userName === process.env.USERNAME) {
+      if (jwtToken.userName === process.env.LOGNAME) {
         res.status(200).json({ isAdmin: true });
       } else {
         res.status(400).json({ isAdmin: false });

@@ -130,7 +130,7 @@ export default function WorkDetails({ typeOfWork, workDetails }: WorkDetailsProp
     }
   };
 
-  // Modification d'une information sur la sculpture'
+  // Modification d'une information sur la sculpture
   const modifyWorkInfo = (info: string, value: any) => {
     if (workInfos) {
       setWorkInfos({
@@ -143,17 +143,23 @@ export default function WorkDetails({ typeOfWork, workDetails }: WorkDetailsProp
   // Envoi de la requête pour modifier la vignette
   const updateWork = async (typeOfData: string) => {
     if (workId) {
-      fetch(`${process.env.NEXT_PUBLIC_API_URL}/works/${workId}`, {
-        method: "PUT",
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-        body: createFormData(typeOfData),
-      })
-        .then(() => {
-          closeEditor(typeOfData);
+      if (typeOfData === "thumbnail" && newThumbnail === undefined) {
+        console.log("Aucune vignette selectionnée");
+      } else if (typeOfData === "photos" && newPhotoArray === undefined) {
+        console.log("Aucune photo selectionnée");
+      } else {
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/works/${workId}`, {
+          method: "PUT",
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+          body: createFormData(typeOfData),
         })
-        .catch((err) => console.log(err));
+          .then(() => {
+            closeEditor(typeOfData);
+          })
+          .catch((err) => console.log(err));
+      }
     } else {
       console.log("Pas de WorkId");
     }
@@ -180,17 +186,25 @@ export default function WorkDetails({ typeOfWork, workDetails }: WorkDetailsProp
   };
 
   // Récupération du fichier thumbnail
-  const handleNewThumbnail = (target: HTMLInputElement) => {
-    if (target.files) {
-      setNewThumbnail(target.files[0]);
+  const handleNewThumbnail = (target?: HTMLInputElement) => {
+    if (target) {
+      if (target.files) {
+        setNewThumbnail(target.files[0]);
+      }
+    } else {
+      setNewThumbnail(undefined);
     }
   };
 
   // Récupération du fichier photo
-  const handleNewPhoto = (target: HTMLInputElement) => {
-    if (target.files) {
-      console.log(target.files[0]);
-      setNewPhotoArray([target.files[0]]);
+  const handleNewPhoto = (target?: HTMLInputElement) => {
+    if (target) {
+      if (target.files) {
+        console.log(target.files[0]);
+        setNewPhotoArray([target.files[0]]);
+      }
+    } else {
+      setNewPhotoArray(undefined);
     }
   };
 

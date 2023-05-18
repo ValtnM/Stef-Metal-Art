@@ -49,9 +49,29 @@ export default function WorkCard(props: WorkCardProps) {
 
   // Récupération de l'image ajoutée par l'utilisateur
   const handleThumbnailInput = (target: HTMLInputElement) => {
+    console.log("CHANGE THUMBNAIL");
+    
     setImagePreview(target.files![0]);
     props.handleNewThumbnail(target);
   };
+  
+  // Annulation de la modification de la vignette
+  const cancelThumbnailEditing = () => {
+    props.setEditThumbnail(false);
+    clearThumbnailInput();
+  }
+  
+  // Validation de la modification de la vignette
+  const validateModification = () => {
+    props.updateWork("thumbnail");
+    clearThumbnailInput();    
+  }
+  
+  // Remise à zéro de l'input de vignette
+  const clearThumbnailInput = () => {
+    setImagePreview(undefined)
+    props.handleNewThumbnail();
+  }
 
   return (
     <div className={styles.workCard}>
@@ -71,10 +91,10 @@ export default function WorkCard(props: WorkCardProps) {
                     Choisir une image
                   </label>
                   <input className={styles.thumbnailInput} id="file" onChange={(e) => handleThumbnailInput(e.target)} type="file" ref={props.thumbnailInputRef} />
-                  <div className={styles.tumbnailImgPreview}>{imgPreview && <Image src={URL.createObjectURL(imgPreview)} alt="Aperçu image" />}</div>
+                  {imgPreview && <div className={styles.tumbnailImgPreview}> <Image src={URL.createObjectURL(imgPreview)} alt="Aperçu image" fill/></div>}
                   <div className={styles.editingFormBtns}>
-                    <button onClick={() => props.updateWork("thumbnail")}>Modifier</button>
-                    <button onClick={() => props.setEditThumbnail(false)}>Annuler</button>
+                    <button onClick={() => validateModification()}>Modifier</button>
+                    <button onClick={() => cancelThumbnailEditing()}>Annuler</button>
                   </div>
                 </div>
               </div>

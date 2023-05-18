@@ -9,7 +9,7 @@ module.exports = (req, res, next) => {
         const token = req.headers.authorization.split(' ')[1];
         const decodedToken = jwt.verify(token, process.env.TOKEN_KEY);
         const userName = decodedToken.userName;
-        if (userName && process.env.USERNAME !== userName) {
+        if (userName && process.env.LOGNAME !== userName) {
             throw 'username incorrect !';
         }
         else {

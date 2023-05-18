@@ -102,12 +102,22 @@ export default function Slider(props: SliderProps) {
     props.handleNewPhoto(target);
   };
 
+  // Annulation de l'ajout de photo
+  const cancelAddingPhoto = () => {
+    props.setAddPhoto(false)
+    clearPhotoInput()
+  }
+
   // Ajout de la photo
-  const addingPhoto = () => {
+  const validateAddingPhoto = () => {
     props.updateWork("photos");
-    setImagePreview(undefined);
-    props.setAddPhoto(false);
+    clearPhotoInput();
   };
+  
+  const clearPhotoInput = () => {
+    setImagePreview(undefined)
+    props.handleNewPhoto()
+  }
 
   return (
     <div className={styles.containerSlider}>
@@ -144,10 +154,10 @@ export default function Slider(props: SliderProps) {
               Choisir une image
             </label>
             <input id="file" className={styles.photoInput} onChange={(e) => handlePhotoInput(e.target)} type="file" ref={props.photosInputRef} />
-            <div className={styles.photoImgPreview}>{imgPreview && <Image src={URL.createObjectURL(imgPreview)} alt="Aperçu image" />}</div>
+            {imgPreview && <div className={styles.photoImgPreview}><Image src={URL.createObjectURL(imgPreview)} alt="Aperçu image" fill /></div>}
             <div className={styles.editingFormBtns}>
-              <button onClick={() => addingPhoto()}>Ajouter</button>
-              <button onClick={() => props.setAddPhoto(false)}>Annuler</button>
+              <button onClick={() => validateAddingPhoto()}>Ajouter</button>
+              <button onClick={() => cancelAddingPhoto()}>Annuler</button>
             </div>
           </div>
         </div>

@@ -127,7 +127,7 @@ export default function NewPostForm() {
             Choisir un image
           </label>
           <input onInput={(e) => handleThumbnail(e.target as HTMLInputElement)} className={styles.thumbnailInput} id="thumbnail" type="file" ref={thumbnailInputRef} />
-          <div className={styles.imgPreview}>{thumbnail && <Image src={URL.createObjectURL(thumbnail)} alt="Aperçu image" />}</div>
+          {thumbnail && <div className={styles.imgPreview}><Image src={URL.createObjectURL(thumbnail)} alt="Aperçu image" fill /></div>}
         </div>
         <div className={styles.newWorkName}>
           <label htmlFor="name">Nom</label>
@@ -147,7 +147,7 @@ export default function NewPostForm() {
             <div>
               {photos.map((photo, index) => (
                 <div key={index} className={styles.imgPreview}>
-                  {photo && <Image src={URL.createObjectURL(photo)} alt="Aperçu image" />}
+                  {photo && <Image src={URL.createObjectURL(photo)} alt="Aperçu image" fill />}
                 </div>
               ))}
             </div>
