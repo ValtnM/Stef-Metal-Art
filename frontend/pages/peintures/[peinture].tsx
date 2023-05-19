@@ -1,6 +1,7 @@
 import styles from "../../styles/Peintures.module.scss";
 import WorkDetails from "../../components/WorkDetails/WorkDetails";
 import { GetServerSideProps } from "next";
+import Head from "next/head";
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 
 type Work = {
@@ -17,10 +18,15 @@ type Work = {
 
 export default function Peinture(props: { peinture: Work }) {
   return (
-    <div className={styles.paintingContainer}>
-      <Breadcrumb page={["Peintures", "peintures"]} work={[props.peinture.name, props.peinture._id.toString()]} />
-      <WorkDetails typeOfWork="painting" workDetails={props.peinture} />
-    </div>
+    <>
+      <Head>
+        <title>Stef Metal Art - {props.peinture.name}</title>
+      </Head>
+      <div className={styles.paintingContainer}>
+        <Breadcrumb page={["Peintures", "peintures"]} work={[props.peinture.name, props.peinture._id.toString()]} />
+        <WorkDetails typeOfWork="painting" workDetails={props.peinture} />
+      </div>
+    </>
   );
 }
 
@@ -36,4 +42,3 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     },
   };
 };
-

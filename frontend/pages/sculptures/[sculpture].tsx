@@ -1,6 +1,7 @@
 import styles from "../../styles/Sculptures.module.scss";
 import WorkDetails from "../../components/WorkDetails/WorkDetails";
 import { GetServerSideProps } from "next";
+import Head from "next/head";
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 
 type Work = {
@@ -17,10 +18,15 @@ type Work = {
 
 export default function Sculpture(props: { sculpture: Work }) {
   return (
-    <div className={styles.sculptureContainer}>
-      <Breadcrumb page={["Sculptures", "sculptures"]} work={[props.sculpture.name, props.sculpture._id.toString()]} />
-      <WorkDetails typeOfWork="sculpture" workDetails={props.sculpture} />
-    </div>
+    <>
+      <Head>
+        <title>Stef Metal Art - {props.sculpture.name}</title>
+      </Head>
+      <div className={styles.sculptureContainer}>
+        <Breadcrumb page={["Sculptures", "sculptures"]} work={[props.sculpture.name, props.sculpture._id.toString()]} />
+        <WorkDetails typeOfWork="sculpture" workDetails={props.sculpture} />
+      </div>
+    </>
   );
 }
 

@@ -94,7 +94,6 @@ exports.getRandomWork = (req, res) => {
 // Récupération d'un nombre défini d'œuvres aléatoires
 exports.getRandomWorks = (req, res) => {
     const nbOfWork = Number(req.params.nbOfWork);
-    console.log(process.env.RECAPTCHA_SECRET_KEY);
     if (mongoose.connection.readyState === 1) {
         selectModel("sculpture")
             .aggregate([{ $sample: { size: nbOfWork } }])

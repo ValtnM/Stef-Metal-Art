@@ -1,4 +1,5 @@
 import React, { useState, useRef, FormEvent } from "react";
+import Head from "next/head";
 import styles from "../styles/Contact.module.scss";
 import ReCAPTCHA from "react-google-recaptcha";
 import Breadcrumb from "../components/Breadcrumb/Breadcrumb";
@@ -70,41 +71,46 @@ export default function Contact() {
   };
 
   return (
-    <div className={styles.container}>
-      <Breadcrumb page={["Contact", "contact"]} />
-      <div className={styles.contact}>
-        <h2>Contact</h2>
-        <form onSubmit={(e) => sendEmail(e)}>
-          <div className={styles.nameFields}>
-            <div>
-              <label htmlFor="firstname">Prénom</label>
-              <input onChange={(e) => setFirstname(e.target.value)} type="text" id="firstname" value={firstname} />
+    <>
+      <Head>
+        <title>Stef Metal Art - Contact</title>
+      </Head>
+      <div className={styles.container}>
+        <Breadcrumb page={["Contact", "contact"]} />
+        <div className={styles.contact}>
+          <h2>Contact</h2>
+          <form onSubmit={(e) => sendEmail(e)}>
+            <div className={styles.nameFields}>
+              <div>
+                <label htmlFor="firstname">Prénom</label>
+                <input onChange={(e) => setFirstname(e.target.value)} type="text" id="firstname" value={firstname} />
+              </div>
+              <div>
+                <label htmlFor="lastname">Nom</label>
+                <input onChange={(e) => setLastname(e.target.value)} type="text" id="lastname" value={lastname} />
+              </div>
             </div>
             <div>
-              <label htmlFor="lastname">Nom</label>
-              <input onChange={(e) => setLastname(e.target.value)} type="text" id="lastname" value={lastname} />
+              <label htmlFor="email">Email</label>
+              <input onChange={(e) => setEmail(e.target.value)} type="email" id="email" value={email} />
             </div>
-          </div>
-          <div>
-            <label htmlFor="email">Email</label>
-            <input onChange={(e) => setEmail(e.target.value)} type="email" id="email" value={email} />
-          </div>
-          <div>
-            <label htmlFor="subject">Objet</label>
-            <input onChange={(e) => setSubject(e.target.value)} type="text" id="subject" value={subject} />
-          </div>
-          <div>
-            <label htmlFor="message">Message</label>
-            <textarea onChange={(e) => setMessage(e.target.value)} id="message" rows={20} value={message} />
-          </div>
-          <div className={styles.messageValidation}>
-            <button>Envoyer le message</button>
-            <ReCAPTCHA className={styles.recaptcha} sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!} ref={captchaRef} />
-          </div>
-          {notificationMessage && <div className={successfulSending ? `${styles.notificationMessage} ${styles.success}` : `${styles.notificationMessage} ${styles.fail}`}>{notificationMessage}</div>}
-          {!sendedMessage && <div className={sendedMessage ? styles.loader : `${styles.loader} ${styles.visible}`}></div>}
-        </form>
+            <div>
+              <label htmlFor="subject">Objet</label>
+              <input onChange={(e) => setSubject(e.target.value)} type="text" id="subject" value={subject} />
+            </div>
+            <div>
+              <label htmlFor="message">Message</label>
+              <textarea onChange={(e) => setMessage(e.target.value)} id="message" rows={20} value={message} />
+            </div>
+            <div className={styles.messageValidation}>
+              <button>Envoyer le message</button>
+              <ReCAPTCHA className={styles.recaptcha} sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!} ref={captchaRef} />
+            </div>
+            {notificationMessage && <div className={successfulSending ? `${styles.notificationMessage} ${styles.success}` : `${styles.notificationMessage} ${styles.fail}`}>{notificationMessage}</div>}
+            {!sendedMessage && <div className={sendedMessage ? styles.loader : `${styles.loader} ${styles.visible}`}></div>}
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

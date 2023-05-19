@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import HomeGrid from "../components/HomeGrid/HomeGrid";
 import Bio from "../components/Bio/Bio";
 import { GetServerSideProps, GetStaticProps } from "next";
@@ -22,25 +21,11 @@ type Work = {
 };
 
 export default function Home(props: IndexProps) {
-  // const [sculpturesArray, setSculpturesArray] = useState(props.sculpturesArray);
-
-  // useEffect(() => {
-  //   getUpdatedSculpturesArray();
-  // }, []);
-
-
-  // const getUpdatedSculpturesArray = () => {
-  //   fetch(`${process.env.NEXT_PUBLIC_API_URL}/works/sculpture`)
-  //     .then((res) => res.json())
-  //     .then((data) => setSculpturesArray(data))
-  //     .catch((err) => console.log(err));
-  // };
 
   return (
     <div>
       <Head>
-        <title>Stef Metal Art</title>
-        <meta name="description" content="Stef Metal Art est un artiste de Mazé-Milon qui créé des œuvres originales à partir d'objets de récupération"></meta>
+        <title>Stef Metal Art - Accueil</title>        
       </Head>
       <HomeGrid sculpturesArray={props.sculpturesArray} nbOfSculpturesToDisplay={props.nbOfSculpturesToDisplay} />
       <Bio />

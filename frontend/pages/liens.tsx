@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import styles from "../styles/Liens.module.scss";
+import Head from "next/head";
 import Link from "next/link";
+import styles from "../styles/Liens.module.scss";
 import { GetServerSideProps } from "next";
 import LinkCard from "../components/LinkCard/LinkCard";
 import Breadcrumb from "../components/Breadcrumb/Breadcrumb";
@@ -76,19 +77,24 @@ export default function Liens(props: LinksProps) {
   };
 
   return (
-    <div className={styles.linksContainer}>
-      <Breadcrumb page={["Liens", "liens"]} />
-      <h2>Liens</h2>
-      {links.length > 0 ? (
-        <div className={styles.links}>
-          {links.map((element, index) => (
-            <LinkCard key={index} linkInfos={element} adminMode={adminMode} deleteLink={deleteLink} index={index} />
-          ))}
-        </div>
-      ) : (
-        <div className={styles.noLinkMessage}>Aucun lien disponible</div>
-      )}
-    </div>
+    <>
+      <Head>
+        <title>Stef Metal Art - Liens</title>
+      </Head>
+      <div className={styles.linksContainer}>
+        <Breadcrumb page={["Liens", "liens"]} />
+        <h2>Liens</h2>
+        {links.length > 0 ? (
+          <div className={styles.links}>
+            {links.map((element, index) => (
+              <LinkCard key={index} linkInfos={element} adminMode={adminMode} deleteLink={deleteLink} index={index} />
+            ))}
+          </div>
+        ) : (
+          <div className={styles.noLinkMessage}>Aucun lien disponible</div>
+        )}
+      </div>
+    </>
   );
 }
 

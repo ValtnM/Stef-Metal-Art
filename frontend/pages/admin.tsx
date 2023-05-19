@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Head from "next/head";
 import styles from "../styles/Admin.module.scss";
 import ConnectionForm from "../components/ConnectionForm/ConnectionForm";
 import NewPostForm from "../components/NewWorkForm/NewWorkForm";
@@ -50,32 +51,37 @@ export default function Admin() {
   };
 
   return (
-    <div className={styles.adminContainer}>
-      {readyToRender && (
-        <div className={styles.admin}>
-          <Breadcrumb page={["Admin", "admin"]} />
-          {admin ? (
-            <div>
-              <div className={styles.adminMenu}>
-                <div onClick={() => setSelectedMenu("work")} className={selectedMenu === "work" ? `${styles.addingWork} ${styles.selectedMenu}` : `${styles.addingWork}`}>
-                  <BsPencilFill className={styles.icon} />
-                  <h3>Ajouter une œuvre</h3>
+    <>
+      <Head>
+        <title>Stef Metal Art - Admin</title>
+      </Head>
+      <div className={styles.adminContainer}>
+        {readyToRender && (
+          <div className={styles.admin}>
+            <Breadcrumb page={["Admin", "admin"]} />
+            {admin ? (
+              <div>
+                <div className={styles.adminMenu}>
+                  <div onClick={() => setSelectedMenu("work")} className={selectedMenu === "work" ? `${styles.addingWork} ${styles.selectedMenu}` : `${styles.addingWork}`}>
+                    <BsPencilFill className={styles.icon} />
+                    <h3>Ajouter une œuvre</h3>
+                  </div>
+                  <div onClick={() => setSelectedMenu("link")} className={selectedMenu === "link" ? `${styles.addingLink} ${styles.selectedMenu}` : `${styles.addingLink}`}>
+                    <FaLink className={styles.icon} />
+                    <h3>Ajouter un lien</h3>
+                  </div>
                 </div>
-                <div onClick={() => setSelectedMenu("link")} className={selectedMenu === "link" ? `${styles.addingLink} ${styles.selectedMenu}` : `${styles.addingLink}`}>
-                  <FaLink className={styles.icon} />
-                  <h3>Ajouter un lien</h3>
-                </div>
+                {selectedMenu === "work" ? <NewPostForm /> : <NewLinkForm />}
+                <button className={styles.logoutBtn} onClick={() => deleteTokenFromSessionStorage()}>
+                  Déconnexion
+                </button>
               </div>
-              {selectedMenu === "work" ? <NewPostForm /> : <NewLinkForm />}
-              <button className={styles.logoutBtn} onClick={() => deleteTokenFromSessionStorage()}>
-                Déconnexion
-              </button>
-            </div>
-          ) : (
-            <ConnectionForm setAdmin={setAdmin} />
-          )}
-        </div>
-      )}
-    </div>
+            ) : (
+              <ConnectionForm setAdmin={setAdmin} />
+            )}
+          </div>
+        )}
+      </div>
+    </>
   );
 }

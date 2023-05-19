@@ -108,8 +108,6 @@ exports.getRandomWork = (req: MulterRequest, res: Response) => {
 // Récupération d'un nombre défini d'œuvres aléatoires
 exports.getRandomWorks = (req: MulterRequest, res: Response) => {
   const nbOfWork = Number(req.params.nbOfWork);
-   console.log(process.env.RECAPTCHA_SECRET_KEY);
-   
   
   if(mongoose.connection.readyState === 1) {
     

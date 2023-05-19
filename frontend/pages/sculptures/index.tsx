@@ -1,6 +1,7 @@
 import styles from "../../styles/Sculptures.module.scss";
 import { GetServerSideProps } from "next";
 import WorkGrid from "../../components/WorkGrid/WorkGrid";
+import Head from "next/head";
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 
 type Work = {
@@ -20,10 +21,15 @@ type WorksProps = {
 
 export default function Sculptures(props: WorksProps) {
   return (
-    <div className={styles.sculptures}>
-      <Breadcrumb page={["Sculptures", "sculptures"]} />
-      <WorkGrid worksArray={props.sculpturesArray} title="Sculptures" />
-    </div>
+    <>
+      <Head>
+        <title>Stef Metal Art - Sculptures</title>
+      </Head>
+      <div className={styles.sculptures}>
+        <Breadcrumb page={["Sculptures", "sculptures"]} />
+        <WorkGrid worksArray={props.sculpturesArray} title="Sculptures" />
+      </div>
+    </>
   );
 }
 

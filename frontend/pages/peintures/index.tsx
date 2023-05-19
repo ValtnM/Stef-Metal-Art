@@ -1,5 +1,6 @@
 import styles from "../../styles/Peintures.module.scss";
 import { GetServerSideProps } from "next";
+import Head from "next/head";
 import WorkGrid from "../../components/WorkGrid/WorkGrid";
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 
@@ -20,10 +21,15 @@ type WorksProps = {
 
 export default function Peintures(props: WorksProps) {
   return (
-    <div className={styles.paintings}>
-      <Breadcrumb page={["Peintures", "peintures"]} />
-      <WorkGrid worksArray={props.paintingsArray} title="Peintures" />
-    </div>
+    <>
+      <Head>
+        <title>Stef Metal Art - Peintures</title>
+      </Head>
+      <div className={styles.paintings}>
+        <Breadcrumb page={["Peintures", "peintures"]} />
+        <WorkGrid worksArray={props.paintingsArray} title="Peintures" />
+      </div>
+    </>
   );
 }
 
