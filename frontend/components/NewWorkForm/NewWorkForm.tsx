@@ -10,6 +10,7 @@ export default function NewPostForm() {
   const [photos, setPhotos] = useState<Array<File>>();
   const [instagram, setInstagram] = useState(false);
 
+  const [responseReceived, setResponseReceived] = useState(true)
   const [notification, setNotification] = useState(String);
   const [success, setSuccess] = useState(Boolean);
 
@@ -38,6 +39,8 @@ export default function NewPostForm() {
     e.preventDefault();
 
     const token = getTokenFromSessionStorage();
+    setResponseReceived(false)
+
 
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/works`, {
       method: "POST",
@@ -48,6 +51,7 @@ export default function NewPostForm() {
     })
       .then((res) => res.json())
       .then((data) => {
+        setResponseReceived(true)
         if (data.message) {
           setNotification(data.message);
           setSuccess(true);
@@ -164,7 +168,13 @@ export default function NewPostForm() {
             </div>
           </div>
         </div>
-        <button onClick={(e) => sendData(e)}>Ajouter</button>
+        <button disabled={responseReceived ? false : true} onClick={(e) => sendData(e)}>Ajouter</button>
+        {
+          !responseReceived &&
+          <div>
+            <div className={styles.loader}></div>
+          </div>
+        }
         <div
           style={
             success

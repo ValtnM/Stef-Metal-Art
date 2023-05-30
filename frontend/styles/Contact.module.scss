@@ -29,6 +29,9 @@
       @include form-basic-button;
       width: 100%;
       margin: 20px 20px 0 0;
+      &:disabled {
+        @include btnDisabled;
+      }
     }
   }
 }
@@ -40,9 +43,7 @@
   }
 }
 .messageValidation {
-  // width: 100%;
   display: flex;
-  // flex-basis: auto;
 }
 .recaptcha {
   margin-top: 20px;
@@ -96,6 +97,10 @@
     & > * {
       width: 100%;
     }
+  }
+  .recaptcha {
+    transform: scale(0.6);
+    transform-origin: 0,0;
   }
 }
 

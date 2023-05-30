@@ -8,6 +8,8 @@ export default function NewLinkForm() {
   const [link, setLink] = useState("");
   const [notificationMessage, setNotificationMessage] = useState<string>();
   const [success, setSuccess] = useState(false);
+  const [responseReceived, setResponseReceived] = useState(true)
+
 
   const thumbnailInputRef = useRef<any>();
 
@@ -22,6 +24,7 @@ export default function NewLinkForm() {
   // Envoi des données du formulaire au backend
   const sendData = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
+    setResponseReceived(false)
 
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/link`, {
       method: "POST",
@@ -29,7 +32,7 @@ export default function NewLinkForm() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        setResponseReceived(true)
         if (data.error) {
           setNotificationMessage(data.error);
           setSuccess(false);
@@ -88,7 +91,13 @@ export default function NewLinkForm() {
           <label htmlFor="link">Lien</label>
           <input onChange={(e) => setLink(e.target.value)} type="text" id="link" placeholder="Entrer un URL" value={link}/>
         </div>
-        <button onClick={(e) => sendData(e)}>Ajouter</button>
+        <button disabled={responseReceived ? false : true} onClick={(e) => sendData(e)}>Ajouter</button>
+        {
+          !responseReceived &&
+          <div>
+            <div className={styles.loader}></div>
+          </div>
+        }
         {notificationMessage && <div className={success ? `${styles.notificationMessage} ${styles.success}` : `${styles.notificationMessage}`}>{notificationMessage}</div>}
       </form>
     </div>

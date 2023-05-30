@@ -30,6 +30,17 @@
   }
 }
 
+.loader {
+  content: "";
+  width: 50px;
+  height: 50px;
+  margin: 20px auto 0;
+  border: 5px grey solid;
+  border-top: 5px white solid;
+  border-radius: 50%;
+  animation: loadingSpinner 500ms infinite ease-in;
+}
+
 .notificationMessage {
   margin-top: 10px;
   padding: 10px;
@@ -49,5 +60,14 @@
   100% {
     transform: translateY(0);
     opacity: 1;
+  }
+}
+
+@keyframes loadingSpinner {
+  0% {
+     transform: rotate(0);
+  }
+  100% {
+     transform: rotate(360deg);
   }
 }

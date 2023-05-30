@@ -103,7 +103,7 @@ export default function Contact() {
               <textarea onChange={(e) => setMessage(e.target.value)} id="message" rows={20} value={message} />
             </div>
             <div className={styles.messageValidation}>
-              <button>Envoyer le message</button>
+              <button disabled={!sendedMessage}>Envoyer le message</button>
               <ReCAPTCHA className={styles.recaptcha} sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!} ref={captchaRef} />
             </div>
             {notificationMessage && <div className={successfulSending ? `${styles.notificationMessage} ${styles.success}` : `${styles.notificationMessage} ${styles.fail}`}>{notificationMessage}</div>}

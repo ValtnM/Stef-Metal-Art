@@ -89,6 +89,14 @@
   border-radius: 10px;
 }
 
+@media screen and (max-width: 576px) {
+  .connectionFormContainer {
+    h2 {
+      font-size: 1.8em;
+    }
+  }
+}
+
 @keyframes connectionFormAppearance {
   0% {
     transform: translateY(50px);

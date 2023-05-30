@@ -122,6 +122,16 @@
   }
 }
 
+@mixin btnDisabled {
+  background: var(--light-grey);
+  color: black;
+  &:hover {
+    transform: none;
+    background: var(--light-grey);
+    cursor: not-allowed;
+  }
+}
+
 @mixin addingForm {
   background: white;
   max-width: 800px;
@@ -141,6 +151,9 @@
     }
     button {
       @include form-basic-button;
+      &:disabled {
+        @include btnDisabled;
+      }
     }
   }
   @media screen and (max-width: 576px) {
