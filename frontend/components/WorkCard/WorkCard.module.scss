@@ -30,6 +30,10 @@
   }
   .descriptionContainer {
     position: relative;
+    p {
+      margin: 0;
+      text-align: justify;
+    }
   }
   .nameContainer,
   .descriptionContainer {
@@ -88,6 +92,7 @@
   margin-top: 20px;
   border-radius: 20px;
   box-shadow: var(--box-shadow);
+  z-index: 10;
 }
 
 .editForm {
@@ -111,7 +116,7 @@
     width: 90%;
     min-height: 200px;
     margin: 0 auto 20px auto;
-    
+
     img {
       width: 100%;
       object-fit: contain;
@@ -154,14 +159,13 @@
 
 @media screen and (max-width: 992px) {
   .workCard {
-    height: 800px;
     width: 400px;
     .thumbnailImg {
-      border-radius: 50px 50px 0 0;
+      border-radius: 50px;
     }
     .infos {
-      bottom: 0;
-      height: 55%;
+      bottom: -60px;
+      height: auto;
       width: 100%;
     }
   }
@@ -170,17 +174,20 @@
 @media screen and (max-width: 576px) {
   .workCard {
     font-size: 0.8em;
-    height: 800px;
     width: 90%;
     .thumbnailImg {
-      border-radius: 50px 50px 0 0;
       width: 100%;
       object-fit: cover;
     }
     .infos {
-      bottom: 0;
-      height: 55%;
+      bottom: -10px;
+      height: auto;
       width: 100%;
+      padding: 20px;
+      border-radius: 30px;
+      h2 {
+        font-size: 1.6em;
+      }
     }
     .thumbnailEditing {
       .editFormContainer {
@@ -212,8 +219,7 @@
   }
 }
 
-
-@keyframes workCardAppearance{
+@keyframes workCardAppearance {
   0% {
     transform: translateX(-200px);
     opacity: 0;

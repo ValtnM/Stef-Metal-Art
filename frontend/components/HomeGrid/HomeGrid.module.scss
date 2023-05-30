@@ -1,14 +1,12 @@
 .container {
   position: relative;
   margin: auto;
-  // height: auto;
   overflow: hidden;
   text-align: center;
 }
 
 .background {
   width: 100%;
-  // height: auto;
   object-fit: cover;
   position: absolute;
   top: 0;
@@ -24,22 +22,16 @@
   bottom: 0;
   left: 0;
   background: rgba(0, 0, 0, 0.5);
-  // z-index: 100;
 }
 
 .grid {
   position: relative;
-  // top: 62px;
-  // left: 50%;
-  // transform: translateX(-50%);
   max-width: 1000px;
   margin: 50px auto;
   display: inline-flex;
   justify-content: center;
   flex-wrap: wrap;
   background: rgba(255, 255, 255, 0.5);
-  // background: white;
-  // border: 2px red solid;
   padding: 20px;
   .block {
     width: 300px;
@@ -96,7 +88,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   background: rgba(255, 255, 255, 0.5);
   padding: 50px;
   font-family: var(--font-secondary);
@@ -123,18 +115,13 @@
   .grid {
     width: 430px;
   }
-  // .background {
-  //   height: 800px;
-  // }
 }
 
 @media screen and (max-width: 576px) {
   .grid {
     width: 220px;
   }
-  // .background {
-  //   height: 1400px;
-  // }
+
   .noSculptureMessage {
     height: 100%;
     font-size: 1em;
