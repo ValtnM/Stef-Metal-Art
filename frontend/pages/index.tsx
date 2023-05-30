@@ -34,7 +34,7 @@ export default function Home(props: IndexProps) {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const nbOfSculpturesToDisplay = 3;
+  const nbOfSculpturesToDisplay = 6;
   let sculpturesArray: Work[][] = [];
 
   try {
