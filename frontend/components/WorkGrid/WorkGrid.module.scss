@@ -28,8 +28,9 @@
   background: white;
   animation: worksTopAppearance 500ms ease-in-out both;
   img {
-    width: 100%;
-    height: auto;
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
   }
   h2 {
     font-family: var(--font-primary);
@@ -97,6 +98,10 @@
   .workElement {
     width: 200px;
     padding: 5px;
+    img {
+      height: 180px;
+      width: 180px;
+    }
     h2 {
       font-size: 1em;
       margin: 5px 0;

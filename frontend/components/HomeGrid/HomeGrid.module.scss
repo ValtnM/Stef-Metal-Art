@@ -39,10 +39,11 @@
     position: relative;
     margin: 10px;
     animation: imageApparition 500ms ease-in-out both;
-
+    overflow: hidden;
+    
     img {
-      width: 100%;
-      height: auto;
+      width: 300px;
+      height: 300px;
       position: absolute;
       top: 0;
       right: 0;
@@ -104,6 +105,10 @@
       width: 200px;
       height: 200px;
       margin: 5px;
+      img {
+        width: 200px;
+        height: 200px;
+      }
     }
   }
   .background {

@@ -140,7 +140,7 @@ export default function HomeGrid(props: { sculpturesArray: Work[][]; nbOfSculptu
             <div key={index} style={{ animationDelay: `${index * 100}ms` }} className={styles.block}>
               {element.map((sculpture, index) => (
                 <Link className={styles.sculptureThumb} key={index} href={`/sculptures/${sculpture._id}`}>
-                  <Image className={styles.gridImg} loader={imageLoader} src={`${process.env.NEXT_PUBLIC_IMAGES_SRC}/${sculpture.thumbnail}`} alt="peinture" width={300} height={300} style={{ objectFit: "contain" }} placeholder="blur" blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN88B8AAsUB4ZtvXtIAAAAASUVORK5CYII=" />
+                  <Image className={styles.gridImg} loader={imageLoader} src={`${process.env.NEXT_PUBLIC_IMAGES_SRC}/${sculpture.thumbnail}`} alt={sculpture.name} width={300} height={300} style={{ objectFit: "cover" }} placeholder="blur" blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN88B8AAsUB4ZtvXtIAAAAASUVORK5CYII=" />
                 </Link>
               ))}
             </div>

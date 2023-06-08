@@ -5,6 +5,7 @@ import Slider from "../Slider/Slider";
 import WorkCard from "../WorkCard/WorkCard";
 import PhotoViewer from "../PhotoViewer/PhotoViewer";
 
+
 type Work = {
   _id: Object;
   name: string;
@@ -21,6 +22,7 @@ type WorkDetailsProps = {
   typeOfWork: string;
   workDetails: Work;
 };
+
 
 export default function WorkDetails({ typeOfWork, workDetails }: WorkDetailsProps) {
   const [workId, setWorkId] = useState<String>();
@@ -84,6 +86,8 @@ export default function WorkDetails({ typeOfWork, workDetails }: WorkDetailsProp
       }
     }
   }, [router.isReady]);
+
+
 
   // Récupération du token d'authentification dans le session storage
   const getTokenFromSessionStorage = () => {
