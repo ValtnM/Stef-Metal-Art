@@ -12,7 +12,7 @@ const port = 8080;
 // Connexion à la base de données
 mongoose.set("strictQuery", false);
 mongoose
-  .connect("mongodb://localhost:27017/stef_metal_art")
+  .connect("mongodb://127.0.0.1:27017/stef_metal_art")
   .then(() => console.log("Connexion à MongoDB réussie !"))
   .catch(() => console.log("Échec de la connexion à MongoDB !"));
 
